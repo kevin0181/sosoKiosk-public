@@ -11,7 +11,6 @@ function logout() {
     location.href = "/";
 }
 
-
 function showImg(data, object) { //img url show
     $("#" + object).show();
 
@@ -101,11 +100,11 @@ function orderListPage() {
 
 
 function orderListCard() {
-    location.href="/admin/order?status=cardOrder";
+    location.href = "/admin/order?status=cardOrder";
 }
 
 function orderListMoney() {
-    location.href="/admin/order?status=moneyOrder";
+    location.href = "/admin/order?status=moneyOrder";
 }
 
 
