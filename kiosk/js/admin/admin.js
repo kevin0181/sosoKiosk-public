@@ -1,3 +1,4 @@
+
 function locationSetTime4(result) {
     setTimeout(() => location.href = result, 400);
 }
@@ -10,6 +11,7 @@ function logout() {
     });
     location.href = "/";
 }
+
 
 function showImg(data, object) { //img url show
     $("#" + object).show();
