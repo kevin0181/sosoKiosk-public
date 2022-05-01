@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+
+<!--메뉴 수정-->
+<div class="O-modal-back menu-detail-modal" th:if="${status} == 'all'" th:fragment="admin-modal-menu">
+    <div class="O-modal">
+        <div class="O-modal-content">
+            <div class="O-modal-header">
+                <div class="O-modal-close-Btn">
+                    <div class="O-close O-close3" id="modalCloseBtn" onclick="menuModalDetailClose()"></div>
+                </div>
+                <div class="O-modal-top">
+                    <div class="O-modal-top-title M-font">
+                        <p>메뉴 상세</p>
+                    </div>
+                </div>
+            </div>
+            <div class="O-modal-category-bar">
+                <div class="O-category-part" id="menuPart">
+                    <div class="M-font O-font-mini-size O-category-box O-category-box-menu">
+                        <p>메뉴</p>
+                    </div>
+                </div>
+                <div class="O-category-part" id="sidePart" style="display: none;">
+                    <div class="M-font O-font-mini-size O-category-box O-category-box-side">
+                        <p>사이드</p>
+                    </div>
+                </div>
+            </div>
+            <div class="O-modal-side-order" id="menuDetailPartParent" style="padding: 5px 20px;">
+<!--                <div class="O-side-order-part O-side-order-part-menu" id="menuDetailPart" style="padding: 10px;">-->
+<!--                    <form id="addMenuForm" class="M-flex-column admin-main-left-flex" method="post"-->
+<!--                          enctype="multipart/form-data">-->
+<!--                        <input type="hidden" id="menuSq" name="menuSq">-->
+<!--                        <div class="M-flex-row M-font admin-font-size" style="margin-bottom: 25px;">-->
+<!--                            <div class="M-flex-1 M-flex-row M-flex-center">-->
+<!--                                메뉴 이름-->
+<!--                            </div>-->
+<!--                            <div class="M-flex-1 M-flex-row M-flex-center menuInputDiv">-->
+<!--                                <input type="text" class="M-input-text M-font M-mini-size" id="menuName"-->
+<!--                                       name="menuName">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="M-flex-row M-font admin-font-size" style="margin-bottom: 25px;">-->
+<!--                            <div class="M-flex-1 M-flex-row M-flex-center">-->
+<!--                                사진 업로드-->
+<!--                            </div>-->
+<!--                            <div class="M-flex-1 M-flex-row M-flex-center menuInputDiv">-->
+<!--                                <input type="file" value="" class="M-none-design" id="menu-file" name="menuImg"-->
+<!--                                       accept="image/*">-->
+<!--                                <label class="M-input-text" id="menu-fileUrl" for="menu-file"-->
+<!--                                       style="font-size: 20px; overflow: hidden">이미지 변경을 원하시면 선택하세요.-->
+<!--                                </label>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="M-flex-row M-font admin-font-size" style="margin-bottom: 25px;">-->
+<!--                            <div class="M-flex-1 M-flex-row M-flex-center">-->
+<!--                                가격-->
+<!--                            </div>-->
+<!--                            <div class="M-flex-1 M-flex-row M-flex-center menuInputDiv">-->
+<!--                                <input type="text" value="" class="M-input-text M-font M-mini-size" id="menuPrice"-->
+<!--                                       name="menuPrice">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="M-flex-row M-font admin-font-size" style="margin-bottom: 25px;">-->
+<!--                            <div class="M-flex-1 M-flex-row M-flex-center">-->
+<!--                                카테고리-->
+<!--                            </div>-->
+<!--                            <div class="M-flex-1 M-flex-column M-flex-center" style="position: relative;">-->
+<!--                                <input type="text" value="" class="M-input-text M-font M-mini-size menuInputDiv"-->
+<!--                                       id="categorySelect"-->
+<!--                                       readonly-->
+<!--                                       onfocus="this.blur()">-->
+<!--                                <div class="M-input-select-div" id="categorySelectOption"-->
+<!--                                     style="display: none;">-->
+<!--                                    &lt;!&ndash;                                <input type="text" value="1"&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                       class="M-input-select M-font M-mini-size M-input-select-middle"&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                       onclick="selectCategory(this)" readonly&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                       onfocus="this.blur()">&ndash;&gt;-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="M-flex-row M-font admin-font-size" style="margin-bottom: 25px;">-->
+<!--                            <div class="M-flex-1 M-flex-row M-flex-center">-->
+<!--                                사이드-->
+<!--                            </div>-->
+<!--                            <div class="M-flex-1 M-flex-column M-flex-center menuInputDiv"-->
+<!--                                 style="position: relative;">-->
+<!--                                <input type="text" value="" class="M-input-text M-font M-mini-size" id="sideSelect"-->
+<!--                                       readonly-->
+<!--                                       onfocus="this.blur()">-->
+<!--                                <div class="M-input-select-div" id="sideSelectOption"-->
+<!--                                     style="display: none;">-->
+<!--                                    &lt;!&ndash;                                    <input type="text" value="사이드 선택 안함" name="0"&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                           class="M-input-select M-font M-mini-size M-input-select-middle"&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                           onclick="selectSide(this)"&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                           readonly&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                           onfocus="this.blur()">&ndash;&gt;-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="M-flex-row M-font admin-font-size" style="margin-bottom: 25px;">-->
+<!--                            <div class="M-flex-1 M-flex-row M-flex-center">-->
+
+<!--                            </div>-->
+<!--                            &lt;!&ndash;                            <div class="M-flex-1 M-flex-row M-flex-center">&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                <div class="O-side-select-close" style="margin-top: 0px; margin-right: 10px"&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                     onclick="changeMenu()">&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                    <p class="M-font">메뉴 수정</p>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                </div>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--                        </div>-->
+<!--                    </form>-->
+<!--                    <div class="M-flex-column admin-main-right-flex" id="menuDetailImg">-->
+<!--                        <div class="admin-main-img">-->
+<!--                            <div class="img-part M-flex-column M-flex-center">-->
+<!--                                <p class="M-font M-mini-size" id="admin-main-menu-select-img-top-p">메뉴 이미지</p>-->
+<!--                                <img id="admin-main-menu-select-img" class="admin-main-select-img"-->
+<!--                                     style="display: none;">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="admin-progress-bar" style="padding: 10px 60px;">-->
+<!--                            <div class="admin-progress-bar-div" style="text-align: center;">-->
+<!--                                <small class="M-font" style="font-size: 25px;" id="progress-small-menu"></small>-->
+<!--                                <progress id="menu-progressBar" style="margin-top: 30px; height: 20px;"-->
+<!--                                          class="M-progress-bar"-->
+<!--                                          value="0"-->
+<!--                                          max="100"></progress>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+            </div>
+            <div class="O-modal-side-footer">
+                <div class="O-side-select-part" id="menuDetailFooter">
+                    <div class="M-container M-flex-row M-flex-center">
+                        <div class="M-container M-flex-row M-flex-center" style="width: 50%;">
+                            <p class="M-font O-font-middle-size">품절</p>
+                            <input type="checkbox" class="M-input-checkBox" id="menuSoldOut-checkBox">
+                            <label for="menuSoldOut-checkBox"></label>
+                        </div>
+                        <div class="M-container M-flex-row M-flex-center" style="width: 50%;">
+                            <p class="M-font O-font-middle-size">메뉴 숨기기</p>
+                            <input type="checkbox" class="M-input-checkBox" id="menuEnable-checkBox">
+                            <label for="menuEnable-checkBox"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="O-side-select-ok-part" style="width: 35%;flex-direction: row;align-items: center;">
+                    <div class="O-side-select-ok M-flex-row M-flex-center" id="menuChangeBtn" onclick="changeMenu()"
+                         style="margin: 0 5px 0 0;height: 50%;">
+                        <p class="M-font O-font-middle-size">수정 완료</p>
+                    </div>
+                    <input type="hidden" id="changeStatus">
+                    <div class="O-side-select-close M-flex-row M-flex-center" id="menuDetailCloseBtn"
+                         onclick="menuModalDetailClose()"
+                         style="margin: 0 0 0 5px;height: 50%;">
+                        <p class="M-font O-font-middle-size">닫기</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--사이드메뉴 수정 -->
+<div class="O-modal-back menu-detail-modal" id="sideMenuDetailModal" th:if="${status} == 'sideAll'"
+     th:fragment="admin-modal-menu">
+    <div class="O-modal">
+        <div class="O-modal-content">
+            <div class="O-modal-header">
+                <div class="O-modal-close-Btn">
+                    <div class="O-close O-close3" id="modalCloseBtn" onclick="sideMenuModalDetailClose()"></div>
+                </div>
+                <div class="O-modal-top">
+                    <div class="O-modal-top-title M-font">
+                        <p>사이드 메뉴 수정</p>
+                    </div>
+                </div>
+            </div>
+            <div class="O-modal-category-bar">
+                <div class="O-category-part">
+                    <div class="M-font O-font-mini-size O-category-box" style="background-color: #838383;">
+                        <p>사이드 메뉴</p>
+                    </div>
+                </div>
+            </div>
+            <div class="O-modal-side-order" style="padding: 5px 20px;">
+                <div class="O-side-order-part" style="padding: 10px;">
+                    <div class="M-flex-column admin-main-left-flex" style="margin-top: 25px;">
+                        <form id="changeSideMenuForm" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="menuSideSq" id="menuSideSq">
+                            <div class="M-flex-row M-font admin-font-size" style="margin-bottom: 25px;">
+                                <div class="M-flex-1 M-flex-row M-flex-center">
+                                    사이드 메뉴 이름
+                                </div>
+                                <div class="M-flex-1 M-flex-row M-flex-center sideMenuInputDiv">
+                                    <input type="text" value="" class="M-input-text M-font M-mini-size"
+                                           id="menu-side-name"
+                                           name="menuSideName">
+                                </div>
+                            </div>
+                            <div class="M-flex-row M-font admin-font-size" style="margin-bottom: 25px;">
+                                <div class="M-flex-1 M-flex-row M-flex-center">
+                                    사진 업로드
+                                </div>
+                                <div class="M-flex-1 M-flex-row M-flex-center sideMenuInputDiv">
+                                    <input type="file" value="" class="M-none-design" id="side-file" name="menuSideImg"
+                                           accept="image/*">
+                                    <label class="M-input-text" id="side-fileUrl" for="side-file"
+                                           style="font-size: 20px; overflow: hidden">이미지 변경을 원하시면 선택하세요.
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="M-flex-row M-font admin-font-size" style="margin-bottom: 25px;">
+                                <div class="M-flex-1 M-flex-row M-flex-center">
+                                    가격
+                                </div>
+                                <div class="M-flex-1 M-flex-row M-flex-center sideMenuInputDiv">
+                                    <input type="text" value="" class="M-input-text M-font M-mini-size"
+                                           id="menuSidePrice"
+                                           name="menuSidePrice">
+                                </div>
+                            </div>
+                            <div class="M-flex-row M-font admin-font-size" style="margin-bottom: 25px;">
+                                <div class="M-flex-1 M-flex-row M-flex-center">
+                                    사이드
+                                </div>
+                                <div class="M-flex-1 M-flex-column M-flex-center sideMenuInputDiv"
+                                     style="position: relative;">
+                                    <input type="text" value="" class="M-input-text M-font M-mini-size"
+                                           id="sideSelectByAddSide"
+                                           readonly
+                                           onfocus="this.blur()">
+                                    <div class="M-input-select-div" id="sideSelectByAddSideOption"
+                                         style="display: none;">
+                                        <!--                                    <input type="text" value="side 1"-->
+                                        <!--                                           class="M-input-select M-font M-mini-size M-input-select-middle"-->
+                                        <!--                                           onclick="selectSideByAddMenu(this)" readonly-->
+                                        <!--                                           onfocus="this.blur()">-->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="M-flex-row M-font admin-font-size" style="margin-bottom: 25px;">
+                                <div class="M-flex-1 M-flex-row M-flex-center">
+                                    사이드 카테고리
+                                </div>
+                                <div class="M-flex-1 M-flex-column M-flex-center sideMenuInputDiv"
+                                     style="position: relative;">
+                                    <input type="text" value="" class="M-input-text M-font M-mini-size"
+                                           id="sideCategorySelect"
+                                           readonly
+                                           onfocus="this.blur()">
+                                    <div class="M-input-select-div" id="sideCategorySelectOption"
+                                         style="display: none;">
+                                        <!--                                    <input type="text" value="side 1"-->
+                                        <!--                                           class="M-input-select M-font M-mini-size M-input-select-middle"-->
+                                        <!--                                           onclick="selectSideCategory(this)" readonly-->
+                                        <!--                                           onfocus="this.blur()">-->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="M-flex-row M-font admin-font-size" style="margin-bottom: 25px;">
+                                <div class="M-flex-1 M-flex-row M-flex-center">
+
+                                </div>
+                                <!--                                <div class="M-flex-1 M-flex-row M-flex-center">-->
+                                <!--                                    <div class="O-side-select-close" style="margin-top: 0px; margin-right: 10px"-->
+                                <!--                                         onclick="changeSideMenu()">-->
+                                <!--                                        <p class="M-font O-font-middle-size" style="font-size: 40px;">사이드 메뉴 업로드</p>-->
+                                <!--                                    </div>-->
+                                <!--                                </div>-->
+                            </div>
+                        </form>
+                    </div>
+                    <div class="M-flex-column admin-main-right-flex">
+                        <div class="admin-main-img">
+                            <div class="img-part M-flex-column M-flex-center">
+                                <p class="M-font M-mini-size">미리보기</p>
+                                <img id="admin-main-side-select-img" class="admin-main-select-img"
+                                     style="display: none;">
+                            </div>
+                        </div>
+                        <div class="admin-progress-bar" style="padding: 10px 60px;">
+                            <div class="admin-progress-bar-div" style="text-align: center;">
+                                <small class="M-font" style="font-size: 25px;" id="progress-small-side"></small>
+                                <progress id="side-progressBar" style="margin-top: 30px;height: 25px;"
+                                          class="M-progress-bar"
+                                          value="0"
+                                          max="100"></progress>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="O-modal-side-footer" style="padding: 30px 0px;">
+                <div class="O-side-select-part">
+                    <div class="M-container M-flex-row M-flex-center">
+                        <div class="M-container M-flex-row M-flex-center" style="width: 50%;">
+                            <p class="M-font O-font-middle-size">품절</p>
+                            <input type="checkbox" class="M-input-checkBox" id="menuSideSoldOut-checkBox">
+                            <label for="menuSideSoldOut-checkBox"></label>
+                        </div>
+                        <div class="M-container M-flex-row M-flex-center" style="width: 50%;">
+                            <p class="M-font O-font-middle-size">메뉴 숨기기</p>
+                            <input type="checkbox" class="M-input-checkBox" id="menuSideEnable-checkBox">
+                            <label for="menuSideEnable-checkBox"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="O-side-select-ok-part" style="width: 35%;flex-direction: row;align-items: center;">
+                    <div class="O-side-select-ok M-flex-row M-flex-center" onclick="changeSideMenu()"
+                         style="margin: 0 5px 0 0;height: 70%;">
+                        <p class="M-font O-font-middle-size">수정 완료</p>
+                    </div>
+                    <input type="hidden" id="changeStatus">
+                    <div class="O-side-select-close M-flex-row M-flex-center" onclick="sideMenuModalDetailClose()"
+                         style="margin: 0 0 0 5px;height: 70%;">
+                        <p class="M-font O-font-middle-size">닫기</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--카테고리 간편보기-->
+<div class="O-modal-back menu-detail-modal" id="categoryDetailModal" th:if="${status} == 'category'"
+     th:fragment="admin-modal-menu">
+    <div class="O-modal">
+        <div class="O-modal-content">
+            <div class="O-modal-header">
+                <div class="O-modal-close-Btn">
+                    <div class="O-close O-close3" id="modalCloseBtn" onclick="categoryModalDetailClose()"></div>
+                </div>
+                <div class="O-modal-top">
+                    <div class="O-modal-top-title M-font" id="category-top">
+                        <p>카테고리</p>
+                    </div>
+                </div>
+            </div>
+            <div class="O-modal-category-bar">
+                <div class="O-category-part">
+                    <div class="M-font O-font-mini-size O-category-box" style="background-color: #838383;">
+                        <p>카테고리</p>
+                    </div>
+                </div>
+            </div>
+            <div class="O-modal-side-order M-flex-row" style="padding: 5px 20px; justify-content: space-between;">
+                <div class="O-side-order-part" style="padding: 10px 40px;width: 100%;height: 100%;">
+                    <div class="O-side-order-part M-overlay" id="category-card-body"
+                         style="width: 100%;height: 100%;flex-wrap: wrap;">
+                        <!--                        <div class="O-side-order-card a-side-order-card">-->
+                        <!--                            <div class="O-menu-side-img">-->
+                        <!--                                <img th:src="@{/kiosk/img.jpg}" class="O-side-img">-->
+                        <!--                            </div>-->
+                        <!--                            <div class="O-menu-side-name M-font O-font-mini-size M-text-center">-->
+                        <!--                                <p class="O-menu-side-name-p">사이드 1</p>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+                    </div>
+                </div>
+            </div>
+            <div class="O-modal-side-footer" style="padding: 30px 0px;justify-content: center;">
+                <div class="O-side-select-part">
+                </div>
+                <div class="O-side-select-ok-part">
+                    <div class="O-side-select-close">
+                        <p class="M-font O-font-middle-size" onclick="categoryModalDetailClose()">닫기</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--사이드 간편보기-->
+<div class="O-modal-back menu-detail-modal" id="sideDetailModal" th:if="${status} == 'category'"
+     th:fragment="admin-modal-menu">
+    <div class="O-modal">
+        <div class="O-modal-content">
+            <div class="O-modal-header">
+                <div class="O-modal-close-Btn">
+                    <div class="O-close O-close3" id="modalCloseBtn" onclick="sideModalDetailClose()"></div>
+                </div>
+                <div class="O-modal-top">
+                    <div class="O-modal-top-title M-font" id="side-top">
+                        <p>사이드</p>
+                    </div>
+                </div>
+            </div>
+            <div class="O-modal-category-bar" id="side-modal-top">
+                <!--                <div class="O-category-part">-->
+                <!--                    <div class="M-font O-font-mini-size O-category-box" style="background-color: #838383;">-->
+                <!--                        <p>사이드 카테고리</p>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+            </div>
+            <div class="O-modal-side-order M-flex-row" style="padding: 5px 20px; justify-content: space-between;">
+                <div class="O-side-order-part" style="padding: 10px 40px;width: 100%;height: 100%;">
+                    <div class="O-side-order-part M-overlay" id="side-card-body"
+                         style="width: 100%;height: 100%;flex-wrap: wrap;">
+                        <!--                        <div class="O-side-order-card a-side-order-card">-->
+                        <!--                            <div class="O-menu-side-img">-->
+                        <!--                                <img th:src="@{/kiosk/img.jpg}" class="O-side-img">-->
+                        <!--                            </div>-->
+                        <!--                            <div class="O-menu-side-name M-font O-font-mini-size M-text-center">-->
+                        <!--                                <p class="O-menu-side-name-p">사이드 1</p>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+                    </div>
+                </div>
+            </div>
+            <div class="O-modal-side-footer" style="padding: 30px 0px; justify-content: center;">
+                <div class="O-side-select-part">
+                </div>
+                <div class="O-side-select-ok-part">
+                    <div class="O-side-select-close">
+                        <p class="M-font O-font-middle-size" onclick="sideModalDetailClose()">닫기</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--modal 삭제창-->
+<div class="O-modal-back" id="delete-modal" th:fragment="admin-modal-delete">
+    <div class="O-modal" style="width: 40%; height: 35%">
+        <div class="O-modal-content">
+            <div class="O-modal-header">
+                <div class="O-modal-close-Btn">
+                    <div class="O-close O-close3" id="modalCloseBtn" onclick="deleteModalClose()"></div>
+                </div>
+                <div class="O-modal-top">
+                    <div class="O-modal-top-title M-font" id="deleteTop">
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+            <div class="O-modal-category-bar">
+            </div>
+            <div class="O-modal-side-order" style="height: 40%;text-align: center;" id="delete-modal-Body">
+                <!--                <small style="color: red;font-size: 20px;">' + name + '를 삭제하시겠습니까?</small>-->
+            </div>
+            <div class="O-modal-side-footer M-flex-j-center" id="delete-modal-footer">
+                <!--                                <div class="O-side-select-close" style="width: 50%; background-color: #eb8282;">-->
+                <!--                                    <p class="M-font O-font-middle-size">네</p>-->
+                <!--                                </div>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--카테고리 사이드 수정 모달창-->
+<div class="O-modal-back" id="category-change-modal" th:fragment="admin-modal-delete">
+    <div class="O-modal" style="width: 40%; height: 35%">
+        <div class="O-modal-content">
+            <div class="O-modal-header">
+                <div class="O-modal-close-Btn">
+                    <div class="O-close O-close3" id="modalCloseBtn" onclick="changeModalClose()"></div>
+                </div>
+                <div class="O-modal-top">
+                    <div class="O-modal-top-title M-font" id="changeTop">
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+            <div class="O-modal-category-bar">
+            </div>
+            <div class="O-modal-side-order" style="height: 40%; margin-top:15px; text-align: center;"
+                 id="change-modal-Body">
+                <!--                <div class="M-flex-row M-flex-center M-font admin-font-size" style="margin-bottom: 25px;">-->
+                <!--                    <div class="M-flex-row M-flex-center" style="font-size: 25px;width: 20%">-->
+                <!--                        카테고리-->
+                <!--                    </div>-->
+                <!--                    <div class="M-flex-row M-flex-center M-input" style="width: 50%">-->
+                <!--                        <input type="text" value="" id="categoryName" class="M-input-text M-font M-mini-size">-->
+                <!--                    </div>-->
+                <!--                </div>-->
+            </div>
+            <div class="O-modal-side-footer M-flex-j-center" id="change-modal-footer">
+                <div class="O-side-select-close" style="width: 50%; background-color: #eb8282;"
+                     onclick="changeCategory()">
+                    <p class="M-font O-font-middle-size">변경</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>

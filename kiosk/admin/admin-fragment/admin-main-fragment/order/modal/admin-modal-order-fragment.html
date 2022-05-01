@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+
+<!--주문 정보 모달-->
+<div class="O-modal-back menu-detail-modal" id="orderInfoModal" th:if="${status} == 'AllOrder' or ${status} == 'cardOrder' or ${status} == 'moneyOrder'"
+     th:fragment="admin-main-order">
+    <div class="O-modal">
+        <div class="O-modal-content">
+            <div class="O-modal-header">
+                <div class="O-modal-close-Btn">
+                    <div class="O-close O-close3" id="orderInfoModalCloseBtn" onclick="orderInfoModalClose()"></div>
+                </div>
+                <div class="O-modal-top">
+                    <div class="O-modal-top-title M-font">
+                        <p>주문 상세</p>
+                    </div>
+                </div>
+            </div>
+            <div class="O-modal-category-bar" id="orderInfoCategoryBar">
+                <!--                <div class="O-category-part" id="orderPart">-->
+                <!--                    <div class="M-font O-font-mini-size O-category-box O-category-box-menu"-->
+                <!--                         style="background-color: #838383;">-->
+                <!--                        <p>주문 정보</p>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--                <div class="O-category-part" id="menuPart">-->
+                <!--                    <div class="M-font O-font-mini-size O-category-box O-category-box-side">-->
+                <!--                        <p>주문 메뉴</p>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+            </div>
+            <div class="O-modal-side-order M-overlay" id="orderInfoBody" style="padding: 5px 20px;">
+
+
+                <!--                <div class="O-pay-order-part M-flex-row">-->
+                <!--                    <div class="O-pay-order-card O-pay-order-card-left">-->
+                <!--                        <div class="O-pay-img">-->
+                <!--                            <img src="/kiosk/img/side/20220208201721.png" class="O-side-img">-->
+                <!--                        </div>-->
+                <!--                        <div class="O-pay-name M-font O-font-middle-size M-flex-column M-flex-center">-->
+                <!--                            <p class="">2</p>-->
+                <!--                        </div>-->
+                <!--                        <div class="O-pay-number M-flex-column M-flex-center">-->
+                <!--                            <div class="M-font O-font-middle-size M-flex-column M-flex-center">-->
+                <!--                                <p>0개</p>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+                <!--                        <div class="O-pay-price M-flex-column M-flex-center">-->
+                <!--                            <div class="M-font O-font-middle-size M-flex-column M-flex-center">-->
+                <!--                                <p>100원</p>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+                <!--                    </div>-->
+                <!--                    <div class="O-pay-order-card O-pay-order-card-right M-flex-column">-->
+                <!--                        <div class="O-pay-order-card-div M-flex-row">-->
+                <!--                            <div class="O-pay-name M-font M-flex-column M-flex-center"-->
+                <!--                                 style="font-size: 30px; width: 30%;">-->
+                <!--                                <p class="">사이드</p>-->
+                <!--                            </div>-->
+                <!--                            <div class="O-pay-name M-font M-flex-column M-flex-center"-->
+                <!--                                 style="font-size: 30px;width: 10%">-->
+                <!--                                <p class="">10개</p>-->
+                <!--                            </div>-->
+                <!--                            <div class="O-pay-number M-flex-column M-flex-center" style="width: 20%">-->
+                <!--                                <div class="M-font M-flex-column M-flex-center" style="font-size: 30px;">-->
+                <!--                                    <p>10000원</p>-->
+                <!--                                </div>-->
+                <!--                            </div>-->
+                <!--                            <div class="O-pay-price M-flex-column M-flex-center" style="width: 40%;">-->
+                <!--                                <div class="M-font M-flex-column M-flex-center" style="font-size: 30px;">-->
+                <!--                                    <p>총가격 : 100000원</p>-->
+                <!--                                </div>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+                <!--                        <div class="O-pay-order-card-div M-flex-row">-->
+                <!--                            <div class="O-pay-name M-font M-flex-column M-flex-center"-->
+                <!--                                 style="font-size: 30px; width: 30%;">-->
+                <!--                                <p class="">사이드</p>-->
+                <!--                            </div>-->
+                <!--                            <div class="O-pay-name M-font M-flex-column M-flex-center"-->
+                <!--                                 style="font-size: 30px;width: 10%">-->
+                <!--                                <p class="">10개</p>-->
+                <!--                            </div>-->
+                <!--                            <div class="O-pay-number M-flex-column M-flex-center" style="width: 20%">-->
+                <!--                                <div class="M-font M-flex-column M-flex-center" style="font-size: 30px;">-->
+                <!--                                    <p>10000원</p>-->
+                <!--                                </div>-->
+                <!--                            </div>-->
+                <!--                            <div class="O-pay-price M-flex-column M-flex-center" style="width: 40%;">-->
+                <!--                                <div class="M-font M-flex-column M-flex-center" style="font-size: 30px;">-->
+                <!--                                    <p>총가격 : 100000원</p>-->
+                <!--                                </div>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+                <!--                        <div class="O-pay-order-card-div M-flex-row">-->
+                <!--                            <div class="O-pay-name M-font M-flex-column M-flex-center"-->
+                <!--                                 style="font-size: 30px; width: 30%;">-->
+                <!--                                <p class="">사이드</p>-->
+                <!--                            </div>-->
+                <!--                            <div class="O-pay-name M-font M-flex-column M-flex-center"-->
+                <!--                                 style="font-size: 30px;width: 10%">-->
+                <!--                                <p class="">10개</p>-->
+                <!--                            </div>-->
+                <!--                            <div class="O-pay-number M-flex-column M-flex-center" style="width: 20%">-->
+                <!--                                <div class="M-font M-flex-column M-flex-center" style="font-size: 30px;">-->
+                <!--                                    <p>10000원</p>-->
+                <!--                                </div>-->
+                <!--                            </div>-->
+                <!--                            <div class="O-pay-price M-flex-column M-flex-center" style="width: 40%;">-->
+                <!--                                <div class="M-font M-flex-column M-flex-center" style="font-size: 30px;">-->
+                <!--                                    <p>총가격 : 100000원</p>-->
+                <!--                                </div>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+
+
+                <!--                <div class="M-container" style="padding: 5px 50px;">-->
+                <!--                    <div class="M-font O-font-middle-size M-flex-column M-flex-center"-->
+                <!--                         style="width: 80%; height: 100%;">-->
+                <!--                        <div class="M-flex-row" style="height: 15%;">-->
+                <!--                            <div class="M-container" style="flex: 1; text-align: center;">-->
+                <!--                                <p>주문 번호 : </p>-->
+                <!--                            </div>-->
+                <!--                            <div class="M-container" style="flex: 1">-->
+                <!--                                <p>2aslkdjasd</p>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+                <!--                        <div class="M-flex-row" style="height: 15%;">-->
+                <!--                            <div class="M-container" style="flex: 1; text-align: center;">-->
+                <!--                                <p>주문 날짜 : </p>-->
+                <!--                            </div>-->
+                <!--                            <div class="M-container" style="flex: 1">-->
+                <!--                                <p>2022-01-01 22:22:22</p>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+                <!--                        <div class="M-flex-row" style="height: 15%;">-->
+                <!--                            <div class="M-container" style="flex: 1; text-align: center;">-->
+                <!--                                <p>총 금액 : </p>-->
+                <!--                            </div>-->
+                <!--                            <div class="M-container" style="flex: 1">-->
+                <!--                                <p>213123원</p>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+
+            </div>
+            <div class="O-modal-side-footer" style="justify-content: flex-end;">
+                <div class="O-side-select-ok-part" id="orderDetailModalButton">
+<!--                    <div class="O-side-select-close" style="background-color: #f79d9d;"-->
+<!--                         onclick="afterReceipt()">-->
+<!--                        <p class="M-font O-font-middle-size">영수증 출력하기</p>-->
+<!--                    </div>-->
+                    <div class="O-side-select-close" onclick="orderInfoModalClose()">
+                        <p class="M-font O-font-middle-size">닫기</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>

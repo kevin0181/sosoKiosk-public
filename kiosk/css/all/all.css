@@ -1,0 +1,372 @@
+* {
+    /* 테두리를 기준으로 크기를 정합니다. */
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* 텍스트 마우스 드래그시 색상 변경방법 */
+::selection,
+::-moz-selection {
+    background: #39f;
+    color: #fff;
+    text-shadow: none;
+}
+
+html {
+    overflow: hidden;
+}
+
+body {
+    overscroll-behavior: contain;
+    overflow: hidden;
+    -webkit-user-select: none; /*드래그 금지*/
+    -moz-user-select: none; /*드래그 금지*/
+    -ms-user-select: none; /*드래그 금지*/
+    user-select: none; /*드래그 금지*/
+    overscroll-behavior-x: none; /*좌우 스크롤 금지*/
+    /*cursor: none; !*마우스포인터 안보이게*!*/
+    font-size: 0;
+
+}
+
+input:focus {
+    outline: none;
+}
+
+.M-font {
+    font-family: 'Nanum Pen Script', cursive;
+}
+
+.M-container {
+    width: 100%;
+    height: 100%;
+}
+
+.M-white-font {
+    color: white;
+}
+
+.M-mini-size {
+    font-size: 30px;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+}
+
+.M-flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.M-flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.M-flex-1 {
+    flex: 1;
+}
+
+.M-flex-j-center {
+    justify-content: center;
+}
+
+.M-flex-a-center {
+    align-items: center;
+}
+
+.M-flex-center {
+    justify-content: center;
+    align-items: center;
+}
+
+.M-flex-3 {
+    width: 33.33333333333%;
+}
+
+.M-width-5 {
+    width: 5%;
+}
+
+.M-height-5 {
+    height: 5%;
+}
+
+.M-height-80 {
+    height: 80%;
+}
+
+.M-height-90 {
+    height: 90%;
+}
+
+.M-width-80 {
+    width: 80%;
+}
+
+.M-width-100 {
+    width: 100%;
+}
+
+.M-height-100 {
+    height: 100%;
+}
+
+
+.M-dis-inline-block {
+    display: inline-block;
+}
+
+.M-text {
+    text-align: center;
+}
+
+.M-top {
+}
+
+.M-text-center {
+    text-align: center;
+}
+
+
+.M-input-text {
+    width: 250px;
+    height: 50px;
+    border-radius: 10px;
+    border: 3px solid black;
+    padding: 10px;
+    background-color: #dae4da7d;
+}
+
+
+.M-none-design {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+}
+
+
+.M-input-select-div {
+    position: absolute;
+    top: 60px;
+    /*height: auto !important;*/
+    height: 150px;
+    overflow: overlay;
+    padding: 0px;
+    border: none !important;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+    filter: blur(0);
+}
+
+.M-input-select-div::-webkit-scrollbar {
+    width: 1vw;
+}
+
+.M-input-select-div::-webkit-scrollbar-thumb {
+    background-color: hsla(0, 0%, 42%, 0.49);
+    border-radius: 150px;
+}
+
+.M-input-select {
+    width: 100%;
+    height: 100%;
+    top: -10px;
+}
+
+.M-input-search {
+    width: 300px;
+    border-bottom: 3px solid black;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    padding: 10px;
+    background-color: #dae4da7d;
+}
+
+.M-input-select-top {
+    width: 250px;
+    height: 50px;
+    border-top-right-radius: 10px !important;
+    border-top-left-radius: 10px !important;
+    border-top: 3px solid black !important;
+    border-left: 3px solid black !important;
+    border-right: 3px solid black !important;
+    padding: 10px;
+    background-color: #dae4da !important;
+    border-bottom: none !important;
+}
+
+.M-input-select-middle {
+    width: 250px;
+    height: 50px;
+    border-top: 3px solid black;
+    border-left: 3px solid black;
+    border-right: 3px solid black;
+    border-bottom: none;
+    padding: 10px;
+    background-color: #dae4da !important;
+}
+
+.M-input-select-bottom {
+    width: 250px;
+    height: 50px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border: 3px solid black;
+    padding: 10px;
+    background-color: #dae4da !important;
+}
+
+
+.M-progress-bar {
+    width: 100%;
+    height: 30%;
+    -webkit-appearance: none;
+    display: none;
+}
+
+.M-progress-bar::-webkit-progress-bar {
+    border-radius: 10px;
+    border: 3px solid black;
+    background-color: #dae4da7d;
+}
+
+.M-progress-bar::-webkit-progress-value {
+    background-color: #628762;
+}
+
+.M-overlay {
+    overflow: overlay;
+}
+
+.M-overlay::-webkit-scrollbar {
+    width: 1vw;
+}
+
+.M-overlay::-webkit-scrollbar-thumb {
+    background-color: hsla(0, 0%, 42%, 0.49);
+    border-radius: 150px;
+}
+
+.w-M-overlay {
+    white-space: nowrap;
+    overflow: overlay;
+}
+
+.w-M-overlay::-webkit-scrollbar {
+    width: 1vw;
+}
+
+.w-M-overlay::-webkit-scrollbar-thumb {
+    background-color: hsla(0, 0%, 42%, 0.49);
+    border-radius: 150px;
+}
+
+/*index*/
+.adminSideDiv {
+    position: absolute;
+}
+
+.top-index-img {
+    width: 77%;
+    /*display: inline-block;*/
+    display: flex;
+}
+
+.index-side {
+    display: inline-block;
+    width: 23%;
+    height: 100%;
+}
+
+.side-up-container {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0px;
+}
+
+.storeName {
+    /*color: white;*/
+    font-size: 60px;
+    display: inline-block;
+}
+
+.div-L-index {
+    width: 50%;
+    padding: 0px 70px;
+}
+
+.div-R-index {
+    width: 50%;
+    padding: 0px 70px;
+}
+
+
+.inner {
+    width: 100%;
+    height: 50%;
+    position: relative;
+    top: 25%;
+    background-color: white;
+    border-radius: 60px;
+    box-shadow: 1px 2px 3px 1px #58595a;
+}
+
+.outer {
+    width: 100%;
+    height: 50%;
+    position: relative;
+    top: 25%;
+    background-color: white;
+    border-radius: 60px;
+    box-shadow: 1px 2px 3px 1px #58595a;
+}
+
+.img-inner-outer {
+    padding: 70px 100px 50px 100px;
+}
+
+.text-inner-outer {
+    text-align: center;
+    font-size: 50px;
+}
+
+.before-btn {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background-color: #6e8d6f3d;
+}
+
+.after-btn {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color: #6e8d6f3d;
+}
+
+/*cardPay*/
+.cardPay-cancel-Btn {
+    position: absolute;
+    top: 80%;
+    background-color: #a3cba6;
+    padding: 30px;
+    border-radius: 30px;
+}
+
+.searchDateSelect {
+    margin: 0px 10px;
+    border: 1px solid #628762;
+    border-radius: 20px;
+    height: 100%;
+}
+
+/*반응형*/
+@media screen and (max-width: 1000px) {
+}

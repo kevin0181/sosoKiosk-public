@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>kiosk</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="../css/all/font.css" rel="stylesheet">
+    <link href="../css/all/all.css" rel="stylesheet">
+    <link href="../css/all/orderMenu.css" rel="stylesheet">
+
+    <script rel="javascript" type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+    <script rel="javascript" type="text/javascript" src="../js/all/all.js"></script>
+    <script rel="javascript" type="text/javascript" src="../js/all/index.js"></script>
+
+</head>
+<body oncontextmenu='return false' onselectstart='return false' ondragstart='return false'> <!--우클릭 드래그 등등 방지-->
+<div class="container">
+    <div id="" class="container M-flex-row">
+        <div class="O-order-side-all">
+            <div id="adminSideDiv" class="M-width-5 M-height-5 M-dis-inline-block adminSideDiv" onclick="goAdmin()">
+            </div>
+            <div class="O-order-Side">
+                <div class="side-up-container">
+                    <div class="storeName">
+                        <p class="M-font" style="font-size: 80px;">&pastel</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="side-img" class="top-index-img">
+            <!--            <img th:src="@{/kioskImg/img.jpg}" class="M-width-100 M-height-100">-->
+            <div class="div-L-index">
+                <div class="inner" onclick="innerStart('inner')">
+                    <div class="img-inner-outer M-flex-column M-flex-center">
+                        <img src="../img/innerImg.png" class="M-width-80 M-height-80">
+                    </div>
+                    <div>
+                        <p class="text-inner-outer M-font">매장에서 먹기</p>
+                    </div>
+                </div>
+            </div>
+            <div class="div-R-index">
+                <div class="outer" onclick="outerStart('outer')">
+                    <div class="img-inner-outer M-flex-column M-flex-center">
+                        <img src="../img/outerImg.png" class="M-width-80 M-height-80">
+                    </div>
+                    <div>
+                        <p class="text-inner-outer M-font">포장하기</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

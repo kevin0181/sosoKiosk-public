@@ -1,0 +1,53 @@
+{
+  "name": "sosokiosk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "electron-start.js",
+  "homepage": "./",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "electron:start": "electron .",
+    "deploy": "electron-builder --windows nsis:ia32",
+    "dev": "set NODE_ENV=development&&electron ."
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^18.1.0",
+    "electron-builder": "^23.0.3",
+    "electron-reload": "^2.0.0-alpha.1",
+    "electron-reloader": "^1.2.3",
+    "nodemon": "^2.0.15"
+  },
+  "build": {
+    "productName": "sosokisok",
+    "appId": "com.electron.sosokisok",
+    "asar": true,
+    "protocols": {
+      "name": "sosokisok",
+      "schemes": [
+        "sosokisok"
+      ]
+    },
+    "win": {
+      "target": [
+        "zip",
+        "nsis"
+      ],
+      "icon": "./img/icon/kioskicon2.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "directories": {
+      "buildResources": "./resources/installer/",
+      "output": "./dist/",
+      "app": "."
+    }
+  },
+  "dependencies": {
+    "@stomp/stompjs": "^6.1.2",
+    "socket.io": "^4.5.0"
+  }
+}

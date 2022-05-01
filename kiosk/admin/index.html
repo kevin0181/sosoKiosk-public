@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div th:replace="/kiosk/kiosk-fragment/script.html :: all-script"></div>
+    <div th:replace="/kiosk/kiosk-fragment/css.html :: all-css"></div>
+    <div th:replace="/admin/admin-fragment/admin-css.html :: admin-css"></div>
+    <div th:replace="/admin/admin-fragment/admin-js.html :: admin-js"></div>
+
+</head>
+<body oncontextmenu='return false' onselectstart='return false' ondragstart='return false'>
+<!--메뉴모달-->
+<div th:replace="/admin/admin-fragment/admin-main-fragment/menu/modal/admin-modal-fragment.html :: admin-modal-menu"></div>
+<!--삭제모달-->
+<div th:replace="/admin/admin-fragment/admin-main-fragment/menu/modal/admin-modal-fragment.html :: admin-modal-delete"></div>
+<!--주문내역 모달-->
+<div th:replace="/admin/admin-fragment/admin-main-fragment/order/modal/admin-modal-order-fragment.html :: admin-main-order"></div>
+
+<!--관리자 공통 모달-->
+<div class="O-modal-back" id="adminTotalModal" style="z-index: 10">
+    <div class="O-modal" style="width: 40%; height: 50%">
+        <div class="O-modal-content">
+            <div class="O-modal-header" style="height: 20%;">
+                <div class="O-modal-close-Btn">
+                    <div class="O-close O-close3" id="adminTotalCloseBtn" onclick="adminTotalCloseBtn()"></div>
+                </div>
+                <div class="O-modal-top">
+                    <!--                    <div class="O-modal-top-title M-font" id="deleteTop">-->
+                    <!--                        <p></p>-->
+                    <!--                    </div>-->
+                </div>
+            </div>
+            <div class="O-modal-side-order" style="height: 40%;text-align: center;" id="adminTotalModalBody">
+            </div>
+            <div class="O-modal-side-footer M-flex-j-center" style="margin-top: 30px;height: 15%;">
+                <div class="O-receipt-modal-btn" onclick="adminTotalCloseBtn()"
+                     style="width: 35%; background-color: #d56161;">
+                    <p class="M-font O-font-middle-size">닫기</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--관리자 결제취소 Yes or No 모달-->
+<div class="O-modal-back" id="adminTotalModalYesOrNo" style="z-index: 10">
+    <div class="O-modal" style="width: 40%; height: 50%">
+        <div class="O-modal-content">
+            <div class="O-modal-header">
+                <div class="O-modal-close-Btn">
+                    <div class="O-close O-close3" id="adminTotalModalYesOrNoCloseBtn"
+                         onclick="adminTotalModalYesOrNoClose()"></div>
+                </div>
+                <div class="O-modal-top">
+                    <input type="hidden" id="hiddenStatusYesOrNo">
+                    <input type="hidden" id="yesOrNoHiddenOrderSq">
+                </div>
+            </div>
+            <div class="O-modal-category-bar">
+            </div>
+            <div class="O-modal-side-order" style="height: 40%;text-align: center;" id="adminTotalModalYesOrNoBody">
+
+            </div>
+            <div class="O-modal-side-footer M-flex-j-center" id="">
+                <div class="O-receipt-modal-btn M-flex-row M-flex-center" onclick="adminTotalModalYesOrNoSelect(true)"
+                     style="width: 35%; background-color: #eb8282;">
+                    <p class="M-font O-font-middle-size">네</p>
+                </div>
+                <div class="O-receipt-modal-btn M-flex-row M-flex-center" onclick="adminTotalModalYesOrNoSelect(false)"
+                     style="width: 35%; margin-left: 30px; background-color: #e9e9e9;">
+                    <p class="M-font O-font-middle-size">아니요</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="container M-flex-row">
+        <div class="O-order-side-all">
+            <div class="O-order-Side">
+                <div class="side-up-container">
+                    <div class="storeName">
+                        <p th:text="#{store.name.en}" class="M-font" style="font-size: 80px;"></p>
+                    </div>
+                </div>
+                <div th:replace="/admin/admin-fragment/admin-fragment-side.html :: admin-side-category"></div>
+            </div>
+        </div>
+        <div class="admin-right-side admin-right-side-Preferences">
+            <th:block th:if="${arrowStatus} == 'menu'">
+                <div th:replace="/admin/admin-fragment/admin-fragment-top.html :: admin-menu">
+                </div>
+                <div th:replace="/admin/admin-fragment/admin-fragment-bottom.html :: admin-menu">
+                </div>
+            </th:block>
+
+            <th:block th:if="${arrowStatus} == 'sales'">
+                <div th:replace="/admin/admin-fragment/admin-fragment-top.html :: admin-sales"></div>
+                <div th:replace="/admin/admin-fragment/admin-fragment-bottom.html :: admin-sales">
+                </div>
+            </th:block>
+
+            <th:block th:if="${arrowStatus} == 'order'">
+                <div th:replace="/admin/admin-fragment/admin-fragment-top.html :: admin-order"></div>
+                <div th:replace="/admin/admin-fragment/admin-fragment-bottom.html :: admin-order">
+                </div>
+            </th:block>
+
+            <th:block th:if="${arrowStatus} == 'setting'">
+                <div th:replace="/admin/admin-fragment/admin-fragment-top.html :: admin-setting"></div>
+                <div th:replace="/admin/admin-fragment/admin-fragment-bottom.html :: admin-setting">
+                </div>
+            </th:block>
+        </div>
+    </div>
+</div>
+</body>
+</html>
