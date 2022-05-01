@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<!--side-->
+<div class="O-category" th:fragment="admin-side-category">
+    <div class="O-category-list">
+        <div class="O-category-list2">
+            <div class="text M-font O-category-font">
+                <div class="O-category-name" th:classappend="${arrowStatus} == 'menu' ? 'O-click-color'"
+                     onclick="menu()">
+                    <a class="O-category-a">메뉴 관리</a>
+                </div>
+            </div>
+            <div class="text M-font O-category-font">
+                <div class="O-category-name" th:classappend="${arrowStatus} == 'sales' ? 'O-click-color'"
+                     onclick="salesPage()">
+                    <a class="O-category-a">매출 계산</a>
+                </div>
+            </div>
+            <div class="text M-font O-category-font">
+                <div class="O-category-name" th:classappend="${arrowStatus} == 'order' ? 'O-click-color'"
+                     onclick="orderListPage()">
+                    <a class="O-category-a">주문내역</a>
+                </div>
+            </div>
+            <div class="text M-font O-category-font">
+                <div class="O-category-name" th:classappend="${arrowStatus} == 'setting' ? 'O-click-color'"
+                     onclick="settingIndexPage()">
+                    <a class="O-category-a">일반 설정</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

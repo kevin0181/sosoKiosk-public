@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>admin login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div th:replace="/kiosk/kiosk-fragment/script.html :: all-script"></div>
+    <div th:replace="/kiosk/kiosk-fragment/css.html :: all-css"></div>
+    <div th:replace="/admin/admin-fragment/admin-css.html :: admin-css"></div>
+
+    <script type="text/javascript">
+        // $(document).ready(function () {
+        //     var audio = new Audio('/voice/관리자님 환영합니다.wav');
+        //     audio.play();
+        // });
+    </script>
+</head>
+<body oncontextmenu='return false' onselectstart='return false' ondragstart='return false'>
+<div class="container">
+    <div id="" class="container M-flex-row">
+        <div class="O-order-side-all">
+            <div class="O-order-Side">
+                <div class="side-up-container">
+                    <div class="storeName">
+                        <p th:text="#{store.name.en}" class="M-font" style="font-size: 80px;"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="admin-right-side" style="justify-content: center">
+            <div class="admin-right-side-top">
+                <div>
+                    <img th:src="@{/kiosk/backImg.png}" id="indexBackBtn" onclick="location.href='/'"
+                         style="width: 100%">
+                </div>
+            </div>
+            <div class="adminLoginDiv">
+                <div class="adminFormTop">
+                    <p th:text="#{admin.login.top}">관리자 로그인</p>
+                </div>
+                <div class="adminLoginResult" th:if="${session.loginFailMsg} != null">
+                    <p class="" style="font-size: 15px;font-weight: bold;" th:text="${session.loginFailMsg}">로그인 실패</p>
+                </div>
+                <div class="adminFormBody">
+                    <form method="post" th:action="@{/admin/login}" id="adminForm" class="adminForm">
+                        <input type="text" name="username" class="adminId"
+                               th:placeholder="#{admin.login.id.placeholder}"><br>
+                        <input type="password" name="password" class="adminPassword"
+                               th:placeholder="#{admin.login.password.placeholder}"><br>
+                        <input type="submit" value="로그인" class="adminSubmit">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
