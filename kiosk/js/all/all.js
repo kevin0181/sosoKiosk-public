@@ -23,7 +23,7 @@ var adminClick = 1;
 
 function goAdmin() {
     if (adminClick == 4) {
-        location.href = "/admin/login";
+        location.href = "./../../kiosk/admin/login.html";
     } else {
         adminClick++;
     }
