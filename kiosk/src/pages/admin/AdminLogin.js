@@ -21,7 +21,6 @@ const AdminLogin = () => {
                             <img src="./../img/backImg.png"
                                  id="indexBackBtn"
                                  alt={'123'}
-                                 onClick="location.href='./../kiosk/index.html'"
                                  style={{width: '100%'}}/>
                         </div>
                     </div>

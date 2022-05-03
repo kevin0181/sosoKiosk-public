@@ -1,17 +1,17 @@
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import {Routes, Route, HashRouter} from "react-router-dom";
 import KioskMain from "./pages/kiosk/KioskMain";
 import AdminLogin from "./pages/admin/AdminLogin";
 
 function App() {
     return (
-        <BrowserRouter>
+        <HashRouter>
             <div className="App">
                 <Routes>
                     <Route path={'/'} element={<KioskMain></KioskMain>}/>
                     <Route path={'/admin'} element={<AdminLogin></AdminLogin>}/>
                 </Routes>
             </div>
-        </BrowserRouter>
+        </HashRouter>
     );
 }
 

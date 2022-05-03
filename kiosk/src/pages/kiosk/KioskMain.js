@@ -6,8 +6,6 @@ import './../../css/all/orderMenu.css';
 import {Link} from "react-router-dom";
 
 const KioskMain = () => {
-
-
     return (
         <div className="container">
             <div id="" className="container M-flex-row">
