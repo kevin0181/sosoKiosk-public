@@ -1,5 +1,6 @@
 import backImg from './../../img/backImg.png'
 import {useNavigate} from "react-router-dom";
+import CategoryList from "./side/CategoryList";
 
 const OrderMenu = () => {
 
@@ -30,6 +31,12 @@ const OrderMenu = () => {
                                     <div id="categoryPart"
                                          class="O-category-list2"
                                          style={{height: '100%', display: 'block'}}>
+                                        <div className="text M-font O-category-font O-category-Side">
+                                            <div className="O-category-name O-click-color">
+                                                <p className="O-category-a">전체</p>
+                                            </div>
+                                        </div>
+                                        <CategoryList/>
                                     </div>
                                 </div>
                                 <div class="totalPrice-div M-flex-column M-flex-center"
