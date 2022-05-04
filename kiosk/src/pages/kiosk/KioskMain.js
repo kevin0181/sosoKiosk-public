@@ -3,22 +3,34 @@ import outerImg from './../../img/outerImg.png';
 import './../../css/all/all.css';
 import './../../css/all/font.css';
 import './../../css/all/orderMenu.css';
-import {Link} from "react-router-dom";
+import {useNavigate} from 'react-router-dom';
 
 const KioskMain = () => {
+
+    const navigate = useNavigate();
+    let adminClickCount = 0;
+
+    const goAdmin = () => {
+        if (adminClickCount === 4) {
+            adminClickCount = 0;
+            navigate('/admin');
+        } else {
+            adminClickCount++;
+        }
+
+    }
+
     return (
         <div className="container">
             <div id="" className="container M-flex-row">
                 <div className="O-order-side-all">
                     <div id="adminSideDiv" className="M-width-5 M-height-5 M-dis-inline-block adminSideDiv"
-                         onClick="goAdmin()">
+                         onClick={goAdmin}>
                     </div>
                     <div className="O-order-Side">
                         <div className="side-up-container">
                             <div className="storeName">
-                                <Link to={'/admin'}>
-                                    <p className="M-font" style={{fontSize: '80px'}}>&pastel</p>
-                                </Link>
+                                <p className="M-font" style={{fontSize: '80px'}}>&pastel</p>
                             </div>
                         </div>
                     </div>

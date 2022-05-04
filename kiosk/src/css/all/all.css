@@ -3,6 +3,8 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    text-decoration: none;
+    color: black;
 }
 
 /* 텍스트 마우스 드래그시 색상 변경방법 */
