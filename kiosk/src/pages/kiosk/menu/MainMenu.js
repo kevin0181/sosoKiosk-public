@@ -4,10 +4,11 @@ import serverUrl from "../../config/server.json";
 
 const MainMenu = () => {
 
+
     const [menu, setMenu] = useState([]);
 
     const getMenuList = () => {
-        const response = axios.post('http://localhost:8080/kiosk/category/get/categorySq', null, {
+        const response = axios.post('http://' + serverUrl.server + '/kiosk/category/get/categorySq', null, {
             params: {
                 categorySq: '0'
             }

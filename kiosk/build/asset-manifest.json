@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "./static/css/main.88019b87.css",
+    "main.js": "./static/js/main.3fdd33f2.js",
+    "static/media/NanumPenScript-Regular.ttf": "./static/media/NanumPenScript-Regular.9dbef1100bff0af74f80.ttf",
+    "static/media/outerImg.png": "./static/media/outerImg.099201330958d534ca21.png",
+    "static/media/innerImg.png": "./static/media/innerImg.23dffe99dcfd5abb35b2.png",
+    "index.html": "./index.html",
+    "main.88019b87.css.map": "./static/css/main.88019b87.css.map",
+    "main.3fdd33f2.js.map": "./static/js/main.3fdd33f2.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.88019b87.css",
+    "static/js/main.3fdd33f2.js"
+  ]
+}
