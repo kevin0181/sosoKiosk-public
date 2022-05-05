@@ -4,7 +4,6 @@ import {useEffect, useState} from "react";
 
 const CategoryList = () => {
 
-
     const [categoryList, setCategoryList] = useState([]);
 
     const getCategoryList = () => {
@@ -16,7 +15,7 @@ const CategoryList = () => {
 
     useEffect(() => {
         getCategoryList();
-    }, [categoryList]);
+    }, [setCategoryList]);
 
     return (
         <div>

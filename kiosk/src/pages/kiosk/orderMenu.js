@@ -1,12 +1,11 @@
 import backImg from './../../img/backImg.png'
 import {useNavigate} from "react-router-dom";
 import CategoryList from "./side/CategoryList";
+import MainMenu from "./menu/MainMenu";
 
 const OrderMenu = () => {
 
     const navigate = useNavigate();
-
-    let categoryList;
 
     const goMain = () => {
         navigate('/');
@@ -75,8 +74,7 @@ const OrderMenu = () => {
                             <div
                                 style={{width: '100%', height: '96%'}}
                                 className="M-overlay">
-                                <div className="O-flex-menu">
-                                </div>
+                                <MainMenu/>
                             </div>
                         </div>
                     </div>
