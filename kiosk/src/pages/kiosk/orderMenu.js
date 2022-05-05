@@ -6,30 +6,33 @@ const OrderMenu = () => {
 
     const navigate = useNavigate();
 
+    let categoryList;
+
     const goMain = () => {
         navigate('/');
     }
 
+
     return (
-        <div class="container"
+        <div className="container"
              id="addMenuContainer">
-            <div class="container M-flex-row">
-                <div class="O-order-side-all">
-                    <div class="O-order-Side">
-                        <div class="side-up-container">
-                            <div class="storeName">
-                                <p class="M-font"
+            <div className="container M-flex-row">
+                <div className="O-order-side-all">
+                    <div className="O-order-Side">
+                        <div className="side-up-container">
+                            <div className="storeName">
+                                <p className="M-font"
                                    style={{fontSize: '70px'}}>
                                     category</p>
                             </div>
                         </div>
-                        <div class="O-category">
-                            <div class="O-category-list">
+                        <div className="O-category">
+                            <div className="O-category-list">
                                 <div
                                     style={{height: '68%'}}
-                                    class="M-overlay">
+                                    className="M-overlay">
                                     <div id="categoryPart"
-                                         class="O-category-list2"
+                                         className="O-category-list2"
                                          style={{height: '100%', display: 'block'}}>
                                         <div className="text M-font O-category-font O-category-Side">
                                             <div className="O-category-name O-click-color">
@@ -39,17 +42,17 @@ const OrderMenu = () => {
                                         <CategoryList/>
                                     </div>
                                 </div>
-                                <div class="totalPrice-div M-flex-column M-flex-center"
+                                <div className="totalPrice-div M-flex-column M-flex-center"
                                      style={{width: '100%'}}>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="O-main">
-                    <div class="O-top">
+                <div className="O-main">
+                    <div className="O-top">
                         <div>
-                            <div class="O-top-left">
+                            <div className="O-top-left">
                                 <div style={{width: '18%'}} onClick={goMain}>
                                     <img src={backImg}
                                          alt={'뒤로가기'}
@@ -57,43 +60,41 @@ const OrderMenu = () => {
                                          style={{width: '100%'}}/>
                                 </div>
                             </div>
-                            <div class="O-top-center">
+                            <div className="O-top-center">
                                 <div>
-                                    <p class="O-font-menu-size M-font">
+                                    <p className="O-font-menu-size M-font">
                                         menu</p>
                                 </div>
                             </div>
-                            <div class="O-top-right">
+                            <div className="O-top-right">
                             </div>
                         </div>
                     </div>
-                    <div class="O-center O-font-center M-font">
-                        <div class="O-center-menu">
+                    <div className="O-center O-font-center M-font">
+                        <div className="O-center-menu">
                             <div
                                 style={{width: '100%', height: '96%'}}
-                                class="M-overlay">
-                                <div class="O-flex-menu">
+                                className="M-overlay">
+                                <div className="O-flex-menu">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="O-footer">
-                        <div class="O-footer-div">
-                            <div class="O-footer-select-menu">
-                                <div class="O-footer-select-menu-all">
-                                    <div class="O-mini-select-bar w-M-overlay"
+                    <div className="O-footer">
+                        <div className="O-footer-div">
+                            <div className="O-footer-select-menu">
+                                <div className="O-footer-select-menu-all">
+                                    <div className="O-mini-select-bar w-M-overlay"
                                          style={{paddingTop: '3%'}}>
                                     </div>
                                 </div>
                             </div>
-                            <div class="O-footer-buy-Btn M-font O-select-font">
-                                <div class="O-footer-buy-Btn-all">
-                                    <div class="O-card-Btn M-width-80 M-flex-row M-flex-center"
-                                         onclick="showCheckModal('card')">
+                            <div className="O-footer-buy-Btn M-font O-select-font">
+                                <div className="O-footer-buy-Btn-all">
+                                    <div className="O-card-Btn M-width-80 M-flex-row M-flex-center">
                                         <p>카드결제</p>
                                     </div>
-                                    <div class="O-money-Btn M-width-80 M-flex-row M-flex-center"
-                                         onclick="showCheckModal('money')">
+                                    <div className="O-money-Btn M-width-80 M-flex-row M-flex-center">
                                         <p>현금결제</p>
                                     </div>
                                 </div>

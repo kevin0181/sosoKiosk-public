@@ -1,14 +1,26 @@
+import axios from "axios";
+import serverUrl from "../../config/server.json";
+import {useEffect, useState} from "react";
+
 const CategoryList = () => {
 
-    const list = [
-        {categoryName: '카테고리 1'},
-        {categoryName: '카테고리 2'},
-        {categoryName: '카테고리 3'}
-    ]
+
+    const [categoryList, setCategoryList] = useState([]);
+
+    const getCategoryList = () => {
+        const getData = axios.post('http://' + serverUrl.server + '/kiosk/CategoryList');
+        getData.then((function (res) {
+            setCategoryList(res.data);
+        }));
+    }
+
+    useEffect(() => {
+        getCategoryList();
+    }, [categoryList]);
 
     return (
         <div>
-            {list.map((it) => (
+            {categoryList && categoryList.map((it) => (
                 <div className="text M-font O-category-font O-category-Side">
                     <div className="O-category-name">
                         <p className="O-category-a">{it.categoryName}</p>
