@@ -1,10 +1,24 @@
+import MenuTop from "./menu/MenuTop";
+import SalesTop from "./saels/SalesTop";
+import OrderTop from "./order/OrderTop";
+import SettingTop from "./setting/SettingTop";
+
 const AdminMain = ({adminCategory}) => {
 
     const AdminMainView = () => {
-        if (adminCategory === 'menu') {
-            return <div>menu</div>
-        } else {
-            return <div>좆같네</div>
+        switch (adminCategory) {
+            case 'menu':
+                return <MenuTop/>
+                break;
+            case 'sales':
+                return <SalesTop/>
+                break;
+            case 'order':
+                return <OrderTop/>
+                break;
+            case 'setting':
+                return <SettingTop/>
+                break;
         }
     }
     return (
