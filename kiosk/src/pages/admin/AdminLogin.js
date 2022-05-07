@@ -1,3 +1,9 @@
+import './../../css/admin/admin-all.css';
+import './../../css/admin/admin-main.css';
+import './../../css/admin/adminTop.css';
+import './../../css/admin/adminLogin.css';
+import backButtunImg from './../../img/backImg.png';
+
 const AdminLogin = () => {
 
     return (
@@ -18,7 +24,7 @@ const AdminLogin = () => {
                      style={{justifyContent: "center"}}>
                     <div className="admin-right-side-top">
                         <div>
-                            <img src="./../img/backImg.png"
+                            <img src={backButtunImg}
                                  id="indexBackBtn"
                                  alt={'123'}
                                  style={{width: '100%'}}/>
