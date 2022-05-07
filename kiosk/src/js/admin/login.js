@@ -59,7 +59,7 @@ async function login(loginForm, navigate) {
     if (loginForm.id === 'soso') {
         if (loginForm.password === '1234') {
             console.log("로그인 성공");
-            navigate('/');
+            navigate('/admin/menu');
         } else {
             console.log("패스워드 틀림");
         }
