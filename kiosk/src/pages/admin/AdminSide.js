@@ -36,7 +36,7 @@ const AdminSide = () => {
                 break;
             default:
         }
-    });
+    }, [adminCategory]);
 
     return (
         <div className="container">
