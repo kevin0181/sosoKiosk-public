@@ -11,6 +11,7 @@ function App() {
                     <Route path={'/'} element={<KioskMain></KioskMain>}/>
                     <Route path={'/menuOrder'} element={<OrderMenu></OrderMenu>}/>
                     <Route path={'/admin'} element={<AdminLogin></AdminLogin>}/>
+                    <Route path={'/admin/main/:menu'} element={<AdminMenu></AdminMenu>}/>
                 </Routes>
             </div>
         </HashRouter>

@@ -3,8 +3,22 @@ import './../../css/admin/admin-main.css';
 import './../../css/admin/adminTop.css';
 import './../../css/admin/adminLogin.css';
 import backButtunImg from './../../img/backImg.png';
+import {useNavigate} from "react-router-dom";
+import adminLogin from './../../js/admin/login';
+import {useState} from "react";
 
 const AdminLogin = () => {
+
+    const navigate = useNavigate();
+
+    const [LoginFormState, setLoginFormState] = useState({
+        id: "",
+        password: ""
+    });
+
+    const login = () => {
+        adminLogin(LoginFormState, navigate);
+    }
 
     return (
         <div className="container">
@@ -23,7 +37,9 @@ const AdminLogin = () => {
                 <div className="admin-right-side"
                      style={{justifyContent: "center"}}>
                     <div className="admin-right-side-top">
-                        <div>
+                        <div onClick={() => {
+                            navigate('/');
+                        }}>
                             <img src={backButtunImg}
                                  id="indexBackBtn"
                                  alt={'123'}
@@ -42,16 +58,22 @@ const AdminLogin = () => {
                             <form id="adminForm" className="adminForm">
                                 <input type="text"
                                        id="admin-id"
+                                       onChange={(e) => {
+                                           setLoginFormState({...LoginFormState, id: e.target.value})
+                                       }}
                                        name="username"
                                        className="adminId"
                                        placeholder="아이디"/><br/>
                                 <input type="password"
                                        name="password"
                                        id="admin-password"
+                                       onChange={(e) => {
+                                           setLoginFormState({...LoginFormState, password: e.target.value})
+                                       }}
                                        className="adminPassword"
                                        placeholder="비밀번호"/><br/>
                                 <input type="button" id="adminLogin"
-                                       value="로그인"
+                                       value="로그인" onClick={login}
                                        className="adminSubmit"/>
                             </form>
                         </div>
