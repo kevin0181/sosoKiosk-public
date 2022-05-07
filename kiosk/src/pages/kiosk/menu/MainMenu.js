@@ -11,17 +11,30 @@ const MainMenu = () => {
         const response = axios.post('http://' + serverUrl.server + '/kiosk/category/get/categorySq', null, {
             params: {
                 categorySq: '0'
-            }
+            },
+            maxRedirects: 0
         });
         response.then(function (res) {
             setMenu(res.data);
         });
     }
 
+
+    const kk = () => {
+        const kk1 = axios.get('http://' + serverUrl.server + '/kikik', {
+            params: {
+                kk: 'hasibal'
+            }
+        });
+        kk1.then(function (res2) {
+            console.log(res2.data);
+        });
+    }
+
     useEffect(() => {
         getMenuList();
+        kk();
     }, [setMenu]);
-
     console.log(menu);
 
     return (

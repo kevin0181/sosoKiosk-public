@@ -1,6 +1,6 @@
 import axios from "axios";
-import serverUrl from "../../config/server.json";
 import {useEffect, useState} from "react";
+import serverUrl from './../../config/server.json';
 
 const CategoryList = () => {
 
