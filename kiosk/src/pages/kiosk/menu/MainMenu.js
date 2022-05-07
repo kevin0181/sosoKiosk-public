@@ -19,28 +19,15 @@ const MainMenu = () => {
         });
     }
 
-
-    const kk = () => {
-        const kk1 = axios.get('http://' + serverUrl.server + '/kikik', {
-            params: {
-                kk: 'hasibal'
-            }
-        });
-        kk1.then(function (res2) {
-            console.log(res2.data);
-        });
-    }
-
     useEffect(() => {
         getMenuList();
-        kk();
     }, [setMenu]);
     console.log(menu);
 
     return (
         <div className="O-flex-menu">
             {menu.map((it) => (
-                <div className="O-card">
+                <div className="O-card" key={it.menuSq}>
                     <div className="O-card-all">
                         <div className="O-card-header">
                             <div className="O-card-header-img">
