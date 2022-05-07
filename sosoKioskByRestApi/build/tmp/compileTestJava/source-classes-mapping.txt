@@ -1,0 +1,2 @@
+sosokiosk/kiosk/KioskApplicationTests.java
+ sosokiosk.kiosk.KioskApplicationTests

@@ -39,7 +39,6 @@ public class KioskController {
         return "/kiosk/index";
     }
 
-
     //주문 페이지
     @PostMapping("/kiosk/CategoryList")
     @ResponseBody
@@ -58,7 +57,7 @@ public class KioskController {
     @Transactional
     @PostMapping("/kiosk/category/get/categorySq")
     @ResponseBody
-    public List<MenuDTO> findCategorySq(@RequestParam(value = "categorySq") Long categorySq) {
+    public List<MenuDTO> findCategorySq(@RequestParam(value = "categorySq", required = false) Long categorySq) {
 
         List<MenuDTO> menuDTOList;
 
