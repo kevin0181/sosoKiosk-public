@@ -8,19 +8,33 @@ import {useParams} from "react-router-dom";
 import AdminMain from "./AdminMain";
 import $ from "jquery";
 import {useEffect} from "react";
+import {useNavigate} from "react-router-dom";
 
 
 const AdminSide = () => {
+
+    const navigate = useNavigate();
 
     const {adminCategory} = useParams();
 
     useEffect(() => {
 
-        if (adminCategory === 'menu') {
-            console.log(adminCategory);
-            $('#MenuList').addClass('O-click-color');
-        }
+        $('.O-category-name').removeClass('O-click-color');
 
+        switch (adminCategory) {
+            case 'menu':
+                $('#menuList').addClass('O-click-color');
+                break;
+            case 'sales':
+                $('#salesList').addClass('O-click-color');
+                break;
+            case 'order':
+                $('#orderList').addClass('O-click-color');
+                break;
+            case 'setting':
+                $('#settingList').addClass('O-click-color');
+                break;
+        }
     });
 
     return (
@@ -37,26 +51,34 @@ const AdminSide = () => {
                             <div className="O-category-list">
                                 <div className="O-category-list2">
                                     <div className="text M-font O-category-font">
-                                        <div className="O-category-name" id="MenuList"
-                                             onClick="menu()">
+                                        <div className="O-category-name" id="menuList"
+                                             onClick={() => {
+                                                 navigate("/admin/menu");
+                                             }}>
                                             <p className="O-category-a">메뉴 관리</p>
                                         </div>
                                     </div>
                                     <div className="text M-font O-category-font">
-                                        <div className="O-category-name"
-                                             onClick="salesPage()">
+                                        <div className="O-category-name" id="salesList"
+                                             onClick={() => {
+                                                 navigate("/admin/sales");
+                                             }}>
                                             <p className="O-category-a">매출 계산</p>
                                         </div>
                                     </div>
                                     <div className="text M-font O-category-font">
-                                        <div className="O-category-name"
-                                             onClick="orderListPage()">
+                                        <div className="O-category-name" id="orderList"
+                                             onClick={() => {
+                                                 navigate("/admin/order");
+                                             }}>
                                             <p className="O-category-a">주문내역</p>
                                         </div>
                                     </div>
                                     <div className="text M-font O-category-font">
-                                        <div className="O-category-name"
-                                             onClick="settingIndexPage()">
+                                        <div className="O-category-name" id="settingList"
+                                             onClick={() => {
+                                                 navigate("/admin/setting");
+                                             }}>
                                             <p className="O-category-a">일반 설정</p>
                                         </div>
                                     </div>
