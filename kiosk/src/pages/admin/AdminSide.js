@@ -1,10 +1,27 @@
-import './../../../css/admin/admin-all.css';
-import './../../../css/admin/admin-main.css';
-import './../../../css/admin/adminTop.css';
-import './../../../css/admin/adminLogin.css';
-import './../../../css/all/all.css';
+import '../../css/admin/admin-all.css';
+import '../../css/admin/admin-main.css';
+import '../../css/admin/adminTop.css';
+import '../../css/admin/adminLogin.css';
+import '../../css/all/all.css';
+import '../../css/all/orderMenu.css';
+import {useParams} from "react-router-dom";
+import AdminMain from "./AdminMain";
+import $ from "jquery";
+import {useEffect} from "react";
 
-const AdminMenu = () => {
+
+const AdminSide = () => {
+
+    const {adminCategory} = useParams();
+
+    useEffect(() => {
+
+        if (adminCategory === 'menu') {
+            console.log(adminCategory);
+            $('#MenuList').addClass('O-click-color');
+        }
+
+    });
 
     return (
         <div className="container">
@@ -20,27 +37,27 @@ const AdminMenu = () => {
                             <div className="O-category-list">
                                 <div className="O-category-list2">
                                     <div className="text M-font O-category-font">
-                                        <div className="O-category-name"
+                                        <div className="O-category-name" id="MenuList"
                                              onClick="menu()">
-                                            <a className="O-category-a">메뉴 관리</a>
+                                            <p className="O-category-a">메뉴 관리</p>
                                         </div>
                                     </div>
                                     <div className="text M-font O-category-font">
                                         <div className="O-category-name"
                                              onClick="salesPage()">
-                                            <a className="O-category-a">매출 계산</a>
+                                            <p className="O-category-a">매출 계산</p>
                                         </div>
                                     </div>
                                     <div className="text M-font O-category-font">
                                         <div className="O-category-name"
                                              onClick="orderListPage()">
-                                            <a className="O-category-a">주문내역</a>
+                                            <p className="O-category-a">주문내역</p>
                                         </div>
                                     </div>
                                     <div className="text M-font O-category-font">
                                         <div className="O-category-name"
                                              onClick="settingIndexPage()">
-                                            <a className="O-category-a">일반 설정</a>
+                                            <p className="O-category-a">일반 설정</p>
                                         </div>
                                     </div>
                                 </div>
@@ -49,6 +66,7 @@ const AdminMenu = () => {
                     </div>
                 </div>
                 <div className="admin-right-side admin-right-side-Preferences">
+                    <AdminMain adminCategory={adminCategory}/>
                 </div>
             </div>
         </div>
@@ -56,4 +74,4 @@ const AdminMenu = () => {
 
 }
 
-export default AdminMenu;
+export default AdminSide;
