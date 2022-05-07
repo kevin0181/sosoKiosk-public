@@ -9,16 +9,13 @@ const AdminMain = ({adminCategory}) => {
         switch (adminCategory) {
             case 'menu':
                 return <MenuTop/>
-                break;
             case 'sales':
                 return <SalesTop/>
-                break;
             case 'order':
                 return <OrderTop/>
-                break;
             case 'setting':
                 return <SettingTop/>
-                break;
+            default:
         }
     }
     return (

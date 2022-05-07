@@ -34,6 +34,7 @@ const AdminSide = () => {
             case 'setting':
                 $('#settingList').addClass('O-click-color');
                 break;
+            default:
         }
     });
 
