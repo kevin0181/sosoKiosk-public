@@ -29,7 +29,6 @@ const MenuTop = ({status}) => {
         statusCss();
     });
 
-
     return (
         <div className="adminTop M-font">
             <div className="admin-top-top">
