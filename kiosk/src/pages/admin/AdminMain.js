@@ -9,6 +9,8 @@ import SideAllMenu from "./menu/SideAllMenu";
 import AddSide from "./menu/AddSide";
 import AllCategory from "./menu/AllCategory";
 import AddCategory from "./menu/AddCategory";
+import KioskClose from "./saels/KioskClose";
+import Sales from "./saels/Sales";
 
 const AdminMain = ({adminCategory}) => {
 
@@ -43,6 +45,10 @@ const AdminMain = ({adminCategory}) => {
                 return <AllCategory/>
             case 'addCategory':
                 return <AddCategory/>
+            case 'kioskClose':
+                return <KioskClose/>
+            case 'sales':
+                return <Sales/>
             default:
         }
     }

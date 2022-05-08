@@ -8,7 +8,7 @@ const SalesTop = ({status}) => {
 
     const statusCss = () => {
         switch (status) {
-            case 'close':
+            case 'kioskClose':
                 return $('#kioskClose').addClass('BtnClickColor');
             case 'sales':
                 return $('#salesTotal').addClass('BtnClickColor');
@@ -34,7 +34,7 @@ const SalesTop = ({status}) => {
                 </div>
                 <div className="admin-top-part admin-top-part-nomal">
                     <div className="admin-top-p-part" id='kioskClose' onClick={() => {
-                        navigate('/admin/sales?status=close')
+                        navigate('/admin/sales?status=kioskClose')
                     }}>
                         <p className="" style={{fontSize: '40px'}}>마감 하기</p>
                     </div>
