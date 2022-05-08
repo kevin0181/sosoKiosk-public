@@ -54,7 +54,7 @@ const AdminSide = () => {
                                     <div className="text M-font O-category-font">
                                         <div className="O-category-name" id="menuList"
                                              onClick={() => {
-                                                 navigate("/admin/menu");
+                                                 navigate("/admin/menu?status=all");
                                              }}>
                                             <p className="O-category-a">메뉴 관리</p>
                                         </div>
@@ -62,7 +62,7 @@ const AdminSide = () => {
                                     <div className="text M-font O-category-font">
                                         <div className="O-category-name" id="salesList"
                                              onClick={() => {
-                                                 navigate("/admin/sales");
+                                                 navigate("/admin/sales?status=sales");
                                              }}>
                                             <p className="O-category-a">매출 계산</p>
                                         </div>
