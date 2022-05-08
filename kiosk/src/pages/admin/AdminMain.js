@@ -11,6 +11,10 @@ import AllCategory from "./menu/AllCategory";
 import AddCategory from "./menu/AddCategory";
 import KioskClose from "./saels/KioskClose";
 import Sales from "./saels/Sales";
+import $ from "jquery";
+import AllOrder from "./order/AllOrder";
+import CardOrder from "./order/CardOrder";
+import MoneyOrder from "./order/MoneyOrder";
 
 const AdminMain = ({adminCategory}) => {
 
@@ -49,6 +53,12 @@ const AdminMain = ({adminCategory}) => {
                 return <KioskClose/>
             case 'sales':
                 return <Sales/>
+            case 'allOrder':
+                return <AllOrder/>
+            case 'cardOrder':
+                return <CardOrder/>
+            case 'moneyOrder':
+                return <MoneyOrder/>
             default:
         }
     }
