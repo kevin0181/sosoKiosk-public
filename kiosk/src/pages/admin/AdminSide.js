@@ -70,7 +70,7 @@ const AdminSide = () => {
                                     <div className="text M-font O-category-font">
                                         <div className="O-category-name" id="orderList"
                                              onClick={() => {
-                                                 navigate("/admin/order");
+                                                 navigate("/admin/order?status=allOrder");
                                              }}>
                                             <p className="O-category-a">주문내역</p>
                                         </div>
@@ -78,7 +78,7 @@ const AdminSide = () => {
                                     <div className="text M-font O-category-font">
                                         <div className="O-category-name" id="settingList"
                                              onClick={() => {
-                                                 navigate("/admin/setting");
+                                                 navigate("/admin/setting?status=setting");
                                              }}>
                                             <p className="O-category-a">일반 설정</p>
                                         </div>

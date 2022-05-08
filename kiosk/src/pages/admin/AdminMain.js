@@ -15,6 +15,7 @@ import $ from "jquery";
 import AllOrder from "./order/AllOrder";
 import CardOrder from "./order/CardOrder";
 import MoneyOrder from "./order/MoneyOrder";
+import Setting from "./setting/Setting";
 
 const AdminMain = ({adminCategory}) => {
 
@@ -59,6 +60,8 @@ const AdminMain = ({adminCategory}) => {
                 return <CardOrder/>
             case 'moneyOrder':
                 return <MoneyOrder/>
+            case 'setting':
+                return <Setting/>
             default:
         }
     }
