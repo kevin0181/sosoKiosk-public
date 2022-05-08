@@ -1,5 +1,6 @@
 import {initializeApp} from 'firebase/app';
 import {getFirestore, collection, getDocs} from 'firebase/firestore/lite';
+import $ from "jquery";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -24,7 +25,7 @@ async function fireBaseLogin(id, password) {
 
     let fireId;
     let firePassword;
-    const querySnapshot = await getDocs(collection(db, "user"));
+    const querySnapshot = await getDocs(collection(db, "admin"));
     querySnapshot.forEach((doc) => {
         fireId = doc.data().id;
         firePassword = doc.data().password;
@@ -32,32 +33,23 @@ async function fireBaseLogin(id, password) {
 
     if (fireId == id) {
         if (firePassword == password) {
-            return true;
+            return loginStatus(true, "로그인 성공", fireId);
         } else {
-            return console.log("패스워드 일치하지않음");
+            return loginStatus(false, "비밀번호가 일치하지 않습니다.", null);
         }
     } else {
-        return console.log("아이디 일치하지 않음");
+        return loginStatus(false, "아이디가 일치하지 않습니다.", null);
     }
 }
 
 async function login(loginForm, navigate) {
-    // let result = await fireBaseLogin(loginForm.id, loginForm.password);
-    // if (result.successStatus) {
-    //     sessionStorage.setItem("id", result.id); // 저장
-    //     navigate('/');
-    // } else {
-    // }
 
-    if (loginForm.id === 'soso') {
-        if (loginForm.password === '1234') {
-            console.log("로그인 성공");
-            navigate('/admin/menu?status=all');
-        } else {
-            console.log("패스워드 틀림");
-        }
+    let result = await fireBaseLogin(loginForm.id, loginForm.password);
+    if (result.successStatus) {
+        sessionStorage.setItem("id", result.id); // 저장
+        navigate('/admin/menu?status=all');
     } else {
-        console.log("아이디 틀림");
+        $("#loginStatus").text(result.statusMessage);
     }
 }
 

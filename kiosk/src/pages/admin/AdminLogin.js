@@ -52,7 +52,7 @@ const AdminLogin = () => {
                         </div>
                         <div className="adminLoginResult">
                             <p className="admin-login-status" id="loginStatus"
-                               style={{fontSize: '15px', fontWeight: 'bold'}}></p>
+                               style={{fontSize: '15px', fontWeight: 'bold', color: 'red'}}></p>
                         </div>
                         <div className="adminFormBody">
                             <form id="adminForm" className="adminForm">
