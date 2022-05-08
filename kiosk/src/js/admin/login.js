@@ -1,5 +1,5 @@
-import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+import {initializeApp} from 'firebase/app';
+import {getFirestore, collection, getDocs} from 'firebase/firestore/lite';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -52,7 +52,7 @@ async function login(loginForm, navigate) {
     if (loginForm.id === 'soso') {
         if (loginForm.password === '1234') {
             console.log("로그인 성공");
-            navigate('/admin/menu');
+            navigate('/admin/menu?status=all');
         } else {
             console.log("패스워드 틀림");
         }

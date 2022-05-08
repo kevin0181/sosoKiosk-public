@@ -44,7 +44,6 @@ const AdminMain = ({adminCategory}) => {
             case 'addCategory':
                 return <AddCategory/>
             default:
-                return <AllMenu/>
         }
     }
     return (
