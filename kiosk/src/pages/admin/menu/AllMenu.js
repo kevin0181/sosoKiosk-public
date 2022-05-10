@@ -1,4 +1,21 @@
+import {useEffect, useState} from "react";
+import * as AllMenuSearch from './../../../js/admin/menu/AllMenu';
+
 const AllMenu = () => {
+
+    const [search, setSearch] = useState();
+
+
+    const setSearchChange = (e) => {
+        setSearch(e.target.value);
+    };
+
+    useEffect(() => {
+
+        AllMenuSearch.search();
+
+    });
+
     return (
         <div className="admin-main">
             <div className="admin-main-div">
@@ -6,7 +23,8 @@ const AllMenu = () => {
                     <div className="admin-all-menu-top">
                         <div className="admin-top-search">
                             <div className="M-flex-1 M-flex-row">
-                                <input type="text" value="" className="M-input-search" id="all-menu-search"/>
+                                <input type="text" value={search} onChange={setSearchChange} className="M-input-search"
+                                       id="all-menu-search"/>
                             </div>
                         </div>
                     </div>

@@ -18,7 +18,6 @@ function createWindow() {
         slashes: true
     });
 
-
     win.loadURL(startUrl);
 }
 
