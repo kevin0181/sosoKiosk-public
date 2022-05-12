@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import * as AllMenuSearch from './../../../js/admin/menu/AllMenu';
+import MenuListPart from "./allMenu/MenuListPart";
 
 const AllMenu = () => {
 
@@ -8,8 +9,6 @@ const AllMenu = () => {
     const setSearchChange = (e) => {
         setSearch(e.target.value);
     };
-
-    const [menu, setMenu] = useState();
 
     useEffect(() => {
         AllMenuSearch.search();
@@ -53,33 +52,7 @@ const AllMenu = () => {
                                 </tr>
                                 </thead>
                                 <tbody className="admin-tbody M-overlay">
-                                <tr className="admin-tbody-tr">
-                                    <td className="search">
-                                        카테고리 이름
-                                    </td>
-                                    <td className="search">
-                                        <p style={{
-                                            display: 'inline-block',
-                                            marginRight: '5px'
-                                        }}>메뉴 이름</p>
-                                        <small className="M-font menu-detail-btn">상세보기</small>
-                                    </td>
-                                    <td className="search">
-                                        메뉴 가격
-                                    </td>
-                                    <td className="search">
-                                        <p>사이드??</p>
-                                    </td>
-                                    <td className="search">
-                                        <p className="soldOut-font">(품절)</p>
-                                        <p className="enableMenu-font">(메뉴 숨김)</p>
-                                    </td>
-                                    <td className="search">
-                                        <small className="menu-delete-btn">
-                                            삭제
-                                        </small>
-                                    </td>
-                                </tr>
+                                <MenuListPart/>
                                 </tbody>
                             </table>
                         </div>

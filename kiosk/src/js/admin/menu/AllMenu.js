@@ -21,16 +21,9 @@ export function search() {
     });
 }
 
-export function getMenuList() { //get menu List
-    const response = axios.post('http://' + serverUrl.server + '/kiosk/category/get/categorySq', null, {
-        params: {
-            categorySq: '0'
-        },
-        maxRedirects: 0
-    });
-    response.then(function (res) {
-        console.log(res.data);
-    });
+export async function getMenuList() { //get menu List
+    const response = await axios.post('http://' + serverUrl.server + '/admin/get/all/menu/list');
+    return response.data;
 }
 
 

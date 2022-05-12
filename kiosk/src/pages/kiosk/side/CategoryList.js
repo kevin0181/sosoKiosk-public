@@ -15,7 +15,7 @@ const CategoryList = () => {
 
     useEffect(() => {
         getCategoryList();
-    },[setCategoryList]);
+    }, [setCategoryList]);
 
     return (
         <div>

@@ -11,7 +11,6 @@ const OrderMenu = () => {
         navigate('/');
     }
 
-
     return (
         <div className="container"
              id="addMenuContainer">
