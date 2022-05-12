@@ -23,7 +23,7 @@ const MenuListPart = () => {
 
     const menuSoldOutCheck = (menuSoldOut) => {
         if (menuSoldOut)
-            return <p className="soldOut-font">품절</p>
+            return <p className="soldOut-font">(품절)</p>
         else
             return <p className="soldOut-font"></p>
     }
