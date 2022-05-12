@@ -9,13 +9,27 @@
 // });
 
 import $ from 'jquery';
+import axios from "axios";
+import serverUrl from "../../../pages/config/server.json";
 
 export function search() {
-    $("#all-menu-search").on("change keyup paste", function () { //search
+    $("#all-menu-search").on("change keyup paste", function () { //search menu
         var result = $(this).val();
         $(".admin-tbody-tr").hide();
         var temp = $(".admin-tbody-tr:contains('" + result + "')");
         $(temp).show();
+    });
+}
+
+export function getMenuList() { //get menu List
+    const response = axios.post('http://' + serverUrl.server + '/kiosk/category/get/categorySq', null, {
+        params: {
+            categorySq: '0'
+        },
+        maxRedirects: 0
+    });
+    response.then(function (res) {
+        console.log(res.data);
     });
 }
 

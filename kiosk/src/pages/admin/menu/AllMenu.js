@@ -5,15 +5,14 @@ const AllMenu = () => {
 
     const [search, setSearch] = useState();
 
-
     const setSearchChange = (e) => {
         setSearch(e.target.value);
     };
 
+    const [menu, setMenu] = useState();
+
     useEffect(() => {
-
         AllMenuSearch.search();
-
     });
 
     return (

@@ -11,13 +11,11 @@ const CategoryList = () => {
         getData.then((function (res) {
             setCategoryList(res.data);
         }));
-    }
+    };
 
     useEffect(() => {
         getCategoryList();
-    }, [setCategoryList]);
-
-    console.log(categoryList);
+    },[setCategoryList]);
 
     return (
         <div>

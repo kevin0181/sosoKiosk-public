@@ -4,7 +4,6 @@ import serverUrl from "../../config/server.json";
 
 const MainMenu = () => {
 
-
     const [menu, setMenu] = useState([]);
 
     const getMenuList = () => {
@@ -22,7 +21,6 @@ const MainMenu = () => {
     useEffect(() => {
         getMenuList();
     }, [setMenu]);
-    console.log(menu);
 
     return (
         <div className="O-flex-menu">
