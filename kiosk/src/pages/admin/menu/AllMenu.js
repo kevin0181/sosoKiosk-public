@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import * as AllMenuSearch from './../../../js/admin/menu/AllMenu';
 import MenuListPart from "./allMenu/MenuListPart";
+import SpinnerAdmin from "../part/SpinnerAdmin";
 
 const AllMenu = () => {
 
@@ -17,6 +18,7 @@ const AllMenu = () => {
     return (
         <div className="admin-main">
             <div className="admin-main-div">
+                <SpinnerAdmin/>
                 <div className="admin-main-backCard M-flex-column">
                     <div className="admin-all-menu-top">
                         <div className="admin-top-search">
