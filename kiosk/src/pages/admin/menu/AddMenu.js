@@ -1,6 +1,53 @@
+import {useEffect, useState} from "react";
+import * as addMenuJS from './../../../js/admin/menu/addMenu';
+import {getCategoryList, getSideList} from "./../../../js/admin/menu/addMenu";
+import SpinnerAdmin from "../part/SpinnerAdmin";
+import CategorySelectList from "./addMenu/CategorySelectList";
+
 const AddMenu = () => {
+
+    const [category, setCategory] = useState([]);
+
+    const [categoryStatus, setCategoryStatus] = useState(false);
+
+    const [side, setSide] = useState([]);
+
+    const [spinner, setSpinner] = useState(true);
+
+    useEffect(() => {
+        getCategoryList().then(function (res) {
+            setCategory(res);
+            getSideList().then(function (res) {
+                setSide(res);
+                setSpinner(false);
+            });
+        });
+    }, []);
+
+    const [addMenu, setAddMenu] = useState({
+        menuName: '',
+        menuImg: '',
+        menuPrice: '',
+        CategorySelect: '',
+        sideSelect: '',
+    });
+
+    const addMenuChange = (e) => {
+        setAddMenu({
+            ...addMenu,
+            [e.target.name]: e.target.value
+        });
+    }
+
     return (
         <div className="admin-main">
+            {
+                spinner ? (
+                    <SpinnerAdmin/>
+                ) : (
+                    <></>
+                )
+            }
             <div className="admin-main-div">
                 <div className="admin-main-backCard M-flex-row">
                     <div className="M-flex-column admin-main-left-flex" style={{marginTop: '25px'}}>
@@ -10,8 +57,10 @@ const AddMenu = () => {
                                     메뉴 이름
                                 </div>
                                 <div className="M-flex-1 M-flex-row M-flex-center menuInputDiv">
-                                    <input type="text" value="" className="M-input-text M-font M-mini-size"
+                                    <input type="text" value={addMenu.menuName}
+                                           className="M-input-text M-font M-mini-size"
                                            id="menuName"
+                                           onChange={addMenuChange}
                                            name="menuName"/>
                                 </div>
                             </div>
@@ -20,7 +69,9 @@ const AddMenu = () => {
                                     사진 업로드
                                 </div>
                                 <div className="M-flex-1 M-flex-row M-flex-center menuInputDiv">
-                                    <input type="file" value="" className="M-none-design" id="menu-file" name="menuImg"
+                                    <input type="file" value={addMenu.menuImg} className="M-none-design" id="menu-file"
+                                           onChange={addMenuChange}
+                                           name="menuImg"
                                            accept="image/*"/>
                                     <label className="M-input-text" id="menu-fileUrl" htmlFor="menu-file"
                                            style={{fontSize: '20px', overflow: 'hidden'}}>
@@ -32,7 +83,9 @@ const AddMenu = () => {
                                     가격
                                 </div>
                                 <div className="M-flex-1 M-flex-row M-flex-center menuInputDiv">
-                                    <input type="text" value="" className="M-input-text M-font M-mini-size"
+                                    <input type="text" value={addMenu.menuPrice}
+                                           className="M-input-text M-font M-mini-size"
+                                           onChange={addMenuChange}
                                            id="menuPrice"
                                            name="menuPrice"/>
                                 </div>
@@ -43,16 +96,13 @@ const AddMenu = () => {
                                 </div>
                                 <div className="M-flex-1 M-flex-column M-flex-center" style={{position: 'relative'}}>
                                     <input type="text" value="" className="M-input-text M-font M-mini-size menuInputDiv"
-                                           id="categorySelect"
-                                           readOnly
-                                           onFocus="this.blur()"/>
-                                    <div className="M-input-select-div" id="categorySelectOption"
-                                         style={{display: 'none'}}>
-                                        <input type="text" value="1"
-                                               class="M-input-select M-font M-mini-size M-input-select-middle"
-                                               onclick="selectCategory(this)"
-                                               onfocus="this.blur()"/>
-                                    </div>
+                                           id="categorySelect" readOnly onClick={function () {
+                                        setCategoryStatus(true);
+                                    }}
+                                    />
+                                    {
+                                        categoryStatus ? (<CategorySelectList category={category}/>) : (<></>)
+                                    }
                                 </div>
                             </div>
                             <div className="M-flex-row M-font admin-font-size" style={{marginBottom: '25px'}}>
@@ -63,14 +113,12 @@ const AddMenu = () => {
                                      style={{position: 'relative'}}>
                                     <input type="text" value="" className="M-input-text M-font M-mini-size"
                                            id="sideSelect"
-                                           readOnly
-                                           onFocus="this.blur()"/>
+                                           readOnly/>
                                     <div className="M-input-select-div" id="sideSelectOption"
                                          style={{display: 'none'}}>
                                         <input type="text" value="side 1"
-                                               class="M-input-select M-font M-mini-size M-input-select-middle"
-                                               onclick="selectSide(this)" readonly
-                                               onfocus="this.blur()"/>
+                                               className="M-input-select M-font M-mini-size M-input-select-middle"
+                                               readOnly/>
                                     </div>
                                 </div>
                             </div>
@@ -79,8 +127,8 @@ const AddMenu = () => {
 
                                 </div>
                                 <div className="M-flex-1 M-flex-row M-flex-center">
-                                    <div className="O-side-select-close" style={{marginTop: '0px', marginRight: '10px'}}
-                                         onClick="addMenu()">
+                                    <div className="O-side-select-close"
+                                         style={{marginTop: '0px', marginRight: '10px'}}>
                                         <p className="M-font">메뉴 업로드</p>
                                     </div>
                                 </div>
@@ -91,7 +139,7 @@ const AddMenu = () => {
                         <div className="admin-main-img">
                             <div className="img-part M-flex-column M-flex-center">
                                 <p className="M-font M-mini-size">미리보기</p>
-                                <img id="admin-main-menu-select-img" className="admin-main-select-img"
+                                <img id="admin-main-menu-select-img" alt={'미리보기 이미지'} className="admin-main-select-img"
                                      style={{display: 'none'}}/>
                             </div>
                         </div>

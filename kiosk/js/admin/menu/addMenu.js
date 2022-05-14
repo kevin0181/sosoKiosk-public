@@ -1,13 +1,11 @@
 $(document).ready(function () {
 
-
     //file upload url 내보내기
     $("#menu-file").on("change", function () {
         var fileUrl = $("#menu-file").val();
         $("#menu-fileUrl").text(fileUrl);
         showImg(this, "admin-main-menu-select-img");
     });
-
 
     $("#categorySelect").on("click", function () { //카테고리 선택
 
