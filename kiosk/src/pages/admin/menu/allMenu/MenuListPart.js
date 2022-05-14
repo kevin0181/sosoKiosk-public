@@ -1,16 +1,12 @@
 import {useEffect, useState} from "react";
 import {getMenuList} from "../../../../js/admin/menu/AllMenu";
 
-const MenuListPart = ({spinnerStatus}) => {
+const MenuListPart = () => {
 
     const [menu, setMenu] = useState([]);
 
     const getMenu = async () => {
         try {
-
-            spinnerStatus(true);
-            console.log("spinner on");
-
             await getMenuList().then(function (res) {
                 console.log(res);
                 setMenu(res);

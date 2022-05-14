@@ -1,10 +1,13 @@
 import {useEffect, useState} from "react";
 import * as AllMenuSearch from './../../../js/admin/menu/AllMenu';
 import MenuListPart from "./allMenu/MenuListPart";
+import SpinnerAdmin from "../part/SpinnerAdmin";
 
-const AllMenu = ({spinnerStatus}) => {
+const AllMenu = () => {
 
     const [search, setSearch] = useState();
+
+    const [spinner, setSpinner] = useState(true);
 
     const setSearchChange = (e) => {
         setSearch(e.target.value);
@@ -16,6 +19,13 @@ const AllMenu = ({spinnerStatus}) => {
 
     return (
         <div className="admin-main">
+            {
+                spinner ? (
+                    <SpinnerAdmin/>
+                ) : (
+                    <></>
+                )
+            }
             <div className="admin-main-div">
                 <div className="admin-main-backCard M-flex-column">
                     <div className="admin-all-menu-top">
@@ -52,7 +62,7 @@ const AllMenu = ({spinnerStatus}) => {
                                 </tr>
                                 </thead>
                                 <tbody className="admin-tbody M-overlay">
-                                <MenuListPart spinnerStatus={spinnerStatus}/>
+                                <MenuListPart/>
                                 </tbody>
                             </table>
                         </div>
