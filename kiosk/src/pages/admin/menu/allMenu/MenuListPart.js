@@ -1,26 +1,4 @@
-import {useEffect, useState} from "react";
-import {getMenuList} from "../../../../js/admin/menu/AllMenu";
-
-const MenuListPart = () => {
-
-    const [menu, setMenu] = useState([]);
-
-    const getMenu = async () => {
-        try {
-            await getMenuList().then(function (res) {
-                console.log(res);
-                setMenu(res);
-            });
-
-        } catch (e) {
-            console.log("에러 : " + e);
-        }
-
-    }
-
-    useEffect(() => {
-        getMenu();
-    }, []);
+const MenuListPart = ({menu}) => {
 
     const sideCheck = (side) => {
         if (side.length === 0) {

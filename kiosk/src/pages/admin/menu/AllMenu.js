@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import * as AllMenuSearch from './../../../js/admin/menu/AllMenu';
 import MenuListPart from "./allMenu/MenuListPart";
 import SpinnerAdmin from "../part/SpinnerAdmin";
+import {getMenuList} from "./../../../js/admin/menu/AllMenu";
 
 const AllMenu = () => {
 
@@ -9,9 +10,20 @@ const AllMenu = () => {
 
     const [spinner, setSpinner] = useState(true);
 
+    const [menu, setMenu] = useState([]);
+
+
     const setSearchChange = (e) => {
         setSearch(e.target.value);
     };
+
+    useEffect(() => {
+        getMenuList().then(function (res) {
+            console.log(res);
+            setMenu(res);
+            setSpinner(false);
+        });
+    }, []);
 
     useEffect(() => {
         AllMenuSearch.search();
@@ -62,7 +74,7 @@ const AllMenu = () => {
                                 </tr>
                                 </thead>
                                 <tbody className="admin-tbody M-overlay">
-                                <MenuListPart/>
+                                <MenuListPart menu={menu}/>
                                 </tbody>
                             </table>
                         </div>
