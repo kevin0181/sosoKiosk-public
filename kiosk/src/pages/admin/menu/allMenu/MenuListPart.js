@@ -1,17 +1,30 @@
 import {useEffect, useState} from "react";
 import {getMenuList} from "../../../../js/admin/menu/AllMenu";
 
-const MenuListPart = () => {
-
+const MenuListPart = ({spinnerStatus}) => {
 
     const [menu, setMenu] = useState([]);
 
+    const getMenu = async () => {
+        try {
+
+            spinnerStatus(true);
+            console.log("spinner on");
+
+            await getMenuList().then(function (res) {
+                console.log(res);
+                setMenu(res);
+            });
+
+        } catch (e) {
+            console.log("에러 : " + e);
+        }
+
+    }
+
     useEffect(() => {
-        getMenuList().then(function (res) {
-            console.log(res);
-            setMenu(res);
-        });
-    }, [setMenu]);
+        getMenu();
+    }, []);
 
     const sideCheck = (side) => {
         if (side.length === 0) {
@@ -40,7 +53,7 @@ const MenuListPart = () => {
         <>
             {
                 menu.map((it) => (
-                    <tr className="admin-tbody-tr" key={it.categorySq}>
+                    <tr className="admin-tbody-tr" key={it.menuSq}>
                         <td className="search">
                             {it.categoryDTO.categoryName}
                         </td>

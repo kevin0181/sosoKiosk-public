@@ -16,7 +16,8 @@ import CardOrder from "./order/CardOrder";
 import MoneyOrder from "./order/MoneyOrder";
 import Setting from "./setting/Setting";
 import AdminLoginSession from '../../js/admin/AdminLoginSession';
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
+import SpinnerAdmin from "./part/SpinnerAdmin";
 
 const AdminMain = ({adminCategory}) => {
 
@@ -27,6 +28,16 @@ const AdminMain = ({adminCategory}) => {
     const status = mainParams.get('status');
 
     const result = AdminLoginSession();
+
+    const [spinner, setSpinner] = useState(false);
+
+    // const viewStatusSpinner = new Promise((status) => {
+    //     setSpinner(status);
+    // });
+
+    const viewStatusSpinner = (status) => {
+        setSpinner(status);
+    };
 
     useEffect(() => {
         if (!result)
@@ -50,7 +61,7 @@ const AdminMain = ({adminCategory}) => {
     const AdminMainView = () => {
         switch (status) {
             case 'all':
-                return <AllMenu/>
+                return <AllMenu spinnerStatus={viewStatusSpinner}/>
             case 'addMenu':
                 return <AddMenu/>
             case 'sideAll':
@@ -78,6 +89,13 @@ const AdminMain = ({adminCategory}) => {
     }
     return (
         <>
+            {
+                spinner ? (
+                    <SpinnerAdmin/>
+                ) : (
+                    <></>
+                )
+            }
             <AdminTopView/>
             <AdminMainView/>
         </>

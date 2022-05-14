@@ -18,6 +18,19 @@ const MainMenu = () => {
         });
     }
 
+    const imgCheck = (imgDTOList) => {
+
+        if (imgDTOList.length === 0) {
+
+            return <img className="O-card-header-img-img" alt={'메뉴'}/>
+
+        } else {
+            return <img className="O-card-header-img-img" alt={'메뉴'}
+                        src={'http://' + serverUrl.server + imgDTOList[0].imgPath + '/' + imgDTOList[0].imgName}/>
+        }
+
+    }
+
     useEffect(() => {
         getMenuList();
     }, [setMenu]);
@@ -29,8 +42,9 @@ const MainMenu = () => {
                     <div className="O-card-all">
                         <div className="O-card-header">
                             <div className="O-card-header-img">
-                                <img className="O-card-header-img-img" alt={'메뉴'}
-                                     src={'http://' + serverUrl.server + it.imgDTOList[0].imgPath + '/' + it.imgDTOList[0].imgName}/>
+                                {
+                                    imgCheck(it.imgDTOList)
+                                }
                             </div>
                         </div>
                         <div className="O-card-body">
