@@ -37,11 +37,14 @@ const AddMenu = () => {
     const [addMenu, setAddMenu] = useState({
         menuName: '',
         menuPrice: '',
-        CategorySelect: {
+        categorySelect: {
             categorySq: '',
             categoryName: ''
         },
-        sideSelect: '',
+        sideSelect: {
+            sideSq: '',
+            sideName: ''
+        },
     });
 
     const encodeFileToBase64 = (fileBlob) => {
@@ -63,13 +66,24 @@ const AddMenu = () => {
         setCategoryStatus(false);
         setSideStatus(false);
 
-        if (e.target.name === 'CategorySelect') {
+        if (e.target.name === 'categorySelect') {
 
             setAddMenu({
                 ...addMenu,
                 [e.target.name]: {
                     categorySq: e.target.getAttribute('data-id'),
                     categoryName: e.target.value
+                }
+            });
+            return false;
+        }
+
+        if (e.target.name === 'sideSelect') {
+            setAddMenu({
+                ...addMenu,
+                [e.target.name]: {
+                    sideSq: e.target.getAttribute('data-id'),
+                    sideName: e.target.value
                 }
             });
             return false;
@@ -151,7 +165,7 @@ const AddMenu = () => {
                                     카테고리
                                 </div>
                                 <div className="M-flex-1 M-flex-column M-flex-center" style={{position: 'relative'}}>
-                                    <input type="text" value={addMenu.CategorySelect.categoryName || ""}
+                                    <input type="text" value={addMenu.categorySelect.categoryName || ""}
                                            className="M-input-text M-font M-mini-size menuInputDiv"
                                            id="categorySelect" readOnly onClick={function () {
                                         setCategoryStatus(!categoryStatus);
@@ -171,7 +185,7 @@ const AddMenu = () => {
                                 <div className="M-flex-1 M-flex-column M-flex-center menuInputDiv"
                                      style={{position: 'relative'}}>
                                     <input type="text" value="" className="M-input-text M-font M-mini-size"
-                                           value={addMenu.sideSelect}
+                                           value={addMenu.sideSelect.sideName}
                                            id="sideSelect" readOnly onClick={function () {
                                         setSideStatus(!sideStatus);
                                     }}/>
