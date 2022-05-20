@@ -1,5 +1,4 @@
 import {useEffect, useState} from "react";
-import * as addMenuJS from './../../../js/admin/menu/addMenu';
 import {getCategoryList, getSideList} from "./../../../js/admin/menu/addMenu";
 import SpinnerAdmin from "../part/SpinnerAdmin";
 import CategorySelectList from "./addMenu/CategorySelectList";
@@ -48,10 +47,26 @@ const AddMenu = () => {
     };
 
     const addMenuChange = (e) => {
+
+        setCategoryStatus(false);
+
+
+        if (e.target.name === 'menuPrice') {
+            const check = /^[0-9 ]*$/;
+            if (check.test(e.target.value)) {
+                setAddMenu({
+                    ...addMenu,
+                    [e.target.name]: e.target.value
+                });
+            } else {
+                return false;
+            }
+        }
         setAddMenu({
             ...addMenu,
             [e.target.name]: e.target.value
         });
+
         console.log(addMenu);
     }
 
@@ -113,13 +128,15 @@ const AddMenu = () => {
                                     카테고리
                                 </div>
                                 <div className="M-flex-1 M-flex-column M-flex-center" style={{position: 'relative'}}>
-                                    <input type="text" value="" className="M-input-text M-font M-mini-size menuInputDiv"
+                                    <input type="text" value={addMenu.CategorySelect}
+                                           className="M-input-text M-font M-mini-size menuInputDiv"
                                            id="categorySelect" readOnly onClick={function () {
                                         setCategoryStatus(!categoryStatus);
                                     }}
                                     />
                                     {
-                                        categoryStatus ? (<CategorySelectList category={category}/>) : (<></>)
+                                        categoryStatus ? (<CategorySelectList category={category}
+                                                                              changeCategory={addMenuChange}/>) : (<></>)
                                     }
                                 </div>
                             </div>

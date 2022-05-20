@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import axios from "axios";
 import serverUrl from "../../../pages/config/server.json";
 
