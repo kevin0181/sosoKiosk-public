@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {getCategoryList, getSideList} from "./../../../js/admin/menu/addMenu";
 import SpinnerAdmin from "../part/SpinnerAdmin";
 import CategorySelectList from "./addMenu/CategorySelectList";
@@ -7,16 +7,20 @@ import SideSelectList from "./addMenu/SideSelectList";
 
 const AddMenu = () => {
 
-    const [category, setCategory] = useState([]);
+    //카테고리
 
+    const [category, setCategory] = useState([]);
+    const [categoryStatus, setCategoryStatus] = useState(false);
+    const categoryId = useRef();
+
+    //이미지
     const [menuImg, setMenuImg] = useState();
 
-    const [categoryStatus, setCategoryStatus] = useState(false);
-
+    //사이드
     const [side, setSide] = useState([]);
-
     const [sideStatus, setSideStatus] = useState(false);
 
+    //스피너
     const [spinner, setSpinner] = useState(true);
 
     useEffect(() => {
@@ -33,7 +37,10 @@ const AddMenu = () => {
     const [addMenu, setAddMenu] = useState({
         menuName: '',
         menuPrice: '',
-        CategorySelect: '',
+        CategorySelect: {
+            categorySq: '',
+            categoryName: ''
+        },
         sideSelect: '',
     });
 
@@ -51,9 +58,22 @@ const AddMenu = () => {
 
     const addMenuChange = (e) => {
 
+        console.log(addMenu);
+
         setCategoryStatus(false);
         setSideStatus(false);
 
+        if (e.target.name === 'CategorySelect') {
+
+            setAddMenu({
+                ...addMenu,
+                [e.target.name]: {
+                    categorySq: e.target.getAttribute('data-id'),
+                    categoryName: e.target.value
+                }
+            });
+            return false;
+        }
 
         if (e.target.name === 'menuPrice') {
             const check = /^[0-9 ]*$/;
@@ -62,6 +82,7 @@ const AddMenu = () => {
                     ...addMenu,
                     [e.target.name]: e.target.value
                 });
+                return false;
             } else {
                 return false;
             }
@@ -70,8 +91,6 @@ const AddMenu = () => {
             ...addMenu,
             [e.target.name]: e.target.value
         });
-
-        console.log(addMenu);
     }
 
     return (
@@ -132,15 +151,16 @@ const AddMenu = () => {
                                     카테고리
                                 </div>
                                 <div className="M-flex-1 M-flex-column M-flex-center" style={{position: 'relative'}}>
-                                    <input type="text" value={addMenu.CategorySelect}
+                                    <input type="text" value={addMenu.CategorySelect.categoryName || ""}
                                            className="M-input-text M-font M-mini-size menuInputDiv"
                                            id="categorySelect" readOnly onClick={function () {
                                         setCategoryStatus(!categoryStatus);
                                     }}
                                     />
                                     {
-                                        categoryStatus ? (<CategorySelectList category={category}
-                                                                              changeCategory={addMenuChange}/>) : (<></>)
+                                        categoryStatus ? (
+                                            <CategorySelectList category={category}
+                                                                changeCategory={addMenuChange}/>) : (<></>)
                                     }
                                 </div>
                             </div>
