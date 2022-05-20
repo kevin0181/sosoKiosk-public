@@ -3,6 +3,7 @@ import {getCategoryList, getSideList} from "./../../../js/admin/menu/addMenu";
 import SpinnerAdmin from "../part/SpinnerAdmin";
 import CategorySelectList from "./addMenu/CategorySelectList";
 import $ from 'jquery';
+import SideSelectList from "./addMenu/SideSelectList";
 
 const AddMenu = () => {
 
@@ -13,6 +14,8 @@ const AddMenu = () => {
     const [categoryStatus, setCategoryStatus] = useState(false);
 
     const [side, setSide] = useState([]);
+
+    const [sideStatus, setSideStatus] = useState(false);
 
     const [spinner, setSpinner] = useState(true);
 
@@ -49,6 +52,7 @@ const AddMenu = () => {
     const addMenuChange = (e) => {
 
         setCategoryStatus(false);
+        setSideStatus(false);
 
 
         if (e.target.name === 'menuPrice') {
@@ -147,14 +151,14 @@ const AddMenu = () => {
                                 <div className="M-flex-1 M-flex-column M-flex-center menuInputDiv"
                                      style={{position: 'relative'}}>
                                     <input type="text" value="" className="M-input-text M-font M-mini-size"
-                                           id="sideSelect"
-                                           readOnly/>
-                                    <div className="M-input-select-div" id="sideSelectOption"
-                                         style={{display: 'none'}}>
-                                        <input type="text" value="side 1"
-                                               className="M-input-select M-font M-mini-size M-input-select-middle"
-                                               readOnly/>
-                                    </div>
+                                           value={addMenu.sideSelect}
+                                           id="sideSelect" readOnly onClick={function () {
+                                        setSideStatus(!sideStatus);
+                                    }}/>
+                                    {
+                                        sideStatus ? (
+                                            <SideSelectList side={side} changeSide={addMenuChange}/>) : (<></>)
+                                    }
                                 </div>
                             </div>
                             <div className="M-flex-row M-font admin-font-size" style={{marginBottom: '25px'}}>

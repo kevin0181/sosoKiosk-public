@@ -172,6 +172,10 @@ input:focus {
     border-bottom: none !important;
 }
 
+.M-side-input-select:last-child {
+    border-bottom: none !important;
+}
+
 .M-input-select-div::-webkit-scrollbar {
     width: 1vw;
 }
