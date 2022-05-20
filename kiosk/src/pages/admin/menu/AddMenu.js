@@ -1,9 +1,11 @@
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useState} from "react";
 import {getCategoryList, getSideList} from "./../../../js/admin/menu/addMenu";
 import SpinnerAdmin from "../part/SpinnerAdmin";
 import CategorySelectList from "./addMenu/CategorySelectList";
 import $ from 'jquery';
 import SideSelectList from "./addMenu/SideSelectList";
+import axios from "axios";
+import serverUrl from "../../config/server.json";
 
 const AddMenu = () => {
 
@@ -11,10 +13,12 @@ const AddMenu = () => {
 
     const [category, setCategory] = useState([]);
     const [categoryStatus, setCategoryStatus] = useState(false);
-    const categoryId = useRef();
 
     //이미지
-    const [menuImg, setMenuImg] = useState();
+    const [menuImg, setMenuImg] = useState({
+        img: '',
+        imgUrl: ''
+    });
 
     //사이드
     const [side, setSide] = useState([]);
@@ -31,7 +35,6 @@ const AddMenu = () => {
                 setSpinner(false);
             });
         });
-
     }, []);
 
     const [addMenu, setAddMenu] = useState({
@@ -47,17 +50,25 @@ const AddMenu = () => {
         },
     });
 
-    const encodeFileToBase64 = (fileBlob) => {
-        $("#menu-fileUrl").text(fileBlob.name);
-        const reader = new FileReader();
-        reader.readAsDataURL(fileBlob);
-        return new Promise((resolve) => {
-            reader.onload = () => {
-                setMenuImg(reader.result);
-                resolve();
-            };
+    const saveMenu = () => {
+        setSpinner(true);
+        const formData = new FormData();
+        formData.append('categorySq', addMenu.categorySelect.categorySq);
+        formData.append('menuName', addMenu.menuName);
+        formData.append('menuPrice', addMenu.menuPrice);
+        formData.append('sideSq', addMenu.sideSelect.sideSq);
+        formData.append('menuImg', menuImg.img);
+        const response = axios.post('http://' + serverUrl.server + '/admin/menu/add/menu', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            maxRedirects: 0
         });
-    };
+        response.then(function (res) {
+            setSpinner(false);
+            console.log(res);
+        });
+    }
 
     const addMenuChange = (e) => {
 
@@ -65,6 +76,22 @@ const AddMenu = () => {
 
         setCategoryStatus(false);
         setSideStatus(false);
+
+        if (e.target.name === 'menuImg') {
+            const uploadFile = e.target.files[0]
+            $("#menu-fileUrl").text(uploadFile.name);
+            const reader = new FileReader();
+            reader.readAsDataURL(uploadFile);
+            return new Promise((resolve) => {
+                reader.onload = () => {
+                    setMenuImg({
+                        img: uploadFile,
+                        imgUrl: reader.result
+                    });
+                    resolve();
+                };
+            });
+        }
 
         if (e.target.name === 'categorySelect') {
 
@@ -139,7 +166,7 @@ const AddMenu = () => {
                                 <div className="M-flex-1 M-flex-row M-flex-center menuInputDiv">
                                     <input type="file" className="M-none-design" id="menu-file"
                                            onChange={(e) => {
-                                               encodeFileToBase64(e.target.files[0]);
+                                               addMenuChange(e);
                                            }}
                                            name="menuImg"
                                            accept="image/*"/>
@@ -200,7 +227,7 @@ const AddMenu = () => {
 
                                 </div>
                                 <div className="M-flex-1 M-flex-row M-flex-center">
-                                    <div className="O-side-select-close"
+                                    <div className="O-side-select-close" onClick={saveMenu}
                                          style={{marginTop: '0px', marginRight: '10px'}}>
                                         <p className="M-font">메뉴 업로드</p>
                                     </div>
@@ -212,10 +239,10 @@ const AddMenu = () => {
                         <div className="admin-main-img">
                             <div className="img-part M-flex-column M-flex-center">
                                 {
-                                    menuImg ? (
+                                    menuImg.imgUrl ? (
                                         <img id="admin-main-menu-select-img" alt={'미리보기 이미지'}
                                              className="admin-main-select-img"
-                                             src={menuImg}/>
+                                             src={menuImg.imgUrl}/>
 
                                     ) : (
                                         <p className="M-font M-mini-size">미리보기</p>
