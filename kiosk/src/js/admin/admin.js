@@ -1,17 +1,16 @@
 import $ from 'jquery';
 
 
-export function showImg(data, object) { //img url show
-    $("#" + object).show();
-
-    if (data.files && data.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (data) {
-            $("#" + object).attr("src", data.target.result);
-        }
-        reader.readAsDataURL(data.files[0]);
-    }
-}
+// export function showImg(data, object) { //img url show
+//     $("#" + object).show();
+//     if (data.files && data.files[0]) {
+//         var reader = new FileReader();
+//         reader.onload = function (data) {
+//             $("#" + object).attr("src", data.target.result);
+//         }
+//         reader.readAsDataURL(data.files[0]);
+//     }
+// }
 
 // export function selectA(option) {
 //     $("#" + option).children("input:first").addClass("M-input-select-top");

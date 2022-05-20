@@ -3,10 +3,13 @@ import * as addMenuJS from './../../../js/admin/menu/addMenu';
 import {getCategoryList, getSideList} from "./../../../js/admin/menu/addMenu";
 import SpinnerAdmin from "../part/SpinnerAdmin";
 import CategorySelectList from "./addMenu/CategorySelectList";
+import $ from 'jquery';
 
 const AddMenu = () => {
 
     const [category, setCategory] = useState([]);
+
+    const [menuImg, setMenuImg] = useState();
 
     const [categoryStatus, setCategoryStatus] = useState(false);
 
@@ -22,21 +25,34 @@ const AddMenu = () => {
                 setSpinner(false);
             });
         });
+
     }, []);
 
     const [addMenu, setAddMenu] = useState({
         menuName: '',
-        menuImg: '',
         menuPrice: '',
         CategorySelect: '',
         sideSelect: '',
     });
+
+    const encodeFileToBase64 = (fileBlob) => {
+        $("#menu-fileUrl").text(fileBlob.name);
+        const reader = new FileReader();
+        reader.readAsDataURL(fileBlob);
+        return new Promise((resolve) => {
+            reader.onload = () => {
+                setMenuImg(reader.result);
+                resolve();
+            };
+        });
+    };
 
     const addMenuChange = (e) => {
         setAddMenu({
             ...addMenu,
             [e.target.name]: e.target.value
         });
+        console.log(addMenu);
     }
 
     return (
@@ -69,8 +85,10 @@ const AddMenu = () => {
                                     사진 업로드
                                 </div>
                                 <div className="M-flex-1 M-flex-row M-flex-center menuInputDiv">
-                                    <input type="file" value={addMenu.menuImg} className="M-none-design" id="menu-file"
-                                           onChange={addMenuChange}
+                                    <input type="file" className="M-none-design" id="menu-file"
+                                           onChange={(e) => {
+                                               encodeFileToBase64(e.target.files[0]);
+                                           }}
                                            name="menuImg"
                                            accept="image/*"/>
                                     <label className="M-input-text" id="menu-fileUrl" htmlFor="menu-file"
@@ -97,7 +115,7 @@ const AddMenu = () => {
                                 <div className="M-flex-1 M-flex-column M-flex-center" style={{position: 'relative'}}>
                                     <input type="text" value="" className="M-input-text M-font M-mini-size menuInputDiv"
                                            id="categorySelect" readOnly onClick={function () {
-                                        setCategoryStatus(true);
+                                        setCategoryStatus(!categoryStatus);
                                     }}
                                     />
                                     {
@@ -138,9 +156,16 @@ const AddMenu = () => {
                     <div className="M-flex-column admin-main-right-flex">
                         <div className="admin-main-img">
                             <div className="img-part M-flex-column M-flex-center">
-                                <p className="M-font M-mini-size">미리보기</p>
-                                <img id="admin-main-menu-select-img" alt={'미리보기 이미지'} className="admin-main-select-img"
-                                     style={{display: 'none'}}/>
+                                {
+                                    menuImg ? (
+                                        <img id="admin-main-menu-select-img" alt={'미리보기 이미지'}
+                                             className="admin-main-select-img"
+                                             src={menuImg}/>
+
+                                    ) : (
+                                        <p className="M-font M-mini-size">미리보기</p>
+                                    )
+                                }
                             </div>
                         </div>
                         <div className="admin-progress-bar">

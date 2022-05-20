@@ -1,20 +1,6 @@
 import $ from 'jquery';
-import {showImg} from "../admin";
 import axios from "axios";
 import serverUrl from "../../../pages/config/server.json";
-
-$(document).ready(function () {
-
-    //file upload url 내보내기
-    $("#menu-file").on("change", function () {
-        var fileUrl = $("#menu-file").val();
-        $("#menu-fileUrl").text(fileUrl);
-        showImg(this, "admin-main-menu-select-img");
-    });
-
-
-});
-
 
 export const getCategoryList = async () => {
     const response = await axios.get('http://' + serverUrl.server + '/admin/menu/get/list', {

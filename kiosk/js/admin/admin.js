@@ -13,18 +13,6 @@ function logout() {
 }
 
 
-function showImg(data, object) { //img url show
-    $("#" + object).show();
-
-    if (data.files && data.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (data) {
-            $("#" + object).attr("src", data.target.result);
-        }
-        reader.readAsDataURL(data.files[0]);
-    }
-}
-
 function selectA(option) {
     $("#" + option).children("input:first").addClass("M-input-select-top");
     $("#" + option).children("input:last").addClass("M-input-select-bottom");
