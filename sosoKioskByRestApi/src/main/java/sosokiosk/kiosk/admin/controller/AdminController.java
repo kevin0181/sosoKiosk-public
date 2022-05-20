@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import sosokiosk.kiosk.dto.menu.CategoryDTO;
 import sosokiosk.kiosk.dto.menu.MenuDTO;
 import sosokiosk.kiosk.dto.order.OrderDTO;
@@ -19,6 +21,7 @@ import sosokiosk.kiosk.service.order.OrderService;
 import sosokiosk.kiosk.service.setting.SettingService;
 
 import javax.transaction.Transactional;
+import java.lang.reflect.Method;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -41,22 +44,10 @@ public class AdminController {
     @Autowired
     private OrderService orderService;
 
-    @GetMapping("/admin/login")
-    public String login() {
-        return "/admin/login";
-    }
-
-    @GetMapping("/admin/index")
-    public String adminIndex(Model model) {
-
-        model.addAttribute("arrowStatus", "menu");
-        model.addAttribute("status", "all");
-//
-        List<MenuDTO> menuEntityList = menuService.findAllMenu();
-
-        model.addAttribute("menuEntityList", menuEntityList);
-
-        return "/admin/index";
+    @PostMapping("/admin/get/all/menu/list")
+    @ResponseBody
+    public List<MenuDTO> getAllMenu() {
+        return menuService.findAllMenu();
     }
 
     @GetMapping("/admin/menu")

@@ -27,23 +27,29 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().ignoringAntMatchers("/admin/**");
 
         http
-                .csrf().disable()
                 .antMatcher("/admin/**")
                 .authorizeRequests()
-                .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
-//                .antMatchers("/admin/**").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/admin/login")
-                .loginProcessingUrl("/admin/login")
-                .successHandler(new AdminLoginSuccessHandler()).failureHandler(new AdminLoginFailHandler())
-                .permitAll()
-                .and()
-                .logout()
-                .logoutUrl("/admin/logout")
-                .logoutSuccessUrl("/")
-                .invalidateHttpSession(true);
+                .antMatchers("/**").permitAll()
+                .anyRequest().authenticated();
+
+//        http
+//                .csrf().disable()
+//                .antMatcher("/admin/**")
+//                .authorizeRequests()
+//                .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
+////                .antMatchers("/admin/**").permitAll()
+//                .anyRequest().authenticated()
+//                .and()
+//                .formLogin()
+//                .loginPage("/admin/login")
+//                .loginProcessingUrl("/admin/login")
+//                .successHandler(new AdminLoginSuccessHandler()).failureHandler(new AdminLoginFailHandler())
+//                .permitAll()
+//                .and()
+//                .logout()
+//                .logoutUrl("/admin/logout")
+//                .logoutSuccessUrl("/")
+//                .invalidateHttpSession(true);
     }
 
     @Bean

@@ -3,6 +3,7 @@ package sosokiosk.kiosk.admin.controller.menu;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -13,7 +14,16 @@ import sosokiosk.kiosk.subDto.AddMenuDTO;
 import sosokiosk.kiosk.subDto.ChangeMenuDTO;
 import sosokiosk.kiosk.subDto.MessageDTO;
 
+import javax.swing.filechooser.FileSystemView;
 import javax.transaction.Transactional;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.text.SimpleDateFormat;
+import java.util.Base64;
+import java.util.Date;
 import java.util.Map;
 
 @Controller
@@ -30,15 +40,11 @@ public class MenuController {
     @PostMapping("/admin/menu/add/menu")
     @ResponseBody
     public Object addMenu(AddMenuDTO addMenuDTO, Model model) {
-
         MessageDTO messageDTO = new MessageDTO();
 
-        if (addMenuDTO != null) {
-            //img 저장
-            Map<String, String> result = imgService.saveImg(addMenuDTO.getMenuImg(), "menu", messageDTO);
-            messageDTO = menuService.saveMenu(addMenuDTO, result, model);
-            return messageDTO;
-        }
+        //img 저장
+        Map<String, String> result = imgService.saveImg(addMenuDTO.getMenuImg(), "menu", messageDTO);
+        messageDTO = menuService.saveMenu(addMenuDTO, result, model);
 
         return messageDTO; //입력값 없음
     }
