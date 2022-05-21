@@ -60,9 +60,13 @@ const AdminSide = () => {
         setData(data);
     }
 
+    const deleteSetData = (data) => {
+        setData(data);
+    }
+
     return (
         <div className="container">
-            <Modal modalStatus={modalStatus} modalContentChange={modalContentChange}/>
+            <Modal modalStatus={modalStatus} modalContentChange={modalContentChange} data={data} deleteSetData={deleteSetData}/>
             <div className="container M-flex-row">
                 <div className="O-order-side-all">
                     <div className="O-order-Side">

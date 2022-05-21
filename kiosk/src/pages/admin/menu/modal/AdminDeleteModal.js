@@ -1,7 +1,7 @@
 import axios from "axios";
 import serverUrl from "../../../config/server.json";
 
-const AdminDeleteModal = ({modalStatus, modalContentChange}) => {
+const AdminDeleteModal = ({modalStatus, modalContentChange, data, deleteSetData}) => {
 
     const closeBtn = () => {
         modalContentChange({
@@ -32,6 +32,9 @@ const AdminDeleteModal = ({modalStatus, modalContentChange}) => {
                 sendName: ''
             });
         });
+
+
+
     }
 
     return (<div className="O-modal-back" id="delete-modal">
