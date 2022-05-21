@@ -60,7 +60,9 @@ const MenuListPart = ({data, modalContentChange}) => {
                                     status: true,
                                     modalType: 'adminMenuDelete',
                                     modalTitle: '삭제 메시지',
-                                    modalContent: it.menuName + '를 삭제하시겠습니까?'
+                                    modalContent: it.menuName + '를 삭제하시겠습니까?',
+                                    sendId: it.menuSq,
+                                    sendName: it.menuName
                                 })
                             }}>
                                 삭제

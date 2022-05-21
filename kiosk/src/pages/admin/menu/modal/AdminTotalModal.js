@@ -5,7 +5,9 @@ const AdminTotalModal = ({modalStatus, modalContentChange}) => {
             status: false,
             modalType: '',
             modalTitle: '',
-            modalContent: ''
+            modalContent: '',
+            sendId: '',
+            sendName: ''
         });
     }
 

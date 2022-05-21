@@ -1,3 +1,6 @@
+import axios from "axios";
+import serverUrl from "../../../config/server.json";
+
 const AdminDeleteModal = ({modalStatus, modalContentChange}) => {
 
     const closeBtn = () => {
@@ -5,7 +8,29 @@ const AdminDeleteModal = ({modalStatus, modalContentChange}) => {
             status: false,
             modalType: '',
             modalTitle: '',
-            modalContent: ''
+            modalContent: '',
+            sendId: '',
+            sendName: ''
+        });
+    }
+
+    const menuDelete = () => {
+        console.log(modalStatus.sendId);
+        const response = axios.post('http://' + serverUrl.server + '/admin/menu/delete/menu', null, {
+            params: {
+                'menuSq': modalStatus.sendId
+            }
+        });
+
+        response.then(function (res) {
+            modalContentChange({
+                status: false,
+                modalType: '',
+                modalTitle: '',
+                modalContent: '',
+                sendId: '',
+                sendName: ''
+            });
         });
     }
 
@@ -28,7 +53,7 @@ const AdminDeleteModal = ({modalStatus, modalContentChange}) => {
                     <small style={{color: 'red', fontSize: '20px'}}>{modalStatus.modalContent}</small>
                 </div>
                 <div className="O-modal-side-footer M-flex-j-center" id="delete-modal-footer">
-                    <div className="O-side-select-close"
+                    <div className="O-side-select-close" onClick={menuDelete}
                          style={{width: '50%', backgroundColor: '#eb8282'}}>
                         <p className="M-font O-font-middle-size">네</p>
                     </div>
