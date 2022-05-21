@@ -66,7 +66,8 @@ const AdminSide = () => {
 
     return (
         <div className="container">
-            <Modal modalStatus={modalStatus} modalContentChange={modalContentChange} data={data} deleteSetData={deleteSetData}/>
+            <Modal modalStatus={modalStatus} modalContentChange={modalContentChange} data={data}
+                   deleteSetData={deleteSetData}/>
             <div className="container M-flex-row">
                 <div className="O-order-side-all">
                     <div className="O-order-Side">

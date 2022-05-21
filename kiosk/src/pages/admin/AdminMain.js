@@ -51,7 +51,7 @@ const AdminMain = ({adminCategory, modalContentChange, data, setDataFun}) => {
             case 'all':
                 return <AllMenu modalContentChange={modalContentChange} data={data} setDataFun={setDataFun}/>
             case 'addMenu':
-                return <AddMenu modalContentChange={modalContentChange}/>
+                return <AddMenu modalContentChange={modalContentChange} setDataFun={setDataFun}/>
             case 'sideAll':
                 return <SideAllMenu/>
             case 'sideAdd':

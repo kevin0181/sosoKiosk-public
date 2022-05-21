@@ -20,7 +20,7 @@ const AllMenu = ({modalContentChange, data, setDataFun}) => {
                 console.log(res);
                 setDataFun(res);
             });
-        }else{
+        } else {
             setSpinner(false);
         }
     }, []);
