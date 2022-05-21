@@ -4,8 +4,36 @@ import {useNavigate} from 'react-router-dom';
 import './../../css/all/all.css';
 import './../../css/all/font.css';
 import './../../css/all/orderMenu.css';
+import axios from "axios";
+import serverUrl from "../config/server.json";
+import {useEffect} from "react";
 
-const KioskMain = () => {
+const KioskMain = ({setMenuFun, setCategoryListFun}) => {
+
+    const getCategoryList = () => {
+        const getData = axios.post('http://' + serverUrl.server + '/kiosk/CategoryList');
+        getData.then((function (res) {
+            setCategoryListFun(res.data);
+        }));
+    };
+
+    const getMenuList = () => {
+        const response = axios.post('http://' + serverUrl.server + '/kiosk/category/get/categorySq', null, {
+            params: {
+                categorySq: '0'
+            },
+            maxRedirects: 0
+        });
+        response.then(function (res) {
+            setMenuFun(res.data);
+        });
+    }
+
+    useEffect(() => {
+        getMenuList();
+        getCategoryList();
+    }, []);
+
 
     const navigate = useNavigate();
     let adminClickCount = 0;

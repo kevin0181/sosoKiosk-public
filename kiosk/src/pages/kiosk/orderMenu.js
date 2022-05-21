@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 import CategoryList from "./side/CategoryList";
 import MainMenu from "./menu/MainMenu";
 
-const OrderMenu = () => {
+const OrderMenu = ({menu, categoryList}) => {
 
     const navigate = useNavigate();
 
@@ -37,7 +37,7 @@ const OrderMenu = () => {
                                                 <p className="O-category-a">전체</p>
                                             </div>
                                         </div>
-                                        <CategoryList/>
+                                        <CategoryList categoryList={categoryList}/>
                                     </div>
                                 </div>
                                 <div className="totalPrice-div M-flex-column M-flex-center"
@@ -73,7 +73,7 @@ const OrderMenu = () => {
                             <div
                                 style={{width: '100%', height: '96%'}}
                                 className="M-overlay">
-                                <MainMenu/>
+                                <MainMenu menu={menu}/>
                             </div>
                         </div>
                     </div>

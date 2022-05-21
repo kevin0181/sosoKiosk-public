@@ -1,22 +1,6 @@
-import {useState, useEffect} from "react";
-import axios from "axios";
 import serverUrl from "../../config/server.json";
 
-const MainMenu = () => {
-
-    const [menu, setMenu] = useState([]);
-
-    const getMenuList = () => {
-        const response = axios.post('http://' + serverUrl.server + '/kiosk/category/get/categorySq', null, {
-            params: {
-                categorySq: '0'
-            },
-            maxRedirects: 0
-        });
-        response.then(function (res) {
-            setMenu(res.data);
-        });
-    }
+const MainMenu = ({menu}) => {
 
     const imgCheck = (imgDTOList) => {
 
@@ -30,10 +14,6 @@ const MainMenu = () => {
         }
 
     }
-
-    useEffect(() => {
-        getMenuList();
-    }, [setMenu]);
 
     return (
         <div className="O-flex-menu">

@@ -1,21 +1,4 @@
-import axios from "axios";
-import {useEffect, useState} from "react";
-import serverUrl from './../../config/server.json';
-
-const CategoryList = () => {
-
-    const [categoryList, setCategoryList] = useState([]);
-
-    const getCategoryList = () => {
-        const getData = axios.post('http://' + serverUrl.server + '/kiosk/CategoryList');
-        getData.then((function (res) {
-            setCategoryList(res.data);
-        }));
-    };
-
-    useEffect(() => {
-        getCategoryList();
-    }, [setCategoryList]);
+const CategoryList = ({categoryList}) => {
 
     return (
         <div>
