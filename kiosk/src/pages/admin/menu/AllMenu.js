@@ -74,7 +74,7 @@ const AllMenu = ({modalContentChange}) => {
                                 </tr>
                                 </thead>
                                 <tbody className="admin-tbody M-overlay">
-                                <MenuListPart menu={menu}/>
+                                <MenuListPart menu={menu} modalContentChange={modalContentChange}/>
                                 </tbody>
                             </table>
                         </div>

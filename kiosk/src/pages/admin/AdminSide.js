@@ -45,7 +45,9 @@ const AdminSide = () => {
         status: false,
         modalType: '',
         modalTitle: '',
-        modalContent: ''
+        modalContent: '',
+        sendSq: '',
+        sendName: ''
     });
     const modalContentChange = (data) => {
         setModalStatus(data);

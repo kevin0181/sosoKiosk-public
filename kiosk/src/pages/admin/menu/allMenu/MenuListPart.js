@@ -1,4 +1,4 @@
-const MenuListPart = ({menu}) => {
+const MenuListPart = ({menu, modalContentChange}) => {
 
     const sideCheck = (side) => {
         if (side.length === 0) {
@@ -55,7 +55,14 @@ const MenuListPart = ({menu}) => {
                             }
                         </td>
                         <td className="search">
-                            <small className="menu-delete-btn">
+                            <small className="menu-delete-btn" onClick={() => {
+                                modalContentChange({
+                                    status: true,
+                                    modalType: 'adminMenuDelete',
+                                    modalTitle: '삭제 메시지',
+                                    modalContent: it.menuName + '를 삭제하시겠습니까?'
+                                })
+                            }}>
                                 삭제
                             </small>
                         </td>
