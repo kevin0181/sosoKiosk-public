@@ -22,6 +22,8 @@ const AdminDeleteModal = ({modalStatus, modalContentChange, data, deleteSetData}
             }
         });
 
+        deleteSetData(data.filter((it) => it.menuSq !== modalStatus.sendId));
+
         response.then(function (res) {
             modalContentChange({
                 status: false,
@@ -32,8 +34,6 @@ const AdminDeleteModal = ({modalStatus, modalContentChange, data, deleteSetData}
                 sendName: ''
             });
         });
-
-
 
     }
 
