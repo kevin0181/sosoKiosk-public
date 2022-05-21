@@ -17,7 +17,6 @@ const AllMenu = ({modalContentChange, data, setDataFun}) => {
     useEffect(() => {
         if (data.length === 0) {
             getMenuList().then(function (res) {
-                console.log(res);
                 setDataFun(res);
             });
         } else {

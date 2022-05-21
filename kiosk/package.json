@@ -1,5 +1,5 @@
 {
-  "name": "soso-kiosk",
+  "name": "sosoKioskProject",
   "version": "1.0.0",
   "description": "",
   "main": "public/electron.js",
