@@ -16,7 +16,8 @@ import CardOrder from "./order/CardOrder";
 import MoneyOrder from "./order/MoneyOrder";
 import Setting from "./setting/Setting";
 import AdminLoginSession from '../../js/admin/AdminLoginSession';
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
+import AdminTotalModal from "./modal/AdminTotalModal";
 
 const AdminMain = ({adminCategory}) => {
 
@@ -28,11 +29,27 @@ const AdminMain = ({adminCategory}) => {
 
     const result = AdminLoginSession();
 
+    //admin Total modal
+    const [adminTotalModalStatus, setAdminTotalModalStatus] = useState(false);
+
+    const openAdminTotalModal = () => {
+        setAdminTotalModalStatus(true);
+    }
+
+    const closeAdminTotalModal = () => {
+        setAdminTotalModalStatus(false);
+    }
+
+    const [adminTotalModalContent, setAdminTotalModalContent] = useState('');
+
+    const setAdminTotalModalContentFun = (data) => {
+        setAdminTotalModalContent(data);
+    }
+
     useEffect(() => {
         if (!result)
             navigate('/');
     });
-
 
     const AdminTopView = () => {
         switch (adminCategory) {
@@ -52,7 +69,8 @@ const AdminMain = ({adminCategory}) => {
             case 'all':
                 return <AllMenu/>
             case 'addMenu':
-                return <AddMenu/>
+                return <AddMenu setAdminTotalModalContentFun={setAdminTotalModalContentFun}
+                                openAdminTotalModal={openAdminTotalModal}/>
             case 'sideAll':
                 return <SideAllMenu/>
             case 'sideAdd':
@@ -78,8 +96,12 @@ const AdminMain = ({adminCategory}) => {
     }
     return (
         <>
+            {
+                adminTotalModalStatus ? (<AdminTotalModal adminTotalModalContent={adminTotalModalContent}
+                                                          closeAdminTotalModal={closeAdminTotalModal}/>) : (<></>)
+            }
             <AdminTopView/>
-            <AdminMainView/>
+            <AdminMainView setAdminTotalModalContentFun={setAdminTotalModalContentFun}/>
         </>
     );
 }

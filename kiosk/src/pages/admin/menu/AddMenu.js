@@ -7,7 +7,7 @@ import SideSelectList from "./addMenu/SideSelectList";
 import axios from "axios";
 import serverUrl from "../../config/server.json";
 
-const AddMenu = () => {
+const AddMenu = ({setAdminTotalModalContentFun, openAdminTotalModal}) => {
 
     //카테고리
 
@@ -37,6 +37,8 @@ const AddMenu = () => {
         });
     }, []);
 
+    const [addMenuSmallText, setAddMenuSmallText] = useState('');
+
     const [addMenu, setAddMenu] = useState({
         menuName: '',
         menuPrice: '',
@@ -51,6 +53,22 @@ const AddMenu = () => {
     });
 
     const saveMenu = () => {
+
+        if (addMenu.menuName === '') {
+            setAddMenuSmallText('메뉴 이름을 적어주세요.');
+            return false;
+        }
+
+        if (addMenu.menuPrice === '') {
+            setAddMenuSmallText('가격을 적어주세요.');
+            return false;
+        }
+
+        if (addMenu.categorySelect.categorySq === '') {
+            setAddMenuSmallText('카테고리를 지정해주세요.');
+            return false;
+        }
+
         setSpinner(true);
         const formData = new FormData();
         formData.append('categorySq', addMenu.categorySelect.categorySq);
@@ -66,13 +84,12 @@ const AddMenu = () => {
         });
         response.then(function (res) {
             setSpinner(false);
-            console.log(res);
+            setAdminTotalModalContentFun('메뉴가 저장되었습니다.');
+            openAdminTotalModal();
         });
     }
 
     const addMenuChange = (e) => {
-
-        console.log(addMenu);
 
         setCategoryStatus(false);
         setSideStatus(false);
@@ -252,10 +269,8 @@ const AddMenu = () => {
                         </div>
                         <div className="admin-progress-bar">
                             <div className="admin-progress-bar-div" style={{textAlign: 'center'}}>
-                                <small className="M-font" style={{fontSize: '25px'}} id="progress-small-menu"></small>
-                                <progress id="menu-progressBar" style={{marginTop: '30px'}} className="M-progress-bar"
-                                          value="0"
-                                          max="100"></progress>
+                                <small className="M-font" style={{fontSize: '25px'}}
+                                       id="progress-small-menu">{addMenuSmallText}</small>
                             </div>
                         </div>
                     </div>
