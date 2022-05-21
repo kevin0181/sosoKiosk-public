@@ -53,6 +53,13 @@ const AdminSide = () => {
         setModalStatus(data);
     }
 
+    //-----------------------------------       data           ---------------------------------
+    const [data, setData] = useState([]);
+
+    const setDataFun = (data) => {
+        setData(data);
+    }
+
     return (
         <div className="container">
             <Modal modalStatus={modalStatus} modalContentChange={modalContentChange}/>
@@ -105,7 +112,8 @@ const AdminSide = () => {
                     </div>
                 </div>
                 <div className="admin-right-side admin-right-side-Preferences">
-                    <AdminMain adminCategory={adminCategory} modalContentChange={modalContentChange}/>
+                    <AdminMain adminCategory={adminCategory} modalContentChange={modalContentChange} data={data}
+                               setDataFun={setDataFun}/>
                 </div>
             </div>
         </div>

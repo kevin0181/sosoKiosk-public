@@ -4,25 +4,25 @@ import MenuListPart from "./allMenu/MenuListPart";
 import SpinnerAdmin from "../part/SpinnerAdmin";
 import {getMenuList} from "./../../../js/admin/menu/AllMenu";
 
-const AllMenu = ({modalContentChange}) => {
+const AllMenu = ({modalContentChange, data, setDataFun}) => {
 
     const [search, setSearch] = useState();
 
     const [spinner, setSpinner] = useState(true);
-
-    const [menu, setMenu] = useState([]);
-
 
     const setSearchChange = (e) => {
         setSearch(e.target.value);
     };
 
     useEffect(() => {
-        getMenuList().then(function (res) {
-            console.log(res);
-            setMenu(res);
+        if (data.length === 0) {
+            getMenuList().then(function (res) {
+                console.log(res);
+                setDataFun(res);
+            });
+        }else{
             setSpinner(false);
-        });
+        }
     }, []);
 
     useEffect(() => {
@@ -43,7 +43,8 @@ const AllMenu = ({modalContentChange}) => {
                     <div className="admin-all-menu-top">
                         <div className="admin-top-search">
                             <div className="M-flex-1 M-flex-row">
-                                <input type="text" value={search} onChange={setSearchChange} className="M-input-search"
+                                <input type="text" value={search} onChange={setSearchChange}
+                                       className="M-input-search"
                                        id="all-menu-search"/>
                             </div>
                         </div>
@@ -74,7 +75,7 @@ const AllMenu = ({modalContentChange}) => {
                                 </tr>
                                 </thead>
                                 <tbody className="admin-tbody M-overlay">
-                                <MenuListPart menu={menu} modalContentChange={modalContentChange}/>
+                                <MenuListPart data={data} modalContentChange={modalContentChange}/>
                                 </tbody>
                             </table>
                         </div>

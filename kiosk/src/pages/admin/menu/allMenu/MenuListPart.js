@@ -1,4 +1,4 @@
-const MenuListPart = ({menu, modalContentChange}) => {
+const MenuListPart = ({data, modalContentChange}) => {
 
     const sideCheck = (side) => {
         if (side.length === 0) {
@@ -26,7 +26,7 @@ const MenuListPart = ({menu, modalContentChange}) => {
     return (
         <>
             {
-                menu.map((it) => (
+                data.map((it) => (
                     <tr className="admin-tbody-tr" key={it.menuSq}>
                         <td className="search">
                             {it.categoryDTO.categoryName}

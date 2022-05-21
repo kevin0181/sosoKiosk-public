@@ -16,10 +16,9 @@ import CardOrder from "./order/CardOrder";
 import MoneyOrder from "./order/MoneyOrder";
 import Setting from "./setting/Setting";
 import AdminLoginSession from '../../js/admin/AdminLoginSession';
-import {useEffect, useState} from "react";
-import AdminTotalModal from "./menu/modal/AdminTotalModal";
+import {useEffect} from "react";
 
-const AdminMain = ({adminCategory, modalContentChange}) => {
+const AdminMain = ({adminCategory, modalContentChange, data, setDataFun}) => {
 
     const navigate = useNavigate();
 
@@ -50,7 +49,7 @@ const AdminMain = ({adminCategory, modalContentChange}) => {
     const AdminMainView = () => {
         switch (status) {
             case 'all':
-                return <AllMenu modalContentChange={modalContentChange}/>
+                return <AllMenu modalContentChange={modalContentChange} data={data} setDataFun={setDataFun}/>
             case 'addMenu':
                 return <AddMenu modalContentChange={modalContentChange}/>
             case 'sideAll':
