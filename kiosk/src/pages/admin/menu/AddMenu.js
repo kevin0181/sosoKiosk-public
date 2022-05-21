@@ -211,7 +211,7 @@ const AddMenu = () => {
                                 </div>
                                 <div className="M-flex-1 M-flex-column M-flex-center menuInputDiv"
                                      style={{position: 'relative'}}>
-                                    <input type="text" value="" className="M-input-text M-font M-mini-size"
+                                    <input type="text" className="M-input-text M-font M-mini-size"
                                            value={addMenu.sideSelect.sideName}
                                            id="sideSelect" readOnly onClick={function () {
                                         setSideStatus(!sideStatus);
