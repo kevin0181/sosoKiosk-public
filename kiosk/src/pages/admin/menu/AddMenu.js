@@ -7,7 +7,7 @@ import SideSelectList from "./addMenu/SideSelectList";
 import axios from "axios";
 import serverUrl from "../../config/server.json";
 
-const AddMenu = ({setAdminTotalModalContentFun, openAdminTotalModal}) => {
+const AddMenu = ({modalContentChange}) => {
 
     //카테고리
 
@@ -84,8 +84,12 @@ const AddMenu = ({setAdminTotalModalContentFun, openAdminTotalModal}) => {
         });
         response.then(function (res) {
             setSpinner(false);
-            setAdminTotalModalContentFun('메뉴가 저장되었습니다.');
-            openAdminTotalModal();
+            modalContentChange({
+                status: true,
+                modalType: 'adminTotalModal',
+                modalTitle: '알림 메시지',
+                modalContent: '저장이 완료되었습니다.'
+            })
         });
     }
 

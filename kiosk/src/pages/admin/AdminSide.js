@@ -7,8 +7,9 @@ import '../../css/all/orderMenu.css';
 import {useParams} from "react-router-dom";
 import AdminMain from "./AdminMain";
 import $ from "jquery";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
+import Modal from "./Modal";
 
 const AdminSide = () => {
 
@@ -37,8 +38,22 @@ const AdminSide = () => {
         }
     }, [adminCategory]);
 
+
+    //-------------------------------------------------------------------------------------------------
+
+    const [modalStatus, setModalStatus] = useState({
+        status: false,
+        modalType: '',
+        modalTitle: '',
+        modalContent: ''
+    });
+    const modalContentChange = (data) => {
+        setModalStatus(data);
+    }
+
     return (
         <div className="container">
+            <Modal modalStatus={modalStatus} modalContentChange={modalContentChange}/>
             <div className="container M-flex-row">
                 <div className="O-order-side-all">
                     <div className="O-order-Side">
@@ -88,7 +103,7 @@ const AdminSide = () => {
                     </div>
                 </div>
                 <div className="admin-right-side admin-right-side-Preferences">
-                    <AdminMain adminCategory={adminCategory}/>
+                    <AdminMain adminCategory={adminCategory} modalContentChange={modalContentChange}/>
                 </div>
             </div>
         </div>

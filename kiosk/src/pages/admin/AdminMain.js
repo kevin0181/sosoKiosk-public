@@ -17,9 +17,9 @@ import MoneyOrder from "./order/MoneyOrder";
 import Setting from "./setting/Setting";
 import AdminLoginSession from '../../js/admin/AdminLoginSession';
 import {useEffect, useState} from "react";
-import AdminTotalModal from "./modal/AdminTotalModal";
+import AdminTotalModal from "./menu/modal/AdminTotalModal";
 
-const AdminMain = ({adminCategory}) => {
+const AdminMain = ({adminCategory, modalContentChange}) => {
 
     const navigate = useNavigate();
 
@@ -28,23 +28,6 @@ const AdminMain = ({adminCategory}) => {
     const status = mainParams.get('status');
 
     const result = AdminLoginSession();
-
-    //admin Total modal
-    const [adminTotalModalStatus, setAdminTotalModalStatus] = useState(false);
-
-    const openAdminTotalModal = () => {
-        setAdminTotalModalStatus(true);
-    }
-
-    const closeAdminTotalModal = () => {
-        setAdminTotalModalStatus(false);
-    }
-
-    const [adminTotalModalContent, setAdminTotalModalContent] = useState('');
-
-    const setAdminTotalModalContentFun = (data) => {
-        setAdminTotalModalContent(data);
-    }
 
     useEffect(() => {
         if (!result)
@@ -67,10 +50,9 @@ const AdminMain = ({adminCategory}) => {
     const AdminMainView = () => {
         switch (status) {
             case 'all':
-                return <AllMenu/>
+                return <AllMenu modalContentChange={modalContentChange}/>
             case 'addMenu':
-                return <AddMenu setAdminTotalModalContentFun={setAdminTotalModalContentFun}
-                                openAdminTotalModal={openAdminTotalModal}/>
+                return <AddMenu modalContentChange={modalContentChange}/>
             case 'sideAll':
                 return <SideAllMenu/>
             case 'sideAdd':
@@ -96,12 +78,8 @@ const AdminMain = ({adminCategory}) => {
     }
     return (
         <>
-            {
-                adminTotalModalStatus ? (<AdminTotalModal adminTotalModalContent={adminTotalModalContent}
-                                                          closeAdminTotalModal={closeAdminTotalModal}/>) : (<></>)
-            }
             <AdminTopView/>
-            <AdminMainView setAdminTotalModalContentFun={setAdminTotalModalContentFun}/>
+            <AdminMainView/>
         </>
     );
 }

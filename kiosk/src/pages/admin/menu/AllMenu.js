@@ -4,7 +4,7 @@ import MenuListPart from "./allMenu/MenuListPart";
 import SpinnerAdmin from "../part/SpinnerAdmin";
 import {getMenuList} from "./../../../js/admin/menu/AllMenu";
 
-const AllMenu = () => {
+const AllMenu = ({modalContentChange}) => {
 
     const [search, setSearch] = useState();
 
