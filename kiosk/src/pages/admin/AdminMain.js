@@ -63,7 +63,6 @@ const AdminMain = ({adminCategory, modalContentChange, data, setDataFun}) => {
                 break;
             case 'sideAll':
                 getSideList().then(function (res) {
-                    console.log(res);
                     setDataFun(res);
                     setSpinner(false);
                 });

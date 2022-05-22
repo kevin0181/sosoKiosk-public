@@ -1,8 +1,7 @@
 import axios from "axios";
 import serverUrl from "../../../config/server.json";
 
-const AdminDeleteModal = ({modalStatus, modalContentChange, data, deleteSetData}) => {
-
+const AdminSideMenuDeleteModal = ({modalStatus, modalContentChange, data, deleteSetData}) => {
     const closeBtn = () => {
         modalContentChange({
             status: false,
@@ -15,16 +14,16 @@ const AdminDeleteModal = ({modalStatus, modalContentChange, data, deleteSetData}
     }
 
     const menuDelete = () => {
-        console.log(modalStatus.sendId);
-        const response = axios.post('http://' + serverUrl.server + '/admin/menu/delete/menu', null, {
+        const response = axios.post('http://' + serverUrl.server + '/admin/menu/delete/sideMenu', null, {
             params: {
-                'menuSq': modalStatus.sendId
+                'menuSideSq': modalStatus.sendId
             }
         });
 
-        deleteSetData(data.filter((it) => it.menuSq !== modalStatus.sendId));
+        deleteSetData(data.filter((it) => it.menuSideSq !== modalStatus.sendId));
 
         response.then(function (res) {
+
             modalContentChange({
                 status: false,
                 modalType: '',
@@ -65,4 +64,5 @@ const AdminDeleteModal = ({modalStatus, modalContentChange, data, deleteSetData}
         </div>
     </div>);
 }
-export default AdminDeleteModal;
+
+export default AdminSideMenuDeleteModal;

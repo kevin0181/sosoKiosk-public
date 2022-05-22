@@ -1,6 +1,7 @@
 import {useEffect} from "react";
 import AdminTotalModal from "./menu/modal/AdminTotalModal";
-import AdminDeleteModal from "./menu/modal/AdminDeleteModal";
+import AdminMenuDeleteModal from "./menu/modal/AdminMenuDeleteModal";
+import AdminSideMenuDeleteModal from "./menu/modal/AdminSideMenuDeleteModal";
 
 const Modal = ({modalStatus, modalContentChange, data, deleteSetData}) => {
 
@@ -12,7 +13,12 @@ const Modal = ({modalStatus, modalContentChange, data, deleteSetData}) => {
                                             modalContentChange={modalContentChange}/>
                     break;
                 case 'adminMenuDelete':
-                    return <AdminDeleteModal modalStatus={modalStatus} data={data} deleteSetData={deleteSetData}
+                    return <AdminMenuDeleteModal modalStatus={modalStatus} data={data} deleteSetData={deleteSetData}
+                                                 modalContentChange={modalContentChange}/>
+                    break;
+
+                case 'adminSideMenuDelete':
+                    return <AdminSideMenuDeleteModal modalStatus={modalStatus} data={data} deleteSetData={deleteSetData}
                                              modalContentChange={modalContentChange}/>
                     break;
             }

@@ -1,4 +1,4 @@
-const SideAllListPart = ({data}) => {
+const SideAllListPart = ({data, modalContentChange}) => {
     return (
         data.map((it) => (
             <tr className="M-text-center admin-tbody-tr" key={it.menuSideSq}>
@@ -27,7 +27,16 @@ const SideAllListPart = ({data}) => {
                     }
                 </td>
                 <td className="search">
-                    <small className="menu-delete-btn">
+                    <small className="menu-delete-btn" onClick={() => {
+                        modalContentChange({
+                            status: true,
+                            modalType: 'adminSideMenuDelete',
+                            modalTitle: '삭제 메시지',
+                            modalContent: it.menuSideName + '를 삭제하시겠습니까?',
+                            sendId: it.menuSideSq,
+                            sendName: it.menuSideName
+                        })
+                    }}>
                         삭제
                     </small>
                 </td>

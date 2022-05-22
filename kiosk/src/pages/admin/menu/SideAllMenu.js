@@ -60,7 +60,7 @@ const SideAllMenu = ({modalContentChange, data, spinner}) => {
                                 </tr>
                                 </thead>
                                 <tbody className="admin-tbody">
-                                <SideAllListPart data={data}/>
+                                <SideAllListPart data={data} modalContentChange={modalContentChange}/>
                                 </tbody>
                             </table>
                         </div>
