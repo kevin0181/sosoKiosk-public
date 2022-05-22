@@ -1,12 +1,35 @@
-const SideAllMenu = () => {
+import {useState, useEffect} from "react";
+import * as AllMenuSearch from "../../../js/admin/menu/AllMenu";
+import SpinnerAdmin from "../part/SpinnerAdmin";
+
+const SideAllMenu = ({modalContentChange, data, spinner}) => {
+
+    const [search, setSearch] = useState();
+
+    const setSearchChange = (e) => {
+        setSearch(e.target.value);
+    };
+
+    useEffect(() => {
+        AllMenuSearch.search();
+    });
+
     return (
         <div className="admin-main">
+            {
+                spinner ? (
+                    <SpinnerAdmin/>
+                ) : (
+                    <></>
+                )
+            }
             <div className="admin-main-div">
                 <div className="admin-main-backCard M-flex-column">
                     <div className="admin-all-menu-top">
                         <div className="admin-top-search">
                             <div className="M-flex-1 M-flex-row">
-                                <input type="text" value="" className="M-input-search" id="all-menu-search"/>
+                                <input type="text" value={search} onChange={setSearchChange} className="M-input-search"
+                                       id="all-menu-search"/>
                             </div>
                         </div>
                     </div>

@@ -17,6 +17,9 @@ import MoneyOrder from "./order/MoneyOrder";
 import Setting from "./setting/Setting";
 import AdminLoginSession from '../../js/admin/AdminLoginSession';
 import {useEffect} from "react";
+import {getMenuList} from "../../js/admin/menu/AllMenu";
+import {useState} from "react";
+import {getSideList} from "../../js/admin/menu/side";
 
 const AdminMain = ({adminCategory, modalContentChange, data, setDataFun}) => {
 
@@ -27,6 +30,8 @@ const AdminMain = ({adminCategory, modalContentChange, data, setDataFun}) => {
     const status = mainParams.get('status');
 
     const result = AdminLoginSession();
+
+    const [spinner, setSpinner] = useState(true);
 
     useEffect(() => {
         if (!result)
@@ -46,14 +51,34 @@ const AdminMain = ({adminCategory, modalContentChange, data, setDataFun}) => {
             default:
         }
     }
+
+    useEffect(() => {
+        setSpinner(true);
+        switch (status) {
+            case 'all':
+                getMenuList().then(function (res) {
+                    setDataFun(res);
+                    setSpinner(false);
+                });
+                break;
+            case 'sideAll':
+                getSideList().then(function (res) {
+                    console.log(res);
+                    setDataFun(res);
+                    setSpinner(false);
+                });
+                break;
+        }
+    }, [status]);
+
     const AdminMainView = () => {
         switch (status) {
             case 'all':
-                return <AllMenu modalContentChange={modalContentChange} data={data} setDataFun={setDataFun}/>
+                return <AllMenu modalContentChange={modalContentChange} spinner={spinner} data={data}/>
             case 'addMenu':
                 return <AddMenu modalContentChange={modalContentChange} setDataFun={setDataFun}/>
             case 'sideAll':
-                return <SideAllMenu/>
+                return <SideAllMenu modalContentChange={modalContentChange} data={data} spinner={spinner}/>
             case 'sideAdd':
                 return <AddSide/>
             case 'category':
