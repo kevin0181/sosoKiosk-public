@@ -51,7 +51,7 @@ public class MenuService {
         Optional<SideEntity> sideEntityOptional = null;
         SideEntity sideEntity;
 
-        if (addMenuDTO.getSideSq() != 0) {
+        if (addMenuDTO.getSideSq() != null) {
             sideEntityOptional = sideRepository.findById(addMenuDTO.getSideSq());
         }
 

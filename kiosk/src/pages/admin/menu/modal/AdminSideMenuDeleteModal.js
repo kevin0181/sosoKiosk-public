@@ -1,10 +1,11 @@
 import axios from "axios";
 import serverUrl from "../../../config/server.json";
 
-const AdminSideMenuDeleteModal = ({modalStatus, modalContentChange, data, deleteSetData}) => {
+const AdminSideMenuDeleteModal = ({modalStatus, modalContentChange, data, setDataFun}) => {
     const closeBtn = () => {
         modalContentChange({
             status: false,
+            param: '',
             modalType: '',
             modalTitle: '',
             modalContent: '',
@@ -20,12 +21,13 @@ const AdminSideMenuDeleteModal = ({modalStatus, modalContentChange, data, delete
             }
         });
 
-        deleteSetData(data.filter((it) => it.menuSideSq !== modalStatus.sendId));
+        setDataFun(data.filter((it) => it.menuSideSq !== modalStatus.sendId));
 
         response.then(function (res) {
 
             modalContentChange({
                 status: false,
+                param: '',
                 modalType: '',
                 modalTitle: '',
                 modalContent: '',

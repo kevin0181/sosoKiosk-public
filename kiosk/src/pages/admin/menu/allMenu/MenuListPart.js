@@ -57,6 +57,7 @@ const MenuListPart = ({data, modalContentChange}) => {
                             <small className="menu-delete-btn" onClick={() => {
                                 modalContentChange({
                                     status: true,
+                                    param: 'all',
                                     modalType: 'adminMenuDelete',
                                     modalTitle: '삭제 메시지',
                                     modalContent: it.menuName + '를 삭제하시겠습니까?',
