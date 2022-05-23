@@ -4,7 +4,7 @@ import MenuListPart from "./allMenu/MenuListPart";
 import SpinnerAdmin from "../part/SpinnerAdmin";
 import {getMenuList} from "./../../../js/admin/menu/AllMenu";
 
-const AllMenu = ({modalContentChange, spinner, data, setDataFun, stopSpinner}) => {
+const AllMenu = ({modalContentChange, data, setDataFun}) => {
 
     const [search, setSearch] = useState();
 
@@ -16,6 +16,12 @@ const AllMenu = ({modalContentChange, spinner, data, setDataFun, stopSpinner}) =
         AllMenuSearch.search();
     });
 
+    const [spinner, setSpinner] = useState(true);
+
+    const stopSpinner = () => {
+        setSpinner(false);
+    }
+
     useEffect(() => {
         getMenuList().then(function (all) {
             setDataFun({
@@ -25,6 +31,7 @@ const AllMenu = ({modalContentChange, spinner, data, setDataFun, stopSpinner}) =
             stopSpinner();
         });
     }, []);
+
 
     return (
         <div className="admin-main">

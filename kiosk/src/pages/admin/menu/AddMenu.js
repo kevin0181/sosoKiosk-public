@@ -92,10 +92,6 @@ const AddMenu = ({modalContentChange, setDataFun}) => {
                 modalTitle: '알림 메시지',
                 modalContent: '저장이 완료되었습니다.'
             });
-            getMenuList().then(function (resData) { //데이터 다시 가져옴.
-                console.log(resData);
-                setDataFun(resData);
-            });
         });
     }
 

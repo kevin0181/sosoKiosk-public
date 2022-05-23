@@ -17,7 +17,6 @@ import MoneyOrder from "./order/MoneyOrder";
 import Setting from "./setting/Setting";
 import AdminLoginSession from '../../js/admin/AdminLoginSession';
 import {useEffect} from "react";
-import {useState} from "react";
 
 const AdminMain = ({adminCategory, modalContentChange, data, setDataFun}) => {
 
@@ -28,12 +27,6 @@ const AdminMain = ({adminCategory, modalContentChange, data, setDataFun}) => {
     const status = mainParams.get('status');
 
     const result = AdminLoginSession();
-
-    const [spinner, setSpinner] = useState(true);
-
-    const stopSpinner = () => {
-        setSpinner(false);
-    }
 
     useEffect(() => {
         if (!result)
@@ -48,12 +41,10 @@ const AdminMain = ({adminCategory, modalContentChange, data, setDataFun}) => {
     }
 
     const AdminMainView = {
-        all: <AllMenu modalContentChange={modalContentChange} spinner={spinner} setDataFun={setDataFun}
-                      stopSpinner={stopSpinner}
+        all: <AllMenu modalContentChange={modalContentChange} setDataFun={setDataFun}
                       data={data}/>,
         addMenu: <AddMenu modalContentChange={modalContentChange} setDataFun={setDataFun}/>,
-        sideAll: <SideAllMenu modalContentChange={modalContentChange} data={data} spinner={spinner}
-                              stopSpinner={stopSpinner}
+        sideAll: <SideAllMenu modalContentChange={modalContentChange} data={data}
                               setDataFun={setDataFun}/>,
         sideAdd: <AddSide/>,
         category: <AllCategory/>,

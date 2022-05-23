@@ -4,7 +4,7 @@ import SpinnerAdmin from "../part/SpinnerAdmin";
 import SideAllListPart from "./sideMenu/SideAllListPart";
 import {getSideList} from "../../../js/admin/menu/side";
 
-const SideAllMenu = ({modalContentChange, data, spinner, setDataFun, stopSpinner}) => {
+const SideAllMenu = ({modalContentChange, data, setDataFun}) => {
 
     const [search, setSearch] = useState();
 
@@ -15,6 +15,12 @@ const SideAllMenu = ({modalContentChange, data, spinner, setDataFun, stopSpinner
     useEffect(() => {
         AllMenuSearch.search();
     });
+
+    const [spinner, setSpinner] = useState(true);
+
+    const stopSpinner = () => {
+        setSpinner(false);
+    }
 
     useEffect(() => {
         getSideList().then(function (sideAll) {
