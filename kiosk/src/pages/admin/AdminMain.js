@@ -33,31 +33,15 @@ const AdminMain = ({adminCategory, modalContentChange, data, setDataFun}) => {
 
     const [spinner, setSpinner] = useState(true);
 
+    const stopSpinner = () => {
+        setSpinner(false);
+    }
+
+
     useEffect(() => {
         if (!result)
             navigate('/');
     });
-
-    const getMenuListFun = () => {
-
-    }
-
-    const getSideListFun = () => {
-
-    }
-
-    useEffect(() => {
-        console.log(status);
-        if (status === 'all') {
-            getMenuList().then(function (res) {
-                setDataFun(res);
-            });
-        } else if (status === 'sideAll') {
-            getSideList().then(function (res) {
-                setDataFun(res);
-            });
-        }
-    }, [status]);
 
     const AdminTopView = {
         menu: <MenuTop status={status}/>,
@@ -67,11 +51,13 @@ const AdminMain = ({adminCategory, modalContentChange, data, setDataFun}) => {
     }
 
     const AdminMainView = {
-
-        all: <AllMenu modalContentChange={modalContentChange} spinner={spinner}
+        all: <AllMenu modalContentChange={modalContentChange} spinner={spinner} setDataFun={setDataFun}
+                      stopSpinner={stopSpinner}
                       data={data}/>,
         addMenu: <AddMenu modalContentChange={modalContentChange} setDataFun={setDataFun}/>,
-        sideAll: <SideAllMenu modalContentChange={modalContentChange} data={data} spinner={spinner}/>,
+        sideAll: <SideAllMenu modalContentChange={modalContentChange} data={data} spinner={spinner}
+                              stopSpinner={stopSpinner}
+                              setDataFun={setDataFun}/>,
         sideAdd: <AddSide/>,
         category: <AllCategory/>,
         addCategory: <AddCategory/>,
@@ -83,9 +69,6 @@ const AdminMain = ({adminCategory, modalContentChange, data, setDataFun}) => {
         setting: <Setting/>
     }
 
-
-    // <AdminTopView/>
-    // <AdminMainView/>
     return (
         <>
             <>

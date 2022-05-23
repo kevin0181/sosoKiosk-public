@@ -2,8 +2,9 @@ import {useEffect, useState} from "react";
 import * as AllMenuSearch from './../../../js/admin/menu/AllMenu';
 import MenuListPart from "./allMenu/MenuListPart";
 import SpinnerAdmin from "../part/SpinnerAdmin";
+import {getMenuList} from "./../../../js/admin/menu/AllMenu";
 
-const AllMenu = ({modalContentChange, spinner, data}) => {
+const AllMenu = ({modalContentChange, spinner, data, setDataFun, stopSpinner}) => {
 
     const [search, setSearch] = useState();
 
@@ -16,6 +17,10 @@ const AllMenu = ({modalContentChange, spinner, data}) => {
     });
 
     useEffect(() => {
+        getMenuList().then(function (res) {
+            setDataFun(res);
+            stopSpinner();
+        });
     }, []);
 
     return (

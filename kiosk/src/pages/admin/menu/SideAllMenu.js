@@ -2,8 +2,9 @@ import {useState, useEffect} from "react";
 import * as AllMenuSearch from "../../../js/admin/menu/AllMenu";
 import SpinnerAdmin from "../part/SpinnerAdmin";
 import SideAllListPart from "./sideMenu/SideAllListPart";
+import {getSideList} from "../../../js/admin/menu/side";
 
-const SideAllMenu = ({modalContentChange, data, spinner}) => {
+const SideAllMenu = ({modalContentChange, data, spinner, setDataFun, stopSpinner}) => {
 
     const [search, setSearch] = useState();
 
@@ -14,6 +15,13 @@ const SideAllMenu = ({modalContentChange, data, spinner}) => {
     useEffect(() => {
         AllMenuSearch.search();
     });
+
+    useEffect(() => {
+        getSideList().then(function (res) {
+            setDataFun(res);
+            stopSpinner()
+        });
+    }, []);
 
 
     return (
