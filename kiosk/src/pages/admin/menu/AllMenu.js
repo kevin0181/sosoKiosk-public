@@ -17,9 +17,11 @@ const AllMenu = ({modalContentChange, spinner, data, setDataFun, stopSpinner}) =
     });
 
     useEffect(() => {
-        console.log(data);
-        getMenuList().then(function (res) {
-            setDataFun(res);
+        getMenuList().then(function (all) {
+            setDataFun({
+                ...data,
+                all
+            });
             stopSpinner();
         });
     }, []);

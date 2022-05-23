@@ -17,9 +17,12 @@ const SideAllMenu = ({modalContentChange, data, spinner, setDataFun, stopSpinner
     });
 
     useEffect(() => {
-        getSideList().then(function (res) {
-            setDataFun(res);
-            stopSpinner()
+        getSideList().then(function (sideAll) {
+            setDataFun({
+                ...data,
+                sideAll
+            });
+            stopSpinner();
         });
     }, []);
 

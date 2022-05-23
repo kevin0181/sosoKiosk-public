@@ -22,11 +22,10 @@ const MenuListPart = ({data, modalContentChange}) => {
             return <p></p>
     }
 
-
     return (
         <>
             {
-                data.map((it) => (
+                data.all.map((it) => (
                     <tr className="admin-tbody-tr" key={it.menuSq}>
                         <td className="search">
                             {it.categoryDTO.categoryName}

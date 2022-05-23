@@ -35,7 +35,6 @@ const AdminMain = ({adminCategory, modalContentChange, data, setDataFun}) => {
         setSpinner(false);
     }
 
-
     useEffect(() => {
         if (!result)
             navigate('/');

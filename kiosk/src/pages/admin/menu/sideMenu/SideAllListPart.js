@@ -1,6 +1,7 @@
 const SideAllListPart = ({data, modalContentChange}) => {
+
     return (
-        data.map((it) => (
+        data.sideAll.map((it) => (
             <tr className="M-text-center admin-tbody-tr" key={it.menuSideSq}>
                 <td className="search" style={{width: '15%'}}>
                     {it.sideCategoryDTO.sideDTO.sideName}

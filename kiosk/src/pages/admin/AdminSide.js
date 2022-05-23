@@ -54,9 +54,13 @@ const AdminSide = () => {
     }
 
     //-----------------------------------       data           ---------------------------------
-    const [data, setData] = useState([]);
+    const [data, setData] = useState({
+        all: [],
+        sideAll: []
+    });
 
     const setDataFun = (data) => {
+        console.log(data);
         setData(data);
     }
 
