@@ -21,7 +21,12 @@ const AdminSideMenuDeleteModal = ({modalStatus, modalContentChange, data, setDat
             }
         });
 
-        setDataFun(data.filter((it) => it.menuSideSq !== modalStatus.sendId));
+        const sideAll = data.sideAll.filter((it) => it.menuSideSq !== modalStatus.sendId);
+
+        setDataFun({
+            ...data,
+            sideAll
+        })
 
         response.then(function (res) {
 

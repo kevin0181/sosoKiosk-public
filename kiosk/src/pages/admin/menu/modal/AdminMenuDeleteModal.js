@@ -22,7 +22,7 @@ const AdminMenuDeleteModal = ({modalStatus, modalContentChange, data, setDataFun
             }
         });
 
-        const all = data.all.filter((it) => it.menuSq !== modalStatus.sendId)
+        const all = data.all.filter((it) => it.menuSq !== modalStatus.sendId);
 
         setDataFun({
             ...data,
