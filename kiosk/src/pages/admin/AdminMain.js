@@ -47,9 +47,7 @@ const AdminMain = ({adminCategory, modalContentChange, data, setDataFun}) => {
     }
 
     useEffect(() => {
-
         console.log(status);
-
         if (status === 'all') {
             getMenuList().then(function (res) {
                 setDataFun(res);
@@ -59,59 +57,43 @@ const AdminMain = ({adminCategory, modalContentChange, data, setDataFun}) => {
                 setDataFun(res);
             });
         }
-
     }, [status]);
 
-    const AdminTopView = () => {
-        switch (adminCategory) {
-            case 'menu':
-                return <MenuTop status={status}/>
-            case 'sales':
-                return <SalesTop status={status}/>
-            case 'order':
-                return <OrderTop status={status}/>
-            case 'setting':
-                return <SettingTop status={status}/>
-            default:
-        }
+    const AdminTopView = {
+        menu: <MenuTop status={status}/>,
+        sales: <SalesTop status={status}/>,
+        order: <OrderTop status={status}/>,
+        setting: <SettingTop status={status}/>
     }
 
-    const AdminMainView = () => {
-        switch (status) {
-            case 'all':
-                return <AllMenu modalContentChange={modalContentChange} spinner={spinner}
-                                data={data}/>
-            case 'addMenu':
-                return <AddMenu modalContentChange={modalContentChange} setDataFun={setDataFun}/>
-            case 'sideAll':
-                return <SideAllMenu modalContentChange={modalContentChange} data={data}
-                                    spinner={spinner}/>
-            case 'sideAdd':
-                return <AddSide/>
-            case 'category':
-                return <AllCategory/>
-            case 'addCategory':
-                return <AddCategory/>
-            case 'kioskClose':
-                return <KioskClose/>
-            case 'sales':
-                return <Sales/>
-            case 'allOrder':
-                return <AllOrder/>
-            case 'cardOrder':
-                return <CardOrder/>
-            case 'moneyOrder':
-                return <MoneyOrder/>
-            case 'setting':
-                return <Setting/>
-            default:
-        }
+    const AdminMainView = {
+
+        all: <AllMenu modalContentChange={modalContentChange} spinner={spinner}
+                      data={data}/>,
+        addMenu: <AddMenu modalContentChange={modalContentChange} setDataFun={setDataFun}/>,
+        sideAll: <SideAllMenu modalContentChange={modalContentChange} data={data} spinner={spinner}/>,
+        sideAdd: <AddSide/>,
+        category: <AllCategory/>,
+        addCategory: <AddCategory/>,
+        kioskClose: <KioskClose/>,
+        sales: <Sales/>,
+        allOrder: <AllOrder/>,
+        cardOrder: <CardOrder/>,
+        moneyOrder: <MoneyOrder/>,
+        setting: <Setting/>
     }
 
+
+    // <AdminTopView/>
+    // <AdminMainView/>
     return (
         <>
-            <AdminTopView/>
-            <AdminMainView/>
+            <>
+                {AdminTopView[adminCategory]}
+            </>
+            <>
+                {AdminMainView[status]}
+            </>
         </>
     );
 }
