@@ -46,6 +46,13 @@ public class SideMenuController {
         return messageDTO; //입력값 없음
     }
 
+    @PostMapping("/admin/menu/get/all/side")
+    @ResponseBody
+    public List<MenuSideDTO> findAllSideMenu() {
+        List<MenuSideDTO> sideDTOList = sideMenuService.findSideMenuAll();
+        return sideDTOList;
+    }
+
     @Transactional
     @GetMapping("/admin/menu/get/find/side")
     @ResponseBody

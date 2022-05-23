@@ -15,6 +15,7 @@ const SideAllMenu = ({modalContentChange, data, spinner}) => {
         AllMenuSearch.search();
     });
 
+
     return (
         <div className="admin-main">
             {

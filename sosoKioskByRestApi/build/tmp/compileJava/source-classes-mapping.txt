@@ -10,8 +10,8 @@ sosokiosk/kiosk/ServletInitializer.java
  sosokiosk.kiosk.ServletInitializer
 sosokiosk/kiosk/entity/side/SideEntity.java
  sosokiosk.kiosk.entity.side.SideEntity
-sosokiosk/kiosk/admin/controller/menu/SideMenuController.java
- sosokiosk.kiosk.admin.controller.menu.SideMenuController
+sosokiosk/kiosk/subDto/AddMenuDTO.java
+ sosokiosk.kiosk.subDto.AddMenuDTO
 sosokiosk/kiosk/repository/setting/SettingRepository.java
  sosokiosk.kiosk.repository.setting.SettingRepository
 sosokiosk/kiosk/dto/order/getOrder/SendMenuSideDTO.java
@@ -27,8 +27,8 @@ sosokiosk/kiosk/repository/side/MenuSideImgRepository.java
  sosokiosk.kiosk.repository.side.MenuSideImgRepository
 sosokiosk/kiosk/dto/order/getOrder/SendOrderDTO.java
  sosokiosk.kiosk.dto.order.getOrder.SendOrderDTO
-sosokiosk/kiosk/admin/controller/AdminController.java
- sosokiosk.kiosk.admin.controller.AdminController
+sosokiosk/kiosk/admin/controller/menu/MenuController.java
+ sosokiosk.kiosk.admin.controller.menu.MenuController
 sosokiosk/kiosk/admin/config/AdminSecurityConfig.java
  sosokiosk.kiosk.admin.config.AdminSecurityConfig
 sosokiosk/kiosk/dto/order/getOrder/SendSideDTO.java
@@ -71,8 +71,8 @@ sosokiosk/kiosk/dto/menu/CategoryDTO.java
  sosokiosk.kiosk.dto.menu.CategoryDTO
 sosokiosk/kiosk/KioskApplication.java
  sosokiosk.kiosk.KioskApplication
-sosokiosk/kiosk/service/menu/SideMenuService.java
- sosokiosk.kiosk.service.menu.SideMenuService
+sosokiosk/kiosk/service/menu/MenuService.java
+ sosokiosk.kiosk.service.menu.MenuService
 sosokiosk/kiosk/dto/detail/UserDetail.java
  sosokiosk.kiosk.dto.detail.UserDetail
 sosokiosk/kiosk/dto/menu/MenuDTO.java
@@ -147,9 +147,9 @@ sosokiosk/kiosk/entity/order/OrderDetailSideEntity.java
  sosokiosk.kiosk.entity.order.OrderDetailSideEntity
 sosokiosk/kiosk/admin/controller/menu/CategoryController.java
  sosokiosk.kiosk.admin.controller.menu.CategoryController
-sosokiosk/kiosk/admin/controller/menu/MenuController.java
- sosokiosk.kiosk.admin.controller.menu.MenuController
-sosokiosk/kiosk/service/menu/MenuService.java
- sosokiosk.kiosk.service.menu.MenuService
-sosokiosk/kiosk/subDto/AddMenuDTO.java
- sosokiosk.kiosk.subDto.AddMenuDTO
+sosokiosk/kiosk/service/menu/SideMenuService.java
+ sosokiosk.kiosk.service.menu.SideMenuService
+sosokiosk/kiosk/admin/controller/menu/SideMenuController.java
+ sosokiosk.kiosk.admin.controller.menu.SideMenuController
+sosokiosk/kiosk/admin/controller/AdminController.java
+ sosokiosk.kiosk.admin.controller.AdminController

@@ -38,6 +38,30 @@ const AdminMain = ({adminCategory, modalContentChange, data, setDataFun}) => {
             navigate('/');
     });
 
+    const getMenuListFun = () => {
+
+    }
+
+    const getSideListFun = () => {
+
+    }
+
+    useEffect(() => {
+
+        console.log(status);
+
+        if (status === 'all') {
+            getMenuList().then(function (res) {
+                setDataFun(res);
+            });
+        } else if (status === 'sideAll') {
+            getSideList().then(function (res) {
+                setDataFun(res);
+            });
+        }
+
+    }, [status]);
+
     const AdminTopView = () => {
         switch (adminCategory) {
             case 'menu':
@@ -52,32 +76,16 @@ const AdminMain = ({adminCategory, modalContentChange, data, setDataFun}) => {
         }
     }
 
-    useEffect(() => {
-        setSpinner(true);
-        switch (status) {
-            case 'all':
-                getMenuList().then(function (res) {
-                    setDataFun(res);
-                    setSpinner(false);
-                });
-                break;
-            case 'sideAll':
-                getSideList().then(function (res) {
-                    setDataFun(res);
-                    setSpinner(false);
-                });
-                break;
-        }
-    }, [status]);
-
     const AdminMainView = () => {
         switch (status) {
             case 'all':
-                return <AllMenu modalContentChange={modalContentChange} spinner={spinner} data={data}/>
+                return <AllMenu modalContentChange={modalContentChange} spinner={spinner}
+                                data={data}/>
             case 'addMenu':
                 return <AddMenu modalContentChange={modalContentChange} setDataFun={setDataFun}/>
             case 'sideAll':
-                return <SideAllMenu modalContentChange={modalContentChange} data={data} spinner={spinner}/>
+                return <SideAllMenu modalContentChange={modalContentChange} data={data}
+                                    spinner={spinner}/>
             case 'sideAdd':
                 return <AddSide/>
             case 'category':
@@ -99,6 +107,7 @@ const AdminMain = ({adminCategory, modalContentChange, data, setDataFun}) => {
             default:
         }
     }
+
     return (
         <>
             <AdminTopView/>

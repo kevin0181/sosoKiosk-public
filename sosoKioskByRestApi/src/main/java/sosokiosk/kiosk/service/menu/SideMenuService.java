@@ -116,7 +116,6 @@ public class SideMenuService {
             menuSideDTOList.get(i).getSideCategoryDTO().getSideDTO().setSideCategoryDTOList(null);
         }
 
-
         return menuSideDTOList;
     }
 

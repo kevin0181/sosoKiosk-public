@@ -15,6 +15,9 @@ const AllMenu = ({modalContentChange, spinner, data}) => {
         AllMenuSearch.search();
     });
 
+    useEffect(() => {
+    }, []);
+
     return (
         <div className="admin-main">
             {
