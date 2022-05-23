@@ -17,6 +17,7 @@ const AllMenu = ({modalContentChange, spinner, data, setDataFun, stopSpinner}) =
     });
 
     useEffect(() => {
+        console.log(data);
         getMenuList().then(function (res) {
             setDataFun(res);
             stopSpinner();

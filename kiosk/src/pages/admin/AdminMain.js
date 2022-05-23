@@ -17,9 +17,7 @@ import MoneyOrder from "./order/MoneyOrder";
 import Setting from "./setting/Setting";
 import AdminLoginSession from '../../js/admin/AdminLoginSession';
 import {useEffect} from "react";
-import {getMenuList} from "../../js/admin/menu/AllMenu";
 import {useState} from "react";
-import {getSideList} from "../../js/admin/menu/side";
 
 const AdminMain = ({adminCategory, modalContentChange, data, setDataFun}) => {
 

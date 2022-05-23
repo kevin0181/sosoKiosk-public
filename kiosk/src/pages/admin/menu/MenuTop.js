@@ -6,6 +6,16 @@ const MenuTop = ({status}) => {
 
     const navigate = useNavigate();
 
+    const allRemoveClass = () => {
+        $('#allMenu').removeClass('BtnClickColor');
+        $('#addMenu').removeClass('BtnClickColor');
+        $('#sideAllMenu').removeClass('BtnClickColor');
+        $('#addSide').removeClass('BtnClickColor');
+        $('#allCategory').removeClass('BtnClickColor');
+        $('#addCategory').removeClass('BtnClickColor');
+        $('#allMenu').removeClass('BtnClickColor');
+    }
+
     const statusCss = () => {
         switch (status) {
             case 'all':
@@ -26,8 +36,9 @@ const MenuTop = ({status}) => {
     }
 
     useEffect(() => {
+        allRemoveClass();
         statusCss();
-    });
+    }, [status]);
 
     return (
         <div className="adminTop M-font">
