@@ -47,6 +47,8 @@ public class SideMenuService {
     @Autowired
     private ModelMapper modelMapper;
 
+
+    //사이드에 맞는 사이드 카테고리 가져오기?
     public List<SideCategoryDTO> findSideCategoryService(Long sideSq) {
 
         List<SideCategoryEntity> sideCategoryEntityList = sideCategoryRepository.findAllBySideSq(sideSq);

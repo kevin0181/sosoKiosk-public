@@ -5,8 +5,10 @@ import SpinnerAdmin from "../part/SpinnerAdmin";
 import SideCategorySelectList from "./sideMenu/SideCategorySelectList";
 import {getSideCategoryList} from "../../../js/admin/menu/side";
 import $ from "jquery";
+import axios from "axios";
+import serverUrl from "../../config/server.json";
 
-const AddSide = () => {
+const AddSide = ({modalContentChange}) => {
 
 
     //사이드
@@ -136,6 +138,81 @@ const AddSide = () => {
                 setSpinner(false);
             });
         }
+    }
+
+    const saveSideMenu = () => {
+
+        if (addSideMenu.menuSideName === '') {
+            setAddMenuSmallText('사이드 메뉴 이름을 적어주세요.');
+            return false;
+        }
+
+        if (menuImg.img === '') {
+            setAddMenuSmallText('이미지를 지정해주세요.');
+            return false;
+        }
+
+        if (addSideMenu.menuSidePrice === '') {
+            setAddMenuSmallText('가격을 적어주세요.');
+            return false;
+        }
+
+        if (addSideMenu.sideSelect.sideSq === '') {
+            setAddMenuSmallText('사이드를 지정해주세요.');
+            return false;
+        }
+
+        if (addSideMenu.sideCategorySelect.sideCategorySq === '') {
+            setAddMenuSmallText('사이드 카테고리를 지정해주세요.');
+            return false;
+        }
+
+        setSpinner(true);
+        const formData = new FormData();
+        formData.append('sideSq', addSideMenu.sideSelect.sideSq);
+        formData.append('sideCategorySq', addSideMenu.sideCategorySelect.sideCategorySq);
+        formData.append('menuSideName', addSideMenu.menuSideName);
+        formData.append('menuSidePrice', addSideMenu.menuSidePrice);
+        formData.append('menuSideImg', menuImg.img);
+
+        const response = axios.post('http://' + serverUrl.server + '/admin/menu/add/sideMenu', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            maxRedirects: 0
+        });
+
+        response.then(function (res) {
+            setSpinner(false);
+
+            setAddSideMenu({
+                menuSideName: '',
+                menuSidePrice: '',
+                sideSelect: {
+                    sideSq: '',
+                    sideName: ''
+                },
+                sideCategorySelect: {
+                    sideCategorySq: '',
+                    sideCategoryName: ''
+                }
+            });
+
+            setMenuImg({
+                img: '',
+                imgUrl: ''
+            });
+
+            $('#side-fileUrl').text('');
+
+            modalContentChange({
+                status: true,
+                modalType: 'adminTotalModal',
+                modalTitle: '알림 메시지',
+                modalContent: '저장이 완료되었습니다.'
+            });
+
+        });
 
 
     }
@@ -229,7 +306,7 @@ const AddSide = () => {
 
                                 </div>
                                 <div className="M-flex-1 M-flex-row M-flex-center">
-                                    <div className="O-side-select-close"
+                                    <div className="O-side-select-close" onClick={saveSideMenu}
                                          style={{marginTop: '0px', marginRight: '10px'}}>
                                         <p className="M-font O-font-middle-size" style={{fontSize: '40px'}}>사이드 메뉴
                                             업로드</p>

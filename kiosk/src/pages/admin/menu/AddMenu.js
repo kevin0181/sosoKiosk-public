@@ -58,6 +58,11 @@ const AddMenu = ({modalContentChange}) => {
             return false;
         }
 
+        if (menuImg.img === '') {
+            setAddMenuSmallText('이미지를 지정해주세요.');
+            return false;
+        }
+
         if (addMenu.menuPrice === '') {
             setAddMenuSmallText('가격을 적어주세요.');
             return false;
@@ -67,6 +72,7 @@ const AddMenu = ({modalContentChange}) => {
             setAddMenuSmallText('카테고리를 지정해주세요.');
             return false;
         }
+
 
         setSpinner(true);
         const formData = new FormData();
