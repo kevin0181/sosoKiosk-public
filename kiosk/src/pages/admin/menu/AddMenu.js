@@ -6,9 +6,8 @@ import $ from 'jquery';
 import SideSelectList from "./addMenu/SideSelectList";
 import axios from "axios";
 import serverUrl from "../../config/server.json";
-import {getMenuList} from "../../../js/admin/menu/AllMenu";
 
-const AddMenu = ({modalContentChange, setDataFun}) => {
+const AddMenu = ({modalContentChange}) => {
 
     //카테고리
     const [category, setCategory] = useState([]);
@@ -86,13 +85,37 @@ const AddMenu = ({modalContentChange, setDataFun}) => {
 
         response.then(function (res) {
             setSpinner(false);
+
+
+            setAddMenu({
+                menuName: '',
+                menuPrice: '',
+                categorySelect: {
+                    categorySq: '',
+                    categoryName: ''
+                },
+                sideSelect: {
+                    sideSq: '',
+                    sideName: ''
+                }
+            });
+
+            setMenuImg({
+                img: '',
+                imgUrl: ''
+            });
+
+            $('#menu-fileUrl').text('');
+
             modalContentChange({
                 status: true,
                 modalType: 'adminTotalModal',
                 modalTitle: '알림 메시지',
                 modalContent: '저장이 완료되었습니다.'
             });
+
         });
+
     }
 
     const addMenuChange = (e) => {

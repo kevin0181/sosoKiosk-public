@@ -43,7 +43,7 @@ const AdminMain = ({adminCategory, modalContentChange, data, setDataFun}) => {
     const AdminMainView = {
         all: <AllMenu modalContentChange={modalContentChange} setDataFun={setDataFun}
                       data={data}/>,
-        addMenu: <AddMenu modalContentChange={modalContentChange} setDataFun={setDataFun}/>,
+        addMenu: <AddMenu modalContentChange={modalContentChange}/>,
         sideAll: <SideAllMenu modalContentChange={modalContentChange} data={data}
                               setDataFun={setDataFun}/>,
         sideAdd: <AddSide/>,
