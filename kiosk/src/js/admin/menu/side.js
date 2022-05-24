@@ -7,6 +7,15 @@ export async function getSideList() { //get side List
 }
 
 
+export const getSideCategoryList = async (sideSq) => {
+    const response = await axios.get('http://' + serverUrl.server + '/admin/menu/get/find/side', {
+        params: {
+            'sideSq': sideSq
+        }
+    });
+    return response.data;
+}
+
 // $(document).ready(function () {
 //
 //     $("#side-file").on("change", function () {

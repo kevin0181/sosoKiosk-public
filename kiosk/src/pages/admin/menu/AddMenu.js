@@ -241,6 +241,7 @@ const AddMenu = ({modalContentChange}) => {
                                     <input type="text" value={addMenu.categorySelect.categoryName || ""}
                                            className="M-input-text M-font M-mini-size menuInputDiv"
                                            id="categorySelect" readOnly onClick={function () {
+                                        setSideStatus(false);
                                         setCategoryStatus(!categoryStatus);
                                     }}
                                     />
@@ -260,6 +261,7 @@ const AddMenu = ({modalContentChange}) => {
                                     <input type="text" className="M-input-text M-font M-mini-size"
                                            value={addMenu.sideSelect.sideName}
                                            id="sideSelect" readOnly onClick={function () {
+                                        setCategoryStatus(false);
                                         setSideStatus(!sideStatus);
                                     }}/>
                                     {

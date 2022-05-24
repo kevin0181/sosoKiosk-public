@@ -168,13 +168,13 @@ input:focus {
     border-radius: 10px;
 }
 
-.M-menu-input-select:last-child {
-    border-bottom: none !important;
-}
+/*.M-menu-input-select:last-child {*/
+/*    border-bottom: none !important;*/
+/*}*/
 
-.M-side-input-select:last-child {
-    border-bottom: none !important;
-}
+/*.M-side-input-select:last-child {*/
+/*    border-bottom: none !important;*/
+/*}*/
 
 .M-input-select-div::-webkit-scrollbar {
     width: 1vw;
@@ -183,6 +183,10 @@ input:focus {
 .M-input-select-div::-webkit-scrollbar-thumb {
     background-color: hsla(0, 0%, 42%, 0.49);
     border-radius: 150px;
+}
+
+.M-input-select:last-child {
+    border-bottom: none !important;
 }
 
 .M-input-select {
