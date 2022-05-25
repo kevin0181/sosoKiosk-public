@@ -34,7 +34,8 @@ public class CategoryController {
 
     @PostMapping("/admin/menu/add/sideCategory")
     @ResponseBody
-    public boolean addSideCategory(@RequestParam(value = "sideSq") Long sideSq, @RequestParam(value = "sideCategoryName") String sideCategoryName) { //사이드 카테고리 추가
+    public boolean addSideCategory(@RequestParam(value = "sideSq") Long sideSq,
+                                   @RequestParam(value = "sideCategoryName") String sideCategoryName) { //사이드 카테고리 추가
         categoryService.addSideCategory(sideSq, sideCategoryName);
         return true;
     }
