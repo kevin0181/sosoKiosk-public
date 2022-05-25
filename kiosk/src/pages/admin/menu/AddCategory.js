@@ -3,6 +3,8 @@ import {getSideList} from "../../../js/admin/menu/addMenu";
 import AddCategorySideSelectList from "./addCategory/AddCategorySideSelectList";
 import axios from "axios";
 import serverUrl from "../../config/server.json";
+import AddCategoryTotalList from "./addCategory/AddCategoryTotalList";
+import SpinnerAdmin from "../part/SpinnerAdmin";
 
 const AddCategory = ({modalContentChange, data, setDataFun}) => {
 
@@ -43,8 +45,10 @@ const AddCategory = ({modalContentChange, data, setDataFun}) => {
     }
 
     const categoryFun = async () => {
+        setSpinner(true);
         if (addDataForm.category === '') {
             setAddMenuSmallText('카테고리를 입력하세요.');
+            setSpinner(false);
             return false;
         }
 
@@ -61,14 +65,17 @@ const AddCategory = ({modalContentChange, data, setDataFun}) => {
                     category: ''
                 })
                 setAddMenuSmallText('카테고리가 추가되었습니다.');
+                setSpinner(false);
             }
         });
 
     }
 
     const sideFun = () => {
+        setSpinner(true);
         if (addDataForm.side === '') {
             setAddMenuSmallText('사이드를 입력하세요.');
+            setSpinner(false);
             return false;
         }
 
@@ -85,6 +92,7 @@ const AddCategory = ({modalContentChange, data, setDataFun}) => {
                     side: ''
                 })
                 setAddMenuSmallText('사이드가 추가되었습니다.');
+                setSpinner(false);
             }
         });
 
@@ -92,8 +100,10 @@ const AddCategory = ({modalContentChange, data, setDataFun}) => {
     }
 
     const sideCategoryFun = () => {
-        if (addDataForm.sideSelect.sideSq === '' || addDataForm.sideSelect.sideSq === null || addDataForm.sideSelect.sideSq === undefined) {
+        setSpinner(true);
+        if (addDataForm.sideCategory === '' || addDataForm.sideCategory === null || addDataForm.sideCategory === undefined) {
             setAddMenuSmallText('사이드를 선택하세요.');
+            setSpinner(false);
             return false;
         }
 
@@ -116,6 +126,7 @@ const AddCategory = ({modalContentChange, data, setDataFun}) => {
                     sideCategory: ''
                 })
                 setAddMenuSmallText('사이드 카테고리가 추가되었습니다.');
+                setSpinner(false);
             }
         });
 
@@ -131,10 +142,17 @@ const AddCategory = ({modalContentChange, data, setDataFun}) => {
             setSide(res);
             setSpinner(false);
         });
-    }, []);
+    }, [addDataForm.side]);
 
     return (
         <div className="admin-main">
+            {
+                spinner ? (
+                    <SpinnerAdmin/>
+                ) : (
+                    <></>
+                )
+            }
             <div className="admin-main-div">
                 <div className="admin-main-backCard M-flex-row">
                     <div className="M-flex-column admin-main-left-flex" style={{marginTop: '25px', width: '55%'}}>
@@ -246,20 +264,7 @@ const AddCategory = ({modalContentChange, data, setDataFun}) => {
                                        className="M-input-text M-font M-mini-size"
                                        id="listSelect"
                                        readOnly style={{width: '80%'}}/>
-                                <div className="M-input-select-div" id="listSelectOption"
-                                     style={{display: 'none', width: '80%'}}>
-                                    <input type="text" value={"카테고리"} name="category"
-                                           style={{width: '100%'}}
-                                           className="M-input-select M-font M-mini-size M-input-select-middle"
-                                           readOnly/>
-                                    <input type="text" value={"사이드"} name="side" style={{width: '100%'}}
-                                           className="M-input-select M-font M-mini-size M-input-select-middle"
-                                           readOnly/>
-                                    <input type="text" value={"사이드 카테고리"} name="sideCategory"
-                                           style={{width: '100%'}}
-                                           className="M-input-select M-font M-mini-size M-input-select-middle"
-                                           readOnly/>
-                                </div>
+                                <AddCategoryTotalList/>
                             </div>
                         </div>
                         <div className="admin-main-img" style={{padding: '20px', height: '470px'}}>
