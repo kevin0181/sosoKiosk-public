@@ -49,7 +49,8 @@ const AdminMain = ({adminCategory, modalContentChange, data, setDataFun}) => {
         sideAdd: <AddSide modalContentChange={modalContentChange}/>,
         category: <AllCategory modalContentChange={modalContentChange} data={data}
                                setDataFun={setDataFun}/>,
-        addCategory: <AddCategory/>,
+        addCategory: <AddCategory modalContentChange={modalContentChange} data={data}
+                                  setDataFun={setDataFun}/>,
         kioskClose: <KioskClose/>,
         sales: <Sales/>,
         allOrder: <AllOrder/>,
