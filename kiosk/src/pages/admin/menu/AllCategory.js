@@ -1,13 +1,63 @@
-const AllCategory = () => {
+import {useEffect, useState} from "react";
+import SpinnerAdmin from "../part/SpinnerAdmin";
+import * as AllCategorySideSearch from "../../../js/admin/menu/category";
+import {getCategoryList, getSideList} from "../../../js/admin/menu/category";
+
+const AllCategory = ({modalContentChange, data, setDataFun}) => {
+
+    const [spinner, setSpinner] = useState(true);
+    const [searchCategory, setSearchCategory] = useState();
+    const [searchSide, setSearchSide] = useState();
+
+    useEffect(() => {
+        AllCategorySideSearch.searchCategory();
+        AllCategorySideSearch.searchSide();
+    });
+
+    const setSearchCategoryFun = (e) => {
+        setSearchCategory(e.target.value);
+    };
+
+    const setSearchSideFun = (e) => {
+        setSearchSide(e.target.value);
+    };
+
+    const stopSpinner = () => {
+        setSpinner(false);
+    }
+
+    useEffect(() => {
+        getCategoryList().then(function (category) {
+            getSideList().then(function (side) {
+                setDataFun({
+                    ...data,
+                    ['category']: {
+                        category: category,
+                        side: side
+                    }
+                });
+                stopSpinner();
+            });
+        });
+    }, []);
+
     return (
         <div className="admin-main">
+            {
+                spinner ? (
+                    <SpinnerAdmin/>
+                ) : (
+                    <></>
+                )
+            }
             <div className="admin-main-div">
                 <div className="admin-main-backCard M-flex-row">
                     <div className="M-flex-column admin-main-left-flex" style={{marginTop: '25px', width: '50%'}}>
                         <div className="admin-all-menu-top" style={{padding: '0px 20px'}}>
                             <div className="admin-top-search">
                                 <div className="M-flex-1 M-flex-row">
-                                    <input type="text" value="" className="M-input-search" id="all-category-search"/>
+                                    <input type="text" value={searchCategory} onChange={setSearchCategoryFun}
+                                           className="M-input-search" id="all-category-search"/>
                                 </div>
                             </div>
                         </div>
@@ -28,7 +78,8 @@ const AllCategory = () => {
                                     </tr>
                                     </thead>
                                     <tbody className="admin-tbody M-overlay">
-                                    <tr className="M-text-center admin-tbody-tr admin-tbody-tr-category">
+                                    <tr id={'admin-tbody-tr-category'}
+                                        className="M-text-center admin-tbody-tr admin-tbody-tr-category">
                                         <td className="search">
                                             <p style={{display: 'inline-block', marginRight: '5px'}}>이름</p>
                                             <small className="M-font menu-detail-btn">
@@ -56,7 +107,9 @@ const AllCategory = () => {
                         <div className="admin-all-menu-top" style={{padding: '0px 20px'}}>
                             <div className="admin-top-search">
                                 <div className="M-flex-1 M-flex-row">
-                                    <input type="text" value="" className="M-input-search" id="all-side-search"/>
+                                    <input type="text" value={searchSide} onChange={setSearchSideFun}
+                                           className="M-input-search"
+                                           id="all-side-search"/>
                                 </div>
                             </div>
                         </div>
@@ -77,7 +130,8 @@ const AllCategory = () => {
                                     </tr>
                                     </thead>
                                     <tbody className="admin-tbody">
-                                    <tr className="M-text-center admin-tbody-tr admin-tbody-tr-side">
+                                    <tr id={'admin-tbody-tr-side'}
+                                        className="M-text-center admin-tbody-tr admin-tbody-tr-side">
                                         <td className="search">
                                             <p style={{display: 'inline-block', marginRight: '5px'}}>이름</p>
                                             <small className="M-font menu-detail-btn">

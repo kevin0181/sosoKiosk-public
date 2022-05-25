@@ -214,7 +214,6 @@ const AddSide = ({modalContentChange}) => {
 
         });
 
-
     }
 
     return (
