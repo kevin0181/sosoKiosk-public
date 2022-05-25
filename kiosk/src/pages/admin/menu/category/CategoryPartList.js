@@ -17,7 +17,7 @@ const CategoryPartList = ({data, modalContentChange}) => {
             {
                 data.category.category.map((it) => (
                     <tr id={'admin-tbody-tr-category'} key={it.categorySq}
-                        className="M-text-center admin-tbody-tr admin-tbody-tr-category">
+                        className="admin-tbody-tr-category M-text-center admin-tbody-tr admin-tbody-tr-category">
                         <td className="search">
                             <p style={{display: 'inline-block', marginRight: '5px'}}>{it.categoryName}</p>
                             <small className="M-font menu-detail-btn">

@@ -17,7 +17,7 @@ const SidePartList = ({data, modalContentChange}) => {
             {
                 data.category.side.map((it) => (
                     <tr id={'admin-tbody-tr-side'} key={it.sideSq}
-                        className="M-text-center admin-tbody-tr admin-tbody-tr-side">
+                        className="admin-tbody-tr-side M-text-center admin-tbody-tr admin-tbody-tr-side">
                         <td className="search">
                             <p style={{display: 'inline-block', marginRight: '5px'}}>{it.sideName}</p>
                             <small className="M-font menu-detail-btn">

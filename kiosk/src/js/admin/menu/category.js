@@ -5,8 +5,8 @@ import serverUrl from "../../../pages/config/server.json";
 export function searchCategory() {
     $("#all-category-search").on("change keyup paste", function () { //search menu
         var result = $(this).val();
-        $("#admin-tbody-tr-category").hide();
-        var temp = $("#admin-tbody-tr-category:contains('" + result + "')");
+        $(".admin-tbody-tr-category").hide();
+        var temp = $(".admin-tbody-tr-category:contains('" + result + "')");
         $(temp).show();
     });
 }
@@ -15,8 +15,8 @@ export function searchCategory() {
 export function searchSide() {
     $("#all-side-search").on("change keyup paste", function () { //search menu
         var result = $(this).val();
-        $("#admin-tbody-tr-side").hide();
-        var temp = $("#admin-tbody-tr-side:contains('" + result + "')");
+        $(".admin-tbody-tr-side").hide();
+        var temp = $(".admin-tbody-tr-side:contains('" + result + "')");
         $(temp).show();
     });
 }
