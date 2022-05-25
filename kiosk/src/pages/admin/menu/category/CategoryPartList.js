@@ -5,7 +5,7 @@ const CategoryPartList = ({data, modalContentChange}) => {
             status: true,
             param: 'category',
             modalType: 'adminCategoryDelete',
-            modalTitle: '삭제 메시지',
+            modalTitle: '카테고리 삭제 메시지',
             modalContent: data.categoryName + '를 삭제하시겠습니까?',
             sendId: data.categorySq,
             sendName: data.categoryName

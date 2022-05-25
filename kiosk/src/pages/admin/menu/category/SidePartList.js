@@ -1,4 +1,17 @@
 const SidePartList = ({data, modalContentChange}) => {
+
+    const deleteSide = (data) => {
+        modalContentChange({
+            status: true,
+            param: 'category',
+            modalType: 'adminSideDelete',
+            modalTitle: '사이드 삭제 메시지',
+            modalContent: data.sideName + '를 삭제하시겠습니까?',
+            sendId: data.sideSq,
+            sendName: data.sideName
+        })
+    }
+
     return (
         <>
             {
@@ -18,7 +31,9 @@ const SidePartList = ({data, modalContentChange}) => {
                             </small>
                         </td>
                         <td className="search">
-                            <small className="menu-delete-btn">
+                            <small className="menu-delete-btn" onClick={() => {
+                                deleteSide(it);
+                            }}>
                                 삭제
                             </small>
                         </td>
