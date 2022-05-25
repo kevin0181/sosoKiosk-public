@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {getSideList} from "../../../js/admin/menu/addMenu";
+import {getCategoryList, getSideCategoryList, getSideList} from "../../../js/admin/menu/addMenu";
 import AddCategorySideSelectList from "./addCategory/AddCategorySideSelectList";
 import axios from "axios";
 import serverUrl from "../../config/server.json";
@@ -12,8 +12,16 @@ const AddCategory = ({modalContentChange, data, setDataFun}) => {
     const [spinner, setSpinner] = useState(true);
 
     //사이드
-    const [side, setSide] = useState([]);
     const [sideStatus, setSideStatus] = useState(false);
+
+
+    //total List
+    const [totalListStatus, setTotalListStatus] = useState(false);
+    const [totalListData, setTotalListData] = useState({
+        category: [],
+        side: [],
+        sideCategory: []
+    });
 
     const [addMenuSmallText, setAddMenuSmallText] = useState('');
 
@@ -26,6 +34,26 @@ const AddCategory = ({modalContentChange, data, setDataFun}) => {
         },
         sideCategory: ''
     });
+
+    useEffect(() => {
+        console.log(totalListData);
+    }, [totalListData]);
+
+    useEffect(() => {
+        getSideList().then(function (side) {
+            getCategoryList().then(function (category) {
+                getSideCategoryList().then(function (sideCategory) {
+                    setTotalListData({
+                        category,
+                        side,
+                        sideCategory
+                    });
+                    setSpinner(false);
+                });
+            });
+        });
+    }, [addDataForm.side]);
+
 
     const addDataFormFun = (e) => {
 
@@ -132,18 +160,6 @@ const AddCategory = ({modalContentChange, data, setDataFun}) => {
 
     }
 
-
-    useEffect(() => {
-        console.log(addDataForm);
-    }, [addDataForm]);
-
-    useEffect(() => {
-        getSideList().then(function (res) {
-            setSide(res);
-            setSpinner(false);
-        });
-    }, [addDataForm.side]);
-
     return (
         <div className="admin-main">
             {
@@ -217,7 +233,7 @@ const AddCategory = ({modalContentChange, data, setDataFun}) => {
                                         setSideStatus(!sideStatus);
                                     }} readOnly/>
                                     {
-                                        sideStatus ? (<AddCategorySideSelectList side={side}
+                                        sideStatus ? (<AddCategorySideSelectList side={totalListData}
                                                                                  addDataFormFun={addDataFormFun}/>) : (<></>)
                                     }
                                 </div>
@@ -262,9 +278,14 @@ const AddCategory = ({modalContentChange, data, setDataFun}) => {
                             <div className="M-flex-1 M-flex-column M-flex-center" style={{position: 'relative'}}>
                                 <input type="text" value={"리스트를 보려면 클릭하세요."}
                                        className="M-input-text M-font M-mini-size"
+                                       onClick={() => {
+                                           setTotalListStatus(!totalListStatus)
+                                       }}
                                        id="listSelect"
                                        readOnly style={{width: '80%'}}/>
-                                <AddCategoryTotalList/>
+                                {
+                                    totalListStatus ? (<AddCategoryTotalList/>) : (<></>)
+                                }
                             </div>
                         </div>
                         <div className="admin-main-img" style={{padding: '20px', height: '470px'}}>

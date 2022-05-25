@@ -19,6 +19,15 @@ export const getSideList = async () => {
     return response.data;
 }
 
+export const getSideCategoryList = async () => {
+    const response = await axios.get('http://' + serverUrl.server + '/admin/menu/get/list', {
+        params: {
+            'status': 'sideCategory'
+        }
+    });
+    return response.data;
+}
+
 // $("#categorySelect").on("click", function () { //카테고리 선택
 //
 //     $("#categorySelectOption").empty();
