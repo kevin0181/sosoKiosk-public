@@ -5,7 +5,7 @@ const AddCategorySideSelectList = ({side, addDataFormFun}) => {
             <div className="M-input-select-div" id="sideSelectByCategoryOption"
                  style={{width: '250px'}}>
                 {
-                    side.side.map((it) => (
+                    side.category.side.map((it) => (
                         <input type="text" value={it.sideName} key={it.sideSq}
                                data-id={it.sideSq} onClick={addDataFormFun}
                                name={'addCategorySideSelect'}

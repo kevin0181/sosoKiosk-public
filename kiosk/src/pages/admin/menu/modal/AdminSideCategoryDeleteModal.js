@@ -2,7 +2,7 @@ import axios from "axios";
 import serverUrl from "../../../config/server.json";
 import $ from "jquery";
 
-const AdminSideDeleteModal = ({modalStatus, modalContentChange, data, setDataFun}) => {
+const AdminSideCategoryDeleteModal = ({modalStatus, modalContentChange, data, setDataFun}) => {
 
     const closeBtn = () => {
         modalContentChange({
@@ -17,20 +17,21 @@ const AdminSideDeleteModal = ({modalStatus, modalContentChange, data, setDataFun
     }
 
     const menuDelete = () => {
-        const response = axios.post('http://' + serverUrl.server + '/admin/menu/delete/side', null, {
+        const response = axios.post('http://' + serverUrl.server + '/admin/menu/delete/sideCategory', null, {
             params: {
                 'status': modalStatus.sendId
             }
         });
 
-        const side = data.category.side.filter((it) => it.sideSq !== modalStatus.sendId);
+        const sideCategory = data.category.sideCategory.filter((it) =>
+            it.sideCategorySq !== modalStatus.sendId);
 
         setDataFun({
             ...data,
             ['category']: {
                 category: data.category.category,
-                side: side,
-                sideCategory: data.category.sideCategory
+                side: data.category.side,
+                sideCategory: sideCategory
             }
         })
 
@@ -46,7 +47,7 @@ const AdminSideDeleteModal = ({modalStatus, modalContentChange, data, setDataFun
             });
         });
 
-        $('#progress-small-category').text('사이드를 삭제하였습니다.');
+        $('#progress-small-category').text('사이드 카테고리를 삭제하였습니다.');
 
     }
 
@@ -78,4 +79,4 @@ const AdminSideDeleteModal = ({modalStatus, modalContentChange, data, setDataFun
         </div>
     </div>);
 }
-export default AdminSideDeleteModal;
+export default AdminSideCategoryDeleteModal;

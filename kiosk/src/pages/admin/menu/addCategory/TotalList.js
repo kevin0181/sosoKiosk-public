@@ -1,8 +1,8 @@
-export function CategoryTotalList({data}) {
+export function CategoryTotalList({totalListData, modalContentChange}) {
     return (
         <>
             {
-                data.category.map((it) => (
+                totalListData.category.category.map((it) => (
                     <input type="text" value={it.categoryName} key={it.categorySq}
                            style={{
                                width: '100%',
@@ -10,6 +10,17 @@ export function CategoryTotalList({data}) {
                                fontSize: '25px',
                                marginBottom: '6px'
                            }}
+                           onClick={() => {
+                               modalContentChange({
+                                   status: true,
+                                   param: 'category',
+                                   modalType: 'adminCategoryDelete',
+                                   modalTitle: '카테고리 삭제 메시지',
+                                   modalContent: it.categoryName + '를 삭제하시겠습니까?',
+                                   sendId: it.categorySq,
+                                   sendName: it.categoryName
+                               })
+                           }}
                            className="M-input-text M-font" readOnly/>
                 ))
             }
@@ -17,18 +28,29 @@ export function CategoryTotalList({data}) {
     );
 }
 
-export function SideTotalList({data}) {
+export function SideTotalList({totalListData, modalContentChange}) {
 
     return (
         <>
             {
-                data.side.map((it) => (
+                totalListData.category.side.map((it) => (
                     <input type="text" value={it.sideName} key={it.sideSq}
                            style={{
                                width: '100%',
                                backgroundColor: '#628762',
                                fontSize: '25px',
                                marginBottom: '6px'
+                           }}
+                           onClick={() => {
+                               modalContentChange({
+                                   status: true,
+                                   param: 'category',
+                                   modalType: 'adminSideDelete',
+                                   modalTitle: '사이드 삭제 메시지',
+                                   modalContent: it.sideName + '를 삭제하시겠습니까?',
+                                   sendId: it.sideSq,
+                                   sendName: it.sideName
+                               })
                            }}
                            className="M-input-text M-font" readOnly/>
                 ))
@@ -38,12 +60,12 @@ export function SideTotalList({data}) {
 
 }
 
-export function SideCategoryTotalList({data}) {
+export function SideCategoryTotalList({totalListData, modalContentChange}) {
 
     return (
         <>
             {
-                data.sideCategory.map((it) => (
+                totalListData.category.sideCategory.map((it) => (
                     <input type="text" value={it.sideCategoryName + ' (' + it.sideDTO.sideName + ')'}
                            key={it.sideCategorySq}
                            style={{
@@ -51,6 +73,17 @@ export function SideCategoryTotalList({data}) {
                                backgroundColor: '#628762',
                                fontSize: '25px',
                                marginBottom: '6px'
+                           }}
+                           onClick={() => {
+                               modalContentChange({
+                                   status: true,
+                                   param: 'category',
+                                   modalType: 'adminSideCategoryDelete',
+                                   modalTitle: '사이드 카테고리 삭제 메시지',
+                                   modalContent: it.sideCategoryName + '를 삭제하시겠습니까?',
+                                   sendId: it.sideCategorySq,
+                                   sendName: it.sideCategoryName
+                               })
                            }}
                            className="M-input-text M-font" readOnly/>
                 ))

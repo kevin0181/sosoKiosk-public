@@ -60,7 +60,8 @@ const AdminSide = () => {
         sideAll: [],
         category: {
             category: [],
-            side: []
+            side: [],
+            sideCategory: []
         }
     });
 

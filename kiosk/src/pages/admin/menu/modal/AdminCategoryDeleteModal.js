@@ -1,5 +1,6 @@
 import axios from "axios";
 import serverUrl from "../../../config/server.json";
+import $ from 'jquery';
 
 const AdminCategoryDeleteModal = ({modalStatus, modalContentChange, data, setDataFun}) => {
 
@@ -28,7 +29,8 @@ const AdminCategoryDeleteModal = ({modalStatus, modalContentChange, data, setDat
             ...data,
             ['category']: {
                 category: category,
-                side: data.category.side
+                side: data.category.side,
+                sideCategory: data.category.sideCategory
             }
         })
 
@@ -43,6 +45,8 @@ const AdminCategoryDeleteModal = ({modalStatus, modalContentChange, data, setDat
                 sendName: ''
             });
         });
+
+        $('#progress-small-category').text('카테고리를 삭제하였습니다.');
 
     }
 

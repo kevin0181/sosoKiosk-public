@@ -16,20 +16,17 @@ const AddCategory = ({modalContentChange, data, setDataFun}) => {
 
     const [totalSelectKind, setTotalSelectKind] = useState('');
 
-
+    useEffect(() => {
+        console.log(data);
+    }, []);
 
     //total List
     const [totalListStatus, setTotalListStatus] = useState(false);
-    const [totalListData, setTotalListData] = useState({
-        category: [],
-        side: [],
-        sideCategory: []
-    });
 
     const TotalListView = {
-        category: <CategoryTotalList data={totalListData}/>,
-        side: <SideTotalList data={totalListData}/>,
-        sideCategory: <SideCategoryTotalList data={totalListData}/>
+        category: <CategoryTotalList totalListData={data} modalContentChange={modalContentChange}/>,
+        side: <SideTotalList totalListData={data} modalContentChange={modalContentChange}/>,
+        sideCategory: <SideCategoryTotalList totalListData={data} modalContentChange={modalContentChange}/>
     }
 
     const [addMenuSmallText, setAddMenuSmallText] = useState('');
@@ -45,18 +42,17 @@ const AddCategory = ({modalContentChange, data, setDataFun}) => {
     });
 
     useEffect(() => {
-        console.log(totalListData);
-    }, [totalListData]);
-
-    useEffect(() => {
         getSideList().then(function (side) {
             getCategoryList().then(function (category) {
                 getSideCategoryList().then(function (sideCategory) {
-                    setTotalListData({
-                        category,
-                        side,
-                        sideCategory
-                    });
+                    setDataFun({
+                        ...data,
+                        ['category']: {
+                            category,
+                            side,
+                            sideCategory
+                        }
+                    })
                     setSpinner(false);
                 });
             });
@@ -242,7 +238,7 @@ const AddCategory = ({modalContentChange, data, setDataFun}) => {
                                         setSideStatus(!sideStatus);
                                     }} readOnly/>
                                     {
-                                        sideStatus ? (<AddCategorySideSelectList side={totalListData}
+                                        sideStatus ? (<AddCategorySideSelectList side={data}
                                                                                  addDataFormFun={addDataFormFun}/>) : (<></>)
                                     }
                                 </div>
