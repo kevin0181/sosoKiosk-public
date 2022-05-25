@@ -1,6 +1,8 @@
 import {useEffect, useState} from "react";
 import {getSideList} from "../../../js/admin/menu/addMenu";
 import AddCategorySideSelectList from "./addCategory/AddCategorySideSelectList";
+import axios from "axios";
+import serverUrl from "../../config/server.json";
 
 const AddCategory = ({modalContentChange, data, setDataFun}) => {
 
@@ -40,11 +42,28 @@ const AddCategory = ({modalContentChange, data, setDataFun}) => {
 
     }
 
-    const categoryFun = () => {
+    const categoryFun = async () => {
         if (addDataForm.category === '') {
             setAddMenuSmallText('카테고리를 입력하세요.');
             return false;
         }
+
+        const response = axios.post('http://' + serverUrl.server + '/admin/menu/add/category', null, {
+            params: {
+                'categoryName': addDataForm.category
+            },
+            maxRedirects: 0
+        });
+        response.then(function (res) {
+            if (res.data) {
+                setAddDataForm({
+                    ...addDataForm,
+                    category: ''
+                })
+                setAddMenuSmallText('카테고리가 추가되었습니다.');
+            }
+        });
+
     }
 
     const sideFun = () => {
@@ -52,6 +71,24 @@ const AddCategory = ({modalContentChange, data, setDataFun}) => {
             setAddMenuSmallText('사이드를 입력하세요.');
             return false;
         }
+
+        const response = axios.post('http://' + serverUrl.server + '/admin/menu/add/side', null, {
+            params: {
+                'sideName': addDataForm.side
+            },
+            maxRedirects: 0
+        });
+        response.then(function (res) {
+            if (res.data) {
+                setAddDataForm({
+                    ...addDataForm,
+                    side: ''
+                })
+                setAddMenuSmallText('사이드가 추가되었습니다.');
+            }
+        });
+
+
     }
 
     const sideCategoryFun = () => {
@@ -59,6 +96,29 @@ const AddCategory = ({modalContentChange, data, setDataFun}) => {
             setAddMenuSmallText('사이드를 선택하세요.');
             return false;
         }
+
+        const response = axios.post('http://' + serverUrl.server + '/admin/menu/add/sideCategory', null, {
+            params: {
+                'sideSq': addDataForm.sideSelect.sideSq,
+                'sideCategoryName': addDataForm.sideCategory,
+            },
+            maxRedirects: 0
+        });
+
+        response.then(function (res) {
+            if (res.data) {
+                setAddDataForm({
+                    ...addDataForm,
+                    sideSelect: {
+                        sideSq: '',
+                        sideName: ''
+                    },
+                    sideCategory: ''
+                })
+                setAddMenuSmallText('사이드 카테고리가 추가되었습니다.');
+            }
+        });
+
     }
 
 
@@ -153,6 +213,13 @@ const AddCategory = ({modalContentChange, data, setDataFun}) => {
                             </div>
                             <div className="M-flex-row M-flex-center M-input" style={{width: '50%'}}>
                                 <input type="text" className="M-input-text M-font M-mini-size"
+                                       value={addDataForm.sideCategory}
+                                       onChange={(e) => {
+                                           setAddDataForm({
+                                               ...addDataForm,
+                                               sideCategory: e.target.value
+                                           })
+                                       }}
                                        id="sideCategoryName"/>
                             </div>
                             <div className="M-flex-row M-flex-center" style={{width: '30%', padding: '0px 10px'}}>
