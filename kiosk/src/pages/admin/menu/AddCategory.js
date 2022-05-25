@@ -3,8 +3,8 @@ import {getCategoryList, getSideCategoryList, getSideList} from "../../../js/adm
 import AddCategorySideSelectList from "./addCategory/AddCategorySideSelectList";
 import axios from "axios";
 import serverUrl from "../../config/server.json";
-import AddCategoryTotalList from "./addCategory/AddCategoryTotalList";
 import SpinnerAdmin from "../part/SpinnerAdmin";
+import {CategoryTotalList, SideCategoryTotalList, SideTotalList} from "./addCategory/TotalList";
 
 const AddCategory = ({modalContentChange, data, setDataFun}) => {
 
@@ -14,6 +14,9 @@ const AddCategory = ({modalContentChange, data, setDataFun}) => {
     //사이드
     const [sideStatus, setSideStatus] = useState(false);
 
+    const [totalSelectKind, setTotalSelectKind] = useState('');
+
+
 
     //total List
     const [totalListStatus, setTotalListStatus] = useState(false);
@@ -22,6 +25,12 @@ const AddCategory = ({modalContentChange, data, setDataFun}) => {
         side: [],
         sideCategory: []
     });
+
+    const TotalListView = {
+        category: <CategoryTotalList data={totalListData}/>,
+        side: <SideTotalList data={totalListData}/>,
+        sideCategory: <SideCategoryTotalList data={totalListData}/>
+    }
 
     const [addMenuSmallText, setAddMenuSmallText] = useState('');
 
@@ -52,7 +61,7 @@ const AddCategory = ({modalContentChange, data, setDataFun}) => {
                 });
             });
         });
-    }, [addDataForm.side]);
+    }, [addDataForm]);
 
 
     const addDataFormFun = (e) => {
@@ -284,21 +293,40 @@ const AddCategory = ({modalContentChange, data, setDataFun}) => {
                                        id="listSelect"
                                        readOnly style={{width: '80%'}}/>
                                 {
-                                    totalListStatus ? (<AddCategoryTotalList/>) : (<></>)
+                                    totalListStatus ? (
+                                        <div className="M-input-select-div" id="listSelectOption"
+                                             style={{width: '80%'}}>
+                                            <input type="text" value={"카테고리"} name="category"
+                                                   style={{width: '100%'}} onClick={() => {
+                                                setTotalSelectKind('category')
+                                                setTotalListStatus(false)
+                                            }}
+                                                   className="M-input-select M-font M-mini-size M-input-select-middle"
+                                                   readOnly/>
+                                            <input type="text" value={"사이드"} name="side" style={{width: '100%'}}
+                                                   className="M-input-select M-font M-mini-size M-input-select-middle"
+                                                   onClick={() => {
+                                                       setTotalSelectKind('side')
+                                                       setTotalListStatus(false)
+                                                   }}
+                                                   readOnly/>
+                                            <input type="text" value={"사이드 카테고리"} name="sideCategory"
+                                                   style={{width: '100%'}}
+                                                   onClick={() => {
+                                                       setTotalSelectKind('sideCategory')
+                                                       setTotalListStatus(false)
+                                                   }}
+                                                   className="M-input-select M-font M-mini-size M-input-select-middle"
+                                                   readOnly/>
+                                        </div>
+                                    ) : (<></>)
                                 }
                             </div>
                         </div>
                         <div className="admin-main-img" style={{padding: '20px', height: '470px'}}>
                             <div className="img-part M-flex-column M-overlay" id="listSelectCategory"
                                  style={{padding: '10px', position: 'relative'}}>
-                                <input type="text" value={"카테고리 1"}
-                                       style={{
-                                           width: '100%',
-                                           backgroundColor: '#628762',
-                                           fontSize: '25px',
-                                           marginBottom: '6px'
-                                       }}
-                                       className="M-input-text M-font" readOnly/>
+                                {TotalListView[totalSelectKind]}
                             </div>
                         </div>
                     </div>
