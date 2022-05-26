@@ -10,6 +10,7 @@ import $ from "jquery";
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import Modal from "./Modal";
+import AdminMenuDetailModal from "./menu/modal/AdminMenuDetailModal";
 
 const AdminSide = () => {
 
