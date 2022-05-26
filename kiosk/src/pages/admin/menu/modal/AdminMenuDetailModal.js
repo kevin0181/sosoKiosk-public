@@ -254,6 +254,8 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeData, setD
                 return false;
             }
         }
+
+        console.log(123);
         setAddMenu({
             ...addMenu,
             [e.target.name]: e.target.value
@@ -294,7 +296,7 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeData, setD
                                     </div>
                                     <div className="M-flex-1 M-flex-row M-flex-center menuInputDiv">
                                         <input type="text" className="M-input-text M-font M-mini-size" id="menuName"
-                                               defaultValue={addMenu.menuName}
+                                               value={addMenu.menuName}
                                                onChange={changeMenuChange}
                                                name="menuName"/>
                                     </div>
@@ -321,8 +323,8 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeData, setD
                                         <input type="text" className="M-input-text M-font M-mini-size"
                                                id="menuPrice"
                                                name="menuPrice"
-                                               onChange={changeMenuChange}
-                                               defaultValue={addMenu.menuPrice}/>
+                                               value={addMenu.menuPrice}
+                                               onChange={changeMenuChange}/>
                                     </div>
                                 </div>
                                 <div className="M-flex-row M-font admin-font-size" style={{marginBottom: '25px'}}>
@@ -333,7 +335,7 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeData, setD
                                          style={{position: 'relative'}}>
                                         <input type="text"
                                                className="M-input-text M-font M-mini-size menuInputDiv"
-                                               defaultValue={addMenu.categorySelect.categoryName}
+                                               value={addMenu.categorySelect.categoryName}
                                                onChange={changeMenuChange}
                                                onClick={function () {
                                                    setSideStatus(false);
@@ -357,13 +359,13 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeData, setD
                                         {
                                             changeData.side.length !== 0 ? (
                                                 <input type="text" className="M-input-text M-font M-mini-size"
-                                                       id="sideSelect" defaultValue={addMenu.sideSelect.sideName}
+                                                       id="sideSelect" value={addMenu.sideSelect.sideName}
                                                        readOnly onClick={function () {
                                                     setCategoryStatus(false);
                                                     setSideStatus(!sideStatus);
                                                 }}/>) : (
                                                 <input type="text" className="M-input-text M-font M-mini-size"
-                                                       id="sideSelect" defaultValue={''}
+                                                       id="sideSelect" value={''}
                                                        readOnly onClick={function () {
                                                     setCategoryStatus(false);
                                                     setSideStatus(!sideStatus);
@@ -446,8 +448,7 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeData, setD
                         <div className="O-side-select-ok-part"
                              style={{width: '35%', flexDirection: 'row', alignItems: 'center'}}>
                             <div className="O-side-select-ok M-flex-row M-flex-center" id="menuChangeBtn"
-                                 style={{margin: '0px 5px 0px 0px', height: '50%'}}>
-                                <p className="M-font O-font-middle-size">수정 완료</p>
+                                 style={{margin: '0px 5px 0px 0px', height: '50%', backgroundColor: 'white'}}>
                             </div>
                             <input type="hidden" id="changeStatus"/>
                             <div className="O-side-select-close M-flex-row M-flex-center" id="menuDetailCloseBtn"
