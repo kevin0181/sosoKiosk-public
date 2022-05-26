@@ -1,6 +1,47 @@
 import serverUrl from "../../../config/server.json";
+import {useEffect, useState} from "react";
+import {getCategoryList, getSideList} from "../../../../js/admin/menu/addMenu";
+import axios from "axios";
+import $ from "jquery";
+import CategorySelectList from "../addMenu/CategorySelectList";
+import SideSelectList from "../addMenu/SideSelectList";
 
 const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeData, setDataFun}) => {
+
+
+    useEffect(() => {
+        if (changeData.side.length !== 0) {
+            setAddMenu({
+                menuName: changeData.menuName,
+                menuPrice: changeData.menuPrice,
+                categorySelect: {
+                    categorySq: changeData.categorySq,
+                    categoryName: changeData.categoryDTO.categoryName
+                },
+                sideSelect: {
+                    sideSq: changeData.side[0].sideSq,
+                    sideName: changeData.side[0].sideName
+                },
+                menuSoldOut: changeData.menuSoldOut,
+                menuEnable: changeData.menuEnable
+            });
+        } else {
+            setAddMenu({
+                menuName: changeData.menuName,
+                menuPrice: changeData.menuPrice,
+                categorySelect: {
+                    categorySq: changeData.categorySq,
+                    categoryName: changeData.categoryDTO.categoryName
+                },
+                sideSelect: {
+                    sideSq: '',
+                    sideName: ''
+                },
+                menuSoldOut: changeData.menuSoldOut,
+                menuEnable: changeData.menuEnable
+            });
+        }
+    }, []);
 
     const closeBtn = () => {
         modalContentChange({
@@ -14,18 +55,211 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeData, setD
         });
     }
 
+
+    //카테고리
+    const [category, setCategory] = useState([]);
+    const [categoryStatus, setCategoryStatus] = useState(false);
+
+    //이미지
+    const [menuImg, setMenuImg] = useState({
+        img: '',
+        imgUrl: ''
+    });
+    const [imgStatus, setImgStatus] = useState(false);
+
+    //사이드
+    const [side, setSide] = useState([]);
+    const [sideStatus, setSideStatus] = useState(false);
+
+    //스피너
+    const [spinner, setSpinner] = useState(true);
+
+
     const imgCheck = (imgDTOList) => {
 
-        if (imgDTOList.length === 0) {
+        if (imgStatus === false) {
+            if (imgDTOList.length === 0) {
 
-            return <img id="admin-main-menu-select-img" className="admin-main-select-img" alt={'수정 메뉴 사진'}/>
+                return <img id="admin-main-menu-select-img" className="admin-main-select-img"
+                            alt={'수정 메뉴 사진'}/>
 
+            } else {
+                return <img className="admin-main-select-img" alt={'메뉴'} id="admin-main-menu-select-img"
+                            src={'http://' + serverUrl.server + imgDTOList[0].imgPath + '/' + imgDTOList[0].imgName}/>
+            }
         } else {
-            return <img className="admin-main-select-img" alt={'메뉴'} id="admin-main-menu-select-img"
-                        src={'http://' + serverUrl.server + imgDTOList[0].imgPath + '/' + imgDTOList[0].imgName}/>
+            return <img id="admin-main-menu-select-img" className="admin-main-select-img" src={menuImg.imgUrl}
+                        alt={'수정 메뉴 사진'}/>
         }
 
     }
+
+    useEffect(() => {
+        getCategoryList().then(function (res) {
+            setCategory(res);
+            getSideList().then(function (res) {
+                setSide(res);
+                setSpinner(false);
+            });
+        });
+    }, []);
+
+    const [addMenuSmallText, setAddMenuSmallText] = useState('');
+
+    const [addMenu, setAddMenu] = useState({
+        menuName: '',
+        menuPrice: '',
+        categorySelect: {
+            categorySq: '',
+            categoryName: ''
+        },
+        sideSelect: {
+            sideSq: '',
+            sideName: ''
+        },
+        menuSoldOut: false,
+        menuEnable: false
+    });
+
+    useEffect(() => {
+        console.log(addMenu);
+    }, [addMenu]);
+
+    const saveMenu = () => {
+
+        if (addMenu.menuName === '') {
+            setAddMenuSmallText('메뉴 이름을 적어주세요.');
+            return false;
+        }
+
+        if (menuImg.img === '') {
+            setAddMenuSmallText('이미지를 지정해주세요.');
+            return false;
+        }
+
+        if (addMenu.menuPrice === '') {
+            setAddMenuSmallText('가격을 적어주세요.');
+            return false;
+        }
+
+        if (addMenu.categorySelect.categorySq === '') {
+            setAddMenuSmallText('카테고리를 지정해주세요.');
+            return false;
+        }
+
+
+        setSpinner(true);
+        const formData = new FormData();
+        formData.append('categorySq', addMenu.categorySelect.categorySq);
+        formData.append('menuName', addMenu.menuName);
+        formData.append('menuPrice', addMenu.menuPrice);
+        formData.append('sideSq', addMenu.sideSelect.sideSq);
+        formData.append('menuImg', menuImg.img);
+
+        const response = axios.post('http://' + serverUrl.server + '/admin/menu/add/menu', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            maxRedirects: 0
+        });
+
+        response.then(function (res) {
+            setSpinner(false);
+
+
+            setAddMenu({
+                menuName: '',
+                menuPrice: '',
+                categorySelect: {
+                    categorySq: '',
+                    categoryName: ''
+                },
+                sideSelect: {
+                    sideSq: '',
+                    sideName: ''
+                }
+            });
+
+            setMenuImg({
+                img: '',
+                imgUrl: ''
+            });
+
+            $('#menu-fileUrl').text('');
+
+            modalContentChange({
+                status: true,
+                modalType: 'adminTotalModal',
+                modalTitle: '알림 메시지',
+                modalContent: '저장이 완료되었습니다.'
+            });
+
+        });
+
+    }
+
+    const changeMenuChange = (e) => {
+
+        setCategoryStatus(false);
+        setSideStatus(false);
+
+        if (e.target.name === 'menuImg') {
+            const uploadFile = e.target.files[0]
+            $("#menu-fileUrl").text(uploadFile.name);
+            setImgStatus(true);
+            const reader = new FileReader();
+            reader.readAsDataURL(uploadFile);
+            return new Promise((resolve) => {
+                reader.onload = () => {
+                    setMenuImg({
+                        img: uploadFile,
+                        imgUrl: reader.result
+                    });
+                    resolve();
+                };
+            });
+        }
+
+        if (e.target.name === 'categorySelect') {
+            setAddMenu({
+                ...addMenu,
+                [e.target.name]: {
+                    categorySq: e.target.getAttribute('data-id'),
+                    categoryName: e.target.value
+                }
+            });
+            return false;
+        }
+
+        if (e.target.name === 'sideSelect') {
+            setAddMenu({
+                ...addMenu,
+                [e.target.name]: {
+                    sideSq: e.target.getAttribute('data-id'),
+                    sideName: e.target.value
+                }
+            });
+            return false;
+        }
+
+        if (e.target.name === 'menuPrice') {
+            const check = /^[0-9 ]*$/;
+            if (check.test(e.target.value)) {
+                setAddMenu({
+                    ...addMenu,
+                    [e.target.name]: e.target.value
+                });
+                return false;
+            } else {
+                return false;
+            }
+        }
+        setAddMenu({
+            ...addMenu,
+            [e.target.name]: e.target.value
+        });
+    }
+
 
     return (
         <div className="O-modal-back menu-detail-modal">
@@ -60,7 +294,8 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeData, setD
                                     </div>
                                     <div className="M-flex-1 M-flex-row M-flex-center menuInputDiv">
                                         <input type="text" className="M-input-text M-font M-mini-size" id="menuName"
-                                               defaultValue={changeData.menuName}
+                                               defaultValue={addMenu.menuName}
+                                               onChange={changeMenuChange}
                                                name="menuName"/>
                                     </div>
                                 </div>
@@ -70,6 +305,7 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeData, setD
                                     </div>
                                     <div className="M-flex-1 M-flex-row M-flex-center menuInputDiv">
                                         <input type="file" className="M-none-design" id="menu-file"
+                                               onChange={changeMenuChange}
                                                name="menuImg"
                                                accept="image/*"/>
                                         <label className="M-input-text" id="menu-fileUrl" htmlFor="menu-file"
@@ -84,8 +320,9 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeData, setD
                                     <div className="M-flex-1 M-flex-row M-flex-center menuInputDiv">
                                         <input type="text" className="M-input-text M-font M-mini-size"
                                                id="menuPrice"
-                                               defaultValue={changeData.menuPrice}
-                                               name="menuPrice"/>
+                                               name="menuPrice"
+                                               onChange={changeMenuChange}
+                                               defaultValue={addMenu.menuPrice}/>
                                     </div>
                                 </div>
                                 <div className="M-flex-row M-font admin-font-size" style={{marginBottom: '25px'}}>
@@ -96,15 +333,19 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeData, setD
                                          style={{position: 'relative'}}>
                                         <input type="text"
                                                className="M-input-text M-font M-mini-size menuInputDiv"
-                                               defaultValue={changeData.categoryDTO.categoryName}
+                                               defaultValue={addMenu.categorySelect.categoryName}
+                                               onChange={changeMenuChange}
+                                               onClick={function () {
+                                                   setSideStatus(false);
+                                                   setCategoryStatus(!categoryStatus);
+                                               }}
                                                id="categorySelect"
                                                readOnly/>
-                                        <div className="M-input-select-div" id="categorySelectOption"
-                                             style={{display: 'none'}}>
-                                            <input type="text" value="1"
-                                                   className="M-input-select M-font M-mini-size M-input-select-middle"
-                                                   readOnly/>
-                                        </div>
+                                        {
+                                            categoryStatus ? (
+                                                <CategorySelectList category={category}
+                                                                    changeCategory={changeMenuChange}/>) : (<></>)
+                                        }
                                     </div>
                                 </div>
                                 <div className="M-flex-row M-font admin-font-size" style={{marginBottom: '25px'}}>
@@ -116,11 +357,21 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeData, setD
                                         {
                                             changeData.side.length !== 0 ? (
                                                 <input type="text" className="M-input-text M-font M-mini-size"
-                                                       id="sideSelect" defaultValue={changeData.side[0].sideName}
-                                                       readOnly/>) : (
+                                                       id="sideSelect" defaultValue={addMenu.sideSelect.sideName}
+                                                       readOnly onClick={function () {
+                                                    setCategoryStatus(false);
+                                                    setSideStatus(!sideStatus);
+                                                }}/>) : (
                                                 <input type="text" className="M-input-text M-font M-mini-size"
                                                        id="sideSelect" defaultValue={''}
-                                                       readOnly/>)
+                                                       readOnly onClick={function () {
+                                                    setCategoryStatus(false);
+                                                    setSideStatus(!sideStatus);
+                                                }}/>)
+                                        }
+                                        {
+                                            sideStatus ? (
+                                                <SideSelectList side={side} changeSide={changeMenuChange}/>) : (<></>)
                                         }
                                         <div className="M-input-select-div" id="sideSelectOption"
                                              style={{display: 'none'}}>
@@ -155,7 +406,7 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeData, setD
                                 <div className="admin-progress-bar" style={{padding: '10px 60px'}}>
                                     <div className="admin-progress-bar-div" style={{textAlign: 'center'}}>
                                         <small className="M-font" style={{fontSize: '25px'}}
-                                               id="progress-small-menu"></small>
+                                               id="progress-small-menu">{addMenuSmallText}</small>
                                     </div>
                                 </div>
                             </div>
@@ -167,14 +418,26 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeData, setD
                                 <div className="M-container M-flex-row M-flex-center" style={{width: '50%'}}>
                                     <p className="M-font O-font-middle-size">품절</p>
                                     <input type="checkbox" className="M-input-checkBox"
-                                           defaultChecked={changeData.menuSoldOut}
+                                           checked={addMenu.menuSoldOut}
+                                           onChange={() => {
+                                               setAddMenu({
+                                                   ...addMenu,
+                                                   menuSoldOut: !addMenu.menuSoldOut
+                                               })
+                                           }}
                                            id="menuSoldOut-checkBox"/>
                                     <label htmlFor="menuSoldOut-checkBox"></label>
                                 </div>
                                 <div className="M-container M-flex-row M-flex-center" style={{width: '50%'}}>
                                     <p className="M-font O-font-middle-size">메뉴 숨기기</p>
                                     <input type="checkbox" className="M-input-checkBox"
-                                           defaultChecked={changeData.menuEnable}
+                                           checked={addMenu.menuEnable}
+                                           onChange={() => {
+                                               setAddMenu({
+                                                   ...addMenu,
+                                                   menuEnable: !addMenu.menuEnable
+                                               })
+                                           }}
                                            id="menuEnable-checkBox"/>
                                     <label htmlFor="menuEnable-checkBox"></label>
                                 </div>
