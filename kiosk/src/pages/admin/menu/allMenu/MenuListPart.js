@@ -35,7 +35,17 @@ const MenuListPart = ({data, modalContentChange}) => {
                                 display: 'inline-block',
                                 marginRight: '5px'
                             }}>{it.menuName}</p>
-                            <small className="M-font menu-detail-btn">상세보기</small>
+                            <small className="M-font menu-detail-btn" onClick={() => {
+                                modalContentChange({
+                                    status: true,
+                                    param: 'all',
+                                    modalType: 'adminMenuDetailModal',
+                                    modalTitle: it.menuName + ' 상세 페이지',
+                                    modalContent: '',
+                                    sendId: it.menuSq,
+                                    sendName: it.menuName
+                                })
+                            }}>상세보기</small>
                         </td>
                         <td className="search">
                             {it.menuPrice}

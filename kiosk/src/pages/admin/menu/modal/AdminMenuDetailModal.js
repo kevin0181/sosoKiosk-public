@@ -1,4 +1,31 @@
-const AdminMenuDetailModal = ({modalStatus, modalContentChange, data, setDataFun}) => {
+import serverUrl from "../../../config/server.json";
+
+const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeData, setDataFun}) => {
+
+    const closeBtn = () => {
+        modalContentChange({
+            status: false,
+            param: '',
+            modalType: '',
+            modalTitle: '',
+            modalContent: '',
+            sendId: '',
+            sendName: ''
+        });
+    }
+
+    const imgCheck = (imgDTOList) => {
+
+        if (imgDTOList.length === 0) {
+
+            return <img id="admin-main-menu-select-img" className="admin-main-select-img" alt={'수정 메뉴 사진'}/>
+
+        } else {
+            return <img className="admin-main-select-img" alt={'메뉴'} id="admin-main-menu-select-img"
+                        src={'http://' + serverUrl.server + imgDTOList[0].imgPath + '/' + imgDTOList[0].imgName}/>
+        }
+
+    }
 
     return (
         <div className="O-modal-back menu-detail-modal">
@@ -6,11 +33,11 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, data, setDataFun
                 <div className="O-modal-content">
                     <div className="O-modal-header">
                         <div className="O-modal-close-Btn">
-                            <div className="O-close O-close3" id="modalCloseBtn"></div>
+                            <div className="O-close O-close3" id="modalCloseBtn" onClick={closeBtn}></div>
                         </div>
                         <div className="O-modal-top">
                             <div className="O-modal-top-title M-font">
-                                <p>메뉴 상세</p>
+                                <p>{modalStatus.modalTitle}</p>
                             </div>
                         </div>
                     </div>
@@ -18,11 +45,6 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, data, setDataFun
                         <div className="O-category-part" id="menuPart">
                             <div className="M-font O-font-mini-size O-category-box O-category-box-menu">
                                 <p>메뉴</p>
-                            </div>
-                        </div>
-                        <div className="O-category-part" id="sidePart" style={{display: 'none'}}>
-                            <div className="M-font O-font-mini-size O-category-box O-category-box-side">
-                                <p>사이드</p>
                             </div>
                         </div>
                     </div>
@@ -38,6 +60,7 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, data, setDataFun
                                     </div>
                                     <div className="M-flex-1 M-flex-row M-flex-center menuInputDiv">
                                         <input type="text" className="M-input-text M-font M-mini-size" id="menuName"
+                                               defaultValue={changeData.menuName}
                                                name="menuName"/>
                                     </div>
                                 </div>
@@ -61,6 +84,7 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, data, setDataFun
                                     <div className="M-flex-1 M-flex-row M-flex-center menuInputDiv">
                                         <input type="text" className="M-input-text M-font M-mini-size"
                                                id="menuPrice"
+                                               defaultValue={changeData.menuPrice}
                                                name="menuPrice"/>
                                     </div>
                                 </div>
@@ -72,6 +96,7 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, data, setDataFun
                                          style={{position: 'relative'}}>
                                         <input type="text"
                                                className="M-input-text M-font M-mini-size menuInputDiv"
+                                               defaultValue={changeData.categoryDTO.categoryName}
                                                id="categorySelect"
                                                readOnly/>
                                         <div className="M-input-select-div" id="categorySelectOption"
@@ -88,9 +113,15 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, data, setDataFun
                                     </div>
                                     <div className="M-flex-1 M-flex-column M-flex-center menuInputDiv"
                                          style={{position: 'relative'}}>
-                                        <input type="text" className="M-input-text M-font M-mini-size"
-                                               id="sideSelect"
-                                               readOnly/>
+                                        {
+                                            changeData.side.length !== 0 ? (
+                                                <input type="text" className="M-input-text M-font M-mini-size"
+                                                       id="sideSelect" defaultValue={changeData.side[0].sideName}
+                                                       readOnly/>) : (
+                                                <input type="text" className="M-input-text M-font M-mini-size"
+                                                       id="sideSelect" defaultValue={''}
+                                                       readOnly/>)
+                                        }
                                         <div className="M-input-select-div" id="sideSelectOption"
                                              style={{display: 'none'}}>
                                             <input type="text" value="사이드 선택 안함" name="0"
@@ -116,18 +147,15 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, data, setDataFun
                                     <div className="img-part M-flex-column M-flex-center">
                                         <p className="M-font M-mini-size" id="admin-main-menu-select-img-top-p">메뉴
                                             이미지</p>
-                                        <img id="admin-main-menu-select-img" className="admin-main-select-img"
-                                             style={{display: 'none'}}/>
+                                        {
+                                            imgCheck(changeData.imgDTOList)
+                                        }
                                     </div>
                                 </div>
                                 <div className="admin-progress-bar" style={{padding: '10px 60px'}}>
                                     <div className="admin-progress-bar-div" style={{textAlign: 'center'}}>
                                         <small className="M-font" style={{fontSize: '25px'}}
                                                id="progress-small-menu"></small>
-                                        <progress id="menu-progressBar" style={{marginTop: '30px', height: '20px'}}
-                                                  className="M-progress-bar"
-                                                  value="0"
-                                                  max="100"></progress>
                                     </div>
                                 </div>
                             </div>
@@ -138,12 +166,16 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, data, setDataFun
                             <div className="M-container M-flex-row M-flex-center">
                                 <div className="M-container M-flex-row M-flex-center" style={{width: '50%'}}>
                                     <p className="M-font O-font-middle-size">품절</p>
-                                    <input type="checkbox" className="M-input-checkBox" id="menuSoldOut-checkBox"/>
+                                    <input type="checkbox" className="M-input-checkBox"
+                                           defaultChecked={changeData.menuSoldOut}
+                                           id="menuSoldOut-checkBox"/>
                                     <label htmlFor="menuSoldOut-checkBox"></label>
                                 </div>
                                 <div className="M-container M-flex-row M-flex-center" style={{width: '50%'}}>
                                     <p className="M-font O-font-middle-size">메뉴 숨기기</p>
-                                    <input type="checkbox" className="M-input-checkBox" id="menuEnable-checkBox"/>
+                                    <input type="checkbox" className="M-input-checkBox"
+                                           defaultChecked={changeData.menuEnable}
+                                           id="menuEnable-checkBox"/>
                                     <label htmlFor="menuEnable-checkBox"></label>
                                 </div>
                             </div>
@@ -156,6 +188,7 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, data, setDataFun
                             </div>
                             <input type="hidden" id="changeStatus"/>
                             <div className="O-side-select-close M-flex-row M-flex-center" id="menuDetailCloseBtn"
+                                 onClick={closeBtn}
                                  style={{margin: '0px 0px 0px 5px', height: '50%'}}>
                                 <p className="M-font O-font-middle-size">닫기</p>
                             </div>

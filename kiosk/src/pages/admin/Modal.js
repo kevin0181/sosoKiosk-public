@@ -38,7 +38,14 @@ const Modal = ({modalStatus, modalContentChange, data, setDataFun}) => {
                                                          modalContentChange={modalContentChange}/>
                     break;
                 case 'adminMenuDetailModal':
-                    return <AdminMenuDetailModal modalStatus={modalStatus} data={data} setDataFun={setDataFun}
+                    let changeData;
+                    data.all.map((it, index) => {
+                        if (it.menuSq === modalStatus.sendId) {
+                            changeData = it;
+                        }
+                    });
+                    return <AdminMenuDetailModal modalStatus={modalStatus} changeData={changeData}
+                                                 setDataFun={setDataFun}
                                                  modalContentChange={modalContentChange}/>
                     break;
 
