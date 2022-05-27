@@ -40,6 +40,16 @@ export async function renameCategory(categorySq, categoryName) { //category 수�
     return response.data;
 }
 
+export async function renameSide(sideSq, sideName) { //Side 수정
+    const response = await axios.post('http://' + serverUrl.server + '/admin/category/change/side', null, {
+        params: {
+            'sq': sideSq,
+            'changeName': sideName
+        }
+    });
+    return response.data;
+}
+
 
 // $(document).ready(function () {
 //

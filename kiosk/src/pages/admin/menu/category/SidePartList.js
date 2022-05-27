@@ -26,6 +26,17 @@ const SidePartList = ({data, modalContentChange}) => {
                         </td>
                         <td className="search">
                             <small className="M-font menu-detail-btn"
+                                   onClick={() => {
+                                       modalContentChange({
+                                           status: true,
+                                           param: 'category',
+                                           modalType: 'adminSideRenameModal',
+                                           modalTitle: '사이드 이름 변경',
+                                           modalContent: '',
+                                           sendId: it.sideSq,
+                                           sendName: it.sideName
+                                       })
+                                   }}
                                    style={{backgroundColor: '#f5ffbf'}}>
                                 수정
                             </small>
