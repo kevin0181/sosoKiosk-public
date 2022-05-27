@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {getSideList} from "../../../../js/admin/menu/addMenu";
 import {getSideCategoryList} from "../../../../js/admin/menu/side";
+import serverUrl from "../../../config/server.json";
 
 const AdminSideDetailModal = ({modalStatus, modalContentChange, changeSideData, setDataFun, data}) => {
 
@@ -12,15 +13,15 @@ const AdminSideDetailModal = ({modalStatus, modalContentChange, changeSideData, 
             menuSideName: changeSideData.menuSideName,
             menuSidePrice: changeSideData.menuSidePrice,
             sideSelect: {
-                sideSq: '',
-                sideName: ''
+                sideSq: changeSideData.sideCategoryDTO.sideDTO.sideSq,
+                sideName: changeSideData.sideCategoryDTO.sideDTO.sideName
             },
             sideCategorySelect: {
-                sideCategorySq: '',
-                sideCategoryName: ''
+                sideCategorySq: changeSideData.sideCategoryDTO.sideCategorySq,
+                sideCategoryName: changeSideData.sideCategoryDTO.sideCategoryName
             },
-            menuSideSoldOut: false,
-            menuSideEnable: false
+            menuSideSoldOut: changeSideData.menuSideSoldOut,
+            menuSideEnable: changeSideData.menuSideEnable
         });
 
     }, []);
@@ -38,6 +39,14 @@ const AdminSideDetailModal = ({modalStatus, modalContentChange, changeSideData, 
     const [sideCategoryStatus, setSideCategoryStatus] = useState(false);
 
     const [addMenuSmallText, setAddMenuSmallText] = useState('');
+
+    //이미지
+    const [menuImg, setMenuImg] = useState({
+        img: null,
+        imgUrl: null
+    });
+    const [imgStatus, setImgStatus] = useState(false);
+
 
     const [addSideMenu, setAddSideMenu] = useState({
         menuSideSq: '',
@@ -68,6 +77,24 @@ const AdminSideDetailModal = ({modalStatus, modalContentChange, changeSideData, 
                 setSpinner(false);
             });
         }
+    }
+
+    const imgCheck = (imgDTOList) => {
+
+        if (imgStatus === false) {
+            if (imgDTOList.length === 0) {
+                return <img id="admin-main-side-select-img" className="admin-main-select-img"
+                            alt={'수정 메뉴 사진'}/>
+
+            } else {
+                return <img className="admin-main-select-img" alt={'메뉴'} id="admin-main-side-select-img"
+                            src={'http://' + serverUrl.server + imgDTOList[0].menuSideImgPath + '/' + imgDTOList[0].menuSideImgName}/>
+            }
+        } else {
+            return <img id="admin-main-side-select-img" className="admin-main-select-img" src={menuImg.imgUrl}
+                        alt={'수정 메뉴 사진'}/>
+        }
+
     }
 
     const closeBtn = () => {
@@ -141,7 +168,7 @@ const AdminSideDetailModal = ({modalStatus, modalContentChange, changeSideData, 
                                         </div>
                                         <div className="M-flex-1 M-flex-row M-flex-center sideMenuInputDiv">
                                             <input type="text" className="M-input-text M-font M-mini-size"
-                                                   id="menu-side-name"
+                                                   id="menu-side-name" value={addSideMenu.menuSideName}
                                                    name="menuSideName"/>
                                         </div>
                                     </div>
@@ -165,7 +192,7 @@ const AdminSideDetailModal = ({modalStatus, modalContentChange, changeSideData, 
                                         </div>
                                         <div className="M-flex-1 M-flex-row M-flex-center sideMenuInputDiv">
                                             <input type="text" className="M-input-text M-font M-mini-size"
-                                                   id="menuSidePrice"
+                                                   id="menuSidePrice" value={addSideMenu.menuSidePrice}
                                                    name="menuSidePrice"/>
                                         </div>
                                     </div>
@@ -175,8 +202,8 @@ const AdminSideDetailModal = ({modalStatus, modalContentChange, changeSideData, 
                                         </div>
                                         <div className="M-flex-1 M-flex-column M-flex-center sideMenuInputDiv"
                                              style={{position: 'relative'}}>
-                                            <input type="text" value="" className="M-input-text M-font M-mini-size"
-                                                   id="sideSelectByAddSide"
+                                            <input type="text" className="M-input-text M-font M-mini-size"
+                                                   id="sideSelectByAddSide" value={addSideMenu.sideSelect.sideName}
                                                    readOnly/>
                                             <div className="M-input-select-div" id="sideSelectByAddSideOption"
                                                  style={{display: 'none'}}>
@@ -194,6 +221,7 @@ const AdminSideDetailModal = ({modalStatus, modalContentChange, changeSideData, 
                                              style={{position: 'relative'}}>
                                             <input type="text" className="M-input-text M-font M-mini-size"
                                                    id="sideCategorySelect"
+                                                   value={addSideMenu.sideCategorySelect.sideCategoryName}
                                                    readOnly/>
                                             <div className="M-input-select-div" id="sideCategorySelectOption"
                                                  style={{display: 'none'}}>
@@ -222,8 +250,9 @@ const AdminSideDetailModal = ({modalStatus, modalContentChange, changeSideData, 
                                 <div className="admin-main-img">
                                     <div className="img-part M-flex-column M-flex-center">
                                         <p className="M-font M-mini-size">미리보기</p>
-                                        <img id="admin-main-side-select-img" className="admin-main-select-img"
-                                             style={{display: 'none'}}/>
+                                        {
+                                            imgCheck(changeSideData.menuSideImgDTOList)
+                                        }
                                     </div>
                                 </div>
                                 <div className="admin-progress-bar" style={{padding: '10px 60px'}}>
@@ -242,12 +271,28 @@ const AdminSideDetailModal = ({modalStatus, modalContentChange, changeSideData, 
                             <div className="M-container M-flex-row M-flex-center">
                                 <div className="M-container M-flex-row M-flex-center" style={{width: '50%'}}>
                                     <p className="M-font O-font-middle-size">품절</p>
-                                    <input type="checkbox" className="M-input-checkBox" id="menuSideSoldOut-checkBox"/>
+                                    <input type="checkbox" className="M-input-checkBox"
+                                           checked={addSideMenu.menuSideSoldOut}
+                                           onChange={() => {
+                                               setAddSideMenu({
+                                                   ...addSideMenu,
+                                                   menuSideSoldOut: !addSideMenu.menuSideSoldOut
+                                               })
+                                           }}
+                                           id="menuSideSoldOut-checkBox"/>
                                     <label htmlFor="menuSideSoldOut-checkBox"></label>
                                 </div>
                                 <div className="M-container M-flex-row M-flex-center" style={{width: '50%'}}>
                                     <p className="M-font O-font-middle-size">메뉴 숨기기</p>
-                                    <input type="checkbox" className="M-input-checkBox" id="menuSideEnable-checkBox"/>
+                                    <input type="checkbox" className="M-input-checkBox"
+                                           checked={addSideMenu.menuSideEnable}
+                                           onChange={() => {
+                                               setAddSideMenu({
+                                                   ...addSideMenu,
+                                                   menuSideEnable: !addSideMenu.menuSideEnable
+                                               })
+                                           }}
+                                           id="menuSideEnable-checkBox"/>
                                     <label htmlFor="menuSideEnable-checkBox"></label>
                                 </div>
                             </div>
