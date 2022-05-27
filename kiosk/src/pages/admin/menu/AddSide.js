@@ -50,11 +50,6 @@ const AddSide = ({modalContentChange}) => {
         }
     });
 
-    useEffect(() => {
-        console.log(addSideMenu);
-        console.log(menuImg)
-    }, [addSideMenu, menuImg]);
-
     const changeAddSideMenu = (e) => {
 
         setSideStatus(false);

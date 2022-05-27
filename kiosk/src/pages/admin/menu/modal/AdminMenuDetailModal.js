@@ -5,44 +5,43 @@ import axios from "axios";
 import $ from "jquery";
 import CategorySelectList from "../addMenu/CategorySelectList";
 import SideSelectList from "../addMenu/SideSelectList";
-import SpinnerAdmin from "../../part/SpinnerAdmin";
 import {getMenuList} from "../../../../js/admin/menu/AllMenu";
 
-const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeData, setDataFun, data}) => {
+const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeMenuData, setDataFun, data}) => {
 
 
     useEffect(() => {
-        if (changeData.side.length !== 0) {
+        if (changeMenuData.side.length !== 0) {
             setAddMenu({
-                menuSq: changeData.menuSq,
-                menuName: changeData.menuName,
-                menuPrice: changeData.menuPrice,
+                menuSq: changeMenuData.menuSq,
+                menuName: changeMenuData.menuName,
+                menuPrice: changeMenuData.menuPrice,
                 categorySelect: {
-                    categorySq: changeData.categorySq,
-                    categoryName: changeData.categoryDTO.categoryName
+                    categorySq: changeMenuData.categorySq,
+                    categoryName: changeMenuData.categoryDTO.categoryName
                 },
                 sideSelect: {
-                    sideSq: changeData.side[0].sideSq,
-                    sideName: changeData.side[0].sideName
+                    sideSq: changeMenuData.side[0].sideSq,
+                    sideName: changeMenuData.side[0].sideName
                 },
-                menuSoldOut: changeData.menuSoldOut,
-                menuEnable: changeData.menuEnable
+                menuSoldOut: changeMenuData.menuSoldOut,
+                menuEnable: changeMenuData.menuEnable
             });
         } else {
             setAddMenu({
-                menuSq: changeData.menuSq,
-                menuName: changeData.menuName,
-                menuPrice: changeData.menuPrice,
+                menuSq: changeMenuData.menuSq,
+                menuName: changeMenuData.menuName,
+                menuPrice: changeMenuData.menuPrice,
                 categorySelect: {
-                    categorySq: changeData.categorySq,
-                    categoryName: changeData.categoryDTO.categoryName
+                    categorySq: changeMenuData.categorySq,
+                    categoryName: changeMenuData.categoryDTO.categoryName
                 },
                 sideSelect: {
                     sideSq: '',
                     sideName: ''
                 },
-                menuSoldOut: changeData.menuSoldOut,
-                menuEnable: changeData.menuEnable
+                menuSoldOut: changeMenuData.menuSoldOut,
+                menuEnable: changeMenuData.menuEnable
             });
         }
     }, []);
@@ -124,10 +123,6 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeData, setD
         menuSoldOut: false,
         menuEnable: false
     });
-
-    useEffect(() => {
-        console.log(addMenu);
-    }, [addMenu]);
 
     const changeMenuForm = () => {
 
@@ -389,7 +384,7 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeData, setD
                                     <div className="M-flex-1 M-flex-column M-flex-center menuInputDiv"
                                          style={{position: 'relative'}}>
                                         {
-                                            changeData.side.length !== 0 ? (
+                                            changeMenuData.side.length !== 0 ? (
                                                 <input type="text" className="M-input-text M-font M-mini-size"
                                                        id="sideSelect" value={addMenu.sideSelect.sideName}
                                                        readOnly onClick={function () {
@@ -433,7 +428,7 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeData, setD
                                         <p className="M-font M-mini-size" id="admin-main-menu-select-img-top-p">메뉴
                                             이미지</p>
                                         {
-                                            imgCheck(changeData.imgDTOList)
+                                            imgCheck(changeMenuData.imgDTOList)
                                         }
                                     </div>
                                 </div>

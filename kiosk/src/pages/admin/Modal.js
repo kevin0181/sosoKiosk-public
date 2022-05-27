@@ -6,6 +6,7 @@ import AdminCategoryDeleteModal from "./menu/modal/AdminCategoryDeleteModal";
 import AdminSideDeleteModal from "./menu/modal/AdminSideDeleteModal";
 import AdminSideCategoryDeleteModal from "./menu/modal/AdminSideCategoryDeleteModal";
 import AdminMenuDetailModal from "./menu/modal/AdminMenuDetailModal";
+import AdminSideDetailModal from "./menu/modal/AdminSideDetailModal";
 
 const Modal = ({modalStatus, modalContentChange, data, setDataFun}) => {
 
@@ -38,13 +39,26 @@ const Modal = ({modalStatus, modalContentChange, data, setDataFun}) => {
                                                          modalContentChange={modalContentChange}/>
                     break;
                 case 'adminMenuDetailModal':
-                    let changeData;
+                    let changeMenuData;
                     data.all.map((it, index) => {
                         if (it.menuSq === modalStatus.sendId) {
-                            changeData = it;
+                            changeMenuData = it;
                         }
                     });
-                    return <AdminMenuDetailModal modalStatus={modalStatus} changeData={changeData}
+                    return <AdminMenuDetailModal modalStatus={modalStatus} changeMenuData={changeMenuData}
+                                                 setDataFun={setDataFun} data={data}
+                                                 modalContentChange={modalContentChange}/>
+                    break;
+
+                case 'adminSideDetailModal':
+                    let changeSideData;
+                    data.sideAll.map((it, index) => {
+                        if (it.menuSideSq === modalStatus.sendId) {
+                            changeSideData = it;
+                            console.log(changeSideData)
+                        }
+                    });
+                    return <AdminSideDetailModal modalStatus={modalStatus} changeSideData={changeSideData}
                                                  setDataFun={setDataFun} data={data}
                                                  modalContentChange={modalContentChange}/>
                     break;

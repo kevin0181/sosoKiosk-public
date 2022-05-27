@@ -13,7 +13,19 @@ const SideAllListPart = ({data, modalContentChange}) => {
                     <p style={{display: 'inline-block', marginRight: '5px'}}>
                         {it.menuSideName}
                     </p>
-                    <small className="M-font menu-detail-btn">상세보기
+                    <small className="M-font menu-detail-btn"
+                           onClick={() => {
+                               modalContentChange({
+                                   status: true,
+                                   param: 'sideAll',
+                                   modalType: 'adminSideDetailModal',
+                                   modalTitle: it.sideName + ' 상세 페이지',
+                                   modalContent: '',
+                                   sendId: it.menuSideSq,
+                                   sendName: it.sideName
+                               })
+                           }}
+                    >상세보기
                     </small>
                 </td>
                 <td className="search">
