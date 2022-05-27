@@ -1,7 +1,7 @@
 import axios from "axios";
 import serverUrl from "../../../pages/config/server.json";
 
-export async function getSideList() { //get side List
+export async function getSideMenuList() { //get side menu List
     const response = await axios.post('http://' + serverUrl.server + '/admin/menu/get/all/side');
     return response.data;
 }

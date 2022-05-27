@@ -1,7 +1,11 @@
 import {useEffect, useState} from "react";
-import {getSideList} from "../../../../js/admin/menu/addMenu";
-import {getSideCategoryList} from "../../../../js/admin/menu/side";
+import {getSideCategoryList, getSideMenuList} from "../../../../js/admin/menu/side";
 import serverUrl from "../../../config/server.json";
+import $ from "jquery";
+import SideSelectList from "../addMenu/SideSelectList";
+import SideCategorySelectList from "../sideMenu/SideCategorySelectList";
+import axios from "axios";
+import {getSideList} from "../../../../js/admin/menu/addMenu";
 
 const AdminSideDetailModal = ({modalStatus, modalContentChange, changeSideData, setDataFun, data}) => {
 
@@ -113,9 +117,173 @@ const AdminSideDetailModal = ({modalStatus, modalContentChange, changeSideData, 
         getSideList().then(function (res) {
             setSide(res);
             setSpinner(false);
+            console.log(res);
         });
     }, []);
 
+    const saveSideMenu = () => {
+
+        if (addSideMenu.menuSideName === '') {
+            setAddMenuSmallText('사이드 메뉴 이름을 적어주세요.');
+            return false;
+        }
+
+        if (addSideMenu.menuSidePrice === '') {
+            setAddMenuSmallText('가격을 적어주세요.');
+            return false;
+        }
+
+        if (addSideMenu.sideSelect.sideSq === '') {
+            setAddMenuSmallText('사이드를 지정해주세요.');
+            return false;
+        }
+
+        if (addSideMenu.sideCategorySelect.sideCategorySq === '') {
+            setAddMenuSmallText('사이드 카테고리를 지정해주세요.');
+            return false;
+        }
+
+        setSpinner(true);
+        const formData = new FormData();
+        formData.append('menuSideSq', addSideMenu.menuSideSq)
+        formData.append('sideSq', addSideMenu.sideSelect.sideSq);
+        formData.append('sideCategorySq', addSideMenu.sideCategorySelect.sideCategorySq);
+        formData.append('menuSideName', addSideMenu.menuSideName);
+        formData.append('menuSidePrice', addSideMenu.menuSidePrice);
+        formData.append('menuSideSoldOut', addSideMenu.menuSideSoldOut);
+        formData.append('menuSideEnable', addSideMenu.menuSideEnable);
+
+        if (imgStatus) {
+            if (menuImg.img === '') {
+                setAddMenuSmallText('이미지를 지정해주세요.');
+                return false;
+            } else {
+                formData.append('menuSideImg', menuImg.img);
+            }
+        }
+
+        const response = axios.post('http://' + serverUrl.server + '/admin/menu/change/sideMenu', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            maxRedirects: 0
+        });
+
+        response.then(function (res) {
+
+            setAddSideMenu({
+                menuSideSq: '',
+                menuSideName: '',
+                menuSidePrice: '',
+                sideSelect: {
+                    sideSq: '',
+                    sideName: ''
+                },
+                sideCategorySelect: {
+                    sideCategorySq: '',
+                    sideCategoryName: ''
+                },
+                menuSideSoldOut: false,
+                menuSideEnable: false
+            });
+
+            setMenuImg({
+                img: '',
+                imgUrl: ''
+            });
+
+            $('#side-fileUrl').text('');
+
+            getSideMenuList().then(function (sideAll) {
+                setDataFun({
+                    ...data,
+                    sideAll
+                });
+                setSpinner(false);
+            });
+
+            modalContentChange({
+                status: true,
+                modalType: 'adminTotalModal',
+                modalTitle: '알림 메시지',
+                modalContent: '저장이 완료되었습니다.'
+            });
+
+        });
+
+    }
+
+
+    const changeAddSideMenu = (e) => {
+
+        setSideStatus(false);
+        setSideCategoryStatus(false);
+
+        if (e.target.name === 'menuSideImg') {
+            const uploadFile = e.target.files[0]
+            setImgStatus(true);
+            $("#side-fileUrl").text(uploadFile.name);
+            const reader = new FileReader();
+            reader.readAsDataURL(uploadFile);
+            return new Promise((resolve) => {
+                reader.onload = () => {
+                    setMenuImg({
+                        img: uploadFile,
+                        imgUrl: reader.result
+                    });
+                    resolve();
+                };
+            });
+        }
+
+
+        if (e.target.name === 'sideSelect') {
+            setAddSideMenu({
+                ...addSideMenu,
+                [e.target.name]: {
+                    sideSq: e.target.getAttribute('data-id'),
+                    sideName: e.target.value
+                },
+                sideCategorySelect: {
+                    sideCategorySq: '',
+                    sideCategoryName: ''
+                }
+            });
+
+
+            return false;
+        }
+
+        if (e.target.name === 'sideCategorySelect') {
+            setAddSideMenu({
+                ...addSideMenu,
+                [e.target.name]: {
+                    sideCategorySq: e.target.getAttribute('data-id'),
+                    sideCategoryName: e.target.value
+                }
+            });
+            return false;
+        }
+
+        if (e.target.name === 'menuSidePrice') {
+            const check = /^[0-9 ]*$/;
+            if (check.test(e.target.value)) {
+                setAddSideMenu({
+                    ...addSideMenu,
+                    [e.target.name]: e.target.value
+                });
+                return false;
+            } else {
+                return false;
+            }
+        }
+
+        setAddSideMenu({
+            ...addSideMenu,
+            [e.target.name]: e.target.value
+        });
+
+    }
 
     return (
         <div className="O-modal-back menu-detail-modal" id="sideMenuDetailModal">
@@ -145,7 +313,7 @@ const AdminSideDetailModal = ({modalStatus, modalContentChange, changeSideData, 
                         </div>
                         <div className="O-modal-top">
                             <div className="O-modal-top-title M-font">
-                                <p>사이드 메뉴 수정</p>
+                                <p>{modalStatus.modalTitle}</p>
                             </div>
                         </div>
                     </div>
@@ -169,6 +337,7 @@ const AdminSideDetailModal = ({modalStatus, modalContentChange, changeSideData, 
                                         <div className="M-flex-1 M-flex-row M-flex-center sideMenuInputDiv">
                                             <input type="text" className="M-input-text M-font M-mini-size"
                                                    id="menu-side-name" value={addSideMenu.menuSideName}
+                                                   onChange={changeAddSideMenu}
                                                    name="menuSideName"/>
                                         </div>
                                     </div>
@@ -178,7 +347,7 @@ const AdminSideDetailModal = ({modalStatus, modalContentChange, changeSideData, 
                                         </div>
                                         <div className="M-flex-1 M-flex-row M-flex-center sideMenuInputDiv">
                                             <input type="file" className="M-none-design" id="side-file"
-                                                   name="menuSideImg"
+                                                   name="menuSideImg" onChange={changeAddSideMenu}
                                                    accept="image/*"/>
                                             <label className="M-input-text" id="side-fileUrl"
                                                    htmlFor="side-file"
@@ -193,6 +362,7 @@ const AdminSideDetailModal = ({modalStatus, modalContentChange, changeSideData, 
                                         <div className="M-flex-1 M-flex-row M-flex-center sideMenuInputDiv">
                                             <input type="text" className="M-input-text M-font M-mini-size"
                                                    id="menuSidePrice" value={addSideMenu.menuSidePrice}
+                                                   onChange={changeAddSideMenu}
                                                    name="menuSidePrice"/>
                                         </div>
                                     </div>
@@ -204,13 +374,16 @@ const AdminSideDetailModal = ({modalStatus, modalContentChange, changeSideData, 
                                              style={{position: 'relative'}}>
                                             <input type="text" className="M-input-text M-font M-mini-size"
                                                    id="sideSelectByAddSide" value={addSideMenu.sideSelect.sideName}
+                                                   onClick={function () {
+                                                       setSideCategoryStatus(false);
+                                                       setSideStatus(!sideStatus);
+                                                   }}
                                                    readOnly/>
-                                            <div className="M-input-select-div" id="sideSelectByAddSideOption"
-                                                 style={{display: 'none'}}>
-                                                <input type="text" value="side 1"
-                                                       className="M-input-select M-font M-mini-size M-input-select-middle"
-                                                       readOnly/>
-                                            </div>
+                                            {
+                                                sideStatus ? (
+                                                    <SideSelectList side={side}
+                                                                    changeSide={changeAddSideMenu}/>) : (<></>)
+                                            }
                                         </div>
                                     </div>
                                     <div className="M-flex-row M-font admin-font-size" style={{marginBottom: '25px'}}>
@@ -220,15 +393,14 @@ const AdminSideDetailModal = ({modalStatus, modalContentChange, changeSideData, 
                                         <div className="M-flex-1 M-flex-column M-flex-center sideMenuInputDiv"
                                              style={{position: 'relative'}}>
                                             <input type="text" className="M-input-text M-font M-mini-size"
-                                                   id="sideCategorySelect"
+                                                   id="sideCategorySelect" onClick={getSideCategorySelectData}
                                                    value={addSideMenu.sideCategorySelect.sideCategoryName}
                                                    readOnly/>
-                                            <div className="M-input-select-div" id="sideCategorySelectOption"
-                                                 style={{display: 'none'}}>
-                                                <input type="text" value="side 1"
-                                                       className="M-input-select M-font M-mini-size M-input-select-middle"
-                                                       readOnly/>
-                                            </div>
+                                            {
+                                                sideCategoryStatus ? (
+                                                    <SideCategorySelectList sideCategory={sideCategory}
+                                                                            changeSideCategory={changeAddSideMenu}/>) : (<></>)
+                                            }
                                         </div>
                                     </div>
                                     <div className="M-flex-row M-font admin-font-size" style={{marginBottom: '25px'}}>
@@ -238,7 +410,8 @@ const AdminSideDetailModal = ({modalStatus, modalContentChange, changeSideData, 
                                         <div className="M-flex-1 M-flex-row M-flex-center">
                                             <div className="O-side-select-close"
                                                  style={{marginTop: '0px', marginRight: '10px'}}>
-                                                <p className="M-font O-font-middle-size" style={{fontSize: '40px'}}>사이드
+                                                <p className="M-font O-font-middle-size" onClick={saveSideMenu}
+                                                   style={{fontSize: '40px'}}>사이드
                                                     메뉴
                                                     업로드</p>
                                             </div>

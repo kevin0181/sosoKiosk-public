@@ -171,6 +171,7 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeMenuData, 
         response.then(function (res) {
 
             setAddMenu({
+                menuSq: '',
                 menuName: '',
                 menuPrice: '',
                 categorySelect: {
@@ -180,7 +181,9 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeMenuData, 
                 sideSelect: {
                     sideSq: '',
                     sideName: ''
-                }
+                },
+                menuSoldOut: false,
+                menuEnable: false
             });
 
             setMenuImg({

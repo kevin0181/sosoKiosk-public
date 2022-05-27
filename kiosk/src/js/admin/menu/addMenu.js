@@ -10,19 +10,19 @@ export const getCategoryList = async () => {
     return response.data;
 }
 
-export const getSideList = async () => {
+export const getSideCategoryList = async () => {
     const response = await axios.get('http://' + serverUrl.server + '/admin/menu/get/list', {
         params: {
-            'status': 'side'
+            'status': 'sideCategory'
         }
     });
     return response.data;
 }
 
-export const getSideCategoryList = async () => {
+export const getSideList = async () => { //get side list
     const response = await axios.get('http://' + serverUrl.server + '/admin/menu/get/list', {
         params: {
-            'status': 'sideCategory'
+            'status': 'side'
         }
     });
     return response.data;

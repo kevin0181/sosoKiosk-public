@@ -1,9 +1,10 @@
 import {useEffect, useState} from "react";
 import SpinnerAdmin from "../part/SpinnerAdmin";
 import * as AllCategorySideSearch from "../../../js/admin/menu/category";
-import {getCategoryList, getSideList} from "../../../js/admin/menu/category";
+import {getCategoryList} from "../../../js/admin/menu/category";
 import CategoryPartList from "./category/CategoryPartList";
 import SidePartList from "./category/SidePartList";
+import {getSideList} from "../../../js/admin/menu/addMenu";
 
 const AllCategory = ({modalContentChange, data, setDataFun}) => {
 

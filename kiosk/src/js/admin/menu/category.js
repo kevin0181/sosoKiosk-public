@@ -30,15 +30,6 @@ export async function getCategoryList() { //get category List
     return response.data;
 }
 
-export async function getSideList() { //get category List
-    const response = await axios.get('http://' + serverUrl.server + '/admin/menu/get/list', {
-        params: {
-            'status': 'side'
-        }
-    });
-    return response.data;
-}
-
 // $(document).ready(function () {
 //
 //     $("#listSelect").on("click", function () { //select select

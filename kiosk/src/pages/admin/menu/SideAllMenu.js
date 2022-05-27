@@ -2,7 +2,7 @@ import {useState, useEffect} from "react";
 import * as AllMenuSearch from "../../../js/admin/menu/AllMenu";
 import SpinnerAdmin from "../part/SpinnerAdmin";
 import SideAllListPart from "./sideMenu/SideAllListPart";
-import {getSideList} from "../../../js/admin/menu/side";
+import {getSideMenuList} from "../../../js/admin/menu/side";
 
 const SideAllMenu = ({modalContentChange, data, setDataFun}) => {
 
@@ -23,7 +23,7 @@ const SideAllMenu = ({modalContentChange, data, setDataFun}) => {
     }
 
     useEffect(() => {
-        getSideList().then(function (sideAll) {
+        getSideMenuList().then(function (sideAll) {
             setDataFun({
                 ...data,
                 sideAll
