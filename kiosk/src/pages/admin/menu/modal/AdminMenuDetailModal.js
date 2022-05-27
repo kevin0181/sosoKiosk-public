@@ -5,13 +5,16 @@ import axios from "axios";
 import $ from "jquery";
 import CategorySelectList from "../addMenu/CategorySelectList";
 import SideSelectList from "../addMenu/SideSelectList";
+import SpinnerAdmin from "../../part/SpinnerAdmin";
+import {getMenuList} from "../../../../js/admin/menu/AllMenu";
 
-const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeData, setDataFun}) => {
+const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeData, setDataFun, data}) => {
 
 
     useEffect(() => {
         if (changeData.side.length !== 0) {
             setAddMenu({
+                menuSq: changeData.menuSq,
                 menuName: changeData.menuName,
                 menuPrice: changeData.menuPrice,
                 categorySelect: {
@@ -27,6 +30,7 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeData, setD
             });
         } else {
             setAddMenu({
+                menuSq: changeData.menuSq,
                 menuName: changeData.menuName,
                 menuPrice: changeData.menuPrice,
                 categorySelect: {
@@ -62,8 +66,8 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeData, setD
 
     //이미지
     const [menuImg, setMenuImg] = useState({
-        img: '',
-        imgUrl: ''
+        img: null,
+        imgUrl: null
     });
     const [imgStatus, setImgStatus] = useState(false);
 
@@ -73,7 +77,6 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeData, setD
 
     //스피너
     const [spinner, setSpinner] = useState(true);
-
 
     const imgCheck = (imgDTOList) => {
 
@@ -107,6 +110,7 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeData, setD
     const [addMenuSmallText, setAddMenuSmallText] = useState('');
 
     const [addMenu, setAddMenu] = useState({
+        menuSq: '',
         menuName: '',
         menuPrice: '',
         categorySelect: {
@@ -125,15 +129,10 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeData, setD
         console.log(addMenu);
     }, [addMenu]);
 
-    const saveMenu = () => {
+    const changeMenuForm = () => {
 
         if (addMenu.menuName === '') {
             setAddMenuSmallText('메뉴 이름을 적어주세요.');
-            return false;
-        }
-
-        if (menuImg.img === '') {
-            setAddMenuSmallText('이미지를 지정해주세요.');
             return false;
         }
 
@@ -150,13 +149,24 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeData, setD
 
         setSpinner(true);
         const formData = new FormData();
+        formData.append('menuSq', addMenu.menuSq);
         formData.append('categorySq', addMenu.categorySelect.categorySq);
         formData.append('menuName', addMenu.menuName);
         formData.append('menuPrice', addMenu.menuPrice);
         formData.append('sideSq', addMenu.sideSelect.sideSq);
-        formData.append('menuImg', menuImg.img);
+        formData.append('menuSoldOut', addMenu.menuSoldOut);
+        formData.append('menuEnable', addMenu.menuEnable);
 
-        const response = axios.post('http://' + serverUrl.server + '/admin/menu/add/menu', formData, {
+        if (imgStatus) {
+            if (menuImg.img === '') {
+                setAddMenuSmallText('이미지를 지정해주세요.');
+                return false;
+            } else {
+                formData.append('menuImg', menuImg.img);
+            }
+        }
+
+        const response = axios.post('http://' + serverUrl.server + '/admin/menu/change/menu', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             },
@@ -164,8 +174,6 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeData, setD
         });
 
         response.then(function (res) {
-            setSpinner(false);
-
 
             setAddMenu({
                 menuName: '',
@@ -185,13 +193,21 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeData, setD
                 imgUrl: ''
             });
 
+            getMenuList().then(function (all) {
+                setDataFun({
+                    ...data,
+                    all
+                });
+                setSpinner(false);
+            });
+
             $('#menu-fileUrl').text('');
 
             modalContentChange({
                 status: true,
                 modalType: 'adminTotalModal',
                 modalTitle: '알림 메시지',
-                modalContent: '저장이 완료되었습니다.'
+                modalContent: '수정이 완료되었습니다.'
             });
 
         });
@@ -255,16 +271,32 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeData, setD
             }
         }
 
-        console.log(123);
         setAddMenu({
             ...addMenu,
             [e.target.name]: e.target.value
         });
     }
 
-
     return (
         <div className="O-modal-back menu-detail-modal">
+            {
+                spinner ? (
+                    <div className='spinner' style={{zIndex: '21', top: '50%'}}>
+                        <div className='block'>
+                            <div className='item'></div>
+                            <div className='item'></div>
+                            <div className='item'></div>
+                            <div className='item'></div>
+                            <div className='item'></div>
+                            <div className='item'></div>
+                            <div className='item'></div>
+                            <div className='item'></div>
+                        </div>
+                    </div>
+                ) : (
+                    <></>
+                )
+            }
             <div className="O-modal">
                 <div className="O-modal-content">
                     <div className="O-modal-header">
@@ -365,7 +397,7 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeData, setD
                                                     setSideStatus(!sideStatus);
                                                 }}/>) : (
                                                 <input type="text" className="M-input-text M-font M-mini-size"
-                                                       id="sideSelect" value={''}
+                                                       id="sideSelect" value={addMenu.sideSelect.sideName}
                                                        readOnly onClick={function () {
                                                     setCategoryStatus(false);
                                                     setSideStatus(!sideStatus);
@@ -388,7 +420,7 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeData, setD
 
                                     </div>
                                     <div className="M-flex-1 M-flex-row M-flex-center">
-                                        <div className="O-side-select-close"
+                                        <div className="O-side-select-close" onClick={changeMenuForm}
                                              style={{marginTop: '0px', marginRight: '10px'}}>
                                             <p className="M-font">메뉴 수정</p>
                                         </div>

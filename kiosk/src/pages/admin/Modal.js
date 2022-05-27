@@ -45,7 +45,7 @@ const Modal = ({modalStatus, modalContentChange, data, setDataFun}) => {
                         }
                     });
                     return <AdminMenuDetailModal modalStatus={modalStatus} changeData={changeData}
-                                                 setDataFun={setDataFun}
+                                                 setDataFun={setDataFun} data={data}
                                                  modalContentChange={modalContentChange}/>
                     break;
 

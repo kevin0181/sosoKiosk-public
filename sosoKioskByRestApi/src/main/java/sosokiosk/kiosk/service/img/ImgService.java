@@ -32,54 +32,56 @@ public class ImgService {
         String fileName;
         String extension;
 
-
-        if (menuImg.getOriginalFilename().equals("")) {
+        if (menuImg != null) {
+            if (menuImg.getOriginalFilename().equals("")) {
 //            messageDTO.setStatus(true);
 //            messageDTO.setMessageStatus("error");
 //            messageDTO.setMessage("이미지의 이름을 추가해주세요.");
-            return null;
-        } else {
+                return null;
+            } else {
 
-            fileName = StringUtils.cleanPath(menuImg.getOriginalFilename());
+                fileName = StringUtils.cleanPath(menuImg.getOriginalFilename());
 
-            // 현재 날짜 구하기
-            Date now = new Date();
-            SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
-            String nowDate = format.format(now);
+                // 현재 날짜 구하기
+                Date now = new Date();
+                SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+                String nowDate = format.format(now);
 
-            filePath = "/kiosk/img/" + status;
-            Path path = Paths.get(filePath);
+                filePath = "/kiosk/img/" + status;
+                Path path = Paths.get(filePath);
 
-            try {
+                try {
 
-                if (!Files.exists(path)) {
-                    Files.createDirectories(path);
+                    if (!Files.exists(path)) {
+                        Files.createDirectories(path);
+                    }
+
+                    extension = StringUtils.getFilenameExtension(filePath + "/" + fileName);
+
+                    fileName = nowDate + "." + extension;
+
+                    InputStream inputStream = menuImg.getInputStream();
+                    Path pushFilePath = path.resolve(fileName);
+                    Files.copy(inputStream, pushFilePath, StandardCopyOption.REPLACE_EXISTING);
+
+                    result.put("imgName", fileName);
+                    result.put("imgPath", filePath);
+                    result.put("imgDate", nowDate);
+                    result.put("imgExtension", extension);
+
+                } catch (Exception e) {
+
+                    messageDTO.setStatus(true);
+                    messageDTO.setMessageStatus("error");
+                    messageDTO.setMessage("알수없는 오류 : error - imgException");
+
+                    return null;
                 }
 
-                extension = StringUtils.getFilenameExtension(filePath + "/" + fileName);
-
-                fileName = nowDate + "." + extension;
-
-                InputStream inputStream = menuImg.getInputStream();
-                Path pushFilePath = path.resolve(fileName);
-                Files.copy(inputStream, pushFilePath, StandardCopyOption.REPLACE_EXISTING);
-
-                result.put("imgName", fileName);
-                result.put("imgPath", filePath);
-                result.put("imgDate", nowDate);
-                result.put("imgExtension", extension);
-
-            } catch (Exception e) {
-
-                messageDTO.setStatus(true);
-                messageDTO.setMessageStatus("error");
-                messageDTO.setMessage("알수없는 오류 : error - imgException");
-
-                return null;
+                return result;
             }
-
-            return result;
+        } else {
+            return null;
         }
     }
-
 }

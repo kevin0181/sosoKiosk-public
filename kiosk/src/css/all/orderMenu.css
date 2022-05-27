@@ -573,8 +573,9 @@
 }
 
 .O-modal-side-footer {
-    height: 21%;
+    height: 15%;
     display: flex;
+    margin-top: 3%;
 }
 
 .O-side-select-menu-part-left {
