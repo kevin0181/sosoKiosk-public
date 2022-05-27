@@ -7,6 +7,7 @@ import AdminSideDeleteModal from "./menu/modal/AdminSideDeleteModal";
 import AdminSideCategoryDeleteModal from "./menu/modal/AdminSideCategoryDeleteModal";
 import AdminMenuDetailModal from "./menu/modal/AdminMenuDetailModal";
 import AdminSideDetailModal from "./menu/modal/AdminSideDetailModal";
+import CategoryRenameModal from "./menu/modal/categoryModal/CategoryRenameModal";
 
 const Modal = ({modalStatus, modalContentChange, data, setDataFun}) => {
 
@@ -61,6 +62,12 @@ const Modal = ({modalStatus, modalContentChange, data, setDataFun}) => {
                     return <AdminSideDetailModal modalStatus={modalStatus} changeSideData={changeSideData}
                                                  setDataFun={setDataFun} data={data}
                                                  modalContentChange={modalContentChange}/>
+                    break;
+
+                case 'adminCategoryRenameModal':
+                    return <CategoryRenameModal modalStatus={modalStatus}
+                                                setDataFun={setDataFun} data={data}
+                                                modalContentChange={modalContentChange}/>
                     break;
 
 

@@ -30,6 +30,17 @@ export async function getCategoryList() { //get category List
     return response.data;
 }
 
+export async function renameCategory(categorySq, categoryName) { //category 수정
+    const response = await axios.post('http://' + serverUrl.server + '/admin/category/change/category', null, {
+        params: {
+            'sq': categorySq,
+            'changeName': categoryName
+        }
+    });
+    return response.data;
+}
+
+
 // $(document).ready(function () {
 //
 //     $("#listSelect").on("click", function () { //select select

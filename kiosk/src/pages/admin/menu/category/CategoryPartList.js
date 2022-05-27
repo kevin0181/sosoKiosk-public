@@ -25,7 +25,17 @@ const CategoryPartList = ({data, modalContentChange}) => {
                             </small>
                         </td>
                         <td className="search">
-                            <small className="M-font menu-detail-btn"
+                            <small className="M-font menu-detail-btn" onClick={() => {
+                                modalContentChange({
+                                    status: true,
+                                    param: 'category',
+                                    modalType: 'adminCategoryRenameModal',
+                                    modalTitle: '카테고리 이름 변경',
+                                    modalContent: '',
+                                    sendId: it.categorySq,
+                                    sendName: it.categoryName
+                                })
+                            }}
                                    style={{backgroundColor: '#f5ffbf'}}>
                                 수정
                             </small>
