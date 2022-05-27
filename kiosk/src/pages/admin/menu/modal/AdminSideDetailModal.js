@@ -408,13 +408,6 @@ const AdminSideDetailModal = ({modalStatus, modalContentChange, changeSideData, 
 
                                         </div>
                                         <div className="M-flex-1 M-flex-row M-flex-center">
-                                            <div className="O-side-select-close"
-                                                 style={{marginTop: '0px', marginRight: '10px'}}>
-                                                <p className="M-font O-font-middle-size" onClick={saveSideMenu}
-                                                   style={{fontSize: '40px'}}>사이드
-                                                    메뉴
-                                                    업로드</p>
-                                            </div>
                                         </div>
                                     </div>
                                 </form>
@@ -474,6 +467,11 @@ const AdminSideDetailModal = ({modalStatus, modalContentChange, changeSideData, 
                              style={{width: '35%', flexDirection: 'row', alignItems: 'center'}}>
                             <div className="O-side-select-ok M-flex-row M-flex-center"
                                  style={{margin: '0px 5px 0px 0px', height: '70%', backgroundColor: 'white'}}>
+                                <div className="O-side-select-ok M-flex-row M-flex-center" id="menuChangeBtn"
+                                     onClick={saveSideMenu}
+                                     style={{margin: '0px 5px 0px 0px'}}>
+                                    <p className="M-font O-font-middle-size">수정 완료</p>
+                                </div>
                             </div>
                             <div className="O-side-select-close M-flex-row M-flex-center"
                                  onClick={closeBtn}

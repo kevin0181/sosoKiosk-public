@@ -418,10 +418,6 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeMenuData, 
 
                                     </div>
                                     <div className="M-flex-1 M-flex-row M-flex-center">
-                                        <div className="O-side-select-close" onClick={changeMenuForm}
-                                             style={{marginTop: '0px', marginRight: '10px'}}>
-                                            <p className="M-font">메뉴 수정</p>
-                                        </div>
                                     </div>
                                 </div>
                             </form>
@@ -479,11 +475,16 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeMenuData, 
                              style={{width: '35%', flexDirection: 'row', alignItems: 'center'}}>
                             <div className="O-side-select-ok M-flex-row M-flex-center" id="menuChangeBtn"
                                  style={{margin: '0px 5px 0px 0px', height: '50%', backgroundColor: 'white'}}>
+                                <div className="O-side-select-ok M-flex-row M-flex-center" id="menuChangeBtn"
+                                     onClick={changeMenuForm}
+                                     style={{margin:'0px 5px 0px 0px'}}>
+                                    <p className="M-font O-font-middle-size">수정 완료</p>
+                                </div>
                             </div>
                             <input type="hidden" id="changeStatus"/>
                             <div className="O-side-select-close M-flex-row M-flex-center" id="menuDetailCloseBtn"
                                  onClick={closeBtn}
-                                 style={{margin: '0px 0px 0px 5px', height: '50%'}}>
+                                 style={{margin: '0px 0px 0px 5px'}}>
                                 <p className="M-font O-font-middle-size">닫기</p>
                             </div>
                         </div>
