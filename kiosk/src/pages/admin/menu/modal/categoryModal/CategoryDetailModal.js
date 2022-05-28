@@ -4,6 +4,7 @@ import serverUrl from "../../../../config/server.json";
 
 const CategoryDetailModal = ({modalStatus, modalContentChange, data, setDataFun}) => {
 
+    const [noMessage, setNoMessage] = useState(false);
 
     //스피너
     const [spinner, setSpinner] = useState(true);
@@ -17,6 +18,7 @@ const CategoryDetailModal = ({modalStatus, modalContentChange, data, setDataFun}
                 all: res.menuDTOList
             });
             setSpinner(false);
+            setNoMessage(true);
         });
     }, []);
 
@@ -34,6 +36,18 @@ const CategoryDetailModal = ({modalStatus, modalContentChange, data, setDataFun}
             sendId: '',
             sendName: ''
         });
+    }
+
+    const NoMessageFun = () => {
+
+        if (noMessage) {
+            return <div><p className="O-menu-side-name-p M-font" style={{fontSize: '50px'}}>메뉴가
+                없습니다.</p>
+            </div>
+        } else {
+            return <></>
+        }
+
     }
 
     return (
@@ -83,17 +97,22 @@ const CategoryDetailModal = ({modalStatus, modalContentChange, data, setDataFun}
                             <div className="O-side-order-part M-overlay" id="category-card-body"
                                  style={{width: '100%', height: '100%', flexWrap: 'wrap', justifyContent: 'center'}}>
                                 {
-                                    categoryByMenu.all.map((it) => (
-                                        <div className="O-side-order-card a-side-order-card" key={it.menuSq}>
-                                            <div className="O-menu-side-img">
-                                                <img className="O-side-img" alt={'카테고리 메뉴 이미지'}
-                                                     src={'http://' + serverUrl.server + it.imgDTOList[0].imgPath + '/' + it.imgDTOList[0].imgName}/>
-                                            </div>
-                                            <div className="O-menu-side-name M-font O-font-mini-size M-text-center">
-                                                <p className="O-menu-side-name-p">{it.menuName}</p>
-                                            </div>
-                                        </div>
-                                    ))
+                                    categoryByMenu.all.length === 0 ? (
+                                            <NoMessageFun/>
+                                        ) :
+                                        (
+                                            categoryByMenu.all.map((it) => (
+                                                <div className="O-side-order-card a-side-order-card" key={it.menuSq}>
+                                                    <div className="O-menu-side-img">
+                                                        <img className="O-side-img" alt={'카테고리 메뉴 이미지'}
+                                                             src={'http://' + serverUrl.server + it.imgDTOList[0].imgPath + '/' + it.imgDTOList[0].imgName}/>
+                                                    </div>
+                                                    <div
+                                                        className="O-menu-side-name M-font O-font-mini-size M-text-center">
+                                                        <p className="O-menu-side-name-p">{it.menuName}</p>
+                                                    </div>
+                                                </div>
+                                            )))
                                 }
                             </div>
                         </div>
