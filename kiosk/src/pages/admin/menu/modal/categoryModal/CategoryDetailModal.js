@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {getCategoryMenu} from "../../../../../js/admin/menu/category";
 import serverUrl from "../../../../config/server.json";
+import {getMenuList} from "../../../../../js/admin/menu/AllMenu";
 
 const CategoryDetailModal = ({modalStatus, modalContentChange, data, setDataFun}) => {
 
@@ -102,7 +103,37 @@ const CategoryDetailModal = ({modalStatus, modalContentChange, data, setDataFun}
                                         ) :
                                         (
                                             categoryByMenu.all.map((it) => (
-                                                <div className="O-side-order-card a-side-order-card" key={it.menuSq}>
+                                                <div className="O-side-order-card a-side-order-card" onClick={() => {
+
+                                                    if (data.all.length === 0) {
+                                                        getMenuList().then(function (all) {
+                                                            setDataFun({
+                                                                ...data,
+                                                                all
+                                                            });
+                                                            modalContentChange({
+                                                                status: true,
+                                                                param: 'all',
+                                                                modalType: 'adminMenuDetailModal',
+                                                                modalTitle: it.menuName + ' 상세 페이지',
+                                                                modalContent: '',
+                                                                sendId: it.menuSq,
+                                                                sendName: it.menuName
+                                                            })
+                                                        });
+                                                    } else {
+                                                        modalContentChange({
+                                                            status: true,
+                                                            param: 'all',
+                                                            modalType: 'adminMenuDetailModal',
+                                                            modalTitle: it.menuName + ' 상세 페이지',
+                                                            modalContent: '',
+                                                            sendId: it.menuSq,
+                                                            sendName: it.menuName
+                                                        })
+                                                    }
+
+                                                }} key={it.menuSq}>
                                                     <div className="O-menu-side-img">
                                                         <img className="O-side-img" alt={'카테고리 메뉴 이미지'}
                                                              src={'http://' + serverUrl.server + it.imgDTOList[0].imgPath + '/' + it.imgDTOList[0].imgName}/>

@@ -1,3 +1,5 @@
+import {getMenuList} from "../../../../js/admin/menu/AllMenu";
+
 const MenuListPart = ({data, modalContentChange}) => {
 
     const sideCheck = (side) => {

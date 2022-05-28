@@ -477,7 +477,7 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeMenuData, 
                                  style={{margin: '0px 5px 0px 0px', height: '50%', backgroundColor: 'white'}}>
                                 <div className="O-side-select-ok M-flex-row M-flex-center" id="menuChangeBtn"
                                      onClick={changeMenuForm}
-                                     style={{margin:'0px 5px 0px 0px'}}>
+                                     style={{margin: '0px 5px 0px 0px'}}>
                                     <p className="M-font O-font-middle-size">수정 완료</p>
                                 </div>
                             </div>
