@@ -15,6 +15,7 @@ const SideDetailModal = ({modalStatus, modalContentChange, data, setDataFun}) =>
             setSideCategory({
                 sideCategory: side.sideCategoryDTOList
             });
+            setSpinner(false);
         });
     }, []);
 
@@ -36,6 +37,24 @@ const SideDetailModal = ({modalStatus, modalContentChange, data, setDataFun}) =>
 
     return (
         <div className="O-modal-back menu-detail-modal" id="categoryDetailModal">
+            {
+                spinner ? (
+                    <div className='spinner' style={{zIndex: '21', top: '50%'}}>
+                        <div className='block'>
+                            <div className='item'></div>
+                            <div className='item'></div>
+                            <div className='item'></div>
+                            <div className='item'></div>
+                            <div className='item'></div>
+                            <div className='item'></div>
+                            <div className='item'></div>
+                            <div className='item'></div>
+                        </div>
+                    </div>
+                ) : (
+                    <></>
+                )
+            }
             <div className="O-modal">
                 <div className="O-modal-content">
                     <div className="O-modal-header">
@@ -66,6 +85,7 @@ const SideDetailModal = ({modalStatus, modalContentChange, data, setDataFun}) =>
                              style={{padding: '10px 40px', width: '100%', height: '100%'}}>
                             <div className="O-side-order-part M-overlay" id="category-card-body"
                                  style={{width: '100%', height: '100%', flexWrap: 'wrap', justifyContent: 'center'}}>
+
                                 {/*{*/}
                                 {/*    categoryByMenu.all.map((it) => (*/}
                                 {/*        <div className="O-side-order-card a-side-order-card" key={it.menuSq}>*/}

@@ -16,6 +16,7 @@ const CategoryDetailModal = ({modalStatus, modalContentChange, data, setDataFun}
             setCategoryByMenu({
                 all: res.menuDTOList
             });
+            setSpinner(false);
         });
     }, []);
 
@@ -37,6 +38,24 @@ const CategoryDetailModal = ({modalStatus, modalContentChange, data, setDataFun}
 
     return (
         <div className="O-modal-back menu-detail-modal" id="categoryDetailModal">
+            {
+                spinner ? (
+                    <div className='spinner' style={{zIndex: '21', top: '50%'}}>
+                        <div className='block'>
+                            <div className='item'></div>
+                            <div className='item'></div>
+                            <div className='item'></div>
+                            <div className='item'></div>
+                            <div className='item'></div>
+                            <div className='item'></div>
+                            <div className='item'></div>
+                            <div className='item'></div>
+                        </div>
+                    </div>
+                ) : (
+                    <></>
+                )
+            }
             <div className="O-modal">
                 <div className="O-modal-content">
                     <div className="O-modal-header">
