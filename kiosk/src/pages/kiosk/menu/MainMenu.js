@@ -1,16 +1,42 @@
 import serverUrl from "../../config/server.json";
 import {useEffect, useState} from "react";
 import {useSearchParams} from "react-router-dom";
-import {getMenuList} from "../../../js/kiosk/menu";
 
 const MainMenu = ({menu, setMenuFun}) => {
 
     const [mainParams] = useSearchParams();
     const status = mainParams.get('categorySq');
 
-    const [viewMenu, setViewMenu] = useState(menu);
+    const [viewMenu, setViewMenu] = useState({
+        menu: []
+    });
 
+    useEffect(() => {
+        setViewMenu({
+            menu: menu
+        });
+    }, []);
+    useEffect(() => {
+        if (Number(status) !== 0) {
+            changeMenu();
+        } else {
+            setViewMenu({
+                menu: menu
+            });
+        }
+    }, [status]);
 
+    const changeMenu = () => {
+        let data = [];
+        menu.map((it) => {
+            if (Number(it.categorySq) === Number(status)) {
+                data.push(it);
+            }
+        });
+        setViewMenu({
+            'menu': data
+        })
+    }
 
     const imgCheck = (imgDTOList) => {
 
@@ -27,7 +53,7 @@ const MainMenu = ({menu, setMenuFun}) => {
 
     return (
         <div className="O-flex-menu">
-            {menu.map((it) => (
+            {viewMenu.menu.map((it) => (
                 <div className="O-card" key={it.menuSq}>
                     <div className="O-card-all">
                         <div className="O-card-header">
