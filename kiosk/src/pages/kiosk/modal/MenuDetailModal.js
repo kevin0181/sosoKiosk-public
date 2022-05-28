@@ -27,7 +27,9 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange}) => {
     useEffect(() => { //처음 시작할때.
 
         setSideCategory(menuModalStatus.menu.side[0].sideCategoryDTOList); //사이드 카테고리 넣음
-        setSideMenu([menuModalStatus.menu.side[0].sideCategoryDTOList[0].menuSideDTOList[0]]);
+        if (menuModalStatus.menu.side[0].sideCategoryDTOList[0].menuSideDTOList.length !== 0) {
+            setSideMenu([menuModalStatus.menu.side[0].sideCategoryDTOList[0].menuSideDTOList[0]]);
+        }
 
     }, [menuModalStatus]);
 
@@ -72,7 +74,8 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange}) => {
                                         <div
                                             className="O-menu-side-name M-font O-font-middle-size M-flex-column M-flex-center">
                                             <p style={{fontSize: '85%'}}>{it.menuSideName}</p>
-                                            <small className="O-side-mini-size-font">{'가격 ' + it.menuSidePrice}</small>
+                                            <small
+                                                className="O-side-mini-size-font">{'가격 ' + it.menuSidePrice}</small>
                                         </div>
                                         <div className="O-menu-side-number M-flex-column M-flex-center">
                                             <div className="side-number-top M-font O-font-middle-size">+
