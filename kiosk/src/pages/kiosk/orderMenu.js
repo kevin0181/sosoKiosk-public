@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 import CategoryList from "./side/CategoryList";
 import MainMenu from "./menu/MainMenu";
 
-const OrderMenu = ({menu, categoryList}) => {
+const OrderMenu = ({menu, categoryList, orderStatus}) => {
 
     const navigate = useNavigate();
 

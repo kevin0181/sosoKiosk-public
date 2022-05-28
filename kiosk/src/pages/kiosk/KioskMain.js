@@ -8,7 +8,7 @@ import axios from "axios";
 import serverUrl from "../config/server.json";
 import {useEffect} from "react";
 
-const KioskMain = ({setMenuFun, setCategoryListFun}) => {
+const KioskMain = ({setMenuFun, setCategoryListFun, setOrderStatusFun}) => {
 
     const getCategoryList = () => {
         const getData = axios.post('http://' + serverUrl.server + '/kiosk/CategoryList');
@@ -48,8 +48,8 @@ const KioskMain = ({setMenuFun, setCategoryListFun}) => {
     }
 
     const goOrderMenuPage = (status) => {
+        setOrderStatusFun(status);
         navigate('/menuOrder');
-        console.log(status);
     }
 
     return (

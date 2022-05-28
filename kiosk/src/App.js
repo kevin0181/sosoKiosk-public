@@ -11,6 +11,12 @@ function App() {
 
     const [categoryList, setCategoryList] = useState([]);
 
+    const [orderStatus, setOrderStatus] = useState('');
+
+    const setOrderStatusFun = (data) => {
+        setOrderStatus(data);
+    }
+
     const setMenuFun = (data) => {
         setMenu(data);
     }
@@ -23,10 +29,11 @@ function App() {
         <HashRouter>
             <div className="App">
                 <Routes>
-                    <Route path={'/'} element={<KioskMain setMenuFun={setMenuFun}
+                    <Route path={'/'} element={<KioskMain setMenuFun={setMenuFun} setOrderStatusFun={setOrderStatusFun}
                                                           setCategoryListFun={setCategoryListFun}></KioskMain>}/>
                     <Route path={'/menuOrder'}
-                           element={<OrderMenu menu={menu} categoryList={categoryList}></OrderMenu>}/>
+                           element={<OrderMenu menu={menu} categoryList={categoryList}
+                                               orderStatus={orderStatus}></OrderMenu>}/>
                     <Route path={'/admin'} element={<AdminLogin></AdminLogin>}/>
                     <Route path={'/admin/:adminCategory'} element={<AdminSide></AdminSide>}/>
                 </Routes>
