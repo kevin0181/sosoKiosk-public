@@ -21,6 +21,15 @@ export function searchSide() {
     });
 }
 
+export async function getCategoryMenu(categorySq) { //get category Sq List
+    const response = await axios.post('http://' + serverUrl.server + '/admin/category/get/category', null, {
+        params: {
+            'categorySq': categorySq
+        }
+    });
+    return response.data;
+}
+
 export async function getCategoryList() { //get category List
     const response = await axios.get('http://' + serverUrl.server + '/admin/menu/get/list', {
         params: {

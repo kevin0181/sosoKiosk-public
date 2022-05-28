@@ -20,7 +20,17 @@ const CategoryPartList = ({data, modalContentChange}) => {
                         className="admin-tbody-tr-category M-text-center admin-tbody-tr admin-tbody-tr-category">
                         <td className="search">
                             <p style={{display: 'inline-block', marginRight: '5px'}}>{it.categoryName}</p>
-                            <small className="M-font menu-detail-btn">
+                            <small className="M-font menu-detail-btn" onClick={() => {
+                                modalContentChange({
+                                    status: true,
+                                    param: 'category',
+                                    modalType: 'adminCategoryDetailModal',
+                                    modalTitle: it.categoryName + ' 상세',
+                                    modalContent: '',
+                                    sendId: it.categorySq,
+                                    sendName: it.categoryName
+                                })
+                            }}>
                                 상세보기
                             </small>
                         </td>
