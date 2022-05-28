@@ -129,6 +129,16 @@ public class CategoryController {
     }
 
     @Transactional
+    @PostMapping("/admin/category/get/sideAndCategoryMenu")
+    @ResponseBody
+    public SideDTO getSideCategoryMenuDetail(@RequestParam(value = "sideSq") Long sideSq) { // 사이드 전체 가져오기
+
+        SideDTO sideDTO = categoryService.getSideCategoryMenu(sideSq);
+
+        return sideDTO;
+    }
+
+    @Transactional
     @PostMapping("/admin/category/find/sideCategorySq")
     @ResponseBody
     public SideCategoryDTO findSideCategorySq(@RequestParam(value = "sideCategorySq") Long sideCategorySq) { // 사이드 카테고리 메뉴 가져오기

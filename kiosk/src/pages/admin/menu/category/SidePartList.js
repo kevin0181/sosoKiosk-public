@@ -20,7 +20,18 @@ const SidePartList = ({data, modalContentChange}) => {
                         className="admin-tbody-tr-side M-text-center admin-tbody-tr admin-tbody-tr-side">
                         <td className="search">
                             <p style={{display: 'inline-block', marginRight: '5px'}}>{it.sideName}</p>
-                            <small className="M-font menu-detail-btn">
+                            <small className="M-font menu-detail-btn"
+                                   onClick={() => {
+                                       modalContentChange({
+                                           status: true,
+                                           param: 'category',
+                                           modalType: 'adminSideCategoryDetailModal',
+                                           modalTitle: it.sideName + ' 상세',
+                                           modalContent: '',
+                                           sendId: it.sideSq,
+                                           sendName: it.sideName
+                                       })
+                                   }}>
                                 상세보기
                             </small>
                         </td>

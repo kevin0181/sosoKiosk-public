@@ -1,27 +1,26 @@
 import {useEffect, useState} from "react";
-import {getCategoryMenu} from "../../../../../js/admin/menu/category";
-import serverUrl from "../../../../config/server.json";
+import {getSideCategory} from "../../../../../js/admin/menu/category";
 
-const CategoryDetailModal = ({modalStatus, modalContentChange, data, setDataFun}) => {
+const SideDetailModal = ({modalStatus, modalContentChange, data, setDataFun}) => {
 
 
     //스피너
     const [spinner, setSpinner] = useState(true);
-    const [categoryByMenu, setCategoryByMenu] = useState({
-        all: [],
+    const [sideCategory, setSideCategory] = useState({
+        sideCategory: []
     });
 
     useEffect(() => {
-        getCategoryMenu(modalStatus.sendId).then(function (res) {
-            setCategoryByMenu({
-                all: res.menuDTOList
+        getSideCategory(modalStatus.sendId).then(function (side) {
+            setSideCategory({
+                sideCategory: side.sideCategoryDTOList
             });
         });
     }, []);
 
     useEffect(() => {
-        console.log(categoryByMenu);
-    }, [categoryByMenu]);
+        console.log(sideCategory);
+    }, [sideCategory]);
 
     const closeBtn = () => {
         modalContentChange({
@@ -45,17 +44,21 @@ const CategoryDetailModal = ({modalStatus, modalContentChange, data, setDataFun}
                         </div>
                         <div className="O-modal-top">
                             <div className="O-modal-top-title M-font" id="category-top">
-                                <p>카테고리 상세</p>
+                                <p>{modalStatus.modalTitle}</p>
                             </div>
                         </div>
                     </div>
                     <div className="O-modal-category-bar">
-                        <div className="O-category-part">
-                            <div className="M-font O-font-mini-size O-category-box"
-                                 style={{backgroundColor: '#838383'}}>
-                                <p>{modalStatus.sendName}</p>
-                            </div>
-                        </div>
+                        {
+                            sideCategory.sideCategory.map((it) => (
+                                <div className="O-category-part" key={it.sideCategorySq}>
+                                    <div className="M-font O-font-mini-size O-category-box"
+                                         style={{backgroundColor: '#838383'}}>
+                                        <p>{it.sideCategoryName}</p>
+                                    </div>
+                                </div>
+                            ))
+                        }
                     </div>
                     <div className="O-modal-side-order M-flex-row"
                          style={{padding: '5px 20px', justifyContent: 'space-between'}}>
@@ -63,19 +66,19 @@ const CategoryDetailModal = ({modalStatus, modalContentChange, data, setDataFun}
                              style={{padding: '10px 40px', width: '100%', height: '100%'}}>
                             <div className="O-side-order-part M-overlay" id="category-card-body"
                                  style={{width: '100%', height: '100%', flexWrap: 'wrap', justifyContent: 'center'}}>
-                                {
-                                    categoryByMenu.all.map((it) => (
-                                        <div className="O-side-order-card a-side-order-card" key={it.menuSq}>
-                                            <div className="O-menu-side-img">
-                                                <img className="O-side-img" alt={'카테고리 메뉴 이미지'}
-                                                     src={'http://' + serverUrl.server + it.imgDTOList[0].imgPath + '/' + it.imgDTOList[0].imgName}/>
-                                            </div>
-                                            <div className="O-menu-side-name M-font O-font-mini-size M-text-center">
-                                                <p className="O-menu-side-name-p">{it.menuName}</p>
-                                            </div>
-                                        </div>
-                                    ))
-                                }
+                                {/*{*/}
+                                {/*    categoryByMenu.all.map((it) => (*/}
+                                {/*        <div className="O-side-order-card a-side-order-card" key={it.menuSq}>*/}
+                                {/*            <div className="O-menu-side-img">*/}
+                                {/*                <img className="O-side-img" alt={'사이드 메뉴 이미지'}*/}
+                                {/*                     src={'http://' + serverUrl.server + it.imgDTOList[0].imgPath + '/' + it.imgDTOList[0].imgName}/>*/}
+                                {/*            </div>*/}
+                                {/*            <div className="O-menu-side-name M-font O-font-mini-size M-text-center">*/}
+                                {/*                <p className="O-menu-side-name-p">{it.menuName}</p>*/}
+                                {/*            </div>*/}
+                                {/*        </div>*/}
+                                {/*    ))*/}
+                                {/*}*/}
                             </div>
                         </div>
                     </div>
@@ -96,4 +99,4 @@ const CategoryDetailModal = ({modalStatus, modalContentChange, data, setDataFun}
     );
 }
 
-export default CategoryDetailModal;
+export default SideDetailModal;

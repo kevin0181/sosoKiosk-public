@@ -30,6 +30,15 @@ export async function getCategoryMenu(categorySq) { //get category Sq List
     return response.data;
 }
 
+export async function getSideCategory(sideSq) { //get side category List
+    const response = await axios.post('http://' + serverUrl.server + '/admin/category/get/sideAndCategoryMenu', null, {
+        params: {
+            'sideSq': sideSq
+        }
+    });
+    return response.data;
+}
+
 export async function getCategoryList() { //get category List
     const response = await axios.get('http://' + serverUrl.server + '/admin/menu/get/list', {
         params: {

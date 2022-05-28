@@ -183,6 +183,23 @@ public class CategoryService {
         return sideDTO;
     }
 
+    public SideDTO getSideCategoryMenu(Long sideSq) {
+        SideEntity sideEntity = sideRepository.findById(sideSq).get();
+        SideDTO sideDTO = modelMapper.map(sideEntity, SideDTO.class);
+
+        for (int i = 0; i < sideDTO.getSideCategoryDTOList().size(); i++) {
+            sideDTO.getSideCategoryDTOList().get(i).setSideDTO(null);
+
+            for (int j = 0; j < sideDTO.getSideCategoryDTOList().get(i).getMenuSideDTOList().size(); j++) {
+                sideDTO.getSideCategoryDTOList().get(i).getMenuSideDTOList().get(j).setSideCategoryDTO(null);
+            }
+
+        }
+
+
+        return sideDTO;
+    }
+
     public SideCategoryDTO findSideCategory(Long sideCategorySq) {
         SideCategoryEntity sideCategoryEntity = sideCategoryRepository.findById(sideCategorySq).get();
         SideCategoryDTO sideCategoryDTO = modelMapper.map(sideCategoryEntity, SideCategoryDTO.class);
