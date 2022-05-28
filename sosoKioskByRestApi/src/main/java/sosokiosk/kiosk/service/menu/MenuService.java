@@ -99,7 +99,10 @@ public class MenuService {
             menuDTOS.get(i).getCategoryDTO().getMenuDTOList().removeAll(menuDTOS.get(i).getCategoryDTO().getMenuDTOList());
             for (SideDTO j : menuDTOS.get(i).getSide()) {
                 for (int n = 0; n < j.getSideCategoryDTOList().size(); n++) {
-                    j.getSideCategoryDTOList().removeAll(j.getSideCategoryDTOList());
+                    j.getSideCategoryDTOList().get(n).setSideDTO(null);
+                    for (int s = 0; s < j.getSideCategoryDTOList().get(n).getMenuSideDTOList().size(); s++) {
+                        j.getSideCategoryDTOList().get(n).getMenuSideDTOList().get(s).setSideCategoryDTO(null);
+                    }
                 }
                 menuDTOS.get(i).getSide().add(j);
             }

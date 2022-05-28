@@ -26,10 +26,10 @@ sosokiosk/kiosk/repository/side/MenuSideImgRepository.java
  sosokiosk.kiosk.repository.side.MenuSideImgRepository
 sosokiosk/kiosk/dto/order/getOrder/SendOrderDTO.java
  sosokiosk.kiosk.dto.order.getOrder.SendOrderDTO
-sosokiosk/kiosk/admin/controller/menu/MenuController.java
- sosokiosk.kiosk.admin.controller.menu.MenuController
-sosokiosk/kiosk/service/menu/MenuService.java
- sosokiosk.kiosk.service.menu.MenuService
+sosokiosk/kiosk/admin/controller/menu/CategoryController.java
+ sosokiosk.kiosk.admin.controller.menu.CategoryController
+sosokiosk/kiosk/service/menu/CategoryService.java
+ sosokiosk.kiosk.service.menu.CategoryService
 sosokiosk/kiosk/dto/order/getOrder/SendSideDTO.java
  sosokiosk.kiosk.dto.order.getOrder.SendSideDTO
 sosokiosk/kiosk/dto/side/MenuSideImgDTO.java
@@ -72,8 +72,8 @@ sosokiosk/kiosk/dto/detail/UserDetail.java
  sosokiosk.kiosk.dto.detail.UserDetail
 sosokiosk/kiosk/dto/menu/MenuDTO.java
  sosokiosk.kiosk.dto.menu.MenuDTO
-sosokiosk/kiosk/admin/controller/AdminController.java
- sosokiosk.kiosk.admin.controller.AdminController
+sosokiosk/kiosk/admin/controller/settting/SettingController.java
+ sosokiosk.kiosk.admin.controller.settting.SettingController
 sosokiosk/kiosk/entity/order/OrderEntity.java
  sosokiosk.kiosk.entity.order.OrderEntity
 sosokiosk/kiosk/dto/order/getOrder/SendOrderDetailSideDTO.java
@@ -139,9 +139,9 @@ sosokiosk/kiosk/entity/order/OrderDetailSideEntity.java
 sosokiosk/kiosk/kiosk/controller/KioskController.java
  sosokiosk.kiosk.kiosk.controller.KioskController
  sosokiosk.kiosk.kiosk.controller.KioskController$1
-sosokiosk/kiosk/service/menu/CategoryService.java
- sosokiosk.kiosk.service.menu.CategoryService
-sosokiosk/kiosk/admin/controller/menu/CategoryController.java
- sosokiosk.kiosk.admin.controller.menu.CategoryController
-sosokiosk/kiosk/admin/controller/settting/SettingController.java
- sosokiosk.kiosk.admin.controller.settting.SettingController
+sosokiosk/kiosk/admin/controller/menu/MenuController.java
+ sosokiosk.kiosk.admin.controller.menu.MenuController
+sosokiosk/kiosk/service/menu/MenuService.java
+ sosokiosk.kiosk.service.menu.MenuService
+sosokiosk/kiosk/admin/controller/AdminController.java
+ sosokiosk.kiosk.admin.controller.AdminController
