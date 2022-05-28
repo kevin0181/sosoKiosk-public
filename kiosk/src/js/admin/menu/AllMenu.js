@@ -1,6 +1,6 @@
 // $(document).ready(function () {
 //
-//     $("#all-menu-search").on("change keyup paste", function () { //search
+//     $("#all-menu.js-search").on("change keyup paste", function () { //search
 //         var result = $(this).val();
 //         $(".admin-tbody-tr").hide();
 //         var temp = $(".admin-tbody-tr:contains('" + result + "')");
@@ -13,7 +13,7 @@ import axios from "axios";
 import serverUrl from "../../../pages/config/server.json";
 
 export function search() {
-    $("#all-menu-search").on("change keyup paste", function () { //search menu
+    $("#all-menu.js-search").on("change keyup paste", function () { //search menu.js
         var result = $(this).val();
         $(".admin-tbody-tr").hide();
         var temp = $(".admin-tbody-tr:contains('" + result + "')");
@@ -21,7 +21,7 @@ export function search() {
     });
 }
 
-export async function getMenuList() { //get menu List
+export async function getMenuList() { //get menu.js List
     const response = await axios.post('http://' + serverUrl.server + '/admin/get/all/menu/list');
     return response.data;
 }
@@ -46,7 +46,7 @@ export async function getMenuList() { //get menu List
 //
 //     $.ajax({
 //         type: "POST",
-//         url: "/admin/menu/get/find/menu",
+//         url: "/admin/menu.js/get/find/menu.js",
 //         dataType: "JSON",
 //         data: {
 //             "menuSq": menuSq,
@@ -61,8 +61,8 @@ export async function getMenuList() { //get menu List
 //             $("#menuPrice").val(data.menuPrice); //메뉴 가격
 //             $("#categorySelect").val(data.categoryDTO.categoryName); //메뉴 카테고리
 //             $("#categorySelect").attr("name", data.categorySq);
-//             $("#admin-main-menu-select-img").attr("src", data.imgDTOList[0].imgPath + "/" + data.imgDTOList[0].imgName);//메뉴 이미지 넣기
-//             $("#admin-main-menu-select-img").show(); //메뉴 이미지 보이게
+//             $("#admin-main-menu.js-select-img").attr("src", data.imgDTOList[0].imgPath + "/" + data.imgDTOList[0].imgName);//메뉴 이미지 넣기
+//             $("#admin-main-menu.js-select-img").show(); //메뉴 이미지 보이게
 //             $("input:checkbox[id='menuSoldOut-checkBox']").prop("checked", data.menuSoldOut); //품절 체크
 //             $("input:checkbox[id='menuEnable-checkBox']").prop("checked", data.menuEnable); //메뉴 숨기기 체크
 //
@@ -78,7 +78,7 @@ export async function getMenuList() { //get menu List
 //         }
 //     });
 //
-//     $(".menu-detail-modal").show();
+//     $(".menu.js-detail-modal").show();
 // }
 //
 // //메뉴 상세보기에서 사이드 선택
@@ -97,11 +97,11 @@ export async function getMenuList() { //get menu List
 //
 //             console.log(sideData);
 //
-//             var sideTable = '<div class="admin-menu-all-list M-font M-mini-size">\n' +
-//                 '                    <div class="admin-menu-all-list-div M-overlay">\n' +
-//                 '                        <table class="admin-menu-all-table M-text-center">\n' +
+//             var sideTable = '<div class="admin-menu.js-all-list M-font M-mini-size">\n' +
+//                 '                    <div class="admin-menu.js-all-list-div M-overlay">\n' +
+//                 '                        <table class="admin-menu.js-all-table M-text-center">\n' +
 //                 '                            <thead class="">\n' +
-//                 '                                <tr class="admin-menu-all-table-tr" style="text-align: center;">\n' +
+//                 '                                <tr class="admin-menu.js-all-table-tr" style="text-align: center;">\n' +
 //                 '                                    <th style="width: 15%;">\n' +
 //                 '                                        사이드\n' +
 //                 '                                    </th>\n' +
@@ -206,38 +206,38 @@ export async function getMenuList() { //get menu List
 //         menuEnable = false;
 //     }
 //
-//     $("#progress-small-menu").text("");
-//     $("#menu-progressBar").show();
+//     $("#progress-small-menu.js").text("");
+//     $("#menu.js-progressBar").show();
 //
 //
 //     if ($("#menuName").val() == "") {
-//         $("#progress-small-menu").text("메뉴 이름을 입력하세요.");
+//         $("#progress-small-menu.js").text("메뉴 이름을 입력하세요.");
 //         return false;
 //     }
 //
 //     if ($("#menuName").val().length > 10) {
-//         $("#progress-small-menu").text("메뉴 이름의 최대 길이를 초과하였습니다. (10자리수)");
+//         $("#progress-small-menu.js").text("메뉴 이름의 최대 길이를 초과하였습니다. (10자리수)");
 //         return false;
 //     }
 //
 //     if ($("#menuPrice").val() == "") {
-//         $("#progress-small-menu").text("가격을 입력하세요.");
+//         $("#progress-small-menu.js").text("가격을 입력하세요.");
 //         return false;
 //     }
 //
 //     if ($("#menuPrice").val().length > 8) {
-//         $("#progress-small-menu").text("가격의 최대 길이를 초과하였습니다. (8자리수)");
+//         $("#progress-small-menu.js").text("가격의 최대 길이를 초과하였습니다. (8자리수)");
 //         return false;
 //     }
 //
 //     var regExp = /^[0-9]*$/;
 //     if (!regExp.test($("#menuPrice").val())) {
-//         $("#progress-small-menu").text("숫자를 입력하세요.");
+//         $("#progress-small-menu.js").text("숫자를 입력하세요.");
 //         return false;
 //     }
 //
 //     if (categorySq == null) {
-//         $("#progress-small-menu").text("카테고리를 선택하세요.");
+//         $("#progress-small-menu.js").text("카테고리를 선택하세요.");
 //         categorySq = 0;
 //         return false;
 //     }
@@ -255,7 +255,7 @@ export async function getMenuList() { //get menu List
 //
 //     $.ajax({
 //         type: "POST",
-//         url: "/admin/menu/change/menu",
+//         url: "/admin/menu.js/change/menu.js",
 //         dataType: "json",
 //         processData: false,
 //         contentType: false,
@@ -264,7 +264,7 @@ export async function getMenuList() { //get menu List
 //             var xhr = $.ajaxSettings.xhr();
 //             xhr.upload.onprogress = function (e) {
 //                 var per = e.loaded * 100 / e.total;
-//                 progressBar(per, "menu-progressBar");
+//                 progressBar(per, "menu.js-progressBar");
 //             };
 //             return xhr;
 //         },
@@ -272,12 +272,12 @@ export async function getMenuList() { //get menu List
 //
 //             if (data.status) { //에러
 //
-//                 $("#progress-small-menu").text(data.message);
-//                 $("#menu-progressBar").val(0);
+//                 $("#progress-small-menu.js").text(data.message);
+//                 $("#menu.js-progressBar").val(0);
 //
 //             } else { //정상
-//                 $("#progress-small-menu").text($("#menuName").val() + "를 수정하였습니다.");
-//                 $("#menu-fileUrl").text("이미지 변경을 원하시면 선택하세요.");
+//                 $("#progress-small-menu.js").text($("#menuName").val() + "를 수정하였습니다.");
+//                 $("#menu.js-fileUrl").text("이미지 변경을 원하시면 선택하세요.");
 //                 $("#changeStatus").val(true);
 //             }
 //         },
@@ -300,7 +300,7 @@ export async function getMenuList() { //get menu List
 //
 //     $.ajax({
 //         type: "POST",
-//         url: "/admin/menu/delete/menu",
+//         url: "/admin/menu.js/delete/menu.js",
 //         dataType: "json",
 //         data: {
 //             "menuSq": menuSq,
@@ -325,8 +325,8 @@ export async function getMenuList() { //get menu List
 //     $("#menuName").val(""); //메뉴 이름
 //     $("#menuPrice").val(""); //메뉴 가격
 //     $("#categorySelect").val(""); //메뉴 카테고리
-//     $("#admin-main-menu-select-img").attr("src", "");//메뉴 이미지 넣기
-//     $("#admin-main-menu-select-img").hide(); //메뉴 이미지 보이게
+//     $("#admin-main-menu.js-select-img").attr("src", "");//메뉴 이미지 넣기
+//     $("#admin-main-menu.js-select-img").hide(); //메뉴 이미지 보이게
 //     $("#sideSelect").val("");
 //     $("input:checkbox[id='menuSoldOut-checkBox']").prop("checked", false);
 //     $("input:checkbox[id='menuEnable-checkBox']").prop("checked", false);
@@ -345,7 +345,7 @@ export async function getMenuList() { //get menu List
 // }
 //
 // function modalAllResetByMenu() {
-//     $("#menuDetailPartParent").append('<div class="O-side-order-part O-side-order-part-menu" id="menuDetailPart" style="padding: 10px;">\n' +
+//     $("#menuDetailPartParent").append('<div class="O-side-order-part O-side-order-part-menu.js" id="menuDetailPart" style="padding: 10px;">\n' +
 //         '                    <form id="addMenuForm" class="M-flex-column admin-main-left-flex" method="post"\n' +
 //         '                          enctype="multipart/form-data">\n' +
 //         '                        <input type="hidden" id="menuSq" name="menuSq">\n' +
@@ -363,9 +363,9 @@ export async function getMenuList() { //get menu List
 //         '                                사진 업로드\n' +
 //         '                            </div>\n' +
 //         '                            <div class="M-flex-1 M-flex-row M-flex-center menuInputDiv">\n' +
-//         '                                <input type="file" value="" class="M-none-design" id="menu-file" name="menuImg"\n' +
+//         '                                <input type="file" value="" class="M-none-design" id="menu.js-file" name="menuImg"\n' +
 //         '                                       accept="image/*">\n' +
-//         '                                <label class="M-input-text" id="menu-fileUrl" for="menu-file"\n' +
+//         '                                <label class="M-input-text" id="menu.js-fileUrl" for="menu.js-file"\n' +
 //         '                                       style="font-size: 20px; overflow: hidden">이미지 변경을 원하시면 선택하세요.\n' +
 //         '                                </label>\n' +
 //         '                            </div>\n' +
@@ -431,15 +431,15 @@ export async function getMenuList() { //get menu List
 //         '                    <div class="M-flex-column admin-main-right-flex" id="menuDetailImg">\n' +
 //         '                        <div class="admin-main-img">\n' +
 //         '                            <div class="img-part M-flex-column M-flex-center">\n' +
-//         '                                <p class="M-font M-mini-size" id="admin-main-menu-select-img-top-p">메뉴 이미지</p>\n' +
-//         '                                <img id="admin-main-menu-select-img" class="admin-main-select-img"\n' +
+//         '                                <p class="M-font M-mini-size" id="admin-main-menu.js-select-img-top-p">메뉴 이미지</p>\n' +
+//         '                                <img id="admin-main-menu.js-select-img" class="admin-main-select-img"\n' +
 //         '                                     style="display: none;">\n' +
 //         '                            </div>\n' +
 //         '                        </div>\n' +
 //         '                        <div class="admin-progress-bar" style="padding: 10px 60px;">\n' +
 //         '                            <div class="admin-progress-bar-div" style="text-align: center;">\n' +
-//         '                                <small class="M-font" style="font-size: 25px;" id="progress-small-menu"></small>\n' +
-//         '                                <progress id="menu-progressBar" style="margin-top: 30px; height: 20px;"\n' +
+//         '                                <small class="M-font" style="font-size: 25px;" id="progress-small-menu.js"></small>\n' +
+//         '                                <progress id="menu.js-progressBar" style="margin-top: 30px; height: 20px;"\n' +
 //         '                                          class="M-progress-bar"\n' +
 //         '                                          value="0"\n' +
 //         '                                          max="100"></progress>\n' +
@@ -455,7 +455,7 @@ export async function getMenuList() { //get menu List
 //         location.href = "/admin/index";
 //     }
 //
-//     resetProgressBar("menu");
-//     $("#menu-progressBar").hide();
-//     $(".menu-detail-modal").hide();
+//     resetProgressBar("menu.js");
+//     $("#menu.js-progressBar").hide();
+//     $(".menu.js-detail-modal").hide();
 // }

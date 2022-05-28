@@ -41,31 +41,31 @@ function logoutBtn() {
 }
 
 function allMenu() { // 전체 메뉴
-    locationSetTime4('/admin/menu?status=all');
+    locationSetTime4('/admin/menu.js?status=all');
 }
 
 function addMenuPage() { // 메뉴 추가
-    locationSetTime4('/admin/menu?status=addMenu');
+    locationSetTime4('/admin/menu.js?status=addMenu');
 }
 
 function deleteMenuPage() { // 메뉴 삭제
-    locationSetTime4('/admin/menu?status=deleteMenu');
+    locationSetTime4('/admin/menu.js?status=deleteMenu');
 }
 
 function allSideMenu() { //사이드 메뉴
-    locationSetTime4('/admin/menu?status=sideAll');
+    locationSetTime4('/admin/menu.js?status=sideAll');
 }
 
 function addSidePage() {
-    locationSetTime4('/admin/menu?status=sideAdd');
+    locationSetTime4('/admin/menu.js?status=sideAdd');
 }
 
 function addCategoryPage() {
-    locationSetTime4('/admin/menu?status=addCategory');
+    locationSetTime4('/admin/menu.js?status=addCategory');
 }
 
 function categoryPage() {
-    locationSetTime4('/admin/menu?status=category');
+    locationSetTime4('/admin/menu.js?status=category');
 }
 
 

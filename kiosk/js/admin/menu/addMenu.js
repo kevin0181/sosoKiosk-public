@@ -1,10 +1,10 @@
 $(document).ready(function () {
 
     //file upload url 내보내기
-    $("#menu-file").on("change", function () {
-        var fileUrl = $("#menu-file").val();
-        $("#menu-fileUrl").text(fileUrl);
-        showImg(this, "admin-main-menu-select-img");
+    $("#menu.js-file").on("change", function () {
+        var fileUrl = $("#menu.js-file").val();
+        $("#menu.js-fileUrl").text(fileUrl);
+        showImg(this, "admin-main-menu.js-select-img");
     });
 
     $("#categorySelect").on("click", function () { //카테고리 선택
@@ -86,38 +86,38 @@ function addMenu() {
     var categorySq = $("#categorySelect").attr("name");
     var sideSq = $("#sideSelect").attr("name");
 
-    $("#progress-small-menu").text("");
-    $("#menu-progressBar").show();
+    $("#progress-small-menu.js").text("");
+    $("#menu.js-progressBar").show();
 
 
     if ($("#menuName").val() == "") {
-        $("#progress-small-menu").text("메뉴 이름을 입력하세요.");
+        $("#progress-small-menu.js").text("메뉴 이름을 입력하세요.");
         return false;
     }
 
     if ($("#menuName").val().length > 10) {
-        $("#progress-small-menu").text("메뉴 이름의 최대 길이를 초과하였습니다. (10자리수)");
+        $("#progress-small-menu.js").text("메뉴 이름의 최대 길이를 초과하였습니다. (10자리수)");
         return false;
     }
 
     if ($("#menuPrice").val() == "") {
-        $("#progress-small-menu").text("가격을 입력하세요.");
+        $("#progress-small-menu.js").text("가격을 입력하세요.");
         return false;
     }
 
     if ($("#menuPrice").val().length > 8) {
-        $("#progress-small-menu").text("가격의 최대 길이를 초과하였습니다. (8자리수)");
+        $("#progress-small-menu.js").text("가격의 최대 길이를 초과하였습니다. (8자리수)");
         return false;
     }
 
     var regExp = /^[0-9]*$/;
     if (!regExp.test($("#menuPrice").val())) {
-        $("#progress-small-menu").text("숫자를 입력하세요.");
+        $("#progress-small-menu.js").text("숫자를 입력하세요.");
         return false;
     }
 
     if (categorySq == null) {
-        $("#progress-small-menu").text("카테고리를 선택하세요.");
+        $("#progress-small-menu.js").text("카테고리를 선택하세요.");
         categorySq = 0;
         return false;
     }
@@ -143,7 +143,7 @@ function addMenu() {
             var xhr = $.ajaxSettings.xhr();
             xhr.upload.onprogress = function (e) {
                 var per = e.loaded * 100 / e.total;
-                progressBar(per, "menu-progressBar");
+                progressBar(per, "menu.js-progressBar");
             };
             return xhr;
         },
@@ -151,20 +151,20 @@ function addMenu() {
 
             if (data.status) { //에러
 
-                $("#progress-small-menu").text(data.message);
-                $("#menu-progressBar").val(0);
+                $("#progress-small-menu.js").text(data.message);
+                $("#menu.js-progressBar").val(0);
                 $("#categorySelect").val("");
                 $(".menuInputDiv input").val("");
-                $("#menu-fileUrl").text("");
-                $("#admin-main-menu-select-img").hide();
+                $("#menu.js-fileUrl").text("");
+                $("#admin-main-menu.js-select-img").hide();
                 resetAddMenuForm();
 
             } else { //정상
-                $("#progress-small-menu").text($("#menuName").val() + "를 추가하였습니다.");
+                $("#progress-small-menu.js").text($("#menuName").val() + "를 추가하였습니다.");
                 $("#categorySelect").val("");
                 $(".menuInputDiv input").val("");
-                $("#menu-fileUrl").text("");
-                $("#admin-main-menu-select-img").hide();
+                $("#menu.js-fileUrl").text("");
+                $("#admin-main-menu.js-select-img").hide();
                 resetAddMenuForm();
             }
         },

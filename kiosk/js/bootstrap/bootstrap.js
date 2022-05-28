@@ -1983,9 +1983,9 @@
   const CLASS_NAME_DROPSTART = 'dropstart';
   const CLASS_NAME_NAVBAR = 'navbar';
   const SELECTOR_DATA_TOGGLE$3 = '[data-bs-toggle="dropdown"]';
-  const SELECTOR_MENU = '.dropdown-menu';
+  const SELECTOR_MENU = '.dropdown-menu.js';
   const SELECTOR_NAVBAR_NAV = '.navbar-nav';
-  const SELECTOR_VISIBLE_ITEMS = '.dropdown-menu .dropdown-item:not(.disabled):not(:disabled)';
+  const SELECTOR_VISIBLE_ITEMS = '.dropdown-menu.js .dropdown-item:not(.disabled):not(:disabled)';
   const PLACEMENT_TOP = isRTL() ? 'top-end' : 'top-start';
   const PLACEMENT_TOPEND = isRTL() ? 'top-start' : 'top-end';
   const PLACEMENT_BOTTOM = isRTL() ? 'bottom-end' : 'bottom-start';
@@ -2315,7 +2315,7 @@
 
           if (composedPath.includes(context._element) || context._config.autoClose === 'inside' && !isMenuTarget || context._config.autoClose === 'outside' && isMenuTarget) {
             continue;
-          } // Tab navigation through the dropdown menu or events from contained inputs shouldn't close the menu
+          } // Tab navigation through the dropdown menu.js or events from contained inputs shouldn't close the menu.js
 
 
           if (context._menu.contains(event.target) && (event.type === 'keyup' && event.key === TAB_KEY$1 || /input|select|option|textarea|form/i.test(event.target.tagName))) {
@@ -2342,7 +2342,7 @@
       //  - If space key => not a dropdown command
       //  - If key is other than escape
       //    - If key is not up or down => not a dropdown command
-      //    - If trigger inside the menu => not a dropdown command
+      //    - If trigger inside the menu.js => not a dropdown command
       if (/input|textarea/i.test(event.target.tagName) ? event.key === SPACE_KEY || event.key !== ESCAPE_KEY$2 && (event.key !== ARROW_DOWN_KEY && event.key !== ARROW_UP_KEY || event.target.closest(SELECTOR_MENU)) : !REGEXP_KEYDOWN.test(event.key)) {
         return;
       }
@@ -4612,7 +4612,7 @@
   const EVENT_SHOW$1 = `show${EVENT_KEY$1}`;
   const EVENT_SHOWN$1 = `shown${EVENT_KEY$1}`;
   const EVENT_CLICK_DATA_API = `click${EVENT_KEY$1}${DATA_API_KEY}`;
-  const CLASS_NAME_DROPDOWN_MENU = 'dropdown-menu';
+  const CLASS_NAME_DROPDOWN_MENU = 'dropdown-menu.js';
   const CLASS_NAME_ACTIVE = 'active';
   const CLASS_NAME_FADE$1 = 'fade';
   const CLASS_NAME_SHOW$1 = 'show';
@@ -4622,7 +4622,7 @@
   const SELECTOR_ACTIVE_UL = ':scope > li > .active';
   const SELECTOR_DATA_TOGGLE = '[data-bs-toggle="tab"], [data-bs-toggle="pill"], [data-bs-toggle="list"]';
   const SELECTOR_DROPDOWN_TOGGLE = '.dropdown-toggle';
-  const SELECTOR_DROPDOWN_ACTIVE_CHILD = ':scope > .dropdown-menu .active';
+  const SELECTOR_DROPDOWN_ACTIVE_CHILD = ':scope > .dropdown-menu.js .active';
   /**
    * ------------------------------------------------------------------------
    * Class Definition

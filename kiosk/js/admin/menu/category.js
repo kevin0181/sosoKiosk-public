@@ -73,7 +73,7 @@ function listSelect(result) { //select category option
         },
         success: function (data) {
             if (data == null) {
-                location.href = "/admin/menu?status=category";
+                location.href = "/admin/menu.js?status=category";
             }
 
             if (data.length == 0) {
@@ -347,10 +347,10 @@ function deleteCategoryOrSide(sq, name, status) {
             "status": sq,
         },
         success: function (data) {
-            location.href = "/admin/menu?status=category";
+            location.href = "/admin/menu.js?status=category";
         },
         error: function () {
-            location.href = "/admin/menu?status=category";
+            location.href = "/admin/menu.js?status=category";
         }
     });
 }
@@ -419,11 +419,11 @@ function changeCategory() {
             "changeName": changeName
         },
         success: function (data) {
-            location.href = "/admin/menu?status=category";
+            location.href = "/admin/menu.js?status=category";
         }
         ,
         error: function () {
-            location.href = "/admin/menu?status=category";
+            location.href = "/admin/menu.js?status=category";
         }
     });
 
@@ -445,11 +445,11 @@ function categoryDetailModal(categorySq, categoryName) {
         success: function (data) {
             $(data.menuDTOList).each(function () {
                 $("#category-card-body").append('<div class="O-side-order-card a-side-order-card">\n' +
-                    '                            <div class="O-menu-side-img">\n' +
+                    '                            <div class="O-menu.js-side-img">\n' +
                     '                                <img src="' + this.imgDTOList[0].imgPath + '/' + this.imgDTOList[0].imgName + '" class="O-side-img">\n' +
                     '                            </div>\n' +
-                    '                            <div class="O-menu-side-name M-font O-font-mini-size M-text-center">\n' +
-                    '                                <p class="O-menu-side-name-p">' + this.menuName + '</p>\n' +
+                    '                            <div class="O-menu.js-side-name M-font O-font-mini-size M-text-center">\n' +
+                    '                                <p class="O-menu.js-side-name-p">' + this.menuName + '</p>\n' +
                     '                            </div>\n' +
                     '                        </div>');
             });

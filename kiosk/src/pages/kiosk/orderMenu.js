@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 import CategoryList from "./side/CategoryList";
 import MainMenu from "./menu/MainMenu";
 
-const OrderMenu = ({menu, categoryList, orderStatus}) => {
+const OrderMenu = ({menu, categoryList, orderStatus, setMenuFun}) => {
 
     const navigate = useNavigate();
 
@@ -68,7 +68,7 @@ const OrderMenu = ({menu, categoryList, orderStatus}) => {
                             <div
                                 style={{width: '100%', height: '96%'}}
                                 className="M-overlay">
-                                <MainMenu menu={menu}/>
+                                <MainMenu menu={menu} setMenuFun={setMenuFun}/>
                             </div>
                         </div>
                     </div>

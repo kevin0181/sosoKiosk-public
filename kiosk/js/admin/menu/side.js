@@ -96,12 +96,12 @@ function AddSideMenu() {
     var sideCategorySq = $("#sideCategorySelect").attr("name");
 
 
-    if ($("#menu-side-name").val() == "") {
+    if ($("#menu.js-side-name").val() == "") {
         $("#progress-small-side").text("이름을 입력해주세요.");
         return false;
     }
 
-    if ($("#menu-side-name").val().length > 10) {
+    if ($("#menu.js-side-name").val().length > 10) {
         $("#progress-small-side").text("사이드 메뉴 이름의 최대 길이를 초과하였습니다. (10자리수)");
         return false;
     }
@@ -183,7 +183,7 @@ function AddSideMenu() {
                 $("#admin-main-side-select-img").hide();
 
             } else { //정상
-                $("#progress-small-side").text($("#menu-side-name").val() + "를 추가하였습니다.");
+                $("#progress-small-side").text($("#menu.js-side-name").val() + "를 추가하였습니다.");
                 $("#categorySelect").val("");
                 $(".sideMenuInputDiv input").val("");
                 $("#side-fileUrl").text("");
@@ -225,7 +225,7 @@ function deleteSideMenu(menuSideSq) {
         success: function (data) {
             if (data) {
                 // deleteModalClose();
-                location.href = "/admin/menu?status=sideAll";
+                location.href = "/admin/menu.js?status=sideAll";
             } else {
                 $("#delete-modal-Body").empty();
                 $("#delete-modal-Body").append('<small style="color: red;font-size: 20px;">삭제를 실패하였습니다. 다시 시도하시겠습니까?</small>');
@@ -254,7 +254,7 @@ function sideMenuDetailModal(menuSideSq) {
             console.log(data);
 
             $("#menuSideSq").val(data.menuSideSq);
-            $("#menu-side-name").val(data.menuSideName);
+            $("#menu.js-side-name").val(data.menuSideName);
             $("#menuSidePrice").val(data.menuSidePrice);
             $("#sideSelectByAddSide").val(data.sideCategoryDTO.sideDTO.sideName);
             $("#sideSelectByAddSide").attr("name", data.sideCategoryDTO.sideDTO.sideSq);
@@ -267,7 +267,7 @@ function sideMenuDetailModal(menuSideSq) {
         }
     });
 
-    $(".menu-detail-modal").show();
+    $(".menu.js-detail-modal").show();
 
 }
 
@@ -295,12 +295,12 @@ function changeSideMenu() {
     }
 
 
-    if ($("#menu-side-name").val() == "") {
+    if ($("#menu.js-side-name").val() == "") {
         $("#progress-small-side").text("이름을 입력해주세요.");
         return false;
     }
 
-    if ($("#menu-side-name").val().length > 10) {
+    if ($("#menu.js-side-name").val().length > 10) {
         $("#progress-small-side").text("사이드 메뉴 이름의 최대 길이를 초과하였습니다. (10자리수)");
         return false;
     }
@@ -385,8 +385,8 @@ function changeSideMenu() {
                 $("#admin-main-side-select-img").hide();
 
             } else { //정상
-                $("#progress-small-side").text($("#menu-side-name").val() + "를 추가하였습니다.");
-                $("#menu-fileUrl").text("이미지 변경을 원하시면 선택하세요.");
+                $("#progress-small-side").text($("#menu.js-side-name").val() + "를 추가하였습니다.");
+                $("#menu.js-fileUrl").text("이미지 변경을 원하시면 선택하세요.");
                 $("#changeStatus").val(true);
             }
         },
@@ -398,12 +398,12 @@ function changeSideMenu() {
 function sideMenuModalDetailClose() {
 
     if ($("#changeStatus").val()) {
-        location.href = "/admin/menu?status=sideAll";
+        location.href = "/admin/menu.js?status=sideAll";
     }
 
     $("#sideMenuDetailModal").hide();
     $("#menuSideSq").val("");
-    $("#menu-side-name").val("");
+    $("#menu.js-side-name").val("");
     $("#menuSidePrice").val("");
     $("#sideSelectByAddSide").val("");
     $("#sideSelectByAddSide").attr("name", "");
@@ -459,11 +459,11 @@ function sideDetailModal(sideSq, sideName) {
 
                     $(sideData.menuSideDTOList).each(function () {
                         $("#side-card-body").append(' <div class="O-side-order-card a-side-order-card">\n' +
-                            '                            <div class="O-menu-side-img">\n' +
+                            '                            <div class="O-menu.js-side-img">\n' +
                             '                                <img src="' + this.menuSideImgDTOList[0].menuSideImgPath + '/' + this.menuSideImgDTOList[0].menuSideImgName + '" class="O-side-img">\n' +
                             '                            </div>\n' +
-                            '                            <div class="O-menu-side-name M-font O-font-mini-size M-text-center">\n' +
-                            '                                <p class="O-menu-side-name-p">' + this.menuSideName + '</p>\n' +
+                            '                            <div class="O-menu.js-side-name M-font O-font-mini-size M-text-center">\n' +
+                            '                                <p class="O-menu.js-side-name-p">' + this.menuSideName + '</p>\n' +
                             '                            </div>\n' +
                             '                        </div>');
                     });
@@ -520,11 +520,11 @@ function sideCategoryChange(sideCategorySq, sideCategoryName) {
         }, success: function (sideData) {
             $(sideData.menuSideDTOList).each(function () {
                 $("#side-card-body").append(' <div class="O-side-order-card a-side-order-card">\n' +
-                    '                            <div class="O-menu-side-img">\n' +
+                    '                            <div class="O-menu.js-side-img">\n' +
                     '                                <img src="' + this.menuSideImgDTOList[0].menuSideImgPath + '/' + this.menuSideImgDTOList[0].menuSideImgName + '" class="O-side-img">\n' +
                     '                            </div>\n' +
-                    '                            <div class="O-menu-side-name M-font O-font-mini-size M-text-center">\n' +
-                    '                                <p class="O-menu-side-name-p">' + this.menuSideName + '</p>\n' +
+                    '                            <div class="O-menu.js-side-name M-font O-font-mini-size M-text-center">\n' +
+                    '                                <p class="O-menu.js-side-name-p">' + this.menuSideName + '</p>\n' +
                     '                            </div>\n' +
                     '                        </div>');
             });

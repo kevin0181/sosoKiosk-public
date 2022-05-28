@@ -90,7 +90,7 @@ const AdminSide = () => {
                                     <div className="text M-font O-category-font">
                                         <div className="O-category-name" id="menuList"
                                              onClick={() => {
-                                                 navigate("/admin/menu?status=all");
+                                                 navigate("/admin/menu.js?status=all");
                                              }}>
                                             <p className="O-category-a">메뉴 관리</p>
                                         </div>

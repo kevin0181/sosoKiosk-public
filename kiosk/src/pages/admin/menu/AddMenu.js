@@ -111,7 +111,7 @@ const AddMenu = ({modalContentChange}) => {
                 imgUrl: ''
             });
 
-            $('#menu-fileUrl').text('');
+            $('#menu.js-fileUrl').text('');
 
             modalContentChange({
                 status: true,
@@ -131,7 +131,7 @@ const AddMenu = ({modalContentChange}) => {
 
         if (e.target.name === 'menuImg') {
             const uploadFile = e.target.files[0]
-            $("#menu-fileUrl").text(uploadFile.name);
+            $("#menu.js-fileUrl").text(uploadFile.name);
             const reader = new FileReader();
             reader.readAsDataURL(uploadFile);
             return new Promise((resolve) => {

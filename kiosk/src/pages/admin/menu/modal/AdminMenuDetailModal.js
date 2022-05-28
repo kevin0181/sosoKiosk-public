@@ -199,7 +199,7 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeMenuData, 
                 setSpinner(false);
             });
 
-            $('#menu-fileUrl').text('');
+            $('#menu.js-fileUrl').text('');
 
             modalContentChange({
                 status: true,
@@ -219,7 +219,7 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeMenuData, 
 
         if (e.target.name === 'menuImg') {
             const uploadFile = e.target.files[0]
-            $("#menu-fileUrl").text(uploadFile.name);
+            $("#menu.js-fileUrl").text(uploadFile.name);
             setImgStatus(true);
             const reader = new FileReader();
             reader.readAsDataURL(uploadFile);

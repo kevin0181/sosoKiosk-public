@@ -248,7 +248,7 @@ function orderInfoModalShow(orderSq) {
     $("#orderInfoBody").empty();
 
     $("#orderInfoCategoryBar").append('<div class="O-category-part" >\n' +
-        '                    <div  onclick="getOrderInfo(' + orderSq + ',this)" id="orderPart" class="M-font O-font-mini-size O-category-box O-category-box-menu"\n' +
+        '                    <div  onclick="getOrderInfo(' + orderSq + ',this)" id="orderPart" class="M-font O-font-mini-size O-category-box O-category-box-menu.js"\n' +
         '                       style="background-color: #838383;">\n' +
         '                        <p>주문 정보</p>\n' +
         '                    </div>\n' +

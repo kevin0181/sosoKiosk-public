@@ -1,7 +1,7 @@
 import axios from "axios";
 import serverUrl from "../../../pages/config/server.json";
 
-export async function getSideMenuList() { //get side menu List
+export async function getSideMenuList() { //get side menu.js List
     const response = await axios.post('http://' + serverUrl.server + '/admin/menu/get/all/side');
     return response.data;
 }
@@ -34,7 +34,7 @@ export const getSideCategoryList = async (sideSq) => {
 //
 //         $.ajax({
 //             type: "get",
-//             url: "/admin/menu/get/list",
+//             url: "/admin/menu.js/get/list",
 //             dataType: "JSON",
 //             data: {
 //                 "status": "side"
@@ -76,7 +76,7 @@ export const getSideCategoryList = async (sideSq) => {
 //
 //         $.ajax({
 //             type: "get",
-//             url: "/admin/menu/get/find/side",
+//             url: "/admin/menu.js/get/find/side",
 //             dataType: "JSON",
 //             data: {
 //                 "sideSq": sideSq
@@ -114,12 +114,12 @@ export const getSideCategoryList = async (sideSq) => {
 //     var sideCategorySq = $("#sideCategorySelect").attr("name");
 //
 //
-//     if ($("#menu-side-name").val() == "") {
+//     if ($("#menu.js-side-name").val() == "") {
 //         $("#progress-small-side").text("이름을 입력해주세요.");
 //         return false;
 //     }
 //
-//     if ($("#menu-side-name").val().length > 10) {
+//     if ($("#menu.js-side-name").val().length > 10) {
 //         $("#progress-small-side").text("사이드 메뉴 이름의 최대 길이를 초과하였습니다. (10자리수)");
 //         return false;
 //     }
@@ -176,7 +176,7 @@ export const getSideCategoryList = async (sideSq) => {
 //
 //     $.ajax({
 //         type: "POST",
-//         url: "/admin/menu/add/sideMenu",
+//         url: "/admin/menu.js/add/sideMenu",
 //         dataType: "json",
 //         processData: false,
 //         contentType: false,
@@ -201,7 +201,7 @@ export const getSideCategoryList = async (sideSq) => {
 //                 $("#admin-main-side-select-img").hide();
 //
 //             } else { //정상
-//                 $("#progress-small-side").text($("#menu-side-name").val() + "를 추가하였습니다.");
+//                 $("#progress-small-side").text($("#menu.js-side-name").val() + "를 추가하였습니다.");
 //                 $("#categorySelect").val("");
 //                 $(".sideMenuInputDiv input").val("");
 //                 $("#side-fileUrl").text("");
@@ -235,7 +235,7 @@ export const getSideCategoryList = async (sideSq) => {
 //
 //     $.ajax({
 //         type: "POST",
-//         url: "/admin/menu/delete/sideMenu",
+//         url: "/admin/menu.js/delete/sideMenu",
 //         dataType: "json",
 //         data: {
 //             "menuSideSq": menuSideSq,
@@ -243,7 +243,7 @@ export const getSideCategoryList = async (sideSq) => {
 //         success: function (data) {
 //             if (data) {
 //                 // deleteModalClose();
-//                 location.href = "/admin/menu?status=sideAll";
+//                 location.href = "/admin/menu.js?status=sideAll";
 //             } else {
 //                 $("#delete-modal-Body").empty();
 //                 $("#delete-modal-Body").append('<small style="color: red;font-size: 20px;">삭제를 실패하였습니다. 다시 시도하시겠습니까?</small>');
@@ -262,7 +262,7 @@ export const getSideCategoryList = async (sideSq) => {
 //
 //     $.ajax({
 //         type: "POST",
-//         url: "/admin/menu/get/find/sideMenu",
+//         url: "/admin/menu.js/get/find/sideMenu",
 //         dataType: "JSON",
 //         data: {
 //             "menuSideSq": menuSideSq,
@@ -272,7 +272,7 @@ export const getSideCategoryList = async (sideSq) => {
 //             console.log(data);
 //
 //             $("#menuSideSq").val(data.menuSideSq);
-//             $("#menu-side-name").val(data.menuSideName);
+//             $("#menu.js-side-name").val(data.menuSideName);
 //             $("#menuSidePrice").val(data.menuSidePrice);
 //             $("#sideSelectByAddSide").val(data.sideCategoryDTO.sideDTO.sideName);
 //             $("#sideSelectByAddSide").attr("name", data.sideCategoryDTO.sideDTO.sideSq);
@@ -285,7 +285,7 @@ export const getSideCategoryList = async (sideSq) => {
 //         }
 //     });
 //
-//     $(".menu-detail-modal").show();
+//     $(".menu.js-detail-modal").show();
 //
 // }
 //
@@ -313,12 +313,12 @@ export const getSideCategoryList = async (sideSq) => {
 //     }
 //
 //
-//     if ($("#menu-side-name").val() == "") {
+//     if ($("#menu.js-side-name").val() == "") {
 //         $("#progress-small-side").text("이름을 입력해주세요.");
 //         return false;
 //     }
 //
-//     if ($("#menu-side-name").val().length > 10) {
+//     if ($("#menu.js-side-name").val().length > 10) {
 //         $("#progress-small-side").text("사이드 메뉴 이름의 최대 길이를 초과하였습니다. (10자리수)");
 //         return false;
 //     }
@@ -378,7 +378,7 @@ export const getSideCategoryList = async (sideSq) => {
 //
 //     $.ajax({
 //         type: "POST",
-//         url: "/admin/menu/change/sideMenu",
+//         url: "/admin/menu.js/change/sideMenu",
 //         dataType: "json",
 //         processData: false,
 //         contentType: false,
@@ -403,8 +403,8 @@ export const getSideCategoryList = async (sideSq) => {
 //                 $("#admin-main-side-select-img").hide();
 //
 //             } else { //정상
-//                 $("#progress-small-side").text($("#menu-side-name").val() + "를 추가하였습니다.");
-//                 $("#menu-fileUrl").text("이미지 변경을 원하시면 선택하세요.");
+//                 $("#progress-small-side").text($("#menu.js-side-name").val() + "를 추가하였습니다.");
+//                 $("#menu.js-fileUrl").text("이미지 변경을 원하시면 선택하세요.");
 //                 $("#changeStatus").val(true);
 //             }
 //         },
@@ -416,12 +416,12 @@ export const getSideCategoryList = async (sideSq) => {
 // function sideMenuModalDetailClose() {
 //
 //     if ($("#changeStatus").val()) {
-//         location.href = "/admin/menu?status=sideAll";
+//         location.href = "/admin/menu.js?status=sideAll";
 //     }
 //
 //     $("#sideMenuDetailModal").hide();
 //     $("#menuSideSq").val("");
-//     $("#menu-side-name").val("");
+//     $("#menu.js-side-name").val("");
 //     $("#menuSidePrice").val("");
 //     $("#sideSelectByAddSide").val("");
 //     $("#sideSelectByAddSide").attr("name", "");
@@ -477,11 +477,11 @@ export const getSideCategoryList = async (sideSq) => {
 //
 //                     $(sideData.menuSideDTOList).each(function () {
 //                         $("#side-card-body").append(' <div class="O-side-order-card a-side-order-card">\n' +
-//                             '                            <div class="O-menu-side-img">\n' +
+//                             '                            <div class="O-menu.js-side-img">\n' +
 //                             '                                <img src="' + this.menuSideImgDTOList[0].menuSideImgPath + '/' + this.menuSideImgDTOList[0].menuSideImgName + '" class="O-side-img">\n' +
 //                             '                            </div>\n' +
-//                             '                            <div class="O-menu-side-name M-font O-font-mini-size M-text-center">\n' +
-//                             '                                <p class="O-menu-side-name-p">' + this.menuSideName + '</p>\n' +
+//                             '                            <div class="O-menu.js-side-name M-font O-font-mini-size M-text-center">\n' +
+//                             '                                <p class="O-menu.js-side-name-p">' + this.menuSideName + '</p>\n' +
 //                             '                            </div>\n' +
 //                             '                        </div>');
 //                     });
@@ -538,11 +538,11 @@ export const getSideCategoryList = async (sideSq) => {
 //         }, success: function (sideData) {
 //             $(sideData.menuSideDTOList).each(function () {
 //                 $("#side-card-body").append(' <div class="O-side-order-card a-side-order-card">\n' +
-//                     '                            <div class="O-menu-side-img">\n' +
+//                     '                            <div class="O-menu.js-side-img">\n' +
 //                     '                                <img src="' + this.menuSideImgDTOList[0].menuSideImgPath + '/' + this.menuSideImgDTOList[0].menuSideImgName + '" class="O-side-img">\n' +
 //                     '                            </div>\n' +
-//                     '                            <div class="O-menu-side-name M-font O-font-mini-size M-text-center">\n' +
-//                     '                                <p class="O-menu-side-name-p">' + this.menuSideName + '</p>\n' +
+//                     '                            <div class="O-menu.js-side-name M-font O-font-mini-size M-text-center">\n' +
+//                     '                                <p class="O-menu.js-side-name-p">' + this.menuSideName + '</p>\n' +
 //                     '                            </div>\n' +
 //                     '                        </div>');
 //             });

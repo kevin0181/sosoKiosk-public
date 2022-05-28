@@ -34,7 +34,7 @@ export const getSideList = async () => { //get side list
 //
 //     $.ajax({
 //         type: "get",
-//         url: "/admin/menu/get/list",
+//         url: "/admin/menu.js/get/list",
 //         dataType: "JSON",
 //         data: {
 //             "status": "category"
@@ -65,7 +65,7 @@ export const getSideList = async () => { //get side list
 //
 //     $.ajax({
 //         type: "get",
-//         url: "/admin/menu/get/list",
+//         url: "/admin/menu.js/get/list",
 //         dataType: "JSON",
 //         data: {
 //             "status": "side"
@@ -105,38 +105,38 @@ export const getSideList = async () => { //get side list
 //     var categorySq = $("#categorySelect").attr("name");
 //     var sideSq = $("#sideSelect").attr("name");
 //
-//     $("#progress-small-menu").text("");
-//     $("#menu-progressBar").show();
+//     $("#progress-small-menu.js").text("");
+//     $("#menu.js-progressBar").show();
 //
 //
 //     if ($("#menuName").val() == "") {
-//         $("#progress-small-menu").text("메뉴 이름을 입력하세요.");
+//         $("#progress-small-menu.js").text("메뉴 이름을 입력하세요.");
 //         return false;
 //     }
 //
 //     if ($("#menuName").val().length > 10) {
-//         $("#progress-small-menu").text("메뉴 이름의 최대 길이를 초과하였습니다. (10자리수)");
+//         $("#progress-small-menu.js").text("메뉴 이름의 최대 길이를 초과하였습니다. (10자리수)");
 //         return false;
 //     }
 //
 //     if ($("#menuPrice").val() == "") {
-//         $("#progress-small-menu").text("가격을 입력하세요.");
+//         $("#progress-small-menu.js").text("가격을 입력하세요.");
 //         return false;
 //     }
 //
 //     if ($("#menuPrice").val().length > 8) {
-//         $("#progress-small-menu").text("가격의 최대 길이를 초과하였습니다. (8자리수)");
+//         $("#progress-small-menu.js").text("가격의 최대 길이를 초과하였습니다. (8자리수)");
 //         return false;
 //     }
 //
 //     var regExp = /^[0-9]*$/;
 //     if (!regExp.test($("#menuPrice").val())) {
-//         $("#progress-small-menu").text("숫자를 입력하세요.");
+//         $("#progress-small-menu.js").text("숫자를 입력하세요.");
 //         return false;
 //     }
 //
 //     if (categorySq == null) {
-//         $("#progress-small-menu").text("카테고리를 선택하세요.");
+//         $("#progress-small-menu.js").text("카테고리를 선택하세요.");
 //         categorySq = 0;
 //         return false;
 //     }
@@ -153,7 +153,7 @@ export const getSideList = async () => { //get side list
 //
 //     $.ajax({
 //         type: "POST",
-//         url: "/admin/menu/add/menu",
+//         url: "/admin/menu.js/add/menu.js",
 //         dataType: "json",
 //         processData: false,
 //         contentType: false,
@@ -162,7 +162,7 @@ export const getSideList = async () => { //get side list
 //             var xhr = $.ajaxSettings.xhr();
 //             xhr.upload.onprogress = function (e) {
 //                 var per = e.loaded * 100 / e.total;
-//                 progressBar(per, "menu-progressBar");
+//                 progressBar(per, "menu.js-progressBar");
 //             };
 //             return xhr;
 //         },
@@ -170,20 +170,20 @@ export const getSideList = async () => { //get side list
 //
 //             if (data.status) { //에러
 //
-//                 $("#progress-small-menu").text(data.message);
-//                 $("#menu-progressBar").val(0);
+//                 $("#progress-small-menu.js").text(data.message);
+//                 $("#menu.js-progressBar").val(0);
 //                 $("#categorySelect").val("");
 //                 $(".menuInputDiv input").val("");
-//                 $("#menu-fileUrl").text("");
-//                 $("#admin-main-menu-select-img").hide();
+//                 $("#menu.js-fileUrl").text("");
+//                 $("#admin-main-menu.js-select-img").hide();
 //                 resetAddMenuForm();
 //
 //             } else { //정상
-//                 $("#progress-small-menu").text($("#menuName").val() + "를 추가하였습니다.");
+//                 $("#progress-small-menu.js").text($("#menuName").val() + "를 추가하였습니다.");
 //                 $("#categorySelect").val("");
 //                 $(".menuInputDiv input").val("");
-//                 $("#menu-fileUrl").text("");
-//                 $("#admin-main-menu-select-img").hide();
+//                 $("#menu.js-fileUrl").text("");
+//                 $("#admin-main-menu.js-select-img").hide();
 //                 resetAddMenuForm();
 //             }
 //         },

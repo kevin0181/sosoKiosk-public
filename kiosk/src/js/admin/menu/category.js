@@ -3,7 +3,7 @@ import axios from "axios";
 import serverUrl from "../../../pages/config/server.json";
 
 export function searchCategory() {
-    $("#all-category-search").on("change keyup paste", function () { //search menu
+    $("#all-category-search").on("change keyup paste", function () { //search menu.js
         var result = $(this).val();
         $(".admin-tbody-tr-category").hide();
         var temp = $(".admin-tbody-tr-category:contains('" + result + "')");
@@ -13,7 +13,7 @@ export function searchCategory() {
 
 
 export function searchSide() {
-    $("#all-side-search").on("change keyup paste", function () { //search menu
+    $("#all-side-search").on("change keyup paste", function () { //search menu.js
         var result = $(this).val();
         $(".admin-tbody-tr-side").hide();
         var temp = $(".admin-tbody-tr-side:contains('" + result + "')");
@@ -82,7 +82,7 @@ export async function renameSide(sideSq, sideName) { //Side 수정
 //
 //         $.ajax({
 //             type: "get",
-//             url: "/admin/menu/get/side",
+//             url: "/admin/menu.js/get/side",
 //             dataType: "JSON",
 //             success: function (data) {
 //
@@ -137,14 +137,14 @@ export async function renameSide(sideSq, sideName) { //Side 수정
 //
 //     $.ajax({
 //         type: "get",
-//         url: "/admin/menu/get/list",
+//         url: "/admin/menu.js/get/list",
 //         dataType: "JSON",
 //         data: {
 //             "status": status
 //         },
 //         success: function (data) {
 //             if (data == null) {
-//                 location.href = "/admin/menu?status=category";
+//                 location.href = "/admin/menu.js?status=category";
 //             }
 //
 //             if (data.length == 0) {
@@ -219,7 +219,7 @@ export async function renameSide(sideSq, sideName) { //Side 수정
 //
 //     $.ajax({
 //         type: "POST",
-//         url: "/admin/menu/add/category",
+//         url: "/admin/menu.js/add/category",
 //         dataType: "JSON",
 //         data: {
 //             "categoryName": category
@@ -264,7 +264,7 @@ export async function renameSide(sideSq, sideName) { //Side 수정
 //
 //     $.ajax({
 //         type: "POST",
-//         url: "/admin/menu/add/side",
+//         url: "/admin/menu.js/add/side",
 //         dataType: "JSON",
 //         data: {
 //             "sideName": sideName
@@ -308,7 +308,7 @@ export async function renameSide(sideSq, sideName) { //Side 수정
 //
 //     $.ajax({
 //         type: "POST",
-//         url: "/admin/menu/add/sideCategory",
+//         url: "/admin/menu.js/add/sideCategory",
 //         dataType: "JSON",
 //         data: {
 //             "sideSq": sideSq,
@@ -351,7 +351,7 @@ export async function renameSide(sideSq, sideName) { //Side 수정
 //
 //     $.ajax({
 //         type: "POST",
-//         url: "/admin/menu/delete/" + status,
+//         url: "/admin/menu.js/delete/" + status,
 //         dataType: "JSON",
 //         data: {
 //             "status": sq,
@@ -412,16 +412,16 @@ export async function renameSide(sideSq, sideName) { //Side 수정
 //
 //     $.ajax({
 //         type: "POST",
-//         url: "/admin/menu/delete/" + status,
+//         url: "/admin/menu.js/delete/" + status,
 //         dataType: "JSON",
 //         data: {
 //             "status": sq,
 //         },
 //         success: function (data) {
-//             location.href = "/admin/menu?status=category";
+//             location.href = "/admin/menu.js?status=category";
 //         },
 //         error: function () {
-//             location.href = "/admin/menu?status=category";
+//             location.href = "/admin/menu.js?status=category";
 //         }
 //     });
 // }
@@ -490,11 +490,11 @@ export async function renameSide(sideSq, sideName) { //Side 수정
 //             "changeName": changeName
 //         },
 //         success: function (data) {
-//             location.href = "/admin/menu?status=category";
+//             location.href = "/admin/menu.js?status=category";
 //         }
 //         ,
 //         error: function () {
-//             location.href = "/admin/menu?status=category";
+//             location.href = "/admin/menu.js?status=category";
 //         }
 //     });
 //
@@ -516,11 +516,11 @@ export async function renameSide(sideSq, sideName) { //Side 수정
 //         success: function (data) {
 //             $(data.menuDTOList).each(function () {
 //                 $("#category-card-body").append('<div class="O-side-order-card a-side-order-card">\n' +
-//                     '                            <div class="O-menu-side-img">\n' +
+//                     '                            <div class="O-menu.js-side-img">\n' +
 //                     '                                <img src="' + this.imgDTOList[0].imgPath + '/' + this.imgDTOList[0].imgName + '" class="O-side-img">\n' +
 //                     '                            </div>\n' +
-//                     '                            <div class="O-menu-side-name M-font O-font-mini-size M-text-center">\n' +
-//                     '                                <p class="O-menu-side-name-p">' + this.menuName + '</p>\n' +
+//                     '                            <div class="O-menu.js-side-name M-font O-font-mini-size M-text-center">\n' +
+//                     '                                <p class="O-menu.js-side-name-p">' + this.menuName + '</p>\n' +
 //                     '                            </div>\n' +
 //                     '                        </div>');
 //             });

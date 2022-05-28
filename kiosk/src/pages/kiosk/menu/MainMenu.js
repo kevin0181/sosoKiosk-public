@@ -1,6 +1,16 @@
 import serverUrl from "../../config/server.json";
+import {useEffect, useState} from "react";
+import {useSearchParams} from "react-router-dom";
+import {getMenuList} from "../../../js/kiosk/menu";
 
-const MainMenu = ({menu}) => {
+const MainMenu = ({menu, setMenuFun}) => {
+
+    const [mainParams] = useSearchParams();
+    const status = mainParams.get('categorySq');
+
+    const [viewMenu, setViewMenu] = useState(menu);
+
+
 
     const imgCheck = (imgDTOList) => {
 
