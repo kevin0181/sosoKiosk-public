@@ -1,8 +1,11 @@
 import {useEffect, useState} from "react";
 import {getSideCategory} from "../../../../../js/admin/menu/category";
+import serverUrl from "../../../../config/server.json";
 
 const SideDetailModal = ({modalStatus, modalContentChange, data, setDataFun}) => {
 
+    const [menuList, setMenuList] = useState([]);
+    const [noMessage, setNoMessage] = useState(false);
 
     //스피너
     const [spinner, setSpinner] = useState(true);
@@ -16,6 +19,8 @@ const SideDetailModal = ({modalStatus, modalContentChange, data, setDataFun}) =>
                 sideCategory: side.sideCategoryDTOList
             });
             setSpinner(false);
+            setNoMessage(true);
+            setMenuList(side.sideCategoryDTOList[0].menuSideDTOList);
         });
     }, []);
 
@@ -33,6 +38,22 @@ const SideDetailModal = ({modalStatus, modalContentChange, data, setDataFun}) =>
             sendId: '',
             sendName: ''
         });
+    }
+
+
+    const DetailMenu = (categoryData) => {
+        setMenuList(categoryData.menuSideDTOList);
+    }
+    const NoMessageFun = () => {
+
+        if (noMessage) {
+            return <div><p className="O-menu-side-name-p M-font" style={{fontSize: '50px'}}>메뉴가
+                없습니다.</p>
+            </div>
+        } else {
+            return <></>
+        }
+
     }
 
     return (
@@ -72,6 +93,9 @@ const SideDetailModal = ({modalStatus, modalContentChange, data, setDataFun}) =>
                             sideCategory.sideCategory.map((it) => (
                                 <div className="O-category-part" key={it.sideCategorySq}>
                                     <div className="M-font O-font-mini-size O-category-box"
+                                         onClick={() => {
+                                             DetailMenu(it)
+                                         }}
                                          style={{backgroundColor: '#838383'}}>
                                         <p>{it.sideCategoryName}</p>
                                     </div>
@@ -85,20 +109,24 @@ const SideDetailModal = ({modalStatus, modalContentChange, data, setDataFun}) =>
                              style={{padding: '10px 40px', width: '100%', height: '100%'}}>
                             <div className="O-side-order-part M-overlay" id="category-card-body"
                                  style={{width: '100%', height: '100%', flexWrap: 'wrap', justifyContent: 'center'}}>
+                                {
+                                    menuList.length === 0 ? (
+                                        <NoMessageFun/>
+                                    ) : (
+                                        menuList.map((it) => (
+                                            <div className="O-side-order-card a-side-order-card" key={it.menuSideSq}>
+                                                <div className="O-menu-side-img">
+                                                    <img className="O-side-img" alt={'side 메뉴 이미지'}
+                                                         src={'http://' + serverUrl.server + it.menuSideImgDTOList[0].menuSideImgPath + '/' + it.menuSideImgDTOList[0].menuSideImgName}/>
+                                                </div>
+                                                <div className="O-menu-side-name M-font O-font-mini-size M-text-center">
+                                                    <p className="O-menu-side-name-p">{it.menuSideName}</p>
+                                                </div>
+                                            </div>
+                                        ))
+                                    )
 
-                                {/*{*/}
-                                {/*    categoryByMenu.all.map((it) => (*/}
-                                {/*        <div className="O-side-order-card a-side-order-card" key={it.menuSq}>*/}
-                                {/*            <div className="O-menu-side-img">*/}
-                                {/*                <img className="O-side-img" alt={'사이드 메뉴 이미지'}*/}
-                                {/*                     src={'http://' + serverUrl.server + it.imgDTOList[0].imgPath + '/' + it.imgDTOList[0].imgName}/>*/}
-                                {/*            </div>*/}
-                                {/*            <div className="O-menu-side-name M-font O-font-mini-size M-text-center">*/}
-                                {/*                <p className="O-menu-side-name-p">{it.menuName}</p>*/}
-                                {/*            </div>*/}
-                                {/*        </div>*/}
-                                {/*    ))*/}
-                                {/*}*/}
+                                }
                             </div>
                         </div>
                     </div>
