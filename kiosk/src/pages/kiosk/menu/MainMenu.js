@@ -2,7 +2,7 @@ import serverUrl from "../../config/server.json";
 import {useEffect, useState} from "react";
 import {useSearchParams} from "react-router-dom";
 
-const MainMenu = ({menu, setMenuFun}) => {
+const MainMenu = ({menu, menuModalContentChange}) => {
 
     const [mainParams] = useSearchParams();
     const status = mainParams.get('categorySq');
@@ -16,6 +16,7 @@ const MainMenu = ({menu, setMenuFun}) => {
             menu: menu
         });
     }, []);
+
     useEffect(() => {
         if (Number(status) !== 0) {
             changeMenu();
@@ -55,7 +56,16 @@ const MainMenu = ({menu, setMenuFun}) => {
         <div className="O-flex-menu">
             {viewMenu.menu.map((it) => (
                 <div className="O-card" key={it.menuSq}>
-                    <div className="O-card-all">
+                    <div className="O-card-all" onClick={() => {
+                        menuModalContentChange({
+                            status: true,
+                            param: status,
+                            modalType: 'orderMenuDetail',
+                            modalTitle: it.menuName + ' 상세 보기',
+                            modalContent: '',
+                            menu: it
+                        });
+                    }}>
                         <div className="O-card-header">
                             <div className="O-card-header-img">
                                 {

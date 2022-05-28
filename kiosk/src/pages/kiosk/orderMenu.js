@@ -2,6 +2,8 @@ import backImg from './../../img/backImg.png'
 import {useNavigate} from "react-router-dom";
 import CategoryList from "./side/CategoryList";
 import MainMenu from "./menu/MainMenu";
+import {useState} from "react";
+import KioskMainModal from "./KioskMainModal";
 
 const OrderMenu = ({menu, categoryList, orderStatus, setMenuFun}) => {
 
@@ -11,9 +13,24 @@ const OrderMenu = ({menu, categoryList, orderStatus, setMenuFun}) => {
         navigate('/');
     }
 
+    const [menuModalStatus, setMenuModalStatus] = useState({
+        status: false,
+        param: '',
+        modalType: '',
+        modalTitle: '',
+        modalContent: '',
+        menu: ''
+    });
+
+    const menuModalContentChange = (data) => {
+        setMenuModalStatus(data);
+    }
+
     return (
         <div className="container"
              id="addMenuContainer">
+            <KioskMainModal menuModalStatus={menuModalStatus} menuModalContentChange={menuModalContentChange}
+                            menu={menu} categoryList={categoryList}/>
             <div className="container M-flex-row">
                 <div className="O-order-side-all">
                     <div className="O-order-Side">
@@ -68,7 +85,8 @@ const OrderMenu = ({menu, categoryList, orderStatus, setMenuFun}) => {
                             <div
                                 style={{width: '100%', height: '96%'}}
                                 className="M-overlay">
-                                <MainMenu menu={menu} setMenuFun={setMenuFun}/>
+                                <MainMenu menu={menu}
+                                          menuModalContentChange={menuModalContentChange}/>
                             </div>
                         </div>
                     </div>
