@@ -10,8 +10,8 @@ sosokiosk/kiosk/ServletInitializer.java
  sosokiosk.kiosk.ServletInitializer
 sosokiosk/kiosk/entity/side/SideEntity.java
  sosokiosk.kiosk.entity.side.SideEntity
-sosokiosk/kiosk/subDto/ChangeMenuDTO.java
- sosokiosk.kiosk.subDto.ChangeMenuDTO
+sosokiosk/kiosk/admin/controller/menu/SideMenuController.java
+ sosokiosk.kiosk.admin.controller.menu.SideMenuController
 sosokiosk/kiosk/repository/setting/SettingRepository.java
  sosokiosk.kiosk.repository.setting.SettingRepository
 sosokiosk/kiosk/dto/order/getOrder/SendMenuSideDTO.java
@@ -20,14 +20,14 @@ sosokiosk/kiosk/entity/menu/MenuEntity.java
  sosokiosk.kiosk.entity.menu.MenuEntity
 sosokiosk/kiosk/dto/order/getOrder/SendOrderDetailDTO.java
  sosokiosk.kiosk.dto.order.getOrder.SendOrderDetailDTO
-sosokiosk/kiosk/entity/order/OrderDetailEntity.java
- sosokiosk.kiosk.entity.order.OrderDetailEntity
+sosokiosk/kiosk/admin/controller/AdminController.java
+ sosokiosk.kiosk.admin.controller.AdminController
 sosokiosk/kiosk/repository/side/MenuSideImgRepository.java
  sosokiosk.kiosk.repository.side.MenuSideImgRepository
 sosokiosk/kiosk/dto/order/getOrder/SendOrderDTO.java
  sosokiosk.kiosk.dto.order.getOrder.SendOrderDTO
-sosokiosk/kiosk/service/menu/SideMenuService.java
- sosokiosk.kiosk.service.menu.SideMenuService
+sosokiosk/kiosk/admin/controller/menu/MenuController.java
+ sosokiosk.kiosk.admin.controller.menu.MenuController
 sosokiosk/kiosk/service/menu/MenuService.java
  sosokiosk.kiosk.service.menu.MenuService
 sosokiosk/kiosk/dto/order/getOrder/SendSideDTO.java
@@ -44,14 +44,10 @@ sosokiosk/kiosk/entity/User.java
  sosokiosk.kiosk.entity.User
 sosokiosk/kiosk/subDto/OrderSide.java
  sosokiosk.kiosk.subDto.OrderSide
-sosokiosk/kiosk/admin/handler/AdminLoginFailHandler.java
- sosokiosk.kiosk.admin.handler.AdminLoginFailHandler
 sosokiosk/kiosk/repository/menu/MenuRepository.java
  sosokiosk.kiosk.repository.menu.MenuRepository
 sosokiosk/kiosk/dto/order/getOrder/SendMenuDTO.java
  sosokiosk.kiosk.dto.order.getOrder.SendMenuDTO
-sosokiosk/kiosk/admin/handler/AdminLoginSuccessHandler.java
- sosokiosk.kiosk.admin.handler.AdminLoginSuccessHandler
 sosokiosk/kiosk/subDto/AddMenuDTO.java
  sosokiosk.kiosk.subDto.AddMenuDTO
 sosokiosk/kiosk/dto/order/OrderDetailDTO.java
@@ -70,8 +66,8 @@ sosokiosk/kiosk/dto/menu/CategoryDTO.java
  sosokiosk.kiosk.dto.menu.CategoryDTO
 sosokiosk/kiosk/KioskApplication.java
  sosokiosk.kiosk.KioskApplication
-sosokiosk/kiosk/entity/setting/SettingEntity.java
- sosokiosk.kiosk.entity.setting.SettingEntity
+sosokiosk/kiosk/service/menu/SideMenuService.java
+ sosokiosk.kiosk.service.menu.SideMenuService
 sosokiosk/kiosk/dto/detail/UserDetail.java
  sosokiosk.kiosk.dto.detail.UserDetail
 sosokiosk/kiosk/dto/menu/MenuDTO.java
@@ -101,8 +97,6 @@ sosokiosk/kiosk/dto/side/SideDTO.java
  sosokiosk.kiosk.dto.side.SideDTO
 sosokiosk/kiosk/service/setting/SettingService.java
  sosokiosk.kiosk.service.setting.SettingService
-sosokiosk/kiosk/service/FirebaseService.java
- sosokiosk.kiosk.service.FirebaseService
 sosokiosk/kiosk/entity/side/MenuSideImgEntity.java
  sosokiosk.kiosk.entity.side.MenuSideImgEntity
 sosokiosk/kiosk/subDto/ChangeSideMenuDTO.java
@@ -115,8 +109,8 @@ sosokiosk/kiosk/config/WebConfig.java
  sosokiosk.kiosk.config.WebConfig
 sosokiosk/kiosk/dto/order/OrderDetailSideDTO.java
  sosokiosk.kiosk.dto.order.OrderDetailSideDTO
-sosokiosk/kiosk/admin/controller/menu/CategoryController.java
- sosokiosk.kiosk.admin.controller.menu.CategoryController
+sosokiosk/kiosk/service/img/ImgService.java
+ sosokiosk.kiosk.service.img.ImgService
 sosokiosk/kiosk/dto/order/getOrder/SendCategoryDTO.java
  sosokiosk.kiosk.dto.order.getOrder.SendCategoryDTO
 sosokiosk/kiosk/repository/menu/ImgRepository.java
@@ -127,8 +121,6 @@ sosokiosk/kiosk/admin/controller/sales/SalesController.java
  sosokiosk.kiosk.admin.controller.sales.SalesController
 sosokiosk/kiosk/kiosk/config/KioskSecurityConfig.java
  sosokiosk.kiosk.kiosk.config.KioskSecurityConfig
-sosokiosk/kiosk/admin/config/FirebaseInitializer.java
- sosokiosk.kiosk.admin.config.FirebaseInitializer
 sosokiosk/kiosk/subDto/MessageDTO.java
  sosokiosk.kiosk.subDto.MessageDTO
 sosokiosk/kiosk/repository/order/OrderRepository.java
@@ -145,11 +137,11 @@ sosokiosk/kiosk/subDto/AddSideMenuDTO.java
  sosokiosk.kiosk.subDto.AddSideMenuDTO
 sosokiosk/kiosk/entity/order/OrderDetailSideEntity.java
  sosokiosk.kiosk.entity.order.OrderDetailSideEntity
-sosokiosk/kiosk/admin/controller/AdminController.java
- sosokiosk.kiosk.admin.controller.AdminController
-sosokiosk/kiosk/service/img/ImgService.java
- sosokiosk.kiosk.service.img.ImgService
-sosokiosk/kiosk/admin/controller/menu/MenuController.java
- sosokiosk.kiosk.admin.controller.menu.MenuController
-sosokiosk/kiosk/admin/controller/menu/SideMenuController.java
- sosokiosk.kiosk.admin.controller.menu.SideMenuController
+sosokiosk/kiosk/admin/controller/menu/CategoryController.java
+ sosokiosk.kiosk.admin.controller.menu.CategoryController
+sosokiosk/kiosk/entity/order/OrderDetailEntity.java
+ sosokiosk.kiosk.entity.order.OrderDetailEntity
+sosokiosk/kiosk/subDto/ChangeMenuDTO.java
+ sosokiosk.kiosk.subDto.ChangeMenuDTO
+sosokiosk/kiosk/entity/setting/SettingEntity.java
+ sosokiosk.kiosk.entity.setting.SettingEntity
