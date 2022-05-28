@@ -1,4 +1,5 @@
 import {useEffect} from "react";
+import MenuDetailModal from "./modal/MenuDetailModal";
 
 const KioskMainModal = ({menuModalStatus, menuModalContentChange, menu, categoryList}) => {
 
@@ -12,6 +13,8 @@ const KioskMainModal = ({menuModalStatus, menuModalContentChange, menu, category
 
             switch (menuModalStatus.modalType) {
                 case 'orderMenuDetail':
+                    return <MenuDetailModal menuModalStatus={menuModalStatus}
+                                            menuModalContentChange={menuModalContentChange}/>
                     break;
             }
 
