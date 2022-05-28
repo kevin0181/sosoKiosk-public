@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {getSideCategory} from "../../../../../js/admin/menu/category";
 import serverUrl from "../../../../config/server.json";
+import $ from 'jquery';
 
 const SideDetailModal = ({modalStatus, modalContentChange, data, setDataFun}) => {
 
@@ -56,6 +57,12 @@ const SideDetailModal = ({modalStatus, modalContentChange, data, setDataFun}) =>
 
     }
 
+    const changeButtonCss = (sideCategorySq) => {
+        $('.sideCategoryNone').removeClass('O-category-click-color');
+        $('#sideTopCategory' + sideCategorySq).addClass('O-category-click-color');
+    }
+
+
     return (
         <div className="O-modal-back menu-detail-modal" id="categoryDetailModal">
             {
@@ -92,11 +99,13 @@ const SideDetailModal = ({modalStatus, modalContentChange, data, setDataFun}) =>
                         {
                             sideCategory.sideCategory.map((it) => (
                                 <div className="O-category-part" key={it.sideCategorySq}>
-                                    <div className="M-font O-font-mini-size O-category-box"
-                                         onClick={() => {
-                                             DetailMenu(it)
-                                         }}
-                                         style={{backgroundColor: '#838383'}}>
+                                    <div className="M-font O-font-mini-size O-category-box sideCategoryNone"
+                                         id={'sideTopCategory' + it.sideCategorySq}
+                                         data-id={it.sideCategorySq}
+                                         onClick={(e) => {
+                                             DetailMenu(it);
+                                             changeButtonCss(it.sideCategorySq);
+                                         }}>
                                         <p>{it.sideCategoryName}</p>
                                     </div>
                                 </div>
