@@ -3,18 +3,36 @@ package sosokiosk.kiosk.admin.controller.settting;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import sosokiosk.kiosk.dto.setting.SettingDTO;
 import sosokiosk.kiosk.service.setting.SettingService;
 
 import javax.transaction.Transactional;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class SettingController {
 
     @Autowired
     private SettingService settingService;
+
+    @Transactional
+    @ResponseBody
+    @GetMapping("/admin/v1/setting")
+    public Map<String, String> adminSettingV1(@RequestParam("status") String status) {
+        Map<String, String> settingMap = new HashMap<>();
+        List<SettingDTO> settingDTOList = settingService.getSetting();
+        for (int i = 0; i < settingDTOList.size(); i++) {
+            settingMap.put(settingDTOList.get(i).getSettingName(), settingDTOList.get(i).getSettingValue());
+        }
+        return settingMap;
+    }
 
     @GetMapping("/admin/save/setting/tax")
     @Transactional
@@ -73,7 +91,7 @@ public class SettingController {
 
         try {
 
-            if (leaderName == null || leaderName.equals("")) {
+            if (leaderName == null) {
                 return false;
             }
 
@@ -96,7 +114,7 @@ public class SettingController {
 
         try {
 
-            if (businessNumber == null || businessNumber.equals("")) {
+            if (businessNumber == null) {
                 return false;
             }
 

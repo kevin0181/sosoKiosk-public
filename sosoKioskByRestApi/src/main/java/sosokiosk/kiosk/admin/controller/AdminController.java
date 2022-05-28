@@ -133,21 +133,4 @@ public class AdminController {
         return "/admin/index";
     }
 
-    @GetMapping("/admin/setting")
-    public String adminSetting(Model model, @RequestParam(value = "status", required = false) String status) {
-
-        model.addAttribute("arrowStatus", "setting");
-        model.addAttribute("status", status);
-
-        if (status.equals("paySetting")) {
-            List<SettingDTO> settingDTOList = settingService.getSetting();
-            for (int i = 0; i < settingDTOList.size(); i++) {
-                model.addAttribute(settingDTOList.get(i).getSettingName(), settingDTOList.get(i).getSettingValue());
-            }
-
-        }
-
-        return "/admin/index";
-    }
-
 }

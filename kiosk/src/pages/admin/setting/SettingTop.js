@@ -38,12 +38,12 @@ const SettingTop = ({status}) => {
                     </div>
                 </div>
                 <div className="admin-top-part admin-top-part-nomal">
-                    <div className="admin-top-p-part" onClick="">
+                    <div className="admin-top-p-part">
                         <p className="" style={{fontSize: '40px'}}></p>
                     </div>
                 </div>
                 <div className="admin-top-part admin-top-part-right">
-                    <div className="admin-top-p-part" onClick="">
+                    <div className="admin-top-p-part">
                         <p className="" style={{fontSize: '40px'}}></p>
                     </div>
                 </div>
