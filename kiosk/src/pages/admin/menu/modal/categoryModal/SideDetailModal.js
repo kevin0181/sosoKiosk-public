@@ -2,6 +2,8 @@ import {useEffect, useState} from "react";
 import {getSideCategory} from "../../../../../js/admin/menu/category";
 import serverUrl from "../../../../config/server.json";
 import $ from 'jquery';
+import {getSideList} from "../../../../../js/admin/menu/addMenu";
+import {getSideMenuList} from "../../../../../js/admin/menu/side";
 
 const SideDetailModal = ({modalStatus, modalContentChange, data, setDataFun}) => {
 
@@ -123,7 +125,39 @@ const SideDetailModal = ({modalStatus, modalContentChange, data, setDataFun}) =>
                                         <NoMessageFun/>
                                     ) : (
                                         menuList.map((it) => (
-                                            <div className="O-side-order-card a-side-order-card" key={it.menuSideSq}>
+                                            <div className="O-side-order-card a-side-order-card"
+                                                 onClick={() => {
+
+                                                     if (data.sideAll.length === 0) {
+                                                         getSideMenuList().then(function (sideAll) {
+                                                             setDataFun({
+                                                                 ...data,
+                                                                 sideAll
+                                                             });
+                                                             modalContentChange({
+                                                                 status: true,
+                                                                 param: 'sideAll',
+                                                                 modalType: 'adminSideDetailModal',
+                                                                 modalTitle: it.sideName + ' 상세 페이지',
+                                                                 modalContent: '',
+                                                                 sendId: it.menuSideSq,
+                                                                 sendName: it.sideName
+                                                             })
+                                                         });
+                                                     } else {
+                                                         modalContentChange({
+                                                             status: true,
+                                                             param: 'sideAll',
+                                                             modalType: 'adminSideDetailModal',
+                                                             modalTitle: it.sideName + ' 상세 페이지',
+                                                             modalContent: '',
+                                                             sendId: it.menuSideSq,
+                                                             sendName: it.sideName
+                                                         })
+                                                     }
+
+                                                 }}
+                                                 key={it.menuSideSq}>
                                                 <div className="O-menu-side-img">
                                                     <img className="O-side-img" alt={'side 메뉴 이미지'}
                                                          src={'http://' + serverUrl.server + it.menuSideImgDTOList[0].menuSideImgPath + '/' + it.menuSideImgDTOList[0].menuSideImgName}/>
