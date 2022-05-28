@@ -32,11 +32,6 @@ const OrderMenu = ({menu, categoryList, orderStatus}) => {
                                     <div id="categoryPart"
                                          className="O-category-list2"
                                          style={{height: '100%', display: 'block'}}>
-                                        <div className="text M-font O-category-font O-category-Side">
-                                            <div className="O-category-name O-click-color">
-                                                <p className="O-category-a">전체</p>
-                                            </div>
-                                        </div>
                                         <CategoryList categoryList={categoryList}/>
                                     </div>
                                 </div>
