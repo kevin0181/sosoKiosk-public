@@ -16,7 +16,8 @@ const KioskMainModal = ({menuModalStatus, menuModalContentChange, menu, category
                 case 'orderMenuDetail':
                     if (menuModalStatus.menu.side.length === 0) {
 
-                        return <MenuDetailNoSideModal menuModalStatus={menuModalStatus}/>
+                        return <MenuDetailNoSideModal menuModalStatus={menuModalStatus}
+                                                      menuModalContentChange={menuModalContentChange}/>
 
                     } else {
                         return <MenuDetailModal menuModalStatus={menuModalStatus}

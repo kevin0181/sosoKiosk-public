@@ -1,7 +1,7 @@
 import serverUrl from "../../config/server.json";
 import {useEffect, useState} from "react";
 
-const MenuDetailNoSideModal = ({menuModalStatus}) => {
+const MenuDetailNoSideModal = ({menuModalStatus, menuModalContentChange}) => {
 
     const [detailMenu, setDetailMenu] = useState([]);
     const [detailMenuImg, setDetailMenuImg] = useState([]);
@@ -9,9 +9,18 @@ const MenuDetailNoSideModal = ({menuModalStatus}) => {
     useEffect(() => {
         setDetailMenu(menuModalStatus.menu);
         setDetailMenuImg(menuModalStatus.menu.imgDTOList);
-        console.log((menuModalStatus.menu));
-        console.log(detailMenuImg);
     }, []);
+
+    const close = () => {
+        menuModalContentChange({
+            status: false,
+            param: '',
+            modalType: '',
+            modalTitle: '',
+            modalContent: '',
+            menu: ''
+        })
+    }
 
     return (
         <div className="O-modal-back" id="menuOrSideModal" style={{display: 'block'}}>
@@ -19,7 +28,7 @@ const MenuDetailNoSideModal = ({menuModalStatus}) => {
                 <div className="O-modal-content">
                     <div className="O-modal-header">
                         <div className="O-modal-close-Btn">
-                            <div className="O-close O-close3" id="modalCloseBtn"></div>
+                            <div className="O-close O-close3" id="modalCloseBtn" onClick={close}></div>
                         </div>
                         <div className="O-modal-top">
                             <div className="O-modal-top-title M-font">
