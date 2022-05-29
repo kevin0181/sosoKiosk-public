@@ -9,56 +9,62 @@ const OrderMenu = ({menu, categoryList, orderStatus, setMenuFun}) => {
 
     const [totalPrice, setTotalPrice] = useState(0);
 
-    const [allOrderData, setAllOrderData] = useState([{
-        menuSq: '',
-        categorySq: '',
-        menuName: '',
-        menuPrice: 0,
-        categoryDTO: {
-            categorySq: '',
-            categoryName: '',
-        },
-        imgDTOList: [{
-            imgSq: '',
-            menuSq: '',
-            imgName: '',
-            imgPath: '',
-            imgDate: '',
-            imgExtension: ''
-        }],
-        side: {
-            sideSq: '',
-            sideName: '',
-            sideCategoryDTOList: [{
-                sideCategorySq: '',
-                sideSq: '',
-                sideCategoryName: '',
-            }]
-        },
-        addSide: [{
-            sideSq: '',
-            sideName: '',
-            sidePrice: 0,
-            sideSize: 0
-        }],
-        size: 0
-    }]);
+    const [allOrderData, setAllOrderData] = useState([
+        // menuSq: '',
+        // categorySq: '',
+        // menuName: '',
+        // menuPrice: 0,
+        // categoryDTO: {
+        //     categorySq: '',
+        //     categoryName: '',
+        // },
+        // imgDTOList: [{
+        //     imgSq: '',
+        //     menuSq: '',
+        //     imgName: '',
+        //     imgPath: '',
+        //     imgDate: '',
+        //     imgExtension: ''
+        // }],
+        // side: {
+        //     sideSq: '',
+        //     sideName: '',
+        //     sideCategoryDTOList: [{
+        //         sideCategorySq: '',
+        //         sideSq: '',
+        //         sideCategoryName: '',
+        //     }]
+        // },
+        // addSide: [{
+        //     sideSq: '',
+        //     sideName: '',
+        //     sidePrice: 0,
+        //     sideSize: 0
+        // }],
+        // size: 0
+    ]);
 
     const changeAllOrderData = (data) => {
-        setAllOrderData(data);
+        setAllOrderData([
+            ...allOrderData,
+            data
+        ]);
     }
 
     useEffect(() => {
 
-        allOrderData.map((it) => {
+        console.log(allOrderData);
+        if (allOrderData.length !== 0) {
+            allOrderData.map((it) => {
 
-            // console.log(allOrderData.filter((it) => it.size === 0));
+                // console.log(allOrderData.filter((it) => it.size === 0));
 
-            setTotalPrice(totalPrice + (it.size * it.menuPrice));
-            it.addSide.map((it) => {
-                setTotalPrice(totalPrice + (it.sideSize * it.sidePrice));
+                setTotalPrice(totalPrice + (it.size * it.menuPrice));
+                it.addSide.map((it) => {
+                    setTotalPrice(totalPrice + (it.sideSize * it.sidePrice));
+                });
             });
-        });
+        }
 
     }, [allOrderData]);
 

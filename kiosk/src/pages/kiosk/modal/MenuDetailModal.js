@@ -1,7 +1,6 @@
 import {useEffect, useState} from "react";
 import serverUrl from "../../config/server.json";
 import $ from 'jquery';
-import addSide from "../../admin/menu/AddSide";
 
 const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrderData, allOrderData}) => {
 
@@ -14,6 +13,12 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
             modalContent: '',
             menu: ''
         })
+    }
+
+    const saveDetailMenuOrder = () => {
+
+        changeAllOrderData(orderMenuASideDetail);
+
     }
 
     const [orderMenuASideDetail, setOrderMenuASideDetail] = useState({
@@ -41,10 +46,6 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
         ],
         size: 0
     });
-
-    useEffect(() => {
-        console.log(orderMenuASideDetail);
-    }, [orderMenuASideDetail]);
 
     useEffect(() => {
         if (menuModalStatus.menu.addSide.length === 0) {
@@ -354,7 +355,7 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
                         </div>
                         <div className="O-side-select-ok-part">
                             <div className="O-side-select-ok">
-                                <p className="M-font O-font-middle-size">선택 완료</p>
+                                <p className="M-font O-font-middle-size" onClick={saveDetailMenuOrder}>선택 완료</p>
                             </div>
                             <div className="O-side-select-close">
                                 <p className="M-font O-font-middle-size" onClick={close}>닫기</p>
