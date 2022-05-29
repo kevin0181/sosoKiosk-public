@@ -17,6 +17,17 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange}) => {
 
     const [sideCategory, setSideCategory] = useState([]);
     const [sideMenu, setSideMenu] = useState([]);
+    const [sideCategorySq, setSideCategorySq] = useState('');
+
+    useEffect(() => {
+
+        menuModalStatus.menu.side[0].sideCategoryDTOList.map((it) => {
+            if (sideCategorySq === it.sideCategorySq) {
+                setSideMenu(it.menuSideDTOList);
+            }
+        });
+
+    }, [sideCategorySq]);
 
     useEffect(() => {
 
@@ -24,6 +35,7 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange}) => {
         console.log(sideMenu);
 
     }, [sideCategory, sideMenu]);
+
 
     useEffect(() => { //처음 시작할때.
 
@@ -38,6 +50,9 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange}) => {
         $('.O-category-part').removeClass('O-category-part-top');
         $('.menuDetailCategory').removeClass('O-category-click-color');
         $('#sideCategoryId' + sideCategorySq).addClass('O-category-click-color');
+
+        setSideCategorySq(sideCategorySq);
+
     }
 
     return (
@@ -87,11 +102,12 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange}) => {
                                             </div>
                                             <div
                                                 className="O-menu-side-name M-font O-font-middle-size M-flex-column M-flex-center">
-                                                <p style={{fontSize: '85%'}}>{it.menuSideName}</p>
+                                                <p style={{fontSize: '85%', textAlign: 'center'}}>{it.menuSideName}</p>
                                                 <small
                                                     className="O-side-mini-size-font">{'가격 ' + it.menuSidePrice}</small>
                                             </div>
-                                            <div className="O-menu-side-number M-flex-column M-flex-center">
+                                            <div className="O-menu-side-number M-flex-column M-flex-center"
+                                                 style={{width: '10%'}}>
                                                 <div className="side-number-top M-font O-font-middle-size">+
                                                 </div>
                                                 <div className="M-font O-font-middle-size"><p>0</p></div>
