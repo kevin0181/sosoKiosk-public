@@ -4,9 +4,6 @@ import {useNavigate} from 'react-router-dom';
 import './../../css/all/all.css';
 import './../../css/all/font.css';
 import './../../css/all/orderMenu.css';
-import {useEffect} from "react";
-import {getCategoryList, getMenuList} from "../../js/kiosk/menu";
-
 
 const KioskMain = ({setOrderStatusFun}) => {
 

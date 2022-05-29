@@ -2,7 +2,7 @@ import {useEffect} from "react";
 import $ from "jquery";
 import {useNavigate} from "react-router-dom";
 
-const SettingTop = ({status}) => {
+const SettingTop = ({status, resetData}) => {
 
     const navigate = useNavigate();
 
@@ -24,8 +24,10 @@ const SettingTop = ({status}) => {
             <div className="admin-top-top">
                 <div className="admin-top-part admin-top-part-left">
                     <div className="admin-top-p-part" onClick={() => {
-                        sessionStorage.clear();
-                        navigate('/');
+                        resetData().then(function () {
+                            sessionStorage.clear();
+                            navigate('/');
+                        });
                     }}>
                         <p className="" style={{fontSize: '40px'}}>홈으로</p>
                     </div>

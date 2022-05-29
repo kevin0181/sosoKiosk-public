@@ -18,7 +18,7 @@ import Setting from "./setting/Setting";
 import AdminLoginSession from '../../js/admin/AdminLoginSession';
 import {useEffect} from "react";
 
-const AdminMain = ({adminCategory, modalContentChange, data, setDataFun}) => {
+const AdminMain = ({adminCategory, modalContentChange, data, setDataFun, resetData}) => {
 
     const navigate = useNavigate();
 
@@ -34,10 +34,10 @@ const AdminMain = ({adminCategory, modalContentChange, data, setDataFun}) => {
     });
 
     const AdminTopView = {
-        menu: <MenuTop status={status}/>,
-        sales: <SalesTop status={status}/>,
-        order: <OrderTop status={status}/>,
-        setting: <SettingTop status={status}/>
+        menu: <MenuTop status={status} resetData={resetData}/>,
+        sales: <SalesTop status={status} resetData={resetData}/>,
+        order: <OrderTop status={status} resetData={resetData}/>,
+        setting: <SettingTop status={status} resetData={resetData}/>
     }
 
     const AdminMainView = {

@@ -16,6 +16,12 @@ function App() {
 
     const [orderStatus, setOrderStatus] = useState('');
 
+    const [resetAllData, setResetAllData] = useState(false);
+
+
+    const resetData = async () => {
+        setResetAllData(true);
+    }
 
     const setOrderStatusFun = (data) => {
         setOrderStatus(data);
@@ -32,7 +38,6 @@ function App() {
 
     }, []);
 
-
     useEffect(() => {
         if (!getListStatus) {
             getMenuList().then(function (menu) {
@@ -42,7 +47,18 @@ function App() {
                 });
             });
         }
-    }, []);
+
+        if (resetAllData) {
+            getMenuList().then(function (menu) {
+                setMenuFun(menu);
+                getCategoryList().then(function (category) {
+                    setCategoryListFun(category);
+                });
+            });
+        }
+
+        setResetAllData(false);
+    }, [getListStatus, resetAllData]);
 
     useEffect(() => {
         console.log(menu);
@@ -69,7 +85,7 @@ function App() {
                            element={<OrderMenu menu={menu} categoryList={categoryList} setMenuFun={setMenuFun}
                                                orderStatus={orderStatus}></OrderMenu>}/>
                     <Route path={'/admin'} element={<AdminLogin></AdminLogin>}/>
-                    <Route path={'/admin/:adminCategory'} element={<AdminSide></AdminSide>}/>
+                    <Route path={'/admin/:adminCategory'} element={<AdminSide resetData={resetData}></AdminSide>}/>
                 </Routes>
             </div>
         </HashRouter>
