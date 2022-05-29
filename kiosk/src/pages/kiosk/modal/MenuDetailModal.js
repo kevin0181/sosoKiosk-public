@@ -169,6 +169,14 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
 
     }
 
+    const deleteSelectSide = (sideSq) => {
+        let checkZeroSize = orderMenuASideDetail.addSide.filter((it) => it.sideSq !== sideSq);
+        setOrderMenuASideDetail({
+            ...orderMenuASideDetail,
+            addSide: checkZeroSize
+        })
+    }
+
     const SideMenuSize = ({menuSideSq}) => {
         if (orderMenuASideDetail.addSide.length === 0) {
             return <p id={'sideNumber' + menuSideSq}>0</p>
@@ -332,7 +340,9 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
                                                    name="sideSelectSize13">{it.sideSize}</p>
                                             </div>
                                             <div className="O-side-mini-close-Btn">
-                                                <div className="O-close O-close2"></div>
+                                                <div className="O-close O-close2" onClick={() => {
+                                                    deleteSelectSide(it.sideSq)
+                                                }}></div>
                                             </div>
                                             <div className="O-side-select-name M-flex-column M-flex-center">
                                                 <p className="M-font O-font-mini-size">{it.sideName}</p>
