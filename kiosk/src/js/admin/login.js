@@ -47,7 +47,7 @@ async function login(loginForm, navigate) {
     let result = await fireBaseLogin(loginForm.id, loginForm.password);
     if (result.successStatus) {
         sessionStorage.setItem("id", result.id); // 저장
-        navigate('/admin/menu.js?status=all');
+        navigate('/admin/menu?status=all');
     } else {
         $("#loginStatus").text(result.statusMessage);
     }
