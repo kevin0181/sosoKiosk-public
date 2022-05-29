@@ -2,10 +2,36 @@ import backImg from './../../img/backImg.png'
 import {useNavigate} from "react-router-dom";
 import CategoryList from "./side/CategoryList";
 import MainMenu from "./menu/MainMenu";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import KioskMainModal from "./KioskMainModal";
 
 const OrderMenu = ({menu, categoryList, orderStatus, setMenuFun}) => {
+
+    const [totalPrice, setTotalPrice] = useState(0);
+    const [allOrderData, setAllOrderData] = useState([{
+        menuSq: '',
+        categorySq: '',
+        menuName: '',
+        menuPrice: 0,
+        addSide: [{
+            sideSq: '',
+            sideName: '',
+            sidePrice: 0,
+            sideSize: 0
+        }],
+        size: 0
+    }]);
+
+    useEffect(() => {
+
+        allOrderData.map((it) => {
+            setTotalPrice(totalPrice + (it.size * it.menuPrice));
+            it.addSide.map((it) => {
+                setTotalPrice(totalPrice + (it.sideSize * it.sidePrice));
+            });
+        });
+
+    }, [allOrderData]);
 
     const navigate = useNavigate();
 
@@ -54,6 +80,7 @@ const OrderMenu = ({menu, categoryList, orderStatus, setMenuFun}) => {
                                 </div>
                                 <div className="totalPrice-div M-flex-column M-flex-center"
                                      style={{width: '100%'}}>
+                                    <p className={'M-font O-font-middle-size'}>총 금액 : {totalPrice}</p>
                                 </div>
                             </div>
                         </div>
