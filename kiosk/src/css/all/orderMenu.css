@@ -493,6 +493,10 @@
     height: 15%;
 }
 
+.O-category-part-top:first-child div {
+    background-color: #838383;
+}
+
 .O-category-part {
     width: 16.66666666666667%;
     margin-bottom: 10px;

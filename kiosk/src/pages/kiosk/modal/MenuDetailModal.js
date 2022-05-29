@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import serverUrl from "../../config/server.json";
+import $ from 'jquery';
 
 const MenuDetailModal = ({menuModalStatus, menuModalContentChange}) => {
 
@@ -33,6 +34,12 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange}) => {
 
     }, [menuModalStatus]);
 
+    const categoryChangeCss = (sideCategorySq) => {
+        $('.O-category-part').removeClass('O-category-part-top');
+        $('.menuDetailCategory').removeClass('O-category-click-color');
+        $('#sideCategoryId' + sideCategorySq).addClass('O-category-click-color');
+    }
+
     return (
         <div className="O-modal-back"
              id="menuOrSideModal">
@@ -52,8 +59,11 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange}) => {
                     <div className="O-modal-category-bar">
                         {
                             sideCategory.map((it) => (
-                                <div className="O-category-part" key={it.sideCategorySq}>
-                                    <div className="M-font O-font-mini-size O-category-box O-category-click-color">
+                                <div className="O-category-part O-category-part-top" key={it.sideCategorySq}>
+                                    <div onClick={() => {
+                                        categoryChangeCss(it.sideCategorySq)
+                                    }} id={'sideCategoryId' + it.sideCategorySq}
+                                         className="M-font O-font-mini-size menuDetailCategory O-category-box">
                                         <p>{it.sideCategoryName}</p>
                                     </div>
                                 </div>
@@ -62,30 +72,36 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange}) => {
                     </div>
                     <div className="O-modal-side-order M-overlay">
                         <div className="O-side-order-part">
-
                             {
-                                sideMenu.map((it) => (
-                                    <div className="O-side-order-card" key={it.menuSideSq}>
-                                        <div className="O-menu-side-img">
-                                            <img className="O-side-img" alt={'사이드 이미지'}
-                                                 src={'http://' + serverUrl.server + it.menuSideImgDTOList[0].menuSideImgPath +
-                                                     '/' + it.menuSideImgDTOList[0].menuSideImgName}/>
-                                        </div>
-                                        <div
-                                            className="O-menu-side-name M-font O-font-middle-size M-flex-column M-flex-center">
-                                            <p style={{fontSize: '85%'}}>{it.menuSideName}</p>
-                                            <small
-                                                className="O-side-mini-size-font">{'가격 ' + it.menuSidePrice}</small>
-                                        </div>
-                                        <div className="O-menu-side-number M-flex-column M-flex-center">
-                                            <div className="side-number-top M-font O-font-middle-size">+
+                                sideMenu.length === 0 ? (
+                                    <p className={'O-font-middle-size M-font'}
+                                       style={{textAlign: 'center', width: '100%', marginTop: '10%'}}>사이드 메뉴
+                                        없음</p>
+                                ) : (
+                                    sideMenu.map((it) => (
+                                        <div className="O-side-order-card" key={it.menuSideSq}>
+                                            <div className="O-menu-side-img">
+                                                <img className="O-side-img" alt={'사이드 이미지'}
+                                                     src={'http://' + serverUrl.server + it.menuSideImgDTOList[0].menuSideImgPath +
+                                                         '/' + it.menuSideImgDTOList[0].menuSideImgName}/>
                                             </div>
-                                            <div className="M-font O-font-middle-size"><p>0</p></div>
-                                            <div className="side-number-bottom M-font O-font-middle-size">-
+                                            <div
+                                                className="O-menu-side-name M-font O-font-middle-size M-flex-column M-flex-center">
+                                                <p style={{fontSize: '85%'}}>{it.menuSideName}</p>
+                                                <small
+                                                    className="O-side-mini-size-font">{'가격 ' + it.menuSidePrice}</small>
+                                            </div>
+                                            <div className="O-menu-side-number M-flex-column M-flex-center">
+                                                <div className="side-number-top M-font O-font-middle-size">+
+                                                </div>
+                                                <div className="M-font O-font-middle-size"><p>0</p></div>
+                                                <div className="side-number-bottom M-font O-font-middle-size">-
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                ))
+                                    ))
+                                )
+
                             }
 
                         </div>
@@ -110,7 +126,7 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange}) => {
                             <div className="O-menu-side-number M-flex-column M-flex-center">
                                 <div className="side-number-top M-font O-font-middle-size">+
                                 </div>
-                                <div className="M-font O-font-middle-size"><p>1</p></div>
+                                <div className="M-font O-font-middle-size"><p>0</p></div>
                                 <div className="side-number-bottom M-font O-font-middle-size">-
                                 </div>
                             </div>
@@ -119,7 +135,7 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange}) => {
                             <div className="O-side-select-menu-part">
                                 <div className="O-side-select-card O-side-select-card13" name="selectSideCardName">
                                     <div className="O-side-select-number">
-                                        <p className="M-font O-font-number-size" name="sideSelectSize13">1</p>
+                                        <p className="M-font O-font-number-size" name="sideSelectSize13">0</p>
                                     </div>
                                     <div className="O-side-mini-close-Btn">
                                         <div className="O-close O-close2"></div>
