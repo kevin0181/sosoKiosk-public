@@ -138,6 +138,32 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
                 break;
             case 'menuSideDown' + e.target.getAttribute('data-sq'):
 
+                let getSqData = orderMenuASideDetail.addSide.filter((it) => it.sideSq === e.target.getAttribute('data-sq'));
+
+                if (getSqData.length !== 0) {
+
+                    let downSize = getSqData[0].sideSize - 1;
+
+                    if (downSize < 1) {
+                        let checkZeroSize = orderMenuASideDetail.addSide.filter((it) => it.sideSq !== e.target.getAttribute('data-sq'));
+                        setOrderMenuASideDetail({
+                            ...orderMenuASideDetail,
+                            addSide: checkZeroSize
+                        })
+                        return false;
+                    }
+
+                    getSqData[0].sideSize = downSize;
+
+                    setOrderMenuASideDetail({
+                        ...orderMenuASideDetail,
+                    });
+
+                } else {
+                    return false;
+                }
+
+
                 break;
         }
 
