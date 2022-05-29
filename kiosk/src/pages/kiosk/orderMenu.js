@@ -44,13 +44,16 @@ const OrderMenu = ({menu, categoryList, orderStatus, setMenuFun}) => {
         size: 0
     }]);
 
-    const orderAllOrderData = (data) => {
+    const changeAllOrderData = (data) => {
         setAllOrderData(data);
     }
 
     useEffect(() => {
 
         allOrderData.map((it) => {
+
+            // console.log(allOrderData.filter((it) => it.size === 0));
+
             setTotalPrice(totalPrice + (it.size * it.menuPrice));
             it.addSide.map((it) => {
                 setTotalPrice(totalPrice + (it.sideSize * it.sidePrice));
@@ -83,7 +86,7 @@ const OrderMenu = ({menu, categoryList, orderStatus, setMenuFun}) => {
              id="addMenuContainer">
             <KioskMainModal menuModalStatus={menuModalStatus} menuModalContentChange={menuModalContentChange}
                             allOrderData={allOrderData}
-                            orderAllOrderData={orderAllOrderData}
+                            changeAllOrderData={changeAllOrderData}
                             menu={menu} categoryList={categoryList}/>
             <div className="container M-flex-row">
                 <div className="O-order-side-all">

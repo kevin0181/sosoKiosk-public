@@ -7,7 +7,7 @@ const KioskMainModal = ({
                             menuModalContentChange,
                             menu,
                             categoryList,
-                            orderAllOrderData,
+                            changeAllOrderData,
                             allOrderData
                         }) => {
 
@@ -24,11 +24,11 @@ const KioskMainModal = ({
                     if (menuModalStatus.menu.side.length === 0) {
 
                         return <MenuDetailNoSideModal menuModalStatus={menuModalStatus}
-                                                      orderAllOrderData={orderAllOrderData} allOrderData={allOrderData}
+                                                      changeAllOrderData={changeAllOrderData} allOrderData={allOrderData}
                                                       menuModalContentChange={menuModalContentChange}/>
 
                     } else {
-                        return <MenuDetailModal menuModalStatus={menuModalStatus} orderAllOrderData={orderAllOrderData}
+                        return <MenuDetailModal menuModalStatus={menuModalStatus} changeAllOrderData={changeAllOrderData}
                                                 allOrderData={allOrderData}
                                                 menuModalContentChange={menuModalContentChange}/>
                     }

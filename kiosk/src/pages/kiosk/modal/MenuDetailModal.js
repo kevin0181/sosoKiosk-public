@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import serverUrl from "../../config/server.json";
 import $ from 'jquery';
 
-const MenuDetailModal = ({menuModalStatus, menuModalContentChange, orderAllOrderData, allOrderData}) => {
+const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrderData, allOrderData}) => {
 
     const close = () => {
         menuModalContentChange({
@@ -15,8 +15,48 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, orderAllOrder
         })
     }
 
-    const [orderDetailAllData, setOrderDetailAllData] = useState([{}]);
+    const [orderMenuASideDetail, setOrderMenuASideDetail] = useState({
+        menuSq: '',
+        categorySq: '',
+        menuName: '',
+        menuPrice: 0,
+        categoryDTO: {
+            categorySq: '',
+            categoryName: '',
+        },
+        imgDTOList: [{
+            imgSq: '',
+            menuSq: '',
+            imgName: '',
+            imgPath: '',
+            imgDate: '',
+            imgExtension: ''
+        }],
+        addSide: [
+            // sideSq: '',
+            // sideName: '',
+            // sidePrice: 0,
+            // sideSize: 0
+        ],
+        size: 0
+    });
 
+    useEffect(() => {
+        console.log(orderMenuASideDetail);
+    }, [orderMenuASideDetail]);
+
+    useEffect(() => {
+        setOrderMenuASideDetail({
+            ...orderMenuASideDetail,
+            menuSq: menuModalStatus.menu.menuSq,
+            categorySq: menuModalStatus.menu.categorySq,
+            menuName: menuModalStatus.menu.menuName,
+            menuPrice: Number(menuModalStatus.menu.menuPrice),
+            categoryDTO: menuModalStatus.menu.categoryDTO,
+            imgDTOList: menuModalStatus.menu.imgDTOList,
+            size: 1
+        });
+    }, []);
 
     const [sideCategory, setSideCategory] = useState([]);
     const [sideMenu, setSideMenu] = useState([]);
@@ -31,14 +71,6 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, orderAllOrder
         });
 
     }, [sideCategorySq]);
-
-    useEffect(() => {
-
-        console.log(sideCategory);
-        console.log(sideMenu);
-
-    }, [sideCategory, sideMenu]);
-
 
     useEffect(() => { //처음 시작할때.
 
@@ -55,7 +87,6 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, orderAllOrder
         $('#sideCategoryId' + sideCategorySq).addClass('O-category-click-color');
 
         setSideCategorySq(sideCategorySq);
-
     }
 
     return (
@@ -132,8 +163,8 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, orderAllOrder
                                 <div className="O-mini-card-header">
                                     <div className="O-mini-card-header-img">
                                         <img className="O-mini-img" alt={'선택된 메뉴 이미지'}
-                                             src={'http://' + serverUrl.server + menuModalStatus.menu.imgDTOList[0].imgPath
-                                                 + '/' + menuModalStatus.menu.imgDTOList[0].imgName}/>
+                                             src={'http://' + serverUrl.server + orderMenuASideDetail.imgDTOList[0].imgPath
+                                                 + '/' + orderMenuASideDetail.imgDTOList[0].imgName}/>
                                     </div>
                                 </div>
                                 <div className="O-mini-card-body">
@@ -145,24 +176,30 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, orderAllOrder
                             <div className="O-menu-side-number M-flex-column M-flex-center">
                                 <div className="side-number-top M-font O-font-middle-size">+
                                 </div>
-                                <div className="M-font O-font-middle-size"><p>0</p></div>
+                                <div className="M-font O-font-middle-size"><p>{orderMenuASideDetail.size}</p></div>
                                 <div className="side-number-bottom M-font O-font-middle-size">-
                                 </div>
                             </div>
                         </div>
                         <div className="O-side-select-part w-M-overlay">
                             <div className="O-side-select-menu-part">
-                                <div className="O-side-select-card O-side-select-card13" name="selectSideCardName">
-                                    <div className="O-side-select-number">
-                                        <p className="M-font O-font-number-size" name="sideSelectSize13">0</p>
-                                    </div>
-                                    <div className="O-side-mini-close-Btn">
-                                        <div className="O-close O-close2"></div>
-                                    </div>
-                                    <div className="O-side-select-name M-flex-column M-flex-center">
-                                        <p className="M-font O-font-mini-size">음료1</p>
-                                    </div>
-                                </div>
+                                {
+                                    orderMenuASideDetail.addSide.map((it) => (
+                                        <div className="O-side-select-card O-side-select-card13"
+                                             name="selectSideCardName">
+                                            <div className="O-side-select-number">
+                                                <p className="M-font O-font-number-size"
+                                                   name="sideSelectSize13">{it.sideSize}</p>
+                                            </div>
+                                            <div className="O-side-mini-close-Btn">
+                                                <div className="O-close O-close2"></div>
+                                            </div>
+                                            <div className="O-side-select-name M-flex-column M-flex-center">
+                                                <p className="M-font O-font-mini-size">{it.sideName}</p>
+                                            </div>
+                                        </div>
+                                    ))
+                                }
                             </div>
                         </div>
                         <div className="O-side-select-ok-part">
