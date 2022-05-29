@@ -120,7 +120,6 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
 
                         setOrderMenuASideDetail({
                             ...orderMenuASideDetail,
-                            [addSide]: getSqData
                         });
 
                     } else {
