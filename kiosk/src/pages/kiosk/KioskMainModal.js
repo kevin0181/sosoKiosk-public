@@ -2,7 +2,14 @@ import {useEffect} from "react";
 import MenuDetailModal from "./modal/MenuDetailModal";
 import MenuDetailNoSideModal from "./modal/MenuDetailNoSideModal";
 
-const KioskMainModal = ({menuModalStatus, menuModalContentChange, menu, categoryList}) => {
+const KioskMainModal = ({
+                            menuModalStatus,
+                            menuModalContentChange,
+                            menu,
+                            categoryList,
+                            orderAllOrderData,
+                            allOrderData
+                        }) => {
 
     useEffect(() => {
         console.log(menuModalStatus);
@@ -17,10 +24,12 @@ const KioskMainModal = ({menuModalStatus, menuModalContentChange, menu, category
                     if (menuModalStatus.menu.side.length === 0) {
 
                         return <MenuDetailNoSideModal menuModalStatus={menuModalStatus}
+                                                      orderAllOrderData={orderAllOrderData} allOrderData={allOrderData}
                                                       menuModalContentChange={menuModalContentChange}/>
 
                     } else {
-                        return <MenuDetailModal menuModalStatus={menuModalStatus}
+                        return <MenuDetailModal menuModalStatus={menuModalStatus} orderAllOrderData={orderAllOrderData}
+                                                allOrderData={allOrderData}
                                                 menuModalContentChange={menuModalContentChange}/>
                     }
                     break;

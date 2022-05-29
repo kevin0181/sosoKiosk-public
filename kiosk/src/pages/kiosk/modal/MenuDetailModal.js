@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import serverUrl from "../../config/server.json";
 import $ from 'jquery';
 
-const MenuDetailModal = ({menuModalStatus, menuModalContentChange}) => {
+const MenuDetailModal = ({menuModalStatus, menuModalContentChange, orderAllOrderData, allOrderData}) => {
 
     const close = () => {
         menuModalContentChange({
@@ -14,6 +14,9 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange}) => {
             menu: ''
         })
     }
+
+    const [orderDetailAllData, setOrderDetailAllData] = useState([{}]);
+
 
     const [sideCategory, setSideCategory] = useState([]);
     const [sideMenu, setSideMenu] = useState([]);

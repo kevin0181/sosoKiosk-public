@@ -8,11 +8,33 @@ import KioskMainModal from "./KioskMainModal";
 const OrderMenu = ({menu, categoryList, orderStatus, setMenuFun}) => {
 
     const [totalPrice, setTotalPrice] = useState(0);
+
     const [allOrderData, setAllOrderData] = useState([{
         menuSq: '',
         categorySq: '',
         menuName: '',
         menuPrice: 0,
+        categoryDTO: {
+            categorySq: '',
+            categoryName: '',
+        },
+        imgDTOList: [{
+            imgSq: '',
+            menuSq: '',
+            imgName: '',
+            imgPath: '',
+            imgDate: '',
+            imgExtension: ''
+        }],
+        side: {
+            sideSq: '',
+            sideName: '',
+            sideCategoryDTOList: [{
+                sideCategorySq: '',
+                sideSq: '',
+                sideCategoryName: '',
+            }]
+        },
         addSide: [{
             sideSq: '',
             sideName: '',
@@ -21,6 +43,10 @@ const OrderMenu = ({menu, categoryList, orderStatus, setMenuFun}) => {
         }],
         size: 0
     }]);
+
+    const orderAllOrderData = (data) => {
+        setAllOrderData(data);
+    }
 
     useEffect(() => {
 
@@ -56,6 +82,8 @@ const OrderMenu = ({menu, categoryList, orderStatus, setMenuFun}) => {
         <div className="container"
              id="addMenuContainer">
             <KioskMainModal menuModalStatus={menuModalStatus} menuModalContentChange={menuModalContentChange}
+                            allOrderData={allOrderData}
+                            orderAllOrderData={orderAllOrderData}
                             menu={menu} categoryList={categoryList}/>
             <div className="container M-flex-row">
                 <div className="O-order-side-all">
