@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import serverUrl from "../../config/server.json";
 import $ from 'jquery';
+import addSide from "../../admin/menu/AddSide";
 
 const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrderData, allOrderData}) => {
 
@@ -46,17 +47,117 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
     }, [orderMenuASideDetail]);
 
     useEffect(() => {
-        setOrderMenuASideDetail({
-            ...orderMenuASideDetail,
-            menuSq: menuModalStatus.menu.menuSq,
-            categorySq: menuModalStatus.menu.categorySq,
-            menuName: menuModalStatus.menu.menuName,
-            menuPrice: Number(menuModalStatus.menu.menuPrice),
-            categoryDTO: menuModalStatus.menu.categoryDTO,
-            imgDTOList: menuModalStatus.menu.imgDTOList,
-            size: 1
-        });
+        if (menuModalStatus.menu.addSide.length === 0) {
+            setOrderMenuASideDetail({
+                ...orderMenuASideDetail,
+                menuSq: menuModalStatus.menu.menuSq,
+                categorySq: menuModalStatus.menu.categorySq,
+                menuName: menuModalStatus.menu.menuName,
+                menuPrice: Number(menuModalStatus.menu.menuPrice),
+                categoryDTO: menuModalStatus.menu.categoryDTO,
+                imgDTOList: menuModalStatus.menu.imgDTOList,
+                size: 1
+            });
+        } else {
+            setOrderMenuASideDetail({
+                ...orderMenuASideDetail,
+                menuSq: menuModalStatus.menu.menuSq,
+                categorySq: menuModalStatus.menu.categorySq,
+                menuName: menuModalStatus.menu.menuName,
+                menuPrice: Number(menuModalStatus.menu.menuPrice),
+                categoryDTO: menuModalStatus.menu.categoryDTO,
+                imgDTOList: menuModalStatus.menu.imgDTOList,
+                size: 1,
+                addSide: menuModalStatus.menu.addSide
+            });
+        }
     }, []);
+
+    const changeOrderMenu = (e) => {
+
+        switch (e.target.id) {
+            case 'mainMenuSizePlus': //메인 메뉴 사이즈 업
+                let upSize = orderMenuASideDetail.size + 1
+
+                setOrderMenuASideDetail({
+                    ...orderMenuASideDetail,
+                    size: upSize
+                })
+                break;
+            case 'mainMenuSizeMinus': //메인 메뉴 사이즈 다운
+                let downSize = orderMenuASideDetail.size - 1;
+
+                if (downSize < 0) {
+                    break;
+                }
+
+                setOrderMenuASideDetail({
+                    ...orderMenuASideDetail,
+                    size: downSize
+                });
+                break;
+            case 'menuSideUp' + e.target.getAttribute('data-sq'):
+
+                if (orderMenuASideDetail.addSide.length === 0) {
+                    setOrderMenuASideDetail({
+                        ...orderMenuASideDetail,
+                        addSide: [{
+                            sideSq: e.target.getAttribute('data-sq'),
+                            sideName: e.target.getAttribute('data-name'),
+                            sidePrice: Number(e.target.getAttribute('data-price')),
+                            sideSize: 1
+                        }]
+                    });
+
+                } else {
+
+                    let getSqData = orderMenuASideDetail.addSide.filter((it) => it.sideSq === e.target.getAttribute('data-sq'));
+
+                    if (getSqData.length !== 0) {
+                        let upSize = getSqData[0].sideSize + 1;
+
+                        getSqData[0].sideSize = upSize;
+
+                        setOrderMenuASideDetail({
+                            ...orderMenuASideDetail,
+                            [addSide]: getSqData
+                        });
+
+                    } else {
+                        setOrderMenuASideDetail({
+                            ...orderMenuASideDetail,
+                            addSide: [
+                                ...orderMenuASideDetail.addSide, {
+                                    sideSq: e.target.getAttribute('data-sq'),
+                                    sideName: e.target.getAttribute('data-name'),
+                                    sidePrice: Number(e.target.getAttribute('data-price')),
+                                    sideSize: 1
+                                }]
+                        });
+                    }
+                }
+                break;
+            case 'menuSideDown' + e.target.getAttribute('data-sq'):
+
+                break;
+        }
+
+    }
+
+    const SideMenuSize = ({menuSideSq}) => {
+        if (orderMenuASideDetail.addSide.length === 0) {
+            return <p id={'sideNumber' + menuSideSq}>0</p>
+        } else {
+            let size = 0;
+            orderMenuASideDetail.addSide.map((it) => {
+                if (Number(it.sideSq) === Number(menuSideSq)) {
+                    size = it.sideSize;
+                }
+            });
+            return <p id={'sideNumber' + menuSideSq}>{size}</p>
+        }
+
+    }
 
     const [sideCategory, setSideCategory] = useState([]);
     const [sideMenu, setSideMenu] = useState([]);
@@ -142,10 +243,22 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
                                             </div>
                                             <div className="O-menu-side-number M-flex-column M-flex-center"
                                                  style={{width: '10%'}}>
-                                                <div className="side-number-top M-font O-font-middle-size">+
+                                                <div className="side-number-top M-font O-font-middle-size"
+                                                     id={'menuSideUp' + it.menuSideSq}
+                                                     data-sq={it.menuSideSq}
+                                                     data-name={it.menuSideName}
+                                                     data-price={it.menuSidePrice}
+                                                     onClick={changeOrderMenu}>+
                                                 </div>
-                                                <div className="M-font O-font-middle-size"><p>0</p></div>
-                                                <div className="side-number-bottom M-font O-font-middle-size">-
+                                                <div className="M-font O-font-middle-size">
+                                                    <SideMenuSize menuSideSq={it.menuSideSq}/>
+                                                </div>
+                                                <div className="side-number-bottom M-font O-font-middle-size"
+                                                     id={'menuSideDown' + it.menuSideSq}
+                                                     data-sq={it.menuSideSq}
+                                                     data-name={it.menuSideName}
+                                                     data-price={it.menuSidePrice}
+                                                     onClick={changeOrderMenu}>-
                                                 </div>
                                             </div>
                                         </div>
@@ -174,10 +287,12 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
                                 </div>
                             </div>
                             <div className="O-menu-side-number M-flex-column M-flex-center">
-                                <div className="side-number-top M-font O-font-middle-size">+
+                                <div className="side-number-top M-font O-font-middle-size" id={'mainMenuSizePlus'}
+                                     onClick={changeOrderMenu}>+
                                 </div>
                                 <div className="M-font O-font-middle-size"><p>{orderMenuASideDetail.size}</p></div>
-                                <div className="side-number-bottom M-font O-font-middle-size">-
+                                <div className="side-number-bottom M-font O-font-middle-size" onClick={changeOrderMenu}
+                                     id={'mainMenuSizeMinus'}>-
                                 </div>
                             </div>
                         </div>
@@ -185,7 +300,7 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
                             <div className="O-side-select-menu-part">
                                 {
                                     orderMenuASideDetail.addSide.map((it) => (
-                                        <div className="O-side-select-card O-side-select-card13"
+                                        <div className="O-side-select-card O-side-select-card13" key={it.sideSq}
                                              name="selectSideCardName">
                                             <div className="O-side-select-number">
                                                 <p className="M-font O-font-number-size"
