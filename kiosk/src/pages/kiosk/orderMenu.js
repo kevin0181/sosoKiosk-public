@@ -124,6 +124,19 @@ const OrderMenu = ({menu, categoryList, orderStatus, setMenuFun}) => {
         setMenuModalStatus(data);
     }
 
+    const reOrderDetailMenuClick = (menuSq) => {
+        let thisData = menu.filter((it) => it.menuSq === menuSq);
+
+        setMenuModalStatus({
+            status: true,
+            param: '',
+            modalType: 'orderMenuDetail',
+            modalTitle: thisData[0].menuName + ' 상세 보기',
+            modalContent: '',
+            menu: thisData[0]
+        });
+    }
+
     return (
         <div className="container"
              id="addMenuContainer">
@@ -200,7 +213,7 @@ const OrderMenu = ({menu, categoryList, orderStatus, setMenuFun}) => {
 
                                         {
                                             allOrderData.map((it) => (
-                                                <div className="O-select-mini-card">
+                                                <div className="O-select-mini-card" key={it.menuSq}>
                                                     <div className="O-select-mini-number">
                                                         <p className="M-font O-font-number-size">{it.size}</p>
                                                     </div>
@@ -211,7 +224,9 @@ const OrderMenu = ({menu, categoryList, orderStatus, setMenuFun}) => {
                                                              }}></div>
                                                     </div>
                                                     <div className="O-mini-card-header">
-                                                        <div className="O-mini-card-header-img">
+                                                        <div className="O-mini-card-header-img" onClick={() => {
+                                                            reOrderDetailMenuClick(it.menuSq);
+                                                        }}>
                                                             <img className="O-mini-img" alt={'선택한 이미지'}
                                                                  src={'http://' + serverUrl.server + it.imgDTOList[0].imgPath
                                                                      + '/' + it.imgDTOList[0].imgName}/>

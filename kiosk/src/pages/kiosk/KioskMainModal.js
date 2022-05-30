@@ -19,16 +19,18 @@ const KioskMainModal = ({
 
         if (menuModalStatus.status) {
 
+            console.log(menuModalStatus);
+
             switch (menuModalStatus.modalType) {
                 case 'orderMenuDetail':
                     if (menuModalStatus.menu.side.length === 0) {
-
                         return <MenuDetailNoSideModal menuModalStatus={menuModalStatus}
-                                                      changeAllOrderData={changeAllOrderData} allOrderData={allOrderData}
+                                                      changeAllOrderData={changeAllOrderData}
+                                                      allOrderData={allOrderData}
                                                       menuModalContentChange={menuModalContentChange}/>
-
                     } else {
-                        return <MenuDetailModal menuModalStatus={menuModalStatus} changeAllOrderData={changeAllOrderData}
+                        return <MenuDetailModal menuModalStatus={menuModalStatus}
+                                                changeAllOrderData={changeAllOrderData}
                                                 allOrderData={allOrderData}
                                                 menuModalContentChange={menuModalContentChange}/>
                     }
