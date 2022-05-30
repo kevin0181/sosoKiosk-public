@@ -2,13 +2,13 @@ import backImg from './../../img/backImg.png'
 import {useNavigate} from "react-router-dom";
 import CategoryList from "./side/CategoryList";
 import MainMenu from "./menu/MainMenu";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import KioskMainModal from "./KioskMainModal";
 import serverUrl from "../config/server.json";
 
-const OrderMenu = ({menu, categoryList, orderStatus, setMenuFun, allOrderData, setOrderData}) => {
+const OrderMenu = ({menu, categoryList, allOrderData, setOrderData, totalPrice}) => {
 
-    const setAllOrderData = (data) => {
+    const setAllOrderData = async (data) => {
         setOrderData(data);
     }
 
@@ -51,25 +51,12 @@ const OrderMenu = ({menu, categoryList, orderStatus, setMenuFun, allOrderData, s
         );
     }
 
-    const ViewTotal = () => {
-
-        let price = 0;
-
-        if (allOrderData.length !== 0) {
-            allOrderData.map((it) => {
-                price = price + (it.size * it.menuPrice);
-                it.addSide.map((it) => {
-                    price = price + (it.sideSize * it.sidePrice);
-                });
-            });
-        }
-        return <p className={'M-font O-font-middle-size'}>총 금액 : {price}</p>
-    }
-
     const navigate = useNavigate();
 
     const goMain = () => {
-        navigate('/');
+        setAllOrderData([]).then(function () {
+            navigate('/');
+        })
     }
 
     const [menuModalStatus, setMenuModalStatus] = useState({
@@ -102,9 +89,8 @@ const OrderMenu = ({menu, categoryList, orderStatus, setMenuFun, allOrderData, s
         <div className="container"
              id="addMenuContainer">
             <KioskMainModal menuModalStatus={menuModalStatus} menuModalContentChange={menuModalContentChange}
-                            allOrderData={allOrderData}
-                            changeAllOrderData={changeAllOrderData}
-                            menu={menu} categoryList={categoryList}/>
+                            allOrderData={allOrderData} totalPrice={totalPrice}
+                            changeAllOrderData={changeAllOrderData}/>
             <div className="container M-flex-row">
                 <div className="O-order-side-all">
                     <div className="O-order-Side">
@@ -128,7 +114,7 @@ const OrderMenu = ({menu, categoryList, orderStatus, setMenuFun, allOrderData, s
                                 </div>
                                 <div className="totalPrice-div M-flex-column M-flex-center"
                                      style={{width: '100%'}}>
-                                    <ViewTotal/>
+                                    <p className={'M-font O-font-middle-size'}>총 금액 : {totalPrice}원</p>
                                 </div>
                             </div>
                         </div>

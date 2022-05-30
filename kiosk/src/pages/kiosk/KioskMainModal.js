@@ -6,10 +6,9 @@ import ReceiptModal from "./modal/ReceiptModal";
 const KioskMainModal = ({
                             menuModalStatus,
                             menuModalContentChange,
-                            menu,
-                            categoryList,
                             changeAllOrderData,
-                            allOrderData
+                            allOrderData,
+                            totalPrice
                         }) => {
 
     useEffect(() => {
@@ -38,7 +37,8 @@ const KioskMainModal = ({
                     break;
 
                 case 'orderReceipt':
-                    return <ReceiptModal menuModalContentChange={menuModalContentChange} allOrderData={allOrderData}/>
+                    return <ReceiptModal menuModalContentChange={menuModalContentChange} allOrderData={allOrderData}
+                                         totalPrice={totalPrice}/>
                     break;
             }
 

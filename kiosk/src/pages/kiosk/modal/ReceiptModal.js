@@ -1,7 +1,6 @@
-import {useEffect} from "react";
 import serverUrl from "../../config/server.json";
 
-const ReceiptModal = ({menuModalContentChange, allOrderData}) => {
+const ReceiptModal = ({menuModalContentChange, allOrderData, totalPrice}) => {
 
     const close = () => {
         menuModalContentChange({
@@ -14,12 +13,7 @@ const ReceiptModal = ({menuModalContentChange, allOrderData}) => {
         })
     }
 
-    useEffect(() => {
-        console.log(allOrderData);
-    })
     const MainMenu = ({menu}) => {
-
-        console.log(menu);
 
         return <div className="O-pay-order-part M-flex-row" style={{margin: '10px 0px'}} id="O-pay-first"
                     key={menu.menuSq}>
@@ -59,7 +53,6 @@ const ReceiptModal = ({menuModalContentChange, allOrderData}) => {
     }
 
     const SideMenu = ({side}) => {
-        console.log(side);
         return <div className="O-pay-order-card-div M-flex-row" key={side.sideSq}>
             <div className="O-pay-name M-font M-flex-column M-flex-center"
                  style={{fontSize: '30px', width: '30%'}}>
@@ -118,7 +111,7 @@ const ReceiptModal = ({menuModalContentChange, allOrderData}) => {
                         </div>
                         <div style={{width: '100%', height: '35%'}}
                              className="O-pay-totalPrice M-flex-center M-flex-row M-font O-font-middle-size">
-                            <p>총 금액 : 1843원</p>
+                            <p>총 금액 : {totalPrice}원</p>
                         </div>
                     </div>
                     <div className="O-pay-modal-side-footer">

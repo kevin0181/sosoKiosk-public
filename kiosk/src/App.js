@@ -111,6 +111,25 @@ function App() {
 
     useEffect(() => {
 
+        console.log(totalPrice);
+
+    }, [totalPrice]);
+
+    useEffect(() => {
+
+        let price = 0;
+
+        if (allOrderData.length !== 0) {
+            allOrderData.map((it) => {
+                price = price + (it.size * it.menuPrice);
+                it.addSide.map((it) => {
+                    price = price + (it.sideSize * it.sidePrice);
+                });
+            });
+        }
+
+        setTotalPrice(price);
+
         console.log(allOrderData);
 
     }, [allOrderData]);
@@ -128,9 +147,9 @@ function App() {
                                                getListStatus={getListStatus}
                                                setCategoryListFun={setCategoryListFun}></KioskMain>}/>
                     <Route path={'/menuOrder'}
-                           element={<OrderMenu menu={menu} categoryList={categoryList} setMenuFun={setMenuFun}
+                           element={<OrderMenu menu={menu} categoryList={categoryList}
                                                allOrderData={allOrderData} setOrderData={setOrderData}
-                                               orderStatus={orderStatus}></OrderMenu>}/>
+                                               totalPrice={totalPrice}></OrderMenu>}/>
                     <Route path={'/admin'} element={<AdminLogin></AdminLogin>}/>
                     <Route path={'/admin/:adminCategory'} element={<AdminSide resetData={resetData}></AdminSide>}/>
                 </Routes>
