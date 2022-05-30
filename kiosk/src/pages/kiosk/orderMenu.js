@@ -9,7 +9,7 @@ const OrderMenu = ({menu, categoryList, orderStatus, setMenuFun}) => {
 
     const [totalPrice, setTotalPrice] = useState(0);
 
-    let [allOrderData, setAllOrderData] = useState([
+    const [allOrderData, setAllOrderData] = useState([
         // menuSq: '',
         // categorySq: '',
         // menuName: '',
@@ -46,32 +46,40 @@ const OrderMenu = ({menu, categoryList, orderStatus, setMenuFun}) => {
 
     const changeAllOrderData = (data) => {
 
-        let getSameMenuData = allOrderData.filter((it) => it.menuSq === data.menuSq);
+        if (data.size === 0) {  //메인 메뉴 사이즈가 0인지 체크
 
-        if (getSameMenuData.length !== 0) {
-            getSameMenuData[0].size = data.size;
-            getSameMenuData[0].addSide = data.addSide;
+            let checkZeroMenu = allOrderData.filter((it) => it.menuSq !== data.menuSq);
+
+            setAllOrderData(
+                checkZeroMenu
+            );
+
+        } else {
+
+            let getSameMenuData = allOrderData.filter((it) => it.menuSq === data.menuSq);
+
+            if (getSameMenuData.length !== 0) {
+                getSameMenuData[0].size = data.size;
+                getSameMenuData[0].addSide = data.addSide;
+                setAllOrderData([
+                    ...allOrderData,
+                ]);
+                return false;
+            }
+
             setAllOrderData([
                 ...allOrderData,
+                data
             ]);
-            return false;
-        }
 
-        setAllOrderData([
-            ...allOrderData,
-            data
-        ]);
+        }
 
     }
 
     useEffect(() => {
 
-        allOrderData = allOrderData.filter((it) => it.size > 0);
-
-    }, [allOrderData]);
-
-    useEffect(() => {
         console.log(allOrderData);
+
     }, [allOrderData]);
 
     const ViewTotal = () => {
