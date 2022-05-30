@@ -73,6 +73,52 @@ function App() {
         setCategoryList(data);
     }
 
+    const [totalPrice, setTotalPrice] = useState(0);
+    const [allOrderData, setAllOrderData] = useState([
+        // menuSq: '',
+        // categorySq: '',
+        // menuName: '',
+        // menuPrice: 0,
+        // categoryDTO: {
+        //     categorySq: '',
+        //     categoryName: '',
+        // },
+        // imgDTOList: [{
+        //     imgSq: '',
+        //     menuSq: '',
+        //     imgName: '',
+        //     imgPath: '',
+        //     imgDate: '',
+        //     imgExtension: ''
+        // }],
+        // side: {
+        //     sideSq: '',
+        //     sideName: '',
+        //     sideCategoryDTOList: [{
+        //         sideCategorySq: '',
+        //         sideSq: '',
+        //         sideCategoryName: '',
+        //     }]
+        // },
+        // addSide: [{
+        //     sideSq: '',
+        //     sideName: '',
+        //     sidePrice: 0,
+        //     sideSize: 0
+        // }],
+        // size: 0
+    ]);
+
+    useEffect(() => {
+
+        console.log(allOrderData);
+
+    }, [allOrderData]);
+
+    const setOrderData = (data) => {
+        setAllOrderData(data);
+    }
+
     return (
         <HashRouter>
             <div className="App">
@@ -83,6 +129,7 @@ function App() {
                                                setCategoryListFun={setCategoryListFun}></KioskMain>}/>
                     <Route path={'/menuOrder'}
                            element={<OrderMenu menu={menu} categoryList={categoryList} setMenuFun={setMenuFun}
+                                               allOrderData={allOrderData} setOrderData={setOrderData}
                                                orderStatus={orderStatus}></OrderMenu>}/>
                     <Route path={'/admin'} element={<AdminLogin></AdminLogin>}/>
                     <Route path={'/admin/:adminCategory'} element={<AdminSide resetData={resetData}></AdminSide>}/>

@@ -6,44 +6,12 @@ import {useEffect, useState} from "react";
 import KioskMainModal from "./KioskMainModal";
 import serverUrl from "../config/server.json";
 
-const OrderMenu = ({menu, categoryList, orderStatus, setMenuFun}) => {
+const OrderMenu = ({menu, categoryList, orderStatus, setMenuFun, allOrderData, setOrderData}) => {
 
-    const [totalPrice, setTotalPrice] = useState(0);
-
-    const [allOrderData, setAllOrderData] = useState([
-        // menuSq: '',
-        // categorySq: '',
-        // menuName: '',
-        // menuPrice: 0,
-        // categoryDTO: {
-        //     categorySq: '',
-        //     categoryName: '',
-        // },
-        // imgDTOList: [{
-        //     imgSq: '',
-        //     menuSq: '',
-        //     imgName: '',
-        //     imgPath: '',
-        //     imgDate: '',
-        //     imgExtension: ''
-        // }],
-        // side: {
-        //     sideSq: '',
-        //     sideName: '',
-        //     sideCategoryDTOList: [{
-        //         sideCategorySq: '',
-        //         sideSq: '',
-        //         sideCategoryName: '',
-        //     }]
-        // },
-        // addSide: [{
-        //     sideSq: '',
-        //     sideName: '',
-        //     sidePrice: 0,
-        //     sideSize: 0
-        // }],
-        // size: 0
-    ]);
+    const setAllOrderData = (data) => {
+        console.log(123);
+        setOrderData(data);
+    }
 
     const changeAllOrderData = (data) => {
 
@@ -76,12 +44,6 @@ const OrderMenu = ({menu, categoryList, orderStatus, setMenuFun}) => {
         }
 
     }
-
-    useEffect(() => {
-
-        console.log(allOrderData);
-
-    }, [allOrderData]);
 
     const deleteSelectMainMenu = (menuSq) => {
         let deleteMenu = allOrderData.filter((it) => it.menuSq !== menuSq);
