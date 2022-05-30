@@ -125,16 +125,26 @@ const ReceiptModal = ({menuModalContentChange, allOrderData, totalPrice, orderSt
                         <div className="O-side-select-part w-M-overlay">
                             <div className="O-pay-menu-part M-flex-column M-flex-center">
                                 {
-                                    orderStatus === 'inner' ? (<></>) : (<></>)
+                                    orderStatus.payStatus === 'card' ? (
+                                        <div className="O-pay-select-close M-flex-column M-flex-center"
+                                             style={{
+                                                 width: '50%',
+                                                 height: '50%',
+                                                 backgroundColor: '#eb8282'
+                                             }}>
+                                            <p className="M-font O-font-middle-size">결제 하기</p>
+                                        </div>
+                                    ) : (
+                                        <div className="O-pay-select-close M-flex-column M-flex-center"
+                                             style={{
+                                                 width: '50%',
+                                                 height: '50%',
+                                                 backgroundColor: '#eb8282'
+                                             }}>
+                                            <p className="M-font O-font-middle-size">주문 하기</p>
+                                        </div>
+                                    )
                                 }
-                                <div className="O-pay-select-close M-flex-column M-flex-center"
-                                     style={{
-                                         width: '50%',
-                                         height: '50%',
-                                         backgroundColor: '#eb8282'
-                                     }}>
-                                    <p className="M-font O-font-middle-size">주문 하기</p>
-                                </div>
                             </div>
                         </div>
                         <div className="O-side-select-ok-part">
