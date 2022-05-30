@@ -45,28 +45,49 @@ const OrderMenu = ({menu, categoryList, orderStatus, setMenuFun}) => {
     ]);
 
     const changeAllOrderData = (data) => {
+
+        let getSameMenuData = allOrderData.filter((it) => it.menuSq === data.menuSq);
+
+        if (getSameMenuData.length !== 0) {
+            getSameMenuData[0].size = data.size;
+            getSameMenuData[0].addSide = data.addSide;
+            setAllOrderData([
+                ...allOrderData,
+            ]);
+            return false;
+        }
+
         setAllOrderData([
             ...allOrderData,
             data
         ]);
+
     }
 
     useEffect(() => {
 
-        console.log(allOrderData);
+
+    }, [totalPrice]);
+
+    useEffect(() => {
+
+
+    }, [allOrderData]);
+
+    const ViewTotal = () => {
+
+        let price = 0;
+
         if (allOrderData.length !== 0) {
             allOrderData.map((it) => {
-
-                // console.log(allOrderData.filter((it) => it.size === 0));
-
-                setTotalPrice(totalPrice + (it.size * it.menuPrice));
+                price = price + (it.size * it.menuPrice);
                 it.addSide.map((it) => {
-                    setTotalPrice(totalPrice + (it.sideSize * it.sidePrice));
+                    price = price + (it.sideSize * it.sidePrice);
                 });
             });
         }
-
-    }, [allOrderData]);
+        return <p className={'M-font O-font-middle-size'}>총 금액 : {price}</p>
+    }
 
     const navigate = useNavigate();
 
@@ -117,7 +138,7 @@ const OrderMenu = ({menu, categoryList, orderStatus, setMenuFun}) => {
                                 </div>
                                 <div className="totalPrice-div M-flex-column M-flex-center"
                                      style={{width: '100%'}}>
-                                    <p className={'M-font O-font-middle-size'}>총 금액 : {totalPrice}</p>
+                                    <ViewTotal/>
                                 </div>
                             </div>
                         </div>
