@@ -66,11 +66,7 @@ const OrderMenu = ({menu, categoryList, orderStatus, setMenuFun}) => {
 
     useEffect(() => {
 
-
-    }, [totalPrice]);
-
-    useEffect(() => {
-
+        console.log(allOrderData);
 
     }, [allOrderData]);
 
