@@ -7,8 +7,24 @@ import {useEffect, useState} from "react";
 import {getCategoryList, getMenuList} from "./js/kiosk/menu";
 import CardPay from "./pages/kiosk/CardPay";
 import clickSound from './voice/clickSound.wav';
+import SockJS from 'sockjs-client';
+import {Stomp} from '@stomp/stompjs';
 
 function App() {
+
+    useEffect(() => {
+
+        let moneySocket = new SockJS('https://soso-kitchen.com/user/websocket');
+        let moneyStompClient = Stomp.over(moneySocket);
+        let sosoServerStatus = moneyStompClient.connected;
+
+        moneyStompClient.connect({}, function (frame) {
+
+            sosoServerStatus = moneyStompClient.connected;
+
+        });
+
+    }, []);
 
     const clickSoundFun = () => {
         var audio = new Audio(clickSound);
