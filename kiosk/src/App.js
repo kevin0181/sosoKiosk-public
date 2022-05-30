@@ -6,9 +6,15 @@ import AdminSide from "./pages/admin/AdminSide";
 import {useEffect, useState} from "react";
 import {getCategoryList, getMenuList} from "./js/kiosk/menu";
 import CardPay from "./pages/kiosk/CardPay";
+import $ from 'jquery';
+import clickSound from './voice/clickSound.wav'
 
 function App() {
 
+    $(document).on("click", function () {
+        var audio = new Audio(clickSound);
+        audio.play();
+    });
     const [menu, setMenu] = useState([]);
 
     const [categoryList, setCategoryList] = useState([]);
