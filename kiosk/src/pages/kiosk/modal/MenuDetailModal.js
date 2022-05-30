@@ -56,7 +56,6 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
 
         setSideCategory(menuModalStatus.menu.side[0].sideCategoryDTOList); //사이드 카테고리 넣음
         if (menuModalStatus.menu.side[0].sideCategoryDTOList[0].menuSideDTOList.length !== 0) {
-            console.log(123);
             setSideMenu([menuModalStatus.menu.side[0].sideCategoryDTOList[0].menuSideDTOList[0]]); //사이드 넣음
         }
 
@@ -95,10 +94,6 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
             );
 
         }
-
-        console.log(getThisSelectData);
-        console.log(orderMenuASideDetail);
-
 
     }, [menuModalStatus]);
 

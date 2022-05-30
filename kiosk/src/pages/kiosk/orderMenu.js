@@ -9,7 +9,7 @@ const OrderMenu = ({menu, categoryList, orderStatus, setMenuFun}) => {
 
     const [totalPrice, setTotalPrice] = useState(0);
 
-    const [allOrderData, setAllOrderData] = useState([
+    let [allOrderData, setAllOrderData] = useState([
         // menuSq: '',
         // categorySq: '',
         // menuName: '',
@@ -66,8 +66,12 @@ const OrderMenu = ({menu, categoryList, orderStatus, setMenuFun}) => {
 
     useEffect(() => {
 
-        console.log(allOrderData);
+        allOrderData = allOrderData.filter((it) => it.size > 0);
 
+    }, [allOrderData]);
+
+    useEffect(() => {
+        console.log(allOrderData);
     }, [allOrderData]);
 
     const ViewTotal = () => {
