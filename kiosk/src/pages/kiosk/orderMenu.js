@@ -2,11 +2,19 @@ import backImg from './../../img/backImg.png'
 import {useNavigate} from "react-router-dom";
 import CategoryList from "./side/CategoryList";
 import MainMenu from "./menu/MainMenu";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import KioskMainModal from "./KioskMainModal";
 import serverUrl from "../config/server.json";
 
 const OrderMenu = ({menu, categoryList, allOrderData, setOrderData, totalPrice, orderStatus, setOrderStatusFun}) => {
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        setTimeout(() => {
+            navigate("/");
+        }, 300000); //5분동안 있으면 자동으로 메인으로 리다이렉트
+    }, []);
 
     const setAllOrderData = async (data) => {
         setOrderData(data);
@@ -50,8 +58,6 @@ const OrderMenu = ({menu, categoryList, allOrderData, setOrderData, totalPrice, 
             deleteMenu
         );
     }
-
-    const navigate = useNavigate();
 
     const goMain = () => {
         setAllOrderData([]).then(function () {
