@@ -4,6 +4,7 @@ import CategoryList from "./side/CategoryList";
 import MainMenu from "./menu/MainMenu";
 import {useEffect, useState} from "react";
 import KioskMainModal from "./KioskMainModal";
+import serverUrl from "../config/server.json";
 
 const OrderMenu = ({menu, categoryList, orderStatus, setMenuFun}) => {
 
@@ -81,6 +82,13 @@ const OrderMenu = ({menu, categoryList, orderStatus, setMenuFun}) => {
         console.log(allOrderData);
 
     }, [allOrderData]);
+
+    const deleteSelectMainMenu = (menuSq) => {
+        let deleteMenu = allOrderData.filter((it) => it.menuSq !== menuSq);
+        setAllOrderData(
+            deleteMenu
+        );
+    }
 
     const ViewTotal = () => {
 
@@ -189,6 +197,34 @@ const OrderMenu = ({menu, categoryList, orderStatus, setMenuFun}) => {
                                 <div className="O-footer-select-menu-all">
                                     <div className="O-mini-select-bar w-M-overlay"
                                          style={{paddingTop: '3%'}}>
+
+                                        {
+                                            allOrderData.map((it) => (
+                                                <div className="O-select-mini-card">
+                                                    <div className="O-select-mini-number">
+                                                        <p className="M-font O-font-number-size">{it.size}</p>
+                                                    </div>
+                                                    <div className="O-select-mini-close-Btn">
+                                                        <div className="O-close O-close2"
+                                                             onClick={() => {
+                                                                 deleteSelectMainMenu(it.menuSq)
+                                                             }}></div>
+                                                    </div>
+                                                    <div className="O-mini-card-header">
+                                                        <div className="O-mini-card-header-img">
+                                                            <img className="O-mini-img" alt={'선택한 이미지'}
+                                                                 src={'http://' + serverUrl.server + it.imgDTOList[0].imgPath
+                                                                     + '/' + it.imgDTOList[0].imgName}/>
+                                                        </div>
+                                                    </div>
+                                                    <div className="O-mini-card-body">
+                                                        <div className="O-mini-card-body-content">
+                                                            <p className="M-font O-font-mini-size">{it.menuName}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            ))
+                                        }
                                     </div>
                                 </div>
                             </div>
