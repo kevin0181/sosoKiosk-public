@@ -50,6 +50,9 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
     });
 
     useEffect(() => {
+
+
+
         if (menuModalStatus.menu.addSide.length === 0) {
             setOrderMenuASideDetail({
                 ...orderMenuASideDetail,
