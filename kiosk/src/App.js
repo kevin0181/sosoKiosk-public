@@ -5,6 +5,7 @@ import OrderMenu from "./pages/kiosk/orderMenu";
 import AdminSide from "./pages/admin/AdminSide";
 import {useEffect, useState} from "react";
 import {getCategoryList, getMenuList} from "./js/kiosk/menu";
+import CardPay from "./pages/kiosk/CardPay";
 
 function App() {
 
@@ -156,6 +157,7 @@ function App() {
                                                allOrderData={allOrderData} setOrderData={setOrderData}
                                                setOrderStatusFun={setOrderStatusFun}
                                                totalPrice={totalPrice}></OrderMenu>}/>
+                    <Route path={'/card/pay'} element={<CardPay></CardPay>}/>
                     <Route path={'/admin'} element={<AdminLogin></AdminLogin>}/>
                     <Route path={'/admin/:adminCategory'} element={<AdminSide resetData={resetData}></AdminSide>}/>
                 </Routes>

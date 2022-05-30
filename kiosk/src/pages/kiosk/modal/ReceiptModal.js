@@ -1,8 +1,10 @@
 import serverUrl from "../../config/server.json";
 import {useEffect} from "react";
+import {useNavigate} from "react-router-dom";
 
 const ReceiptModal = ({menuModalContentChange, allOrderData, totalPrice, orderStatus, setOrderStatusFun}) => {
 
+    const navigate = useNavigate();
 
     useEffect(() => {
         console.log(orderStatus);
@@ -127,6 +129,9 @@ const ReceiptModal = ({menuModalContentChange, allOrderData, totalPrice, orderSt
                                 {
                                     orderStatus.payStatus === 'card' ? (
                                         <div className="O-pay-select-close M-flex-column M-flex-center"
+                                             onClick={() => {
+                                                 navigate("/card/pay")
+                                             }}
                                              style={{
                                                  width: '50%',
                                                  height: '50%',

@@ -197,6 +197,7 @@ const OrderMenu = ({menu, categoryList, allOrderData, setOrderData, totalPrice, 
                                          onClick={() => {
                                              orderStatus.payStatus = 'card'
                                              orderStatus.totalPrice = totalPrice
+                                             orderStatus.orderMenu = allOrderData
                                              setOrderStatusFun({
                                                  ...orderStatus
                                              }).then(function () {
@@ -215,6 +216,7 @@ const OrderMenu = ({menu, categoryList, allOrderData, setOrderData, totalPrice, 
                                     <div className="O-money-Btn M-width-80 M-flex-row M-flex-center" onClick={() => {
                                         orderStatus.payStatus = 'money'
                                         orderStatus.totalPrice = totalPrice
+                                        orderStatus.orderMenu = allOrderData
                                         setOrderStatusFun({
                                             ...orderStatus
                                         }).then(function () {
