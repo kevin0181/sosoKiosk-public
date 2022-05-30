@@ -17,6 +17,8 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
 
     const saveDetailMenuOrder = () => {
 
+        close();
+
         changeAllOrderData(orderMenuASideDetail);
 
     }

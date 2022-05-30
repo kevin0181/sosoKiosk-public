@@ -26,6 +26,8 @@ const MenuDetailNoSideModal = ({menuModalStatus, menuModalContentChange, changeA
 
         changeAllOrderData(orderMenuASideDetail);
 
+        close();
+
     }
 
     const [orderMenuASideDetail, setOrderMenuASideDetail] = useState({
