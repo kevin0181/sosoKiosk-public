@@ -1,7 +1,7 @@
 import serverUrl from "../../config/server.json";
 import {useEffect, useState} from "react";
 
-const MenuDetailNoSideModal = ({menuModalStatus, menuModalContentChange, changeAllOrderData}) => {
+const MenuDetailNoSideModal = ({menuModalStatus, menuModalContentChange, changeAllOrderData, allOrderData}) => {
 
     const [detailMenu, setDetailMenu] = useState([]);
     const [detailMenuImg, setDetailMenuImg] = useState([]);
@@ -57,29 +57,42 @@ const MenuDetailNoSideModal = ({menuModalStatus, menuModalContentChange, changeA
     });
 
     useEffect(() => {
-        if (menuModalStatus.menu.addSide.length === 0) {
-            setOrderMenuASideDetail({
-                ...orderMenuASideDetail,
-                menuSq: menuModalStatus.menu.menuSq,
-                categorySq: menuModalStatus.menu.categorySq,
-                menuName: menuModalStatus.menu.menuName,
-                menuPrice: Number(menuModalStatus.menu.menuPrice),
-                categoryDTO: menuModalStatus.menu.categoryDTO,
-                imgDTOList: menuModalStatus.menu.imgDTOList,
-                size: 1
-            });
-        } else {
-            setOrderMenuASideDetail({
-                ...orderMenuASideDetail,
-                menuSq: menuModalStatus.menu.menuSq,
-                categorySq: menuModalStatus.menu.categorySq,
-                menuName: menuModalStatus.menu.menuName,
-                menuPrice: Number(menuModalStatus.menu.menuPrice),
-                categoryDTO: menuModalStatus.menu.categoryDTO,
-                imgDTOList: menuModalStatus.menu.imgDTOList,
-                size: 1,
-                addSide: menuModalStatus.menu.addSide
-            });
+
+        let getThisSelectData = allOrderData.filter((it) => it.menuSq === menuModalStatus.menu.menuSq)[0];
+
+        if (getThisSelectData === undefined || getThisSelectData === null) { //만약 선택된 메뉴가 없으면?
+
+            if (menuModalStatus.menu.addSide.length === 0) {
+                setOrderMenuASideDetail({
+                    ...orderMenuASideDetail,
+                    menuSq: menuModalStatus.menu.menuSq,
+                    categorySq: menuModalStatus.menu.categorySq,
+                    menuName: menuModalStatus.menu.menuName,
+                    menuPrice: Number(menuModalStatus.menu.menuPrice),
+                    categoryDTO: menuModalStatus.menu.categoryDTO,
+                    imgDTOList: menuModalStatus.menu.imgDTOList,
+                    size: 1
+                });
+            } else {
+                setOrderMenuASideDetail({
+                    ...orderMenuASideDetail,
+                    menuSq: menuModalStatus.menu.menuSq,
+                    categorySq: menuModalStatus.menu.categorySq,
+                    menuName: menuModalStatus.menu.menuName,
+                    menuPrice: Number(menuModalStatus.menu.menuPrice),
+                    categoryDTO: menuModalStatus.menu.categoryDTO,
+                    imgDTOList: menuModalStatus.menu.imgDTOList,
+                    size: 1,
+                    addSide: menuModalStatus.menu.addSide
+                });
+            }
+
+        } else { //선택된 메뉴가 이미 있을때.
+
+            setOrderMenuASideDetail(
+                getThisSelectData
+            );
+
         }
     }, []);
 
