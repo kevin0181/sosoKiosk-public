@@ -6,7 +6,7 @@ import {useState} from "react";
 import KioskMainModal from "./KioskMainModal";
 import serverUrl from "../config/server.json";
 
-const OrderMenu = ({menu, categoryList, allOrderData, setOrderData, totalPrice}) => {
+const OrderMenu = ({menu, categoryList, allOrderData, setOrderData, totalPrice, orderStatus, setOrderStatusFun}) => {
 
     const setAllOrderData = async (data) => {
         setOrderData(data);
@@ -89,7 +89,8 @@ const OrderMenu = ({menu, categoryList, allOrderData, setOrderData, totalPrice})
         <div className="container"
              id="addMenuContainer">
             <KioskMainModal menuModalStatus={menuModalStatus} menuModalContentChange={menuModalContentChange}
-                            allOrderData={allOrderData} totalPrice={totalPrice}
+                            allOrderData={allOrderData} totalPrice={totalPrice} orderStatus={orderStatus}
+                            setOrderStatusFun={setOrderStatusFun}
                             changeAllOrderData={changeAllOrderData}/>
             <div className="container M-flex-row">
                 <div className="O-order-side-all">
@@ -192,18 +193,40 @@ const OrderMenu = ({menu, categoryList, allOrderData, setOrderData, totalPrice})
                             </div>
                             <div className="O-footer-buy-Btn M-font O-select-font">
                                 <div className="O-footer-buy-Btn-all">
-                                    <div className="O-card-Btn M-width-80 M-flex-row M-flex-center">
+                                    <div className="O-card-Btn M-width-80 M-flex-row M-flex-center"
+                                         onClick={() => {
+                                             orderStatus.payStatus = 'card'
+                                             orderStatus.totalPrice = totalPrice
+                                             setOrderStatusFun({
+                                                 ...orderStatus
+                                             }).then(function () {
+                                                 setMenuModalStatus({
+                                                     status: true,
+                                                     param: '',
+                                                     modalType: 'orderReceipt',
+                                                     modalTitle: '',
+                                                     modalContent: '',
+                                                     menu: '',
+                                                 });
+                                             })
+                                         }}>
                                         <p>카드결제</p>
                                     </div>
                                     <div className="O-money-Btn M-width-80 M-flex-row M-flex-center" onClick={() => {
-                                        setMenuModalStatus({
-                                            status: true,
-                                            param: '',
-                                            modalType: 'orderReceipt',
-                                            modalTitle: '',
-                                            modalContent: '',
-                                            menu: ''
-                                        });
+                                        orderStatus.payStatus = 'money'
+                                        orderStatus.totalPrice = totalPrice
+                                        setOrderStatusFun({
+                                            ...orderStatus
+                                        }).then(function () {
+                                            setMenuModalStatus({
+                                                status: true,
+                                                param: '',
+                                                modalType: 'orderReceipt',
+                                                modalTitle: '',
+                                                modalContent: '',
+                                                menu: '',
+                                            });
+                                        })
                                     }}>
                                         <p>현금결제</p>
                                     </div>

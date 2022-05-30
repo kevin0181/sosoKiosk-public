@@ -1,6 +1,12 @@
 import serverUrl from "../../config/server.json";
+import {useEffect} from "react";
 
-const ReceiptModal = ({menuModalContentChange, allOrderData, totalPrice}) => {
+const ReceiptModal = ({menuModalContentChange, allOrderData, totalPrice, orderStatus, setOrderStatusFun}) => {
+
+
+    useEffect(() => {
+        console.log(orderStatus);
+    }, []);
 
     const close = () => {
         menuModalContentChange({
@@ -118,6 +124,9 @@ const ReceiptModal = ({menuModalContentChange, allOrderData, totalPrice}) => {
                         <div className="O-side-select-menu-part-left M-flex-row M-flex-center"></div>
                         <div className="O-side-select-part w-M-overlay">
                             <div className="O-pay-menu-part M-flex-column M-flex-center">
+                                {
+                                    orderStatus === 'inner' ? (<></>) : (<></>)
+                                }
                                 <div className="O-pay-select-close M-flex-column M-flex-center"
                                      style={{
                                          width: '50%',

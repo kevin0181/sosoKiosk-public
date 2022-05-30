@@ -8,7 +8,9 @@ const KioskMainModal = ({
                             menuModalContentChange,
                             changeAllOrderData,
                             allOrderData,
-                            totalPrice
+                            totalPrice,
+                            orderStatus,
+                            setOrderStatusFun
                         }) => {
 
     useEffect(() => {
@@ -37,7 +39,9 @@ const KioskMainModal = ({
                     break;
 
                 case 'orderReceipt':
+
                     return <ReceiptModal menuModalContentChange={menuModalContentChange} allOrderData={allOrderData}
+                                         orderStatus={orderStatus} setOrderStatusFun={setOrderStatusFun}
                                          totalPrice={totalPrice}/>
                     break;
             }

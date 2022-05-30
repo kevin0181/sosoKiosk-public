@@ -14,7 +14,12 @@ function App() {
 
     const [getListStatus, setGetListStatus] = useState(false);
 
-    const [orderStatus, setOrderStatus] = useState('');
+    const [orderStatus, setOrderStatus] = useState({
+        orderMenu: [],
+        totalPrice: '',
+        placeStatus: '',
+        payStatus: ''
+    });
 
     const [resetAllData, setResetAllData] = useState(false);
 
@@ -23,7 +28,7 @@ function App() {
         setResetAllData(true);
     }
 
-    const setOrderStatusFun = (data) => {
+    const setOrderStatusFun = async (data) => {
         setOrderStatus(data);
     }
 
@@ -63,7 +68,8 @@ function App() {
     useEffect(() => {
         console.log(menu);
         console.log(categoryList);
-    }, [categoryList, menu]);
+        console.log(orderStatus);
+    }, [categoryList, menu, orderStatus]);
 
     const setMenuFun = (data) => {
         setMenu(data);
@@ -143,12 +149,12 @@ function App() {
             <div className="App">
                 <Routes>
                     <Route path={'/'}
-                           element={<KioskMain setMenuFun={setMenuFun} setOrderStatusFun={setOrderStatusFun}
-                                               getListStatus={getListStatus}
-                                               setCategoryListFun={setCategoryListFun}></KioskMain>}/>
+                           element={<KioskMain setOrderStatusFun={setOrderStatusFun}
+                                               orderStatus={orderStatus}></KioskMain>}/>
                     <Route path={'/menuOrder'}
-                           element={<OrderMenu menu={menu} categoryList={categoryList}
+                           element={<OrderMenu menu={menu} categoryList={categoryList} orderStatus={orderStatus}
                                                allOrderData={allOrderData} setOrderData={setOrderData}
+                                               setOrderStatusFun={setOrderStatusFun}
                                                totalPrice={totalPrice}></OrderMenu>}/>
                     <Route path={'/admin'} element={<AdminLogin></AdminLogin>}/>
                     <Route path={'/admin/:adminCategory'} element={<AdminSide resetData={resetData}></AdminSide>}/>

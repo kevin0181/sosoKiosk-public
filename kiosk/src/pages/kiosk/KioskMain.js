@@ -5,7 +5,7 @@ import './../../css/all/all.css';
 import './../../css/all/font.css';
 import './../../css/all/orderMenu.css';
 
-const KioskMain = ({setOrderStatusFun}) => {
+const KioskMain = ({setOrderStatusFun, orderStatus}) => {
 
     const navigate = useNavigate();
     let adminClickCount = 0;
@@ -20,7 +20,10 @@ const KioskMain = ({setOrderStatusFun}) => {
     }
 
     const goOrderMenuPage = (status) => {
-        setOrderStatusFun(status);
+        orderStatus.placeStatus = status;
+        setOrderStatusFun({
+            ...orderStatus,
+        });
         navigate('/menuOrder');
     }
 
