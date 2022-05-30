@@ -1,6 +1,7 @@
 import {useEffect} from "react";
 import MenuDetailModal from "./modal/MenuDetailModal";
 import MenuDetailNoSideModal from "./modal/MenuDetailNoSideModal";
+import ReceiptModal from "./modal/ReceiptModal";
 
 const KioskMainModal = ({
                             menuModalStatus,
@@ -34,6 +35,10 @@ const KioskMainModal = ({
                                                 allOrderData={allOrderData}
                                                 menuModalContentChange={menuModalContentChange}/>
                     }
+                    break;
+
+                case 'orderReceipt':
+                    return <ReceiptModal/>
                     break;
             }
 

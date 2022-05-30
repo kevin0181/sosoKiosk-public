@@ -9,7 +9,6 @@ import serverUrl from "../config/server.json";
 const OrderMenu = ({menu, categoryList, orderStatus, setMenuFun, allOrderData, setOrderData}) => {
 
     const setAllOrderData = (data) => {
-        console.log(123);
         setOrderData(data);
     }
 
@@ -210,7 +209,16 @@ const OrderMenu = ({menu, categoryList, orderStatus, setMenuFun, allOrderData, s
                                     <div className="O-card-Btn M-width-80 M-flex-row M-flex-center">
                                         <p>카드결제</p>
                                     </div>
-                                    <div className="O-money-Btn M-width-80 M-flex-row M-flex-center">
+                                    <div className="O-money-Btn M-width-80 M-flex-row M-flex-center" onClick={() => {
+                                        setMenuModalStatus({
+                                            status: true,
+                                            param: '',
+                                            modalType: 'orderReceipt',
+                                            modalTitle: '',
+                                            modalContent: '',
+                                            menu: ''
+                                        });
+                                    }}>
                                         <p>현금결제</p>
                                     </div>
                                 </div>
