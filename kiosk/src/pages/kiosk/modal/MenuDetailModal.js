@@ -54,7 +54,14 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
 
         let getThisSelectData = allOrderData.filter((it) => it.menuSq === menuModalStatus.menu.menuSq)[0];
 
-        if (getThisSelectData === undefined || getThisSelectData === null) {
+        setSideCategory(menuModalStatus.menu.side[0].sideCategoryDTOList); //사이드 카테고리 넣음
+        if (menuModalStatus.menu.side[0].sideCategoryDTOList[0].menuSideDTOList.length !== 0) {
+            console.log(123);
+            setSideMenu([menuModalStatus.menu.side[0].sideCategoryDTOList[0].menuSideDTOList[0]]); //사이드 넣음
+        }
+
+
+        if (getThisSelectData === undefined || getThisSelectData === null) { //만약 선택된 메뉴가 없으면?
 
             if (menuModalStatus.menu.addSide.length === 0) {
                 setOrderMenuASideDetail({
@@ -81,7 +88,7 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
                 });
             }
 
-        } else {
+        } else { //선택된 메뉴가 이미 있을때.
 
             setOrderMenuASideDetail(
                 getThisSelectData
@@ -93,7 +100,7 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
         console.log(orderMenuASideDetail);
 
 
-    }, []);
+    }, [menuModalStatus]);
 
     const changeOrderMenu = (e) => {
 
@@ -229,11 +236,6 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
     }, [sideCategorySq]);
 
     useEffect(() => { //처음 시작할때.
-
-        setSideCategory(menuModalStatus.menu.side[0].sideCategoryDTOList); //사이드 카테고리 넣음
-        if (menuModalStatus.menu.side[0].sideCategoryDTOList[0].menuSideDTOList.length !== 0) {
-            setSideMenu([menuModalStatus.menu.side[0].sideCategoryDTOList[0].menuSideDTOList[0]]);
-        }
 
     }, [menuModalStatus]);
 
