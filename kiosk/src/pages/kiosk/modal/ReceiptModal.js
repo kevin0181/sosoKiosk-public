@@ -51,7 +51,7 @@ const ReceiptModal = ({menuModalContentChange, allOrderData, totalPrice, orderSt
                          id="O-pay-right">
                         {
                             menu.addSide.map((it) => (
-                                <SideMenu side={it}/>
+                                <SideMenu side={it} key={it.sideSq}/>
                             ))
                         }
                     </div>
@@ -114,7 +114,7 @@ const ReceiptModal = ({menuModalContentChange, allOrderData, totalPrice, orderSt
                         <div className="O-side-order-part O-pay-order-part-up">
                             {
                                 allOrderData.map((it) => (
-                                    <MainMenu menu={it}/>
+                                    <MainMenu menu={it} key={it.menuSq}/>
                                 ))
                             }
                         </div>
