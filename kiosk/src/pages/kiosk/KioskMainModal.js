@@ -38,7 +38,7 @@ const KioskMainModal = ({
                     break;
 
                 case 'orderReceipt':
-                    return <ReceiptModal/>
+                    return <ReceiptModal menuModalContentChange={menuModalContentChange} allOrderData={allOrderData}/>
                     break;
             }
 
