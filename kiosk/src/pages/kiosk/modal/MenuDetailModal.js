@@ -52,31 +52,47 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
     useEffect(() => {
 
 
+        let getThisSelectData = allOrderData.filter((it) => it.menuSq === menuModalStatus.menu.menuSq)[0];
 
-        if (menuModalStatus.menu.addSide.length === 0) {
-            setOrderMenuASideDetail({
-                ...orderMenuASideDetail,
-                menuSq: menuModalStatus.menu.menuSq,
-                categorySq: menuModalStatus.menu.categorySq,
-                menuName: menuModalStatus.menu.menuName,
-                menuPrice: Number(menuModalStatus.menu.menuPrice),
-                categoryDTO: menuModalStatus.menu.categoryDTO,
-                imgDTOList: menuModalStatus.menu.imgDTOList,
-                size: 1
-            });
+        if (getThisSelectData === undefined || getThisSelectData === null) {
+
+            if (menuModalStatus.menu.addSide.length === 0) {
+                setOrderMenuASideDetail({
+                    ...orderMenuASideDetail,
+                    menuSq: menuModalStatus.menu.menuSq,
+                    categorySq: menuModalStatus.menu.categorySq,
+                    menuName: menuModalStatus.menu.menuName,
+                    menuPrice: Number(menuModalStatus.menu.menuPrice),
+                    categoryDTO: menuModalStatus.menu.categoryDTO,
+                    imgDTOList: menuModalStatus.menu.imgDTOList,
+                    size: 1
+                });
+            } else {
+                setOrderMenuASideDetail({
+                    ...orderMenuASideDetail,
+                    menuSq: menuModalStatus.menu.menuSq,
+                    categorySq: menuModalStatus.menu.categorySq,
+                    menuName: menuModalStatus.menu.menuName,
+                    menuPrice: Number(menuModalStatus.menu.menuPrice),
+                    categoryDTO: menuModalStatus.menu.categoryDTO,
+                    imgDTOList: menuModalStatus.menu.imgDTOList,
+                    size: 1,
+                    addSide: menuModalStatus.menu.addSide
+                });
+            }
+
         } else {
-            setOrderMenuASideDetail({
-                ...orderMenuASideDetail,
-                menuSq: menuModalStatus.menu.menuSq,
-                categorySq: menuModalStatus.menu.categorySq,
-                menuName: menuModalStatus.menu.menuName,
-                menuPrice: Number(menuModalStatus.menu.menuPrice),
-                categoryDTO: menuModalStatus.menu.categoryDTO,
-                imgDTOList: menuModalStatus.menu.imgDTOList,
-                size: 1,
-                addSide: menuModalStatus.menu.addSide
-            });
+
+            setOrderMenuASideDetail(
+                getThisSelectData
+            );
+
         }
+
+        console.log(getThisSelectData);
+        console.log(orderMenuASideDetail);
+
+
     }, []);
 
     const changeOrderMenu = (e) => {
