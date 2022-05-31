@@ -4,24 +4,17 @@ import axios from "axios";
 import serverUrl from "../../pages/config/server.json";
 
 export const NoReceiptMoneyPayStart = async (data) => { //영수증 출력 X
-    saveMoneyOrder(data).then(function () {
-        shortReceipt();
+    saveData(data).then(function (res) {
+        shortReceipt(res);
     });
 }
 
 export const YesReceiptMoneyPayStart = async (data) => { //영수증 출력 O
-    saveMoneyOrder(data).then(function () {
-        longReceipt();
-    });
-}
-
-const saveMoneyOrder = async (data) => { //주문 시 저장 로직
-
     saveData(data).then(function (res) {
-        console.log(res);
+        longReceipt(res);
     });
-
 }
+
 
 const saveData = async (data) => { //주문 DB 전송 저장
 
