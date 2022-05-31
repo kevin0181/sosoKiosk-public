@@ -9,11 +9,17 @@ import CardPay from "./pages/kiosk/CardPay";
 import clickSound from './voice/clickSound.wav';
 import SockJS from 'sockjs-client';
 import {Stomp} from '@stomp/stompjs';
+import CheckServerMessageModal from "./pages/kiosk/modal/CheckServerMessageModal";
 
 function App() {
 
     useEffect(() => {
+        connectWebSocket();
+    }, []);
 
+    const [checkSosoServer, setCheckSosoServer] = useState(false);
+
+    const connectWebSocket = () => {//웹 소켓.
         let moneySocket = new SockJS('https://soso-kitchen.com/user/websocket');
         let moneyStompClient = Stomp.over(moneySocket);
         let sosoServerStatus = moneyStompClient.connected;
@@ -22,9 +28,13 @@ function App() {
 
             sosoServerStatus = moneyStompClient.connected;
 
-        });
+            if (!sosoServerStatus) {
+                console.log("소소한부엌 서버 닫혀있음");
+                setCheckSosoServer(true);
+            }
 
-    }, []);
+        });
+    }
 
     const clickSoundFun = () => {
         var audio = new Audio(clickSound);
@@ -170,6 +180,9 @@ function App() {
     return (
         <HashRouter>
             <div className="App" onClick={clickSoundFun}>
+                {
+                    checkSosoServer ? (<CheckServerMessageModal/>) : (<></>)
+                }
                 <Routes>
                     <Route path={'/'}
                            element={<KioskMain setOrderStatusFun={setOrderStatusFun}
