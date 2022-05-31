@@ -280,6 +280,7 @@ function successPayModalShowByMoney() {
     console.log("영수증 출력 전");
     longReceipt(moneySendData);
     $("#successPay").show();
+
 }
 
 

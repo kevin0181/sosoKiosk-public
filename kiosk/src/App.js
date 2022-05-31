@@ -19,18 +19,22 @@ function App() {
 
     const [checkSosoServer, setCheckSosoServer] = useState(false);
 
+    let moneyStompClient;
+    let sosoServerStatus;
+
     const connectWebSocket = () => {//웹 소켓.
-        let moneySocket = new SockJS('https://soso-kitchen.com/user/websocket');
-        let moneyStompClient = Stomp.over(moneySocket);
-        let sosoServerStatus = moneyStompClient.connected;
+
+        moneyStompClient = Stomp.over(new SockJS('https://soso-kitchen.com/user/websocket'));
+        sosoServerStatus = moneyStompClient.connected;
 
         moneyStompClient.connect({}, function (frame) {
 
             sosoServerStatus = moneyStompClient.connected;
 
-            if (!sosoServerStatus) {
-                console.log("소소한부엌 서버 닫혀있음");
-                setCheckSosoServer(true);
+            console.log(sosoServerStatus);
+
+            if (sosoServerStatus === false) {
+                setCheckSosoServer(true); //서버 꺼져있으면 모달 띄움
             }
 
         });
