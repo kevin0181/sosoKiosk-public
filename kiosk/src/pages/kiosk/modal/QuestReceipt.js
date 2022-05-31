@@ -1,4 +1,6 @@
-const QuestReceipt = (menuModalContentChange) => {
+import {NoReceiptMoneyPayStart, YesReceiptMoneyPayStart} from "../../../js/kiosk/money";
+
+const QuestReceipt = ({menuModalContentChange, orderStatus}) => {
 
     const close = () => {
         menuModalContentChange({
@@ -31,11 +33,15 @@ const QuestReceipt = (menuModalContentChange) => {
                     <div className="O-modal-side-footer M-flex-j-center" id="">
                         <div className="O-receipt-modal-btn"
                              style={{width: '35%', backgroundColor: '#e9e9e9'}}>
-                            <p className="M-font O-font-middle-size">네</p>
+                            <p className="M-font O-font-middle-size" onClick={() => {
+                                YesReceiptMoneyPayStart(orderStatus);
+                            }}>네</p>
                         </div>
                         <div className="O-receipt-modal-btn"
                              style={{width: '35%', marginLeft: '30px', backgroundColor: '#e9e9e9'}}>
-                            <p className="M-font O-font-middle-size">아니요</p>
+                            <p className="M-font O-font-middle-size" onClick={() => {
+                                NoReceiptMoneyPayStart(orderStatus);
+                            }}>아니요</p>
                         </div>
                     </div>
                 </div>

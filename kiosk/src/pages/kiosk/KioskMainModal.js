@@ -48,7 +48,7 @@ const KioskMainModal = ({
                     break;
 
                 case 'checkReceipt':
-                    return <QuestReceipt menuModalContentChange={menuModalContentChange}/>
+                    return <QuestReceipt menuModalContentChange={menuModalContentChange} orderStatus={orderStatus}/>
                     break;
             }
 
