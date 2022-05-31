@@ -1,9 +1,15 @@
 import serverUrl from "../../config/server.json";
 import {useEffect} from "react";
 import {useNavigate} from "react-router-dom";
-import {moneyPayStart} from './../../../js/kiosk/money'
 
-const ReceiptModal = ({menuModalContentChange, allOrderData, totalPrice, orderStatus, setOrderStatusFun}) => {
+const ReceiptModal = ({
+                          menuModalContentChange,
+                          allOrderData,
+                          totalPrice,
+                          orderStatus,
+                          setOrderStatusFun,
+                          connectWebSocket
+                      }) => {
 
     const navigate = useNavigate();
 
@@ -143,7 +149,17 @@ const ReceiptModal = ({menuModalContentChange, allOrderData, totalPrice, orderSt
                                     ) : (
                                         <div className="O-pay-select-close M-flex-column M-flex-center"
                                              onClick={() => {
-                                                 moneyPayStart(orderStatus)
+                                                 connectWebSocket().then(function () {
+                                                     // moneyPayStart(orderStatus);
+                                                     menuModalContentChange({
+                                                         status: true,
+                                                         param: '',
+                                                         modalType: 'checkReceipt',
+                                                         modalTitle: '',
+                                                         modalContent: '',
+                                                         menu: ''
+                                                     })
+                                                 });
                                              }}
                                              style={{
                                                  width: '50%',

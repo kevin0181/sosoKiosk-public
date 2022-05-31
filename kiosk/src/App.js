@@ -22,26 +22,30 @@ function App() {
     let moneyStompClient;
     let sosoServerStatus;
 
-    const connectWebSocket = () => {//웹 소켓.
+    const connectWebSocket = async () => {//웹 소켓.
 
         moneyStompClient = Stomp.over(new SockJS('https://soso-kitchen.com/user/websocket'));
         sosoServerStatus = moneyStompClient.connected;
 
         moneyStompClient.connect({}, function (frame) {
 
-            sosoServerStatus = moneyStompClient.connected;
-
-            console.log(sosoServerStatus);
-
-            if (sosoServerStatus === false) {
-                setCheckSosoServer(true); //서버 꺼져있으면 모달 띄움
-            }
+            checkSosoServerFun();
 
         });
     }
 
+    const checkSosoServerFun = () => {
+        sosoServerStatus = moneyStompClient.connected;
+
+        console.log(sosoServerStatus);
+
+        if (sosoServerStatus === false) {
+            setCheckSosoServer(true); //서버 꺼져있으면 모달 띄움
+        }
+    }
+
     const clickSoundFun = () => {
-        var audio = new Audio(clickSound);
+        let audio = new Audio(clickSound);
         audio.play();
     }
 
@@ -194,7 +198,7 @@ function App() {
                     <Route path={'/menuOrder'}
                            element={<OrderMenu menu={menu} categoryList={categoryList} orderStatus={orderStatus}
                                                allOrderData={allOrderData} setOrderData={setOrderData}
-                                               setOrderStatusFun={setOrderStatusFun}
+                                               setOrderStatusFun={setOrderStatusFun} connectWebSocket={connectWebSocket}
                                                totalPrice={totalPrice}></OrderMenu>}/>
                     <Route path={'/card/pay'} element={<CardPay></CardPay>}/>
                     <Route path={'/admin'} element={<AdminLogin></AdminLogin>}/>

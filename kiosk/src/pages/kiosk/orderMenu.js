@@ -6,13 +6,24 @@ import {useEffect, useState} from "react";
 import KioskMainModal from "./KioskMainModal";
 import serverUrl from "../config/server.json";
 
-const OrderMenu = ({menu, categoryList, allOrderData, setOrderData, totalPrice, orderStatus, setOrderStatusFun}) => {
+const OrderMenu = ({
+                       menu,
+                       categoryList,
+                       allOrderData,
+                       setOrderData,
+                       totalPrice,
+                       orderStatus,
+                       setOrderStatusFun,
+                       connectWebSocket
+                   }) => {
 
     const navigate = useNavigate();
 
     useEffect(() => {
         setTimeout(() => {
-            navigate("/");
+            setAllOrderData([]).then(function () {
+                navigate("/");
+            });
         }, 300000); //5분동안 있으면 자동으로 메인으로 리다이렉트
     }, []);
 
@@ -96,7 +107,7 @@ const OrderMenu = ({menu, categoryList, allOrderData, setOrderData, totalPrice, 
              id="addMenuContainer">
             <KioskMainModal menuModalStatus={menuModalStatus} menuModalContentChange={menuModalContentChange}
                             allOrderData={allOrderData} totalPrice={totalPrice} orderStatus={orderStatus}
-                            setOrderStatusFun={setOrderStatusFun}
+                            setOrderStatusFun={setOrderStatusFun} connectWebSocket={connectWebSocket}
                             changeAllOrderData={changeAllOrderData}/>
             <div className="container M-flex-row">
                 <div className="O-order-side-all">

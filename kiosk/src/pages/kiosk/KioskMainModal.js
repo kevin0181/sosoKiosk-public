@@ -2,6 +2,7 @@ import {useEffect} from "react";
 import MenuDetailModal from "./modal/MenuDetailModal";
 import MenuDetailNoSideModal from "./modal/MenuDetailNoSideModal";
 import ReceiptModal from "./modal/ReceiptModal";
+import QuestReceipt from "./modal/QuestReceipt";
 
 const KioskMainModal = ({
                             menuModalStatus,
@@ -10,7 +11,8 @@ const KioskMainModal = ({
                             allOrderData,
                             totalPrice,
                             orderStatus,
-                            setOrderStatusFun
+                            setOrderStatusFun,
+                            connectWebSocket
                         }) => {
 
     useEffect(() => {
@@ -39,10 +41,14 @@ const KioskMainModal = ({
                     break;
 
                 case 'orderReceipt':
-
                     return <ReceiptModal menuModalContentChange={menuModalContentChange} allOrderData={allOrderData}
                                          orderStatus={orderStatus} setOrderStatusFun={setOrderStatusFun}
+                                         connectWebSocket={connectWebSocket}
                                          totalPrice={totalPrice}/>
+                    break;
+
+                case 'checkReceipt':
+                    return <QuestReceipt menuModalContentChange={menuModalContentChange}/>
                     break;
             }
 
