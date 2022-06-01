@@ -82,6 +82,5 @@
     "serve": "^13.0.2",
     "sockjs-client": "^1.6.1",
     "web-vitals": "^2.1.4"
-  },
-  "proxy": "localhost:8081"
+  }
 }

@@ -12,7 +12,9 @@ const KioskMainModal = ({
                             totalPrice,
                             orderStatus,
                             setOrderStatusFun,
-                            connectWebSocket
+                            connectWebSocket,
+                            orderNumber,
+                            PlusOrderNumber
                         }) => {
 
     useEffect(() => {
@@ -48,7 +50,9 @@ const KioskMainModal = ({
                     break;
 
                 case 'checkReceipt':
-                    return <QuestReceipt menuModalContentChange={menuModalContentChange} orderStatus={orderStatus}/>
+                    return <QuestReceipt menuModalContentChange={menuModalContentChange} orderStatus={orderStatus}
+                                         PlusOrderNumber={PlusOrderNumber}
+                                         orderNumber={orderNumber}/>
                     break;
             }
 

@@ -3,15 +3,15 @@ import {shortReceipt} from "./receipt";
 import axios from "axios";
 import serverUrl from "../../pages/config/server.json";
 
-export const NoReceiptMoneyPayStart = async (data) => { //영수증 출력 X
+export const NoReceiptMoneyPayStart = async (data, orderNumber) => { //영수증 출력 X
     saveData(data).then(function (res) {
-        shortReceipt(res);
+        shortReceipt(res, orderNumber);
     });
 }
 
-export const YesReceiptMoneyPayStart = async (data) => { //영수증 출력 O
+export const YesReceiptMoneyPayStart = async (data, orderNumber) => { //영수증 출력 O
     saveData(data).then(function (res) {
-        longReceipt(res);
+        longReceipt(res, orderNumber);
     });
 }
 

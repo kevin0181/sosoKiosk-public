@@ -17,6 +17,12 @@ function App() {
         connectWebSocket();
     }, []);
 
+    const [orderNumber, setOrderNumber] = useState(0);
+    const PlusOrderNumber = () => {
+        setOrderNumber(orderNumber + 1);
+    }
+
+
     const [checkSosoServer, setCheckSosoServer] = useState(false);
 
     let moneyStompClient;
@@ -29,18 +35,47 @@ function App() {
 
         moneyStompClient.connect({}, function (frame) {
 
-            checkSosoServerFun();
+            checkSosoServerFun().then(function (status) {
+                if (status === false)
+                    return false;
+
+                moneyStompClient.subscribe('/sendAdminMessage/kiosk/order', function (greeting) {
+                    var data = JSON.parse(greeting.body).message;
+
+                    console.log(data);
+
+                    // if (data == "noStart") {
+                    //     voice("키오스크를 실행 시켜 주세요");
+                    //     cancelOrder(moneySendData);
+                    //     payErrorModal("소소한 부엌에서 키오스크를 실행시켜주세요.");
+                    // } else if (data == "orderAfterNoStart") {
+                    //     voice("키오스크를 실행 시켜 주세요");
+                    //     cancelOrder(moneySendData);
+                    //     payErrorModal("키오스크를 실행시켜주세요.");
+                    // } else if (data == "error") {
+                    //     voice("관리자에게 문의해주세요");
+                    //     cancelOrder(moneySendData);
+                    //     payErrorModal("데이터 저장 에러 (관리자에게 문의해주세요) ");
+                    // } else {
+                    //     successPayModalShowByMoney();
+                    //     setTime();
+                    // }
+
+                });
+
+            });
 
         });
     }
 
-    const checkSosoServerFun = () => {
+    const checkSosoServerFun = async () => {
         sosoServerStatus = moneyStompClient.connected;
-
-        console.log(sosoServerStatus);
 
         if (sosoServerStatus === false) {
             setCheckSosoServer(true); //서버 꺼져있으면 모달 띄움
+            return false;
+        } else {
+            return true;
         }
     }
 
@@ -106,11 +141,11 @@ function App() {
         setResetAllData(false);
     }, [getListStatus, resetAllData]);
 
-    useEffect(() => {
-        console.log(menu);
-        console.log(categoryList);
-        console.log(orderStatus);
-    }, [categoryList, menu, orderStatus]);
+    // useEffect(() => {
+    //     console.log(menu);
+    //     console.log(categoryList);
+    //     console.log(orderStatus);
+    // }, [categoryList, menu, orderStatus]);
 
     const setMenuFun = (data) => {
         setMenu(data);
@@ -158,12 +193,6 @@ function App() {
 
     useEffect(() => {
 
-        console.log(totalPrice);
-
-    }, [totalPrice]);
-
-    useEffect(() => {
-
         let price = 0;
 
         if (allOrderData.length !== 0) {
@@ -176,8 +205,6 @@ function App() {
         }
 
         setTotalPrice(price);
-
-        console.log(allOrderData);
 
     }, [allOrderData]);
 
@@ -198,6 +225,7 @@ function App() {
                     <Route path={'/menuOrder'}
                            element={<OrderMenu menu={menu} categoryList={categoryList} orderStatus={orderStatus}
                                                allOrderData={allOrderData} setOrderData={setOrderData}
+                                               orderNumber={orderNumber} PlusOrderNumber={PlusOrderNumber}
                                                setOrderStatusFun={setOrderStatusFun} connectWebSocket={connectWebSocket}
                                                totalPrice={totalPrice}></OrderMenu>}/>
                     <Route path={'/card/pay'} element={<CardPay></CardPay>}/>

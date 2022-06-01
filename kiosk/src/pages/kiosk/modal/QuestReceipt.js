@@ -1,6 +1,6 @@
 import {NoReceiptMoneyPayStart, YesReceiptMoneyPayStart} from "../../../js/kiosk/money";
 
-const QuestReceipt = ({menuModalContentChange, orderStatus}) => {
+const QuestReceipt = ({menuModalContentChange, orderStatus, orderNumber, PlusOrderNumber}) => {
 
     const close = () => {
         menuModalContentChange({
@@ -19,7 +19,6 @@ const QuestReceipt = ({menuModalContentChange, orderStatus}) => {
                 <div className="O-modal-content">
                     <div className="O-modal-header">
                         <div className="O-modal-close-Btn">
-                            <div className="O-close O-close3" id="receiptModalCloseBtn" onClick={close}></div>
                         </div>
                         <div className="O-modal-top">
                         </div>
@@ -34,13 +33,15 @@ const QuestReceipt = ({menuModalContentChange, orderStatus}) => {
                         <div className="O-receipt-modal-btn"
                              style={{width: '35%', backgroundColor: '#e9e9e9'}}>
                             <p className="M-font O-font-middle-size" onClick={() => {
-                                YesReceiptMoneyPayStart(orderStatus);
+                                PlusOrderNumber(); //주문 번호
+                                YesReceiptMoneyPayStart(orderStatus, orderNumber, PlusOrderNumber);
                             }}>네</p>
                         </div>
                         <div className="O-receipt-modal-btn"
                              style={{width: '35%', marginLeft: '30px', backgroundColor: '#e9e9e9'}}>
                             <p className="M-font O-font-middle-size" onClick={() => {
-                                NoReceiptMoneyPayStart(orderStatus);
+                                PlusOrderNumber(); //주문 번호
+                                NoReceiptMoneyPayStart(orderStatus, orderNumber, PlusOrderNumber);
                             }}>아니요</p>
                         </div>
                     </div>

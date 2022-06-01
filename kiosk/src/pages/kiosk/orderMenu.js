@@ -14,7 +14,9 @@ const OrderMenu = ({
                        totalPrice,
                        orderStatus,
                        setOrderStatusFun,
-                       connectWebSocket
+                       connectWebSocket,
+                       orderNumber,
+                       PlusOrderNumber
                    }) => {
 
     const navigate = useNavigate();
@@ -108,6 +110,7 @@ const OrderMenu = ({
             <KioskMainModal menuModalStatus={menuModalStatus} menuModalContentChange={menuModalContentChange}
                             allOrderData={allOrderData} totalPrice={totalPrice} orderStatus={orderStatus}
                             setOrderStatusFun={setOrderStatusFun} connectWebSocket={connectWebSocket}
+                            orderNumber={orderNumber} PlusOrderNumber={PlusOrderNumber}
                             changeAllOrderData={changeAllOrderData}/>
             <div className="container M-flex-row">
                 <div className="O-order-side-all">
