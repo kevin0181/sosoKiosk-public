@@ -19,15 +19,9 @@ const KioskMainModal = ({
                             setAllOrderData
                         }) => {
 
-    useEffect(() => {
-        console.log(menuModalStatus);
-    }, [menuModalStatus]);
-
     const ModalFun = () => {
 
         if (menuModalStatus.status) {
-
-            console.log(menuModalStatus);
 
             switch (menuModalStatus.modalType) {
                 case 'orderMenuDetail':

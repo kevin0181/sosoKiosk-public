@@ -42,39 +42,50 @@ function App() {
                 moneyStompClient.subscribe('/sendAdminMessage/kiosk/order', function (greeting) {
                     var data = JSON.parse(greeting.body).message;
 
-                    console.log(data);
+                    if (data == "noStart") {
+                        // voice("키오스크를 실행 시켜 주세요");
+                        // cancelOrder(moneySendData);
+                        // payErrorModal("소소한 부엌에서 키오스크를 실행시켜주세요.");
+                    } else if (data == "orderAfterNoStart") {
+                        // voice("키오스크를 실행 시켜 주세요");
+                        // cancelOrder(moneySendData);
+                        // payErrorModal("키오스크를 실행시켜주세요.");
+                    } else if (data == "error") {
+                        // voice("관리자에게 문의해주세요");
+                        // cancelOrder(moneySendData);
+                        // payErrorModal("데이터 저장 에러 (관리자에게 문의해주세요) ");
+                    } else {
+                        menuModalContentChange({
+                            status: true,
+                            param: '',
+                            modalType: 'orderSuccessAndGoMainPage',
+                            modalTitle: '',
+                            modalContent: '',
+                            menu: ''
+                        });
+                    }
 
-                    // if (data == "noStart") {
-                    //     voice("키오스크를 실행 시켜 주세요");
-                    //     cancelOrder(moneySendData);
-                    //     payErrorModal("소소한 부엌에서 키오스크를 실행시켜주세요.");
-                    // } else if (data == "orderAfterNoStart") {
-                    //     voice("키오스크를 실행 시켜 주세요");
-                    //     cancelOrder(moneySendData);
-                    //     payErrorModal("키오스크를 실행시켜주세요.");
-                    // } else if (data == "error") {
-                    //     voice("관리자에게 문의해주세요");
-                    //     cancelOrder(moneySendData);
-                    //     payErrorModal("데이터 저장 에러 (관리자에게 문의해주세요) ");
-                    // } else {
-                    //     successPayModalShowByMoney();
-                    //     setTime();
-                    // }
-
-                    // menuModalContentChange({
-                    //     status: true,
-                    //     param: '',
-                    //     modalType: 'orderSuccessAndGoMainPage',
-                    //     modalTitle: '',
-                    //     modalContent: '',
-                    //     menu: ''
-                    // })
                 });
 
             });
 
         });
     }
+
+
+    const [menuModalStatus, setMenuModalStatus] = useState({
+        status: false,
+        param: '',
+        modalType: '',
+        modalTitle: '',
+        modalContent: '',
+        menu: ''
+    });
+
+    const menuModalContentChange = (data) => {
+        setMenuModalStatus(data);
+    }
+
 
     const checkSosoServerFun = async () => {
         sosoServerStatus = moneyStompClient.connected;
@@ -234,6 +245,8 @@ function App() {
                            element={<OrderMenu menu={menu} categoryList={categoryList} orderStatus={orderStatus}
                                                allOrderData={allOrderData} setOrderData={setOrderData}
                                                orderNumber={orderNumber} PlusOrderNumber={PlusOrderNumber}
+                                               menuModalStatus={menuModalStatus}
+                                               menuModalContentChange={menuModalContentChange}
                                                setOrderStatusFun={setOrderStatusFun} connectWebSocket={connectWebSocket}
                                                totalPrice={totalPrice}></OrderMenu>}/>
                     <Route path={'/card/pay'} element={<CardPay></CardPay>}/>

@@ -16,7 +16,9 @@ const OrderMenu = ({
                        setOrderStatusFun,
                        connectWebSocket,
                        orderNumber,
-                       PlusOrderNumber
+                       PlusOrderNumber,
+                       menuModalStatus,
+                       menuModalContentChange
                    }) => {
 
     const navigate = useNavigate();
@@ -78,23 +80,10 @@ const OrderMenu = ({
         })
     }
 
-    const [menuModalStatus, setMenuModalStatus] = useState({
-        status: false,
-        param: '',
-        modalType: '',
-        modalTitle: '',
-        modalContent: '',
-        menu: ''
-    });
-
-    const menuModalContentChange = (data) => {
-        setMenuModalStatus(data);
-    }
-
     const reOrderDetailMenuClick = (menuSq) => {
         let thisData = menu.filter((it) => it.menuSq === menuSq);
 
-        setMenuModalStatus({
+        menuModalContentChange({
             status: true,
             param: '',
             modalType: 'orderMenuDetail',
@@ -222,7 +211,7 @@ const OrderMenu = ({
                                              setOrderStatusFun({
                                                  ...orderStatus
                                              }).then(function () {
-                                                 setMenuModalStatus({
+                                                 menuModalContentChange({
                                                      status: true,
                                                      param: '',
                                                      modalType: 'orderReceipt',
@@ -241,7 +230,7 @@ const OrderMenu = ({
                                         setOrderStatusFun({
                                             ...orderStatus
                                         }).then(function () {
-                                            setMenuModalStatus({
+                                            menuModalContentChange({
                                                 status: true,
                                                 param: '',
                                                 modalType: 'orderReceipt',
