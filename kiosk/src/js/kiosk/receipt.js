@@ -101,7 +101,7 @@ export const longReceipt = (saveData, orderNumber) => { //영수증 출력 O
                     printText("--------------------------------\n", 0, 0, false, false, false, 0, 0);
                     printText("신용 승인 정보\n\n", 0, 0, false, false, false, 0, 1);
                     printText("카 드 명 : " + cardPayData.CARDNAME + "\n", 0, 0, false, false, false, 0, 0);
-                    printText("승인번호 : " + payData.orderApprovalNo + "\n\n\n", 0, 0, false, false, false, 0, 0);
+                    printText("승인번호 : " + saveData.orderApprovalNo + "\n\n\n", 0, 0, false, false, false, 0, 0);
                 }
 
 

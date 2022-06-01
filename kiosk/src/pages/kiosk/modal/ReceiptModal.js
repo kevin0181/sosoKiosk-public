@@ -135,7 +135,7 @@ const ReceiptModal = ({
                                              onClick={() => {
                                                  saveData(orderStatus).then(function (res) { //일단 저장해둠.
                                                      showCardPay(res, totalPrice, menuModalContentChange);
-                                                     navigate("/card/pay");
+                                                     // navigate("/card/pay");
                                                  });
                                              }}
                                              style={{
