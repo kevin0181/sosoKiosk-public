@@ -110,6 +110,7 @@ const OrderMenu = ({
             <KioskMainModal menuModalStatus={menuModalStatus} menuModalContentChange={menuModalContentChange}
                             allOrderData={allOrderData} totalPrice={totalPrice} orderStatus={orderStatus}
                             setOrderStatusFun={setOrderStatusFun} connectWebSocket={connectWebSocket}
+                            setAllOrderData={setAllOrderData}
                             orderNumber={orderNumber} PlusOrderNumber={PlusOrderNumber}
                             changeAllOrderData={changeAllOrderData}/>
             <div className="container M-flex-row">

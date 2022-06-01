@@ -3,6 +3,7 @@ import MenuDetailModal from "./modal/MenuDetailModal";
 import MenuDetailNoSideModal from "./modal/MenuDetailNoSideModal";
 import ReceiptModal from "./modal/ReceiptModal";
 import QuestReceipt from "./modal/QuestReceipt";
+import OrderSuccessAfterTimeOutModal from "./modal/OrderSuccessAfterTimeOutModal";
 
 const KioskMainModal = ({
                             menuModalStatus,
@@ -14,7 +15,8 @@ const KioskMainModal = ({
                             setOrderStatusFun,
                             connectWebSocket,
                             orderNumber,
-                            PlusOrderNumber
+                            PlusOrderNumber,
+                            setAllOrderData
                         }) => {
 
     useEffect(() => {
@@ -53,6 +55,9 @@ const KioskMainModal = ({
                     return <QuestReceipt menuModalContentChange={menuModalContentChange} orderStatus={orderStatus}
                                          PlusOrderNumber={PlusOrderNumber}
                                          orderNumber={orderNumber}/>
+                    break;
+                case 'orderSuccessAndGoMainPage':
+                    return <OrderSuccessAfterTimeOutModal setAllOrderData={setAllOrderData}/>
                     break;
             }
 

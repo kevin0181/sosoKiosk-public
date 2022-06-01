@@ -1,17 +1,10 @@
 import {NoReceiptMoneyPayStart, YesReceiptMoneyPayStart} from "../../../js/kiosk/money";
+import {useNavigate} from "react-router-dom";
 
 const QuestReceipt = ({menuModalContentChange, orderStatus, orderNumber, PlusOrderNumber}) => {
 
-    const close = () => {
-        menuModalContentChange({
-            status: false,
-            param: '',
-            modalType: '',
-            modalTitle: '',
-            modalContent: '',
-            menu: ''
-        })
-    }
+
+    const navigate = useNavigate();
 
     return (
         <div className="O-modal-back" id="receiptModal">
@@ -34,14 +27,32 @@ const QuestReceipt = ({menuModalContentChange, orderStatus, orderNumber, PlusOrd
                              style={{width: '35%', backgroundColor: '#e9e9e9'}}>
                             <p className="M-font O-font-middle-size" onClick={() => {
                                 PlusOrderNumber(); //주문 번호
-                                YesReceiptMoneyPayStart(orderStatus, orderNumber, PlusOrderNumber);
+                                YesReceiptMoneyPayStart(orderStatus, orderNumber, PlusOrderNumber).then(function () {
+                                    menuModalContentChange({
+                                        status: true,
+                                        param: '',
+                                        modalType: 'orderSuccessAndGoMainPage',
+                                        modalTitle: '',
+                                        modalContent: '',
+                                        menu: ''
+                                    })
+                                });
                             }}>네</p>
                         </div>
                         <div className="O-receipt-modal-btn"
                              style={{width: '35%', marginLeft: '30px', backgroundColor: '#e9e9e9'}}>
                             <p className="M-font O-font-middle-size" onClick={() => {
                                 PlusOrderNumber(); //주문 번호
-                                NoReceiptMoneyPayStart(orderStatus, orderNumber, PlusOrderNumber);
+                                NoReceiptMoneyPayStart(orderStatus, orderNumber, PlusOrderNumber).then(function () {
+                                    menuModalContentChange({
+                                        status: true,
+                                        param: '',
+                                        modalType: 'orderSuccessAndGoMainPage',
+                                        modalTitle: '',
+                                        modalContent: '',
+                                        menu: ''
+                                    })
+                                });
                             }}>아니요</p>
                         </div>
                     </div>
