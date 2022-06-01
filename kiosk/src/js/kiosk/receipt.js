@@ -25,6 +25,8 @@ export const longReceipt = (payAfterData, orderNumber, cardInfo) => { //영수�
 
     sendByServerOrder(payAfterData, orderNumber).then(function () {
 
+        console.log(payAfterData);
+
         getSettingData().then(function () {
 
             let Tax = getTax(parseInt(getSettingTax), parseInt(payAfterData.orderTotalPrice)); //총금액의 10프로 세금
@@ -85,16 +87,15 @@ export const longReceipt = (payAfterData, orderNumber, cardInfo) => { //영수�
                     printText("결제 방식  : 현금\n", 0, 0, false, false, false, 0, 0);
                 }
 
-
                 printText("대 표 자  : " + leaderName + "\n", 0, 0, false, false, false, 0, 0);
                 printText("사업자 번호: " + businessNumber + "\n", 0, 0, false, false, false, 0, 0);
                 printText("주문 시각 : " + payAfterData.orderDate + "\n\n\n", 0, 0, false, false, false, 0, 0);
 
-                if (payAfterData.payStatus == 'card') {
+                if (payAfterData.orderPayStatus === 'card') {
                     printText("--------------------------------\n", 0, 0, false, false, false, 0, 0);
                     printText("신용 승인 정보\n\n", 0, 0, false, false, false, 0, 1);
                     printText("카 드 명 : " + cardInfo.CARDNAME + "\n", 0, 0, false, false, false, 0, 0);
-                    printText("승인번호 : " + cardInfo.orderApprovalNo + "\n\n\n", 0, 0, false, false, false, 0, 0);
+                    printText("승인번호 : " + cardInfo.APPROVALNO + "\n\n\n", 0, 0, false, false, false, 0, 0);
                 }
 
             } else {
@@ -111,6 +112,8 @@ export const longReceipt = (payAfterData, orderNumber, cardInfo) => { //영수�
             cutPaper(1);
 
             let strSubmit = getPosData();
+
+            console.log(strSubmit);
 
             issueID++;
 
@@ -143,7 +146,7 @@ export const numberReceipt = (saveData, orderNumber) => { //번호표 출력
     setPosId(issueID);
     checkPrinterStatus();
 
-    var payStatus = "";
+    let payStatus = "";
 
     if (saveData.orderPayStatus === "money") {
         payStatus = "M";
@@ -155,8 +158,8 @@ export const numberReceipt = (saveData, orderNumber) => { //번호표 출력
     // printText("주문을 진행중입니다.\n", 0, 0, true, false, false, 0, 0);
     printText("\n\n\n\n\n", 0, 0, false, false, false, 0, 0);
     cutPaper(1);
-    var strSubmit = getPosData();
-
+    let strSubmit = getPosData();
+    console.log(strSubmit);
     issueID++;
 
     requestPrint(printerName, strSubmit, viewResult);
