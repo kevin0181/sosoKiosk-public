@@ -3,9 +3,6 @@ import {useNavigate} from "react-router-dom";
 
 const QuestReceipt = ({menuModalContentChange, orderStatus, orderNumber, PlusOrderNumber}) => {
 
-
-    const navigate = useNavigate();
-
     return (
         <div className="O-modal-back" id="receiptModal">
             <div className="O-modal" style={{width: '40%', height: '35%'}}>

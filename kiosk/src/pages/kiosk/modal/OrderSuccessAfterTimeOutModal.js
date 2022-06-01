@@ -1,4 +1,5 @@
 import {useNavigate} from "react-router-dom";
+import {useEffect, useState} from "react";
 
 const OrderSuccessAfterTimeOutModal = ({setAllOrderData}) => {
 
@@ -9,6 +10,24 @@ const OrderSuccessAfterTimeOutModal = ({setAllOrderData}) => {
             navigate('/');
         })
     }
+
+    const [time, setTime] = useState(10);
+
+    useEffect(() => {
+
+        if (time === 0) {
+
+            goStart();
+
+        } else {
+            setTimeout(() => {
+
+                setTime(time - 1);
+
+            }, 1000);
+        }
+
+    }, [time]);
 
     return (
         <div className="O-modal-back"
@@ -35,7 +54,7 @@ const OrderSuccessAfterTimeOutModal = ({setAllOrderData}) => {
                         <small style={{fontSize: '30px'}}>번호표를
                             확인해주세요.</small><br/>
                         <small style={{fontSize: '30px'}}
-                               id="successPayTime">10</small>
+                               id="successPayTime">{time}</small>
                     </div>
                     <div className="O-modal-side-footer M-flex-j-center"
                          style={{marginTop: '30px', height: '15%'}}>
