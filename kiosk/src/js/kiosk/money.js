@@ -11,7 +11,7 @@ export const NoReceiptMoneyPayStart = async (data, orderNumber) => { //영수증
 
 export const YesReceiptMoneyPayStart = async (data, orderNumber) => { //영수증 출력 O
     saveData(data).then(function (res) {
-        longReceipt(res, orderNumber);
+        longReceipt(res, orderNumber, null);
     });
 }
 

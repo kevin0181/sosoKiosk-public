@@ -16,7 +16,7 @@ let _inch = 2;
 
 let printerName = "Printer1";
 
-export const longReceipt = (saveData, orderNumber) => { //영수증 출력 O
+export const longReceipt = (saveData, orderNumber, cardData) => { //영수증 출력 O
     if (saveData === null) {
         alert("주문을 저장할 수 없습니다. 관리자를 호출해주세요 (error : 1001)");
         return false;
@@ -31,8 +31,6 @@ export const longReceipt = (saveData, orderNumber) => { //영수증 출력 O
             let Tax = getTax(parseInt(getSettingTax), parseInt(saveData.orderTotalPrice)); //총금액의 10프로 세금
             setPosId(issueID);
             checkPrinterStatus();
-            console.log(Tax);
-
 
             printText("\n\n&pastel\n\n\n", 0, 1, false, false, false, 0, 1);
             printText("\n\n경기도 안산시 \n단원구 예술대학로 171,\n15263, 한국\n\n\n", 0, 0, false, false, false, 0, 1);
@@ -121,7 +119,7 @@ export const longReceipt = (saveData, orderNumber) => { //영수증 출력 O
 
             requestPrint(printerName, strSubmit, viewResult);
 
-            // numberReceipt(saveData);
+            numberReceipt(saveData);
 
         });
     });
@@ -138,32 +136,35 @@ export const shortReceipt = (saveData, orderNumber) => { //영수증 출력 X
     }
 
     sendByServerOrder(saveData, orderNumber).then(function () {
-        // getSettingData().then(function () {
-        //
-        //     setPosId(issueID);
-        //     checkPrinterStatus();
-        //
-        //     let payStatus = "";
-        //
-        //     if (payData.orderPayStatus === "money") {
-        //         payStatus = "M";
-        //     } else if (payData.orderPayStatus === "card") {
-        //         payStatus = "C";
-        //     }
-        //     printText("주문 번호\n", 0, 0, true, false, false, 0, 1);
-        //     printText("\n\n" + payStatus + "-" + payData.orderNumber + "\n\n\n", 0, 3, true, false, false, 0, 1);
-        //     // printText("주문을 진행중입니다.\n", 0, 0, true, false, false, 0, 0);
-        //     printText("\n\n\n\n\n", 0, 0, false, false, false, 0, 0);
-        //     cutPaper(1);
-        //     let strSubmit = getPosData();
-        //
-        //     issueID++;
-        //     orderSize++;
-        //
-        //     requestPrint(printerName, strSubmit, viewResult);
-        // });
+        numberReceipt(saveData);
     });
 
+}
+
+const numberReceipt = (saveData) => { //번호표 출력
+
+    setPosId(issueID);
+    checkPrinterStatus();
+
+    var payStatus = "";
+
+    if (saveData.orderPayStatus === "money") {
+        payStatus = "M";
+    } else if (saveData.orderPayStatus === "card") {
+        payStatus = "C";
+    }
+    printText("주문 번호\n", 0, 0, true, false, false, 0, 1);
+    printText("\n\n" + payStatus + "-" + saveData.orderNumber + "\n\n\n", 0, 3, true, false, false, 0, 1);
+    // printText("주문을 진행중입니다.\n", 0, 0, true, false, false, 0, 0);
+    printText("\n\n\n\n\n", 0, 0, false, false, false, 0, 0);
+    cutPaper(1);
+    var strSubmit = getPosData();
+
+    issueID++;
+
+    requestPrint(printerName, strSubmit, viewResult);
+
+    return true;
 }
 
 const sendByServerOrder = async (saveData, orderNumber) => {
