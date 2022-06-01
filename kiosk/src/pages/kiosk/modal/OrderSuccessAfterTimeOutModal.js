@@ -1,14 +1,23 @@
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 
-const OrderSuccessAfterTimeOutModal = ({setAllOrderData}) => {
+const OrderSuccessAfterTimeOutModal = ({setAllOrderData, menuModalContentChange}) => {
 
     const navigate = useNavigate();
 
     const goStart = () => {
         setAllOrderData([]).then(function () {
-            navigate('/');
-        })
+            menuModalContentChange({
+                status: false,
+                param: '',
+                modalType: '',
+                modalTitle: '',
+                modalContent: '',
+                menu: ''
+            }).then(function () {
+                navigate('/');
+            })
+        });
     }
 
     const [time, setTime] = useState(10);

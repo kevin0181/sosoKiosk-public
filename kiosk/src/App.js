@@ -44,16 +44,33 @@ function App() {
 
                     if (data == "noStart") {
                         // voice("키오스크를 실행 시켜 주세요");
-                        // cancelOrder(moneySendData);
-                        // payErrorModal("소소한 부엌에서 키오스크를 실행시켜주세요.");
+                        menuModalContentChange({
+                            status: true,
+                            param: '',
+                            modalType: 'kioskTotalMessage',
+                            modalTitle: '오류 메시지',
+                            modalContent: '소소 페이지에서 키오스크를 실행 시켜 주세요.',
+                            menu: ''
+                        });
                     } else if (data == "orderAfterNoStart") {
                         // voice("키오스크를 실행 시켜 주세요");
-                        // cancelOrder(moneySendData);
-                        // payErrorModal("키오스크를 실행시켜주세요.");
+                        menuModalContentChange({
+                            status: true,
+                            param: '',
+                            modalType: 'kioskTotalMessage',
+                            modalTitle: '',
+                            modalContent: '키오스크를 실행시켜주세요.',
+                            menu: ''
+                        });
                     } else if (data == "error") {
-                        // voice("관리자에게 문의해주세요");
-                        // cancelOrder(moneySendData);
-                        // payErrorModal("데이터 저장 에러 (관리자에게 문의해주세요) ");
+                        menuModalContentChange({
+                            status: true,
+                            param: '',
+                            modalType: 'kioskTotalMessage',
+                            modalTitle: '오류 메시지',
+                            modalContent: '데이터 저장 에러 (관리자에게 문의해주세요)',
+                            menu: ''
+                        });
                     } else {
                         menuModalContentChange({
                             status: true,
@@ -82,7 +99,7 @@ function App() {
         menu: ''
     });
 
-    const menuModalContentChange = (data) => {
+    const menuModalContentChange = async (data) => {
         setMenuModalStatus(data);
     }
 

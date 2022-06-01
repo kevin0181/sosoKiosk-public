@@ -4,6 +4,7 @@ import MenuDetailNoSideModal from "./modal/MenuDetailNoSideModal";
 import ReceiptModal from "./modal/ReceiptModal";
 import QuestReceipt from "./modal/QuestReceipt";
 import OrderSuccessAfterTimeOutModal from "./modal/OrderSuccessAfterTimeOutModal";
+import MainTotalModal from "./modal/MainTotalModal";
 
 const KioskMainModal = ({
                             menuModalStatus,
@@ -51,7 +52,12 @@ const KioskMainModal = ({
                                          orderNumber={orderNumber}/>
                     break;
                 case 'orderSuccessAndGoMainPage':
-                    return <OrderSuccessAfterTimeOutModal setAllOrderData={setAllOrderData}/>
+                    return <OrderSuccessAfterTimeOutModal menuModalContentChange={menuModalContentChange}
+                                                          setAllOrderData={setAllOrderData}/>
+                    break;
+                case 'kioskTotalMessage':
+                    return <MainTotalModal menuModalContentChange={menuModalContentChange}
+                                           menuModalStatus={menuModalStatus} setAllOrderData={setAllOrderData}/>
                     break;
             }
 
