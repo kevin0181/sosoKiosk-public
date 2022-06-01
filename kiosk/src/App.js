@@ -61,6 +61,14 @@ function App() {
                     //     setTime();
                     // }
 
+                    // menuModalContentChange({
+                    //     status: true,
+                    //     param: '',
+                    //     modalType: 'orderSuccessAndGoMainPage',
+                    //     modalTitle: '',
+                    //     modalContent: '',
+                    //     menu: ''
+                    // })
                 });
 
             });

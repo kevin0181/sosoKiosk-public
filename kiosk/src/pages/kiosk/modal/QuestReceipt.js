@@ -24,32 +24,14 @@ const QuestReceipt = ({menuModalContentChange, orderStatus, orderNumber, PlusOrd
                              style={{width: '35%', backgroundColor: '#e9e9e9'}}>
                             <p className="M-font O-font-middle-size" onClick={() => {
                                 PlusOrderNumber(); //주문 번호
-                                YesReceiptMoneyPayStart(orderStatus, orderNumber, PlusOrderNumber).then(function () {
-                                    menuModalContentChange({
-                                        status: true,
-                                        param: '',
-                                        modalType: 'orderSuccessAndGoMainPage',
-                                        modalTitle: '',
-                                        modalContent: '',
-                                        menu: ''
-                                    })
-                                });
+                                YesReceiptMoneyPayStart(orderStatus, orderNumber, PlusOrderNumber);
                             }}>네</p>
                         </div>
                         <div className="O-receipt-modal-btn"
                              style={{width: '35%', marginLeft: '30px', backgroundColor: '#e9e9e9'}}>
                             <p className="M-font O-font-middle-size" onClick={() => {
                                 PlusOrderNumber(); //주문 번호
-                                NoReceiptMoneyPayStart(orderStatus, orderNumber, PlusOrderNumber).then(function () {
-                                    menuModalContentChange({
-                                        status: true,
-                                        param: '',
-                                        modalType: 'orderSuccessAndGoMainPage',
-                                        modalTitle: '',
-                                        modalContent: '',
-                                        menu: ''
-                                    })
-                                });
+                                NoReceiptMoneyPayStart(orderStatus, orderNumber, PlusOrderNumber);
                             }}>아니요</p>
                         </div>
                     </div>
