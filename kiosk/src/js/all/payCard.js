@@ -1,25 +1,25 @@
 function saveCardOrder(cardMenuList, cardPlaceStatus, cardTotalPrice) {
 
     var data = {
-        "orderMenu"  : cardMenuList,
-        "totalPrice" : cardTotalPrice.toString(),
+        "orderMenu": cardMenuList,
+        "totalPrice": cardTotalPrice.toString(),
         "placeStatus": cardPlaceStatus,
-        "payStatus"  : "card"
+        "payStatus": "card"
     }
 
     $.ajax({
-        anyne      : true,
-        type       : "POST",
+        anyne: true,
+        type: "POST",
         contentType: 'application/json',
-        url        : "/kiosk/menu/order/menu",
-        dataType   : "json",
-        data       : JSON.stringify(data),
-        success    : function (data) {
+        url: "/kiosk/menu/order/menu",
+        dataType: "json",
+        data: JSON.stringify(data),
+        success: function (data) {
 
             checkCardReader(data.orderTelegramNo, data.orderTotalPrice, data, cardMenuList);
 
         },
-        error      : function () {
+        error: function () {
             alert("주문에 실패하였습니다. 관리자에게 문의해주세요.");
             location.href = "/";
         }
@@ -34,14 +34,14 @@ function checkCardReader(orderTelegramNo, orderTotalPrice, saveData, cardMenuLis
     var getSettingReaderNo = null;
     //세금 가져오기
     $.ajax({
-        type       : "GET",
+        type: "GET",
         contentType: 'application/json',
-        url        : "/kiosk/get/setting",
-        dataType   : "json",
-        data       : {
+        url: "/kiosk/get/setting",
+        dataType: "json",
+        data: {
             "setting": "all"
         },
-        success    : function (data) {
+        success: function (data) {
 
             console.log(data);
 
@@ -120,12 +120,12 @@ function checkCardReader(orderTelegramNo, orderTotalPrice, saveData, cardMenuLis
             console.log(Message);
 
             $.ajax({
-                url     : "http://127.0.0.1:27098",
-                type    : "POST",
+                url: "http://127.0.0.1:27098",
+                type: "POST",
                 dataType: "jsonp",
-                jsonp   : "callback",
-                data    : {"REQ": Message},
-                success : function (data) {
+                jsonp: "callback",
+                data: {"REQ": Message},
+                success: function (data) {
 
                     console.log(data);
 
@@ -183,7 +183,7 @@ function checkCardReader(orderTelegramNo, orderTotalPrice, saveData, cardMenuLis
 
 
                 },
-                error   : function () {
+                error: function () {
                     cancelOrder(saveData);
                     payErrorModal("결제오류 : 결제가 되었다면 관리자에게 문의해주세요.");
                 }
@@ -199,16 +199,16 @@ function checkCardReader(orderTelegramNo, orderTotalPrice, saveData, cardMenuLis
 function cancelOrder(data) {
 
     $.ajax({
-        anyne      : true,
-        type       : "POST",
+        anyne: true,
+        type: "POST",
         contentType: 'application/json',
-        url        : "http://localhost:8080/kiosk/menu/cancel/saveMenu",
-        dataType   : "json",
-        data       : JSON.stringify(data),
-        success    : function (data) {
+        url: "http://localhost:8080/kiosk/menu/cancel/saveMenu",
+        dataType: "json",
+        data: JSON.stringify(data),
+        success: function (data) {
 
         },
-        error      : function () {
+        error: function () {
             alert("주문 취소.");
             location.href = "./../../kiosk/kiosk/index.html";
         }
@@ -220,27 +220,27 @@ var payData;
 function cardPayAfterSaveOrder(data, cardMenuList) {
 
     $.ajax({
-        anyne      : true,
-        type       : "POST",
+        anyne: true,
+        type: "POST",
         contentType: 'application/json',
-        url        : "http://localhost:8080/kiosk/menu/order/saveMenu",
-        dataType   : "json",
-        data       : JSON.stringify(data),
-        success    : function (data) {
+        url: "http://localhost:8080/kiosk/menu/order/saveMenu",
+        dataType: "json",
+        data: JSON.stringify(data),
+        success: function (data) {
 
             cardSendData = data;
             payData = data;
 
             cardStompClient.send("/order/kiosk", {}, JSON.stringify({
-                "orderMenu"  : cardMenuList,
-                "orderData"  : data,
+                "orderMenu": cardMenuList,
+                "orderData": data,
                 "orderNumber": ("C-" + data.orderNumber)
             }));
 
             $("#receiptModal").show();
 
         },
-        error      : function () {
+        error: function () {
             alert("주문에 실패하였습니다. 관리자에게 문의해주세요.");
             location.href = "/";
         }
@@ -269,9 +269,6 @@ function checkReceipt(status) {
 }
 
 
-function getTax(par, total) {
-    return Math.ceil((total * par) / 100);
-}
 
 String.prototype.fillZero = function (n) {
     var str = this;

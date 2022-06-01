@@ -197,7 +197,6 @@ function checkCardReader(orderTelegramNo, orderTotalPrice, saveData, cardMenuLis
 }
 
 function cancelOrder(data) {
-
     $.ajax({
         anyne      : true,
         type       : "POST",

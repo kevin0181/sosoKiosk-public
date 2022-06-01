@@ -16,10 +16,16 @@ let _inch = 2;
 
 let printerName = "Printer1";
 
-export const longReceipt = (saveData, orderNumber, cardData) => { //영수증 출력 O
+export const longReceipt = (saveData, orderNumber) => { //영수증 출력 O
     if (saveData === null) {
         alert("주문을 저장할 수 없습니다. 관리자를 호출해주세요 (error : 1001)");
         return false;
+    }
+
+    let cardPayData;
+
+    if (saveData.cardPayData !== undefined) {
+        cardPayData = saveData.cardPayData;
     }
 
     sendByServerOrder(saveData, orderNumber).then(function () {
@@ -91,12 +97,12 @@ export const longReceipt = (saveData, orderNumber, cardData) => { //영수증 �
                 printText("사업자 번호: " + businessNumber + "\n", 0, 0, false, false, false, 0, 0);
                 printText("주문 시각 : " + saveData.orderDate + "\n\n\n", 0, 0, false, false, false, 0, 0);
 
-                // if (cardPayData != null) {
-                //     printText("--------------------------------\n", 0, 0, false, false, false, 0, 0);
-                //     printText("신용 승인 정보\n\n", 0, 0, false, false, false, 0, 1);
-                //     printText("카 드 명 : " + cardPayData.CARDNAME + "\n", 0, 0, false, false, false, 0, 0);
-                //     printText("승인번호 : " + payData.orderApprovalNo + "\n\n\n", 0, 0, false, false, false, 0, 0);
-                // }
+                if (cardPayData != null) {
+                    printText("--------------------------------\n", 0, 0, false, false, false, 0, 0);
+                    printText("신용 승인 정보\n\n", 0, 0, false, false, false, 0, 1);
+                    printText("카 드 명 : " + cardPayData.CARDNAME + "\n", 0, 0, false, false, false, 0, 0);
+                    printText("승인번호 : " + payData.orderApprovalNo + "\n\n\n", 0, 0, false, false, false, 0, 0);
+                }
 
 
             } else {
@@ -192,7 +198,7 @@ const sendByServerOrder = async (saveData, orderNumber) => {
 
 }
 
-const getSettingData = async () => {
+export const getSettingData = async () => {
     const response = await axios.get('http://' + serverUrl.server + '/kiosk/get/setting', {
         params: {
             "setting": "all"
@@ -217,8 +223,10 @@ const getSettingData = async () => {
                 break;
         }
     });
+
+    return response.data;
 }
 
-function getTax(par, total) {
+export async function getTax(par, total) {
     return Math.ceil((total * par) / 100);
 }

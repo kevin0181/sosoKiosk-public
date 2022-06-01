@@ -1,6 +1,6 @@
 import serverUrl from "../../config/server.json";
-import {useEffect} from "react";
 import {useNavigate} from "react-router-dom";
+import {saveData, showCardPay} from "../../../js/kiosk/pay";
 
 const ReceiptModal = ({
                           menuModalContentChange,
@@ -12,10 +12,6 @@ const ReceiptModal = ({
                       }) => {
 
     const navigate = useNavigate();
-
-    useEffect(() => {
-        console.log(orderStatus);
-    }, []);
 
     const close = () => {
         menuModalContentChange({
@@ -137,7 +133,10 @@ const ReceiptModal = ({
                                     orderStatus.payStatus === 'card' ? (
                                         <div className="O-pay-select-close M-flex-column M-flex-center"
                                              onClick={() => {
-                                                 navigate("/card/pay")
+                                                 saveData(orderStatus).then(function (res) { //일단 저장해둠.
+                                                     showCardPay(res, totalPrice, menuModalContentChange);
+                                                     navigate("/card/pay");
+                                                 });
                                              }}
                                              style={{
                                                  width: '50%',
@@ -150,7 +149,6 @@ const ReceiptModal = ({
                                         <div className="O-pay-select-close M-flex-column M-flex-center"
                                              onClick={() => {
                                                  connectWebSocket().then(function () {
-                                                     // moneyPayStart(orderStatus);
                                                      menuModalContentChange({
                                                          status: true,
                                                          param: '',

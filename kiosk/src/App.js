@@ -22,7 +22,6 @@ function App() {
         setOrderNumber(orderNumber + 1);
     }
 
-
     const [checkSosoServer, setCheckSosoServer] = useState(false);
 
     let moneyStompClient;
@@ -266,7 +265,9 @@ function App() {
                                                menuModalContentChange={menuModalContentChange}
                                                setOrderStatusFun={setOrderStatusFun} connectWebSocket={connectWebSocket}
                                                totalPrice={totalPrice}></OrderMenu>}/>
-                    <Route path={'/card/pay'} element={<CardPay></CardPay>}/>
+                    <Route path={'/card/pay'}
+                           element={<CardPay orderStatus={orderStatus} totalPrice={totalPrice}
+                                             menuModalContentChange={menuModalContentChange}></CardPay>}/>
                     <Route path={'/admin'} element={<AdminLogin></AdminLogin>}/>
                     <Route path={'/admin/:adminCategory'} element={<AdminSide resetData={resetData}></AdminSide>}/>
                 </Routes>
