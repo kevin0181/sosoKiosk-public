@@ -16,23 +16,18 @@ let _inch = 2;
 
 let printerName = "Printer1";
 
-export const longReceipt = (saveData, orderNumber, menuModalStatus) => { //영수증 출력 O
-    if (saveData === null) {
+export const longReceipt = (payAfterData, orderNumber, cardInfo) => { //영수증 출력 O
+
+    if (payAfterData === null) {
         alert("주문을 저장할 수 없습니다. 관리자를 호출해주세요 (error : 1001)");
         return false;
     }
 
-    let cardPayData;
-
-    if (menuModalStatus.cardPayData !== undefined) {
-        cardPayData = menuModalStatus.cardPayData;
-    }
-
-    sendByServerOrder(saveData, orderNumber).then(function () {
+    sendByServerOrder(payAfterData, orderNumber).then(function () {
 
         getSettingData().then(function () {
 
-            let Tax = getTax(parseInt(getSettingTax), parseInt(saveData.orderTotalPrice)); //총금액의 10프로 세금
+            let Tax = getTax(parseInt(getSettingTax), parseInt(payAfterData.orderTotalPrice)); //총금액의 10프로 세금
             setPosId(issueID);
             checkPrinterStatus();
 
@@ -46,7 +41,7 @@ export const longReceipt = (saveData, orderNumber, menuModalStatus) => { //영�
                 printText("메뉴        단가    수량    금액\n\n", 0, 0, false, false, false, 0, 0);
 
 
-                $(saveData.orderDetailEntityList).each(function () {
+                $(payAfterData.orderDetailEntityList).each(function () {
 
                     // printText(" " + this.orderMenuName + "      " + this.orderDetailMenuSize + "        " + this.orderDetailMenuPrice + " \n", 0, 0, false, false, false, 0, 0);
 
@@ -70,38 +65,37 @@ export const longReceipt = (saveData, orderNumber, menuModalStatus) => { //영�
                 });
 
                 printText("--------------------------------\n", 0, 0, false, false, false, 0, 0);
-                printText("  부가세 과세 물품가액 : " + (parseInt(saveData.orderTotalPrice) - parseInt(Tax)) + "\n", 0, 0, true, false, false, 0, 0);
+                printText("  부가세 과세 물품가액 : " + (parseInt(payAfterData.orderTotalPrice) - parseInt(Tax)) + "\n", 0, 0, true, false, false, 0, 0);
                 printText("           부  과  세  : " + Tax + "\n", 0, 0, true, false, false, 0, 0);
                 printText("            --------------------\n", 0, 0, false, false, false, 0, 0);
-                printText("               총 금액 : " + saveData.orderTotalPrice + "\n", 0, 0, true, false, false, 0, 0);
+                printText("               총 금액 : " + payAfterData.orderTotalPrice + "\n", 0, 0, true, false, false, 0, 0);
                 printText("--------------------------------\n", 0, 0, false, false, false, 0, 0);
-                printText("        주문 번호 : " + saveData.orderTelegramNo + "\n\n", 0, 0, false, false, false, 0, 0);
+                printText("        주문 번호 : " + payAfterData.orderTelegramNo + "\n\n", 0, 0, false, false, false, 0, 0);
 
-                if (saveData.orderPlace == "inner") {
+                if (payAfterData.orderPlace == "inner") {
                     printText("                          매장\n\n", 0, 0, false, false, false, 0, 0);
-                } else if (saveData.orderPlace == "outer") {
+                } else if (payAfterData.orderPlace == "outer") {
                     printText("                          포장\n\n", 0, 0, false, false, false, 0, 0);
                 }
 
 
-                if (saveData.orderPayStatus == "card") {
+                if (payAfterData.orderPayStatus == "card") {
                     printText("결제 방식  : 카드\n", 0, 0, false, false, false, 0, 0);
-                } else if (saveData.orderPayStatus == "money") {
+                } else if (payAfterData.orderPayStatus == "money") {
                     printText("결제 방식  : 현금\n", 0, 0, false, false, false, 0, 0);
                 }
 
 
                 printText("대 표 자  : " + leaderName + "\n", 0, 0, false, false, false, 0, 0);
                 printText("사업자 번호: " + businessNumber + "\n", 0, 0, false, false, false, 0, 0);
-                printText("주문 시각 : " + saveData.orderDate + "\n\n\n", 0, 0, false, false, false, 0, 0);
+                printText("주문 시각 : " + payAfterData.orderDate + "\n\n\n", 0, 0, false, false, false, 0, 0);
 
-                if (cardPayData != null) {
+                if (payAfterData.payStatus == 'card') {
                     printText("--------------------------------\n", 0, 0, false, false, false, 0, 0);
                     printText("신용 승인 정보\n\n", 0, 0, false, false, false, 0, 1);
-                    printText("카 드 명 : " + cardPayData.CARDNAME + "\n", 0, 0, false, false, false, 0, 0);
-                    printText("승인번호 : " + saveData.orderApprovalNo + "\n\n\n", 0, 0, false, false, false, 0, 0);
+                    printText("카 드 명 : " + cardInfo.CARDNAME + "\n", 0, 0, false, false, false, 0, 0);
+                    printText("승인번호 : " + cardInfo.orderApprovalNo + "\n\n\n", 0, 0, false, false, false, 0, 0);
                 }
-
 
             } else {
                 // error
@@ -122,7 +116,7 @@ export const longReceipt = (saveData, orderNumber, menuModalStatus) => { //영�
 
             requestPrint(printerName, strSubmit, viewResult);
 
-            numberReceipt(saveData);
+            numberReceipt(payAfterData, orderNumber);
 
         });
     });
@@ -139,12 +133,12 @@ export const shortReceipt = (saveData, orderNumber) => { //영수증 출력 X
     }
 
     sendByServerOrder(saveData, orderNumber).then(function () {
-        numberReceipt(saveData);
+        numberReceipt(saveData, orderNumber);
     });
 
 }
 
-const numberReceipt = (saveData) => { //번호표 출력
+export const numberReceipt = (saveData, orderNumber) => { //번호표 출력
 
     setPosId(issueID);
     checkPrinterStatus();
@@ -157,7 +151,7 @@ const numberReceipt = (saveData) => { //번호표 출력
         payStatus = "C";
     }
     printText("주문 번호\n", 0, 0, true, false, false, 0, 1);
-    printText("\n\n" + payStatus + "-" + saveData.orderNumber + "\n\n\n", 0, 3, true, false, false, 0, 1);
+    printText("\n\n" + payStatus + "-" + orderNumber + "\n\n\n", 0, 3, true, false, false, 0, 1);
     // printText("주문을 진행중입니다.\n", 0, 0, true, false, false, 0, 0);
     printText("\n\n\n\n\n", 0, 0, false, false, false, 0, 0);
     cutPaper(1);
@@ -185,11 +179,20 @@ const sendByServerOrder = async (saveData, orderNumber) => {
             return false;
         }
 
-        moneyStompClient.send("/order/kiosk", {}, JSON.stringify({
-            "orderMenu": saveData.orderMenu,
-            "orderData": saveData,
-            "orderNumber": ("M-" + orderNumber)
-        }));
+        if (saveData.orderPayStatus === 'card') {
+            moneyStompClient.send("/order/kiosk", {}, JSON.stringify({
+                "orderMenu": saveData.orderMenu,
+                "orderData": saveData,
+                "orderNumber": ("C-" + orderNumber)
+            }));
+        } else if (saveData.orderPayStatus === 'money') {
+            moneyStompClient.send("/order/kiosk", {}, JSON.stringify({
+                "orderMenu": saveData.orderMenu,
+                "orderData": saveData,
+                "orderNumber": ("M-" + orderNumber)
+            }));
+        }
+
 
     });
 

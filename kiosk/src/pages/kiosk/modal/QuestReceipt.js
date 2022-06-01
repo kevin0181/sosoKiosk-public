@@ -8,6 +8,11 @@ const QuestReceipt = ({menuModalContentChange, orderStatus, orderNumber, PlusOrd
                 <div className="O-modal-content">
                     <div className="O-modal-header">
                         <div className="O-modal-close-Btn">
+                            <div className="O-close O-close3" onClick={() => {
+                                PlusOrderNumber(); //주문 번호
+                                NoReceiptMoneyPayStart(orderStatus, orderNumber, menuModalStatus);
+                            }}
+                                 id="modalCloseBtn"></div>
                         </div>
                         <div className="O-modal-top">
                         </div>
@@ -30,7 +35,7 @@ const QuestReceipt = ({menuModalContentChange, orderStatus, orderNumber, PlusOrd
                              style={{width: '35%', marginLeft: '30px', backgroundColor: '#e9e9e9'}}>
                             <p className="M-font O-font-middle-size" onClick={() => {
                                 PlusOrderNumber(); //주문 번호
-                                NoReceiptMoneyPayStart(orderStatus, orderNumber);
+                                NoReceiptMoneyPayStart(orderStatus, orderNumber, menuModalStatus);
                             }}>아니요</p>
                         </div>
                     </div>

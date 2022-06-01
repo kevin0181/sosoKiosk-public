@@ -1,19 +1,27 @@
-import {getSettingData, getTax, longReceipt} from './receipt';
+import {getSettingData, getTax, longReceipt, numberReceipt} from './receipt';
 import {shortReceipt} from "./receipt";
 import axios from "axios";
 import serverUrl from "../../pages/config/server.json";
 import $ from 'jquery';
 
-export const NoReceiptMoneyPayStart = async (data, orderNumber) => { //영수증 출력 X
-    saveData(data).then(function (res) {
-        shortReceipt(res, orderNumber);
-    });
+export const NoReceiptMoneyPayStart = async (data, orderNumber, menuModalStatus) => { //영수증 출력 X
+    if (data.payStatus === 'card') {
+        shortReceipt(menuModalStatus.cardPayData, orderNumber);
+    } else {
+        saveData(data).then(function (res) {
+            shortReceipt(res, orderNumber);
+        });
+    }
 }
 
 export const YesReceiptMoneyPayStart = async (data, orderNumber, menuModalStatus) => { //영수증 출력 O
-    saveData(data).then(function (res) {
-        longReceipt(res, orderNumber, menuModalStatus);
-    });
+    if (data.payStatus === 'card') {
+        longReceipt(menuModalStatus.cardPayData, orderNumber, menuModalStatus.cardInfo);
+    } else {
+        saveData(data).then(function (res) {
+            longReceipt(res, orderNumber);
+        });
+    }
 }
 
 
@@ -137,7 +145,7 @@ export const showCardPay = (res, getTotalPrice, menuModalContentChange) => {
                         if (data.RES === 1000) { //결제 취소
                             modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 취소', '결제가 취소 되었습니다.', '');
                         }
-                        if (data.RES === "0000" || data.RESPCODE === "0000") {
+                        if (data.RES === "0000" && data.RESPCODE === "0000") {
                             let approvalNo = FindJSONtoString("APPROVALNO", data);					// 승인번호
                             let tradeTime = FindJSONtoString("TRADETIME", data).substrKor(0, 6);	// 승인일시
                             let tradeUniqueNo = FindJSONtoString("TRADEUNIQUENO", data);				// VANTR
@@ -147,35 +155,35 @@ export const showCardPay = (res, getTotalPrice, menuModalContentChange) => {
                             res.orderTradeUniqueNo = tradeUniqueNo;
 
                             cardPayAfterSaveOrder(res).then(function () {
-                                modalSend(menuModalContentChange, 'checkReceipt', '', '', data);
+                                modalSend(menuModalContentChange, 'checkReceipt', '', '', res, data);
                             });
 
                         } else if (data.RESPCODE === "1001") {
-                            modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', "전문 오류 : " + data.RESPCODE, '');
+                            modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', "전문 오류 : " + data.RESPCODE, '', '');
                         } else if (data.RESPCODE === "1003") {
-                            modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', "이전 거래가 완료되지 않았습니다 : " + data.RESPCODE, '');
+                            modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', "이전 거래가 완료되지 않았습니다 : " + data.RESPCODE, '', '');
                         } else if (data.RESPCODE === "2312" || data.RESPCODE === "2329") {
-                            modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', '지원하지 않는 카드입니다.', '');
+                            modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', '지원하지 않는 카드입니다.', '', '');
                         } else if (data.RESPCODE === "2316" || data.RESPCODE === "2315" || data.RESPCODE === "8326") {
-                            modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', '잔액이 부족합니다.', '');
+                            modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', '잔액이 부족합니다.', '', '');
                         } else if (data.RESPCODE === "2317") {
-                            modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', '카드 인식 오류', '');
+                            modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', '카드 인식 오류', '', '');
                         } else if (data.RESPCODE === "2322") {
-                            modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', '거래가 불가능한 카드입니다.', '');
+                            modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', '거래가 불가능한 카드입니다.', '', '');
                         } else if (data.RESPCODE === "8350") {
-                            modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', '도난 및 분실 카드', '');
+                            modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', '도난 및 분실 카드', '', '');
                             // var audio = new Audio('/voice/도난 및 분실 카드입니다.wav');
                             // audio.play();
                         } else if (data.RESPCODE === "2327") {
-                            modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', '존재하지 않는 카드입니다.', '');
+                            modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', '존재하지 않는 카드입니다.', '', '');
                         } else if (data.RESPCODE === "2328") {
-                            modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', '한장의 카드를 넣어주세요.', '');
+                            modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', '한장의 카드를 넣어주세요.', '', '');
                         } else {
-                            modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', "결제 불가능 : " + data.RESPCODE, '');
+                            modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', "결제 불가능 : " + data.RESPCODE, '', '');
                         }
                     },
                     error: function () {
-                        modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', "결제오류 : 결제가 되었다면 관리자에게 문의해주세요.", '');
+                        modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', "결제오류 : 결제가 되었다면 관리자에게 문의해주세요.", '', '');
                     }
 
                 });
@@ -198,7 +206,7 @@ async function cardPayAfterSaveOrder(data) {
 
 }
 
-const modalSend = (menuModalContentChange, modalType, modalTitle, modalContent, cardPayData) => {
+const modalSend = (menuModalContentChange, modalType, modalTitle, modalContent, cardPayData, cardInfo) => {
     menuModalContentChange({
         status: true,
         param: '',
@@ -206,7 +214,8 @@ const modalSend = (menuModalContentChange, modalType, modalTitle, modalContent, 
         modalTitle: modalTitle,
         modalContent: modalContent,
         menu: '',
-        cardPayData: cardPayData
+        cardPayData: cardPayData,
+        cardInfo: cardInfo
     });
 }
 
