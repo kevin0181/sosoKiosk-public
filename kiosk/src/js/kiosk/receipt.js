@@ -16,7 +16,7 @@ let _inch = 2;
 
 let printerName = "Printer1";
 
-export const longReceipt = (saveData, orderNumber) => { //영수증 출력 O
+export const longReceipt = (saveData, orderNumber, menuModalStatus) => { //영수증 출력 O
     if (saveData === null) {
         alert("주문을 저장할 수 없습니다. 관리자를 호출해주세요 (error : 1001)");
         return false;
@@ -24,13 +24,11 @@ export const longReceipt = (saveData, orderNumber) => { //영수증 출력 O
 
     let cardPayData;
 
-    if (saveData.cardPayData !== undefined) {
-        cardPayData = saveData.cardPayData;
+    if (menuModalStatus.cardPayData !== undefined) {
+        cardPayData = menuModalStatus.cardPayData;
     }
 
     sendByServerOrder(saveData, orderNumber).then(function () {
-
-        console.log(saveData);
 
         getSettingData().then(function () {
 
@@ -119,7 +117,6 @@ export const longReceipt = (saveData, orderNumber) => { //영수증 출력 O
             cutPaper(1);
 
             let strSubmit = getPosData();
-
 
             issueID++;
 

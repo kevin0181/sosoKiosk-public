@@ -10,9 +10,9 @@ export const NoReceiptMoneyPayStart = async (data, orderNumber) => { //영수증
     });
 }
 
-export const YesReceiptMoneyPayStart = async (data, orderNumber) => { //영수증 출력 O
+export const YesReceiptMoneyPayStart = async (data, orderNumber, menuModalStatus) => { //영수증 출력 O
     saveData(data).then(function (res) {
-        longReceipt(res, orderNumber);
+        longReceipt(res, orderNumber, menuModalStatus);
     });
 }
 
@@ -134,8 +134,6 @@ export const showCardPay = (res, getTotalPrice, menuModalContentChange) => {
                     data: {"REQ": Message},
                     success: function (data) {
 
-                        console.log(data);
-
                         if (data.RES === 1000) { //결제 취소
                             modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 취소', '결제가 취소 되었습니다.', '');
                         }
@@ -149,33 +147,32 @@ export const showCardPay = (res, getTotalPrice, menuModalContentChange) => {
                             res.orderTradeUniqueNo = tradeUniqueNo;
 
                             cardPayAfterSaveOrder(res).then(function () {
-                                console.log("완전 여기까지왔다고~?");
+                                modalSend(menuModalContentChange, 'checkReceipt', '', '', data);
                             });
 
+                        } else if (data.RESPCODE === "1001") {
+                            modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', "전문 오류 : " + data.RESPCODE, '');
+                        } else if (data.RESPCODE === "1003") {
+                            modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', "이전 거래가 완료되지 않았습니다 : " + data.RESPCODE, '');
+                        } else if (data.RESPCODE === "2312" || data.RESPCODE === "2329") {
+                            modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', '지원하지 않는 카드입니다.', '');
+                        } else if (data.RESPCODE === "2316" || data.RESPCODE === "2315" || data.RESPCODE === "8326") {
+                            modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', '잔액이 부족합니다.', '');
+                        } else if (data.RESPCODE === "2317") {
+                            modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', '카드 인식 오류', '');
+                        } else if (data.RESPCODE === "2322") {
+                            modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', '거래가 불가능한 카드입니다.', '');
+                        } else if (data.RESPCODE === "8350") {
+                            modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', '도난 및 분실 카드', '');
+                            // var audio = new Audio('/voice/도난 및 분실 카드입니다.wav');
+                            // audio.play();
+                        } else if (data.RESPCODE === "2327") {
+                            modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', '존재하지 않는 카드입니다.', '');
+                        } else if (data.RESPCODE === "2328") {
+                            modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', '한장의 카드를 넣어주세요.', '');
+                        } else {
+                            modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', "결제 불가능 : " + data.RESPCODE, '');
                         }
-                        // else if (data.RESPCODE === "1001") {
-                        //     modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', "전문 오류 : " + data.RESPCODE, '');
-                        // } else if (data.RESPCODE === "1003") {
-                        //     modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', "이전 거래가 완료되지 않았습니다 : " + data.RESPCODE, '');
-                        // } else if (data.RESPCODE === "2312" || data.RESPCODE === "2329") {
-                        //     modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', '지원하지 않는 카드입니다.', '');
-                        // } else if (data.RESPCODE === "2316" || data.RESPCODE === "2315" || data.RESPCODE === "8326") {
-                        //     modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', '잔액이 부족합니다.', '');
-                        // } else if (data.RESPCODE === "2317") {
-                        //     modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', '카드 인식 오류', '');
-                        // } else if (data.RESPCODE === "2322") {
-                        //     modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', '거래가 불가능한 카드입니다.', '');
-                        // } else if (data.RESPCODE === "8350") {
-                        //     modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', '도난 및 분실 카드', '');
-                        //     // var audio = new Audio('/voice/도난 및 분실 카드입니다.wav');
-                        //     // audio.play();
-                        // } else if (data.RESPCODE === "2327") {
-                        //     modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', '존재하지 않는 카드입니다.', '');
-                        // } else if (data.RESPCODE === "2328") {
-                        //     modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', '한장의 카드를 넣어주세요.', '');
-                        // } else {
-                        //     modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', "결제 불가능 : " + data.RESPCODE, '');
-                        // }
                     },
                     error: function () {
                         modalSend(menuModalContentChange, 'kioskTotalMessage', '결제 실패', "결제오류 : 결제가 되었다면 관리자에게 문의해주세요.", '');
