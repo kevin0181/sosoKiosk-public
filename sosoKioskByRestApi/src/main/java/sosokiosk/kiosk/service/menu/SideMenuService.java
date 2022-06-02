@@ -108,14 +108,15 @@ public class SideMenuService {
         return messageDTO;
     }
 
-    @Transactional
     public List<MenuSideDTO> findSideMenuAll() {
         List<MenuSideEntity> menuSideEntityList = menuSideRepository.findAll();
         List<MenuSideDTO> menuSideDTOList = menuSideEntityList.stream().map(menuSideEntity -> modelMapper.map(menuSideEntity, MenuSideDTO.class)).collect(Collectors.toList());
 
         for (int i = 0; i < menuSideDTOList.size(); i++) {
             menuSideDTOList.get(i).getSideCategoryDTO().setMenuSideDTOList(null);
-            menuSideDTOList.get(i).getSideCategoryDTO().getSideDTO().setSideCategoryDTOList(null);
+            if (menuSideDTOList.get(i).getSideCategoryDTO().getSideDTO() != null) {
+                menuSideDTOList.get(i).getSideCategoryDTO().getSideDTO().setSideCategoryDTOList(null);
+            }
         }
 
         return menuSideDTOList;
@@ -135,7 +136,6 @@ public class SideMenuService {
 
 
     }
-
 
     //사이드 메뉴 상세
     public MenuSideDTO findSideMenu(Long menuSideSq) {
