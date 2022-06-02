@@ -23,13 +23,13 @@ const OrderMenu = ({
 
     const navigate = useNavigate();
 
-    useEffect(() => {
-        setTimeout(() => {
-            setAllOrderData([]).then(function () {
-                navigate("/");
-            });
-        }, 300000); //5분동안 있으면 자동으로 메인으로 리다이렉트
-    }, []);
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         setAllOrderData([]).then(function () {
+    //             navigate("/");
+    //         });
+    //     }, 300000); //5분동안 있으면 자동으로 메인으로 리다이렉트
+    // }, []);
 
     const setAllOrderData = async (data) => {
         setOrderData(data);

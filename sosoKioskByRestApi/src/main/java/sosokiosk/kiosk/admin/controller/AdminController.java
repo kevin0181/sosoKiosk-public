@@ -1,5 +1,6 @@
 package sosokiosk.kiosk.admin.controller;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import sosokiosk.kiosk.dto.menu.CategoryDTO;
 import sosokiosk.kiosk.dto.menu.MenuDTO;
 import sosokiosk.kiosk.dto.order.OrderDTO;
-import sosokiosk.kiosk.dto.setting.SettingDTO;
 import sosokiosk.kiosk.dto.side.MenuSideDTO;
 import sosokiosk.kiosk.dto.side.SideDTO;
 import sosokiosk.kiosk.entity.order.OrderEntity;
@@ -21,10 +21,9 @@ import sosokiosk.kiosk.service.order.OrderService;
 import sosokiosk.kiosk.service.setting.SettingService;
 
 import javax.transaction.Transactional;
-import java.lang.reflect.Method;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class AdminController {
@@ -43,6 +42,9 @@ public class AdminController {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private ModelMapper modelMapper;
 
     @PostMapping("/admin/get/all/menu/list")
     @ResponseBody
@@ -108,29 +110,37 @@ public class AdminController {
         return "/admin/index";
     }
 
+    @Transactional
     @GetMapping("/admin/order")
-    public String adminOrder(Model model, @RequestParam(value = "status", required = false) String status) {
+    @ResponseBody
+    public List<OrderDTO> adminOrder(@RequestParam(value = "status", required = false) String status) {
 
-        model.addAttribute("arrowStatus", "order");
-        model.addAttribute("status", status);
+        List<OrderEntity> orderEntityList = null;
 
         if (status.equals("AllOrder")) {
-            List<OrderEntity> orderEntityList = orderService.getAllOrders();
+            orderEntityList = orderService.getAllOrders();
             Collections.reverse(orderEntityList);
-            model.addAttribute("orderEntityList", orderEntityList);
         } else if (status.equals("cardOrder")) {
 
-            List<OrderEntity> orderEntityList = orderService.getCardOrders();
+            orderEntityList = orderService.getCardOrders();
             Collections.reverse(orderEntityList);
-            model.addAttribute("orderEntityList", orderEntityList);
 
         } else if (status.equals("moneyOrder")) {
-            List<OrderEntity> orderEntityList = orderService.getMoneyOrders();
+            orderEntityList = orderService.getMoneyOrders();
             Collections.reverse(orderEntityList);
-            model.addAttribute("orderEntityList", orderEntityList);
         }
 
-        return "/admin/index";
+        List<OrderDTO> orderDTOList = orderEntityList.stream().map(orderEntity -> modelMapper.map(orderEntity, OrderDTO.class)).collect(Collectors.toList());
+
+//        for (int i = 0; i < orderDTOList.size(); i++) {
+//
+//            for (int j = 0; j < orderDTOList.get(i).get)
+//
+//        }
+
+        return orderDTOList;
+
+
     }
 
 }
