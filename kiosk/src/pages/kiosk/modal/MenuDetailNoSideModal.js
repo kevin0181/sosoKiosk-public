@@ -147,8 +147,8 @@ const MenuDetailNoSideModal = ({menuModalStatus, menuModalContentChange, changeA
                                          style={{width: '70%', height: '200px'}}>
                                         <div className="O-mini-card-header-img">
                                             {
-                                                detailMenuImg.map((it) => (
-                                                    <img className="O-mini-img"
+                                                detailMenuImg.map((it, index) => (
+                                                    <img className="O-mini-img" key={index}
                                                          src={'http://' + serverUrl.server + it.imgPath +
                                                              '/' + it.imgName}
                                                          alt={'메뉴 이미지'}/>
