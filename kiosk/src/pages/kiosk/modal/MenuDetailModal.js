@@ -281,39 +281,64 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
                                         없음</p>
                                 ) : (
                                     sideMenu.map((it) => (
-                                        <div className="O-side-order-card" key={it.menuSideSq}>
-                                            <div className="O-menu-side-img">
-                                                <img className="O-side-img" alt={'사이드 이미지'}
-                                                     src={'http://' + serverUrl.server + it.menuSideImgDTOList[0].menuSideImgPath +
-                                                         '/' + it.menuSideImgDTOList[0].menuSideImgName}/>
-                                            </div>
-                                            <div
-                                                className="O-menu-side-name M-font O-font-middle-size M-flex-column M-flex-center">
-                                                <p style={{fontSize: '85%', textAlign: 'center'}}>{it.menuSideName}</p>
-                                                <small
-                                                    className="O-side-mini-size-font">{'가격 ' + it.menuSidePrice}</small>
-                                            </div>
-                                            <div className="O-menu-side-number M-flex-column M-flex-center"
-                                                 style={{width: '10%'}}>
-                                                <div className="side-number-top M-font O-font-middle-size"
-                                                     id={'menuSideUp' + it.menuSideSq}
-                                                     data-sq={it.menuSideSq}
-                                                     data-name={it.menuSideName}
-                                                     data-price={it.menuSidePrice}
-                                                     onClick={changeOrderMenu}>+
+                                        it.menuSideEnable ? (
+                                            <>
+                                            </>
+                                        ) : (
+                                            <div className="O-side-order-card" key={it.menuSideSq}>
+                                                <div className="O-menu-side-img">
+                                                    <img className="O-side-img" alt={'사이드 이미지'}
+                                                         src={'http://' + serverUrl.server + it.menuSideImgDTOList[0].menuSideImgPath +
+                                                             '/' + it.menuSideImgDTOList[0].menuSideImgName}/>
                                                 </div>
-                                                <div className="M-font O-font-middle-size">
-                                                    <SideMenuSize menuSideSq={it.menuSideSq}/>
+                                                <div
+                                                    className="O-menu-side-name M-font O-font-middle-size M-flex-column M-flex-center">
+                                                    <p style={{
+                                                        fontSize: '85%',
+                                                        textAlign: 'center'
+                                                    }}>{it.menuSideName}</p>
+                                                    <small
+                                                        className="O-side-mini-size-font">{'가격 ' + it.menuSidePrice}</small>
+                                                    {
+                                                        it.menuSideSoldOut ? (<p className="M-font"
+                                                                                 style={{
+                                                                                     fontSize: '30px',
+                                                                                     color: 'red'
+                                                                                 }}>품절</p>) : (<></>)
+                                                    }
                                                 </div>
-                                                <div className="side-number-bottom M-font O-font-middle-size"
-                                                     id={'menuSideDown' + it.menuSideSq}
-                                                     data-sq={it.menuSideSq}
-                                                     data-name={it.menuSideName}
-                                                     data-price={it.menuSidePrice}
-                                                     onClick={changeOrderMenu}>-
+                                                <div className="O-menu-side-number M-flex-column M-flex-center"
+                                                     style={{width: '10%'}}>
+                                                    {
+                                                        it.menuSideSoldOut ? (
+                                                                <></>
+                                                            ) :
+                                                            (<>
+                                                                <div
+                                                                    className="side-number-top M-font O-font-middle-size"
+                                                                    id={'menuSideUp' + it.menuSideSq}
+                                                                    data-sq={it.menuSideSq}
+                                                                    data-name={it.menuSideName}
+                                                                    data-price={it.menuSidePrice}
+                                                                    onClick={changeOrderMenu}>+
+                                                                </div>
+                                                                <div className="M-font O-font-middle-size">
+                                                                    <SideMenuSize menuSideSq={it.menuSideSq}/>
+                                                                </div>
+                                                                <div
+                                                                    className="side-number-bottom M-font O-font-middle-size"
+                                                                    id={'menuSideDown' + it.menuSideSq}
+                                                                    data-sq={it.menuSideSq}
+                                                                    data-name={it.menuSideName}
+                                                                    data-price={it.menuSidePrice}
+                                                                    onClick={changeOrderMenu}>-
+                                                                </div>
+                                                            </>)
+                                                    }
+
                                                 </div>
                                             </div>
-                                        </div>
+                                        )
                                     ))
                                 )
 
