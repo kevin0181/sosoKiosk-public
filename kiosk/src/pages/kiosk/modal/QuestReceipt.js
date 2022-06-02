@@ -8,11 +8,6 @@ const QuestReceipt = ({menuModalContentChange, orderStatus, orderNumber, PlusOrd
                 <div className="O-modal-content">
                     <div className="O-modal-header">
                         <div className="O-modal-close-Btn">
-                            <div className="O-close O-close3" onClick={() => {
-                                PlusOrderNumber(); //주문 번호
-                                NoReceiptMoneyPayStart(orderStatus, orderNumber, menuModalStatus);
-                            }}
-                                 id="modalCloseBtn"></div>
                         </div>
                         <div className="O-modal-top">
                         </div>
