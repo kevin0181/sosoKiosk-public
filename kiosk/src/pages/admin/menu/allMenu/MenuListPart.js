@@ -42,7 +42,7 @@ const MenuListPart = ({data, modalContentChange}) => {
                                     status: true,
                                     param: 'all',
                                     modalType: 'adminMenuDetailModal',
-                                    modalTitle: it.menuName + ' 상세 페이지',
+                                    modalTitle: it.menuName,
                                     modalContent: '',
                                     sendId: it.menuSq,
                                     sendName: it.menuName
