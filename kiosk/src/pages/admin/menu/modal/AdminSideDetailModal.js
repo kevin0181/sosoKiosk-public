@@ -313,7 +313,7 @@ const AdminSideDetailModal = ({modalStatus, modalContentChange, changeSideData, 
                         </div>
                         <div className="O-modal-top">
                             <div className="O-modal-top-title M-font">
-                                <p>{modalStatus.modalTitle}</p>
+                                <p>{changeSideData.menuSideName}</p>
                             </div>
                         </div>
                     </div>
@@ -381,7 +381,7 @@ const AdminSideDetailModal = ({modalStatus, modalContentChange, changeSideData, 
                                                    readOnly/>
                                             {
                                                 sideStatus ? (
-                                                    <SideSelectList side={side}
+                                                    <SideSelectList side={side} changeSideData={changeSideData}
                                                                     changeSide={changeAddSideMenu}/>) : (<></>)
                                             }
                                         </div>
