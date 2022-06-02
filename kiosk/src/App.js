@@ -17,7 +17,7 @@ function App() {
         connectWebSocket();
     }, []);
 
-    const [orderNumber, setOrderNumber] = useState(0);
+    const [orderNumber, setOrderNumber] = useState(77);
     const PlusOrderNumber = () => {
         setOrderNumber(orderNumber + 1);
     }
