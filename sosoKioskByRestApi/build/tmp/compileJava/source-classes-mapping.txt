@@ -26,10 +26,10 @@ sosokiosk/kiosk/repository/side/MenuSideImgRepository.java
  sosokiosk.kiosk.repository.side.MenuSideImgRepository
 sosokiosk/kiosk/dto/order/getOrder/SendOrderDTO.java
  sosokiosk.kiosk.dto.order.getOrder.SendOrderDTO
-sosokiosk/kiosk/admin/controller/menu/MenuController.java
- sosokiosk.kiosk.admin.controller.menu.MenuController
-sosokiosk/kiosk/service/menu/MenuService.java
- sosokiosk.kiosk.service.menu.MenuService
+sosokiosk/kiosk/service/order/OrderService.java
+ sosokiosk.kiosk.service.order.OrderService
+sosokiosk/kiosk/service/menu/SideMenuService.java
+ sosokiosk.kiosk.service.menu.SideMenuService
 sosokiosk/kiosk/dto/order/getOrder/SendSideDTO.java
  sosokiosk.kiosk.dto.order.getOrder.SendSideDTO
 sosokiosk/kiosk/dto/side/MenuSideImgDTO.java
@@ -132,16 +132,16 @@ sosokiosk/kiosk/dto/side/MenuSideDTO.java
  sosokiosk.kiosk.dto.side.MenuSideDTO
 sosokiosk/kiosk/service/sales/SalesService.java
  sosokiosk.kiosk.service.sales.SalesService
+sosokiosk/kiosk/admin/controller/menu/SideMenuController.java
+ sosokiosk.kiosk.admin.controller.menu.SideMenuController
+sosokiosk/kiosk/admin/controller/order/OrderController.java
+ sosokiosk.kiosk.admin.controller.order.OrderController
 sosokiosk/kiosk/kiosk/controller/KioskController.java
  sosokiosk.kiosk.kiosk.controller.KioskController
  sosokiosk.kiosk.kiosk.controller.KioskController$1
-sosokiosk/kiosk/admin/controller/order/OrderController.java
- sosokiosk.kiosk.admin.controller.order.OrderController
-sosokiosk/kiosk/service/order/OrderService.java
- sosokiosk.kiosk.service.order.OrderService
-sosokiosk/kiosk/service/menu/SideMenuService.java
- sosokiosk.kiosk.service.menu.SideMenuService
+sosokiosk/kiosk/admin/controller/menu/MenuController.java
+ sosokiosk.kiosk.admin.controller.menu.MenuController
+sosokiosk/kiosk/service/menu/MenuService.java
+ sosokiosk.kiosk.service.menu.MenuService
 sosokiosk/kiosk/admin/controller/AdminController.java
  sosokiosk.kiosk.admin.controller.AdminController
-sosokiosk/kiosk/admin/controller/menu/SideMenuController.java
- sosokiosk.kiosk.admin.controller.menu.SideMenuController

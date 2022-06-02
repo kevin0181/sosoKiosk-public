@@ -526,6 +526,7 @@
 
 .O-side-order-card {
     width: 33.3333333333%;
+    height: 200px;
     padding: 10px;
     display: flex;
     justify-content: space-between;

@@ -155,9 +155,11 @@ public class MenuService {
             menuEntity.getImgDTOList().add(imgEntity);
         }
 
-        if (changeMenuDTO.getSideSq() != 0) {
-            SideEntity sideEntity = sideRepository.findById(changeMenuDTO.getSideSq()).get();
-            menuEntity.getSide().add(sideEntity);
+        if (changeMenuDTO.getSideSq() != null) {
+            if (changeMenuDTO.getSideSq() != 0) {
+                SideEntity sideEntity = sideRepository.findById(changeMenuDTO.getSideSq()).get();
+                menuEntity.getSide().add(sideEntity);
+            }
         }
 
         menuRepository.save(menuEntity);
