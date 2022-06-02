@@ -11,8 +11,6 @@ const ReceiptModal = ({
                           connectWebSocket
                       }) => {
 
-    const navigate = useNavigate();
-
     const close = () => {
         menuModalContentChange({
             status: false,
@@ -134,8 +132,16 @@ const ReceiptModal = ({
                                         <div className="O-pay-select-close M-flex-column M-flex-center"
                                              onClick={() => {
                                                  saveData(orderStatus).then(function (res) { //일단 저장해둠.
-                                                     showCardPay(res, totalPrice, menuModalContentChange);
-                                                     // navigate("/card/pay");
+                                                     menuModalContentChange({
+                                                         status: true,
+                                                         param: '',
+                                                         modalType: 'showCardGif',
+                                                         modalTitle: '',
+                                                         modalContent: '',
+                                                         menu: ''
+                                                     }).then(function () {
+                                                         showCardPay(res, totalPrice, menuModalContentChange);
+                                                     });
                                                  });
                                              }}
                                              style={{

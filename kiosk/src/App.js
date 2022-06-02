@@ -5,7 +5,7 @@ import OrderMenu from "./pages/kiosk/orderMenu";
 import AdminSide from "./pages/admin/AdminSide";
 import {useEffect, useState} from "react";
 import {getCategoryList, getMenuList} from "./js/kiosk/menu";
-import CardPay from "./pages/kiosk/CardPay";
+import CardPayModal from "./pages/kiosk/modal/CardPayModal";
 import clickSound from './voice/clickSound.wav';
 import SockJS from 'sockjs-client';
 import {Stomp} from '@stomp/stompjs';
@@ -266,8 +266,8 @@ function App() {
                                                setOrderStatusFun={setOrderStatusFun} connectWebSocket={connectWebSocket}
                                                totalPrice={totalPrice}></OrderMenu>}/>
                     <Route path={'/card/pay'}
-                           element={<CardPay orderStatus={orderStatus} totalPrice={totalPrice}
-                                             menuModalContentChange={menuModalContentChange}></CardPay>}/>
+                           element={<CardPayModal orderStatus={orderStatus} totalPrice={totalPrice}
+                                                  menuModalContentChange={menuModalContentChange}></CardPayModal>}/>
                     <Route path={'/admin'} element={<AdminLogin></AdminLogin>}/>
                     <Route path={'/admin/:adminCategory'} element={<AdminSide resetData={resetData}></AdminSide>}/>
                 </Routes>

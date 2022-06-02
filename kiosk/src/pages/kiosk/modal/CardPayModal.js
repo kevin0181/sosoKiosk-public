@@ -1,10 +1,10 @@
-import cardPayGif from './../../img/ICInsert.gif';
-import cardSound from './../../voice/카드를 꽂아주세요.wav'
+import cardPayGif from '../../../img/ICInsert.gif';
+import cardSound from '../../../voice/카드를 꽂아주세요.wav'
 import {useEffect} from "react";
 import {Stomp} from "@stomp/stompjs";
 import SockJS from "sockjs-client";
 
-const CardPay = ({orderStatus, totalPrice, menuModalContentChange}) => {
+const CardPayModal = ({orderStatus, totalPrice, menuModalContentChange}) => {
 
     useEffect(() => {
         connectWebSocket();
@@ -77,4 +77,4 @@ const CardPay = ({orderStatus, totalPrice, menuModalContentChange}) => {
         </div>
     );
 }
-export default CardPay;
+export default CardPayModal;
