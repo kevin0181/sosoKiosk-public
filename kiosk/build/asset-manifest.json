@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "./static/css/main.75708375.css",
+    "main.js": "./static/js/main.d058e21f.js",
+    "static/media/NanumPenScript-Regular.ttf": "./static/media/NanumPenScript-Regular.9dbef1100bff0af74f80.ttf",
+    "static/media/ICInsert.gif": "./static/media/ICInsert.406ce23ecdf36dae37ac.gif",
+    "static/media/카드를 꽂아주세요.wav": "./static/media/카드를 꽂아주세요.b35f00208822410a9f54.wav",
+    "static/media/outerImg.png": "./static/media/outerImg.099201330958d534ca21.png",
+    "static/media/clickSound.wav": "./static/media/clickSound.0473d4ae1670e73c3d2b.wav",
+    "static/media/innerImg.png": "./static/media/innerImg.23dffe99dcfd5abb35b2.png",
+    "index.html": "./index.html",
+    "main.75708375.css.map": "./static/css/main.75708375.css.map",
+    "main.d058e21f.js.map": "./static/js/main.d058e21f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.75708375.css",
+    "static/js/main.d058e21f.js"
+  ]
+}
