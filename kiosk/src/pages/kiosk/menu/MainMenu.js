@@ -54,39 +54,58 @@ const MainMenu = ({menu, menuModalContentChange}) => {
 
     return (
         <div className="O-flex-menu">
-            {viewMenu.menu.map((it) => (
-                <div className="O-card" key={it.menuSq}>
-                    <div className="O-card-all" onClick={() => {
-                        menuModalContentChange({
-                            status: true,
-                            param: status,
-                            modalType: 'orderMenuDetail',
-                            modalTitle: it.menuName + ' 상세 보기',
-                            modalContent: '',
-                            menu: it
-                        });
-                    }}>
-                        <div className="O-card-header">
-                            <div className="O-card-header-img">
-                                {
-                                    imgCheck(it.imgDTOList)
+
+            {
+                viewMenu.menu.map((it) => (
+                    it.menuEnable ? (<></>) : (
+                        <div className="O-card" key={it.menuSq}>
+                            <div className="O-card-all" onClick={() => {
+                                if (it.menuSoldOut) {
+                                    return false;
+                                } else {
+                                    menuModalContentChange({
+                                        status: true,
+                                        param: status,
+                                        modalType: 'orderMenuDetail',
+                                        modalTitle: it.menuName + ' 상세 보기',
+                                        modalContent: '',
+                                        menu: it
+                                    });
                                 }
-                            </div>
-                        </div>
-                        <div className="O-card-body">
-                            <div className="O-card-body-top">
-                                <p className="O-menu-name">{it.menuName}</p>
-                            </div>
-                            <div className="O-card-body-body">
-                                <div style={{textAlign: 'center'}}>
-                                    <p className="O-menu-name" style={{display: 'inline-block'}}>가격 : </p>
-                                    <p className="O-menu-name" style={{display: 'inline-block'}}>{it.menuPrice}</p>
+                            }}>
+                                <div className="O-card-header">
+                                    <div className="O-card-header-img">
+                                        {
+                                            imgCheck(it.imgDTOList)
+                                        }
+                                    </div>
+                                </div>
+                                <div className="O-card-body">
+                                    <div className="O-card-body-top">
+                                        <p className="O-menu-name">{it.menuName}</p>
+                                    </div>
+                                    <div className="O-card-body-body">
+                                        <div style={{textAlign: 'center'}}>
+                                            <p className="O-menu-name" style={{display: 'inline-block'}}>가격 : </p>
+                                            <p className="O-menu-name"
+                                               style={{display: 'inline-block'}}>{it.menuPrice}</p><br/>
+                                            {
+                                                it.menuSoldOut ? (<small className="O-menu-name"
+                                                                         style={{
+                                                                             display: 'inline-block',
+                                                                             fontSize: '30px',
+                                                                             color: 'red'
+                                                                         }}>(품절)</small>) : (<></>)
+                                            }
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            ))}
+                    )
+                ))
+            }
+
         </div>
     );
 
