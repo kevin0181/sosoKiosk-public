@@ -216,4 +216,28 @@ public class OrderService {
 
         return orderDTOList;
     }
+
+    public List<OrderDTO> getCardDate(String startDate, String endDate) {
+        return null;
+    }
+
+    public List<OrderDTO> getMoneyDate(String startDate, String endDate) {
+        return null;
+    }
+
+    public List<OrderDTO> getAllDate(String startDate, String endDate) {
+        List<OrderEntity> orderEntityList;
+        List<OrderDTO> orderDTOList;
+        if (startDate.equals("") && endDate.equals("")) { //전부 가져오기
+            orderEntityList = orderRepository.findAll();
+            orderEntityList.remove(new OrderDetailEntity());
+            orderDTOList = orderEntityList.stream().map(orderEntity -> modelMapper.map(orderEntity, OrderDTO.class)).collect(Collectors.toList());
+        } else {
+            orderEntityList = orderRepository.findAllByOrderDateBetween(startDate, endDate);
+            orderEntityList.remove(new OrderDetailEntity());
+            orderDTOList = orderEntityList.stream().map(orderEntity -> modelMapper.map(orderEntity, OrderDTO.class)).collect(Collectors.toList());
+        }
+        return orderDTOList;
+    }
+
 }

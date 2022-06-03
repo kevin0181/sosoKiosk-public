@@ -2,6 +2,8 @@ import {useEffect, useState} from "react";
 import {getAllOrderList} from "../../../js/admin/order/order";
 import SpinnerAdmin from "../part/SpinnerAdmin";
 import * as AllMenuSearch from "../../../js/admin/menu/AllMenu";
+import axios from "axios";
+import serverUrl from "../../config/server.json";
 
 const AllOrder = ({modalContentChange, data, setDataFun}) => {
 
@@ -30,6 +32,38 @@ const AllOrder = ({modalContentChange, data, setDataFun}) => {
         });
     }, []);
 
+    const [searchDate, setSearchDate] = useState({
+        startDate: '',
+        endDate: '',
+        payStatus: 'all'
+    });
+
+    const changeDateFun = (e) => {
+        setSearchDate({
+            ...searchDate,
+            [e.target.name]: e.target.value
+        });
+    }
+
+    const dateSearch = async () => {
+
+        if (searchDate.startDate === '' && searchDate.endDate === '' || searchDate.startDate !== '' && searchDate.endDate !== '') {
+            setSpinner(true);
+            const response = await axios.post('http://' + serverUrl.server + '/admin/order/date', null, {
+                params: {
+                    'payStatus': searchDate.payStatus,
+                    'startDate': searchDate.startDate,
+                    'endDate': searchDate.endDate
+                },
+                maxRedirects: 0
+            });
+            return response.data;
+        } else {
+            return false;
+        }
+
+    }
+
     return (
         <div className="admin-main">
             {
@@ -48,14 +82,31 @@ const AllOrder = ({modalContentChange, data, setDataFun}) => {
                                        id="all-menu-search"/>
                                 <div className="admin-top-search" style={{width: '500px', marginLeft: '10%'}}>
                                     <form className="M-flex-1 M-flex-row" id="dateForm" method="post">
-                                        <input type="date" className="M-input-search" name="startDate" id="startDate"/>
+                                        <input type="date" className="M-input-search" name="startDate" id="startDate"
+                                               onChange={changeDateFun}/>
                                         <span style={{fontSize: '18px', margin: '0px 20px'}}> ~ </span>
                                         <input type="date" className="M-input-search" name="endDate"
+                                               onChange={changeDateFun}
                                                id="endDate"/>
-                                        <input type="button" value="검색"
-                                               className="M-input-search"
-                                               style={{width: '70px', margin: '0px 20px'}}/>
-                                        <input type="button" value="전체"
+                                        <input type="button" value="검색" onClick={() => {
+                                            dateSearch().then(function (order) {
+                                                if (order) {
+                                                    setDataFun({
+                                                        ...data,
+                                                        order
+                                                    });
+                                                } else {
+                                                    modalContentChange({
+                                                        status: true,
+                                                        param: '',
+                                                        modalType: 'adminTotalModal',
+                                                        modalTitle: '오류 메시지',
+                                                        modalContent: '정확한 날짜를 입력해주세요.',
+                                                    });
+                                                }
+                                                setSpinner(false);
+                                            });
+                                        }}
                                                className="M-input-search"
                                                style={{width: '70px', margin: '0px 20px'}}/>
                                     </form>

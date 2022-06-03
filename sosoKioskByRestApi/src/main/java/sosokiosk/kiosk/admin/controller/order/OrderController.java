@@ -11,6 +11,8 @@ import sosokiosk.kiosk.entity.order.OrderEntity;
 import sosokiosk.kiosk.service.order.OrderService;
 
 import javax.transaction.Transactional;
+import java.util.Collections;
+import java.util.List;
 
 @Controller
 public class OrderController {
@@ -54,6 +56,33 @@ public class OrderController {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    @Transactional
+    @ResponseBody
+    @PostMapping("/admin/order/date")
+    public List<OrderDTO> adminSales(
+            @RequestParam(value = "payStatus", required = false) String payStatus,
+            @RequestParam(value = "startDate", required = false) String startDate,
+            @RequestParam(value = "endDate", required = false) String endDate) {
+
+        List<OrderDTO> orderDTOList = null;
+
+        if (payStatus.equals("card")) {
+
+            orderDTOList = orderService.getCardDate(startDate, endDate);
+            Collections.reverse(orderDTOList);
+
+        } else if (payStatus.equals("money")) {
+
+            orderDTOList = orderService.getMoneyDate(startDate, endDate);
+            Collections.reverse(orderDTOList);
+        } else if (payStatus.equals("all")) {
+            orderDTOList = orderService.getAllDate(startDate, endDate);
+            Collections.reverse(orderDTOList);
+        }
+
+        return orderDTOList;
     }
 
 
