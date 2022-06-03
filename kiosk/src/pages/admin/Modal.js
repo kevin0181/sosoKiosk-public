@@ -10,7 +10,6 @@ import AdminSideDetailModal from "./menu/modal/AdminSideDetailModal";
 import CategoryRenameModal from "./menu/modal/categoryModal/CategoryRenameModal";
 import SideRenameModal from "./menu/modal/categoryModal/SideRenameModal";
 import CategoryDetailModal from "./menu/modal/categoryModal/CategoryDetailModal";
-import {getMenuList} from "../../js/admin/menu/AllMenu";
 import SideDetailModal from "./menu/modal/categoryModal/SideDetailModal";
 import CancelPayModal from "./order/modal/CancelPayModal";
 
@@ -93,7 +92,8 @@ const Modal = ({modalStatus, modalContentChange, data, setDataFun}) => {
                                             modalContentChange={modalContentChange}/>
                     break;
                 case 'cancelPayModal':
-                    return <CancelPayModal modalStatus={modalStatus} modalContentChange={modalContentChange}/>
+                    return <CancelPayModal modalStatus={modalStatus} setDataFun={setDataFun} data={data}
+                                           modalContentChange={modalContentChange}/>
                     break;
 
             }

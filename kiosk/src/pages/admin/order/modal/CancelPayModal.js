@@ -1,11 +1,7 @@
 import {useEffect} from "react";
 import {cancelPay} from "../../../../js/admin/order/order";
 
-const CancelPayModal = ({modalContentChange, modalStatus}) => {
-
-    useEffect(() => {
-        console.log(modalStatus);
-    }, []);
+const CancelPayModal = ({modalContentChange, modalStatus, setDataFun, data}) => {
 
     const close = () => {
         modalContentChange({
@@ -36,7 +32,7 @@ const CancelPayModal = ({modalContentChange, modalStatus}) => {
                         <small style={{fontSize: '20px'}}>취소 하시겠습니까?</small></div>
                     <div className="O-modal-side-footer M-flex-j-center" id="">
                         <div className="O-receipt-modal-btn M-flex-row M-flex-center" onClick={() => {
-                            cancelPay(modalStatus.data, modalContentChange);
+                            cancelPay(modalStatus.data, modalContentChange, setDataFun, data);
                         }}
                              style={{width: '35%', backgroundColor: '#eb8282'}}>
                             <p className="M-font O-font-middle-size">네</p>

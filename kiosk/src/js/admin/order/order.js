@@ -13,15 +13,34 @@ export const getAllOrderList = async () => {
     return response.data;
 }
 
-export const cancelPay = (data, menuModalContentChange) => {
+export const cancelPay = (data, menuModalContentChange, setDataFun, allData) => {
 
     if (data.orderPayStatus === 'money') {
 
-        console.log("현금")
+        requestCancelMoneyPay(data.order_sq).then(function (res) {
+            if (res) {
+
+                let deleteAllData = allData.order.filter((it) => it.order_sq !== data.order_sq);
+                setDataFun({
+                    ...allData,
+                    ['order']: deleteAllData
+                });
+
+                menuModalContentChange({
+                    status: true,
+                    modalType: 'adminTotalModal',
+                    modalTitle: '알림 메시지',
+                    modalContent: '결제가 취소되었습니다.'
+                });
+
+            } else {
+                alert('취소 오류');
+                return false;
+            }
+        })
 
     } else if (data.orderPayStatus === 'card') {
 
-        console.log("카드")
         let getSettingTax;
         let leaderName;
         let readerNo;
@@ -109,7 +128,6 @@ export const cancelPay = (data, menuModalContentChange) => {
 
                     request_msg = "AP" + request_msg;
 
-
                     $.ajax
                     ({
                         url: "http://127.0.0.1:27098",
@@ -123,31 +141,28 @@ export const cancelPay = (data, menuModalContentChange) => {
 
                             if (getRes.RES == "0000" && getRes.RESPCODE == "0000") {
 
-                                $.ajax({
-                                    type: "POST",
-                                    url: "/admin/order/cancel/card",
-                                    dataType: "JSON",
-                                    data: {
-                                        "orderSq": data.order_sq,
-                                    },
-                                    success: function (data) {
+                                requestCancelCardPay(data.order_sq).then(function (res) {
+                                    console.log(res);
+                                    if (res) {
 
-                                        console.log(data);
-                                        if (data) {
-                                            // adminTotalModalYesOrNoClose();
-                                            // adminTotalModalShow("취소 되었습니다.");
-                                        } else {
-                                            // adminTotalModalYesOrNoClose();
-                                            // adminTotalModalShow("결제 취소 성공 (데이터 삭제 실패, 관리자에게 문의 바람)");
-                                        }
+                                        let deleteAllData = allData.order.filter((it) => it.order_sq !== data.order_sq);
+                                        setDataFun({
+                                            ...allData,
+                                            ['order']: deleteAllData
+                                        });
 
-                                    },
-                                    error: function () {
-                                        // adminTotalModalYesOrNoClose();
-                                        // adminTotalModalShow("취소를 실패하였습니다. (관리자에게 문의 해주세요)");
+                                        menuModalContentChange({
+                                            status: true,
+                                            modalType: 'adminTotalModal',
+                                            modalTitle: '알림 메시지',
+                                            modalContent: '결제가 취소되었습니다.'
+                                        });
+
+                                    } else {
+                                        alert('취소 오류');
+                                        return false;
                                     }
                                 });
-
 
                             } else if (getRes.RESPCODE == "7001") {
                                 // adminTotalModalYesOrNoClose();
@@ -206,6 +221,26 @@ const modalSend = (menuModalContentChange, modalType, modalTitle, modalContent, 
     });
 }
 
+
+export const requestCancelCardPay = async (sq) => {
+    const response = await axios.post('http://' + serverUrl.server + '/admin/order/cancel/card', null, {
+        params: {
+            'orderSq': sq
+        },
+        maxRedirects: 0
+    });
+    return response.data;
+}
+
+export const requestCancelMoneyPay = async (sq) => {
+    const response = await axios.post('http://' + serverUrl.server + '/admin/order/cancel/money', null, {
+        params: {
+            'orderSq': sq
+        },
+        maxRedirects: 0
+    });
+    return response.data;
+}
 
 String.prototype.fillZero = function (n) {
     let str = this;

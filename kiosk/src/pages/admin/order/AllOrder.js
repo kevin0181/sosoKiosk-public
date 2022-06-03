@@ -2,15 +2,17 @@ import {useEffect, useState} from "react";
 import {getAllOrderList} from "../../../js/admin/order/order";
 import SpinnerAdmin from "../part/SpinnerAdmin";
 
-const AllOrder = ({modalContentChange}) => {
+const AllOrder = ({modalContentChange, data, setDataFun}) => {
 
-    const [getOrderList, setOrderList] = useState([]);
     const [spinner, setSpinner] = useState(true);
 
     useEffect(() => {
-        getAllOrderList().then((res) => {
+        getAllOrderList().then((order) => {
 
-            setOrderList(res);
+            setDataFun({
+                ...data,
+                order
+            });
             setSpinner(false);
 
         });
@@ -18,9 +20,9 @@ const AllOrder = ({modalContentChange}) => {
 
     useEffect(() => {
 
-        console.log(getOrderList);
+        console.log(data.order);
 
-    }, [getOrderList]);
+    }, [data]);
 
     return (
         <div className="admin-main">
@@ -66,7 +68,7 @@ const AllOrder = ({modalContentChange}) => {
                                 </thead>
                                 <tbody className="admin-tbody M-overlay">
                                 {
-                                    getOrderList.map((it, index) => (
+                                    data.order.map((it, index) => (
                                         <tr className="admin-tbody-tr" key={index}>
                                             <td className="search dateSearch" style={{fontSize: '21px'}}>
                                                 {it.orderDate + ' ' + it.orderDateTime}

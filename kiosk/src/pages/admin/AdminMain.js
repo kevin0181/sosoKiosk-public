@@ -53,7 +53,7 @@ const AdminMain = ({adminCategory, modalContentChange, data, setDataFun, resetDa
                                   setDataFun={setDataFun}/>,
         kioskClose: <KioskClose/>,
         sales: <Sales/>,
-        allOrder: <AllOrder modalContentChange={modalContentChange}/>,
+        allOrder: <AllOrder modalContentChange={modalContentChange} data={data} setDataFun={setDataFun}/>,
         cardOrder: <CardOrder/>,
         moneyOrder: <MoneyOrder/>,
         setting: <Setting/>
