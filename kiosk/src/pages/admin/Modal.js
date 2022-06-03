@@ -12,6 +12,7 @@ import SideRenameModal from "./menu/modal/categoryModal/SideRenameModal";
 import CategoryDetailModal from "./menu/modal/categoryModal/CategoryDetailModal";
 import SideDetailModal from "./menu/modal/categoryModal/SideDetailModal";
 import CancelPayModal from "./order/modal/CancelPayModal";
+import MainTotalModal from "../kiosk/modal/MainTotalModal";
 
 const Modal = ({modalStatus, modalContentChange, data, setDataFun}) => {
 

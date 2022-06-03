@@ -139,7 +139,7 @@ export const cancelPay = (data, menuModalContentChange, setDataFun, allData) => 
 
                             console.log(getRes);
 
-                            if (getRes.RES == "0000" && getRes.RESPCODE == "0000") {
+                            if (getRes.RES === "0000" && getRes.RESPCODE === "0000") {
 
                                 requestCancelCardPay(data.order_sq).then(function (res) {
                                     console.log(res);
@@ -164,33 +164,24 @@ export const cancelPay = (data, menuModalContentChange, setDataFun, allData) => 
                                     }
                                 });
 
-                            } else if (getRes.RESPCODE == "7001") {
-                                // adminTotalModalYesOrNoClose();
-                                // adminTotalModalShow("이미 취소된 거래입니다. (데이터 삭제 희망 시 관리자 호출) : " + data.RESPCODE);
-                            } else if (getRes.RESPCODE == "7003") {
-                                // adminTotalModalYesOrNoClose();
-                                // adminTotalModalShow("원거래 내역이 없습니다. : " + data.RESPCODE);
-                            } else if (getRes.RESPCODE == "8000") {
-                                // adminTotalModalYesOrNoClose();
-                                // adminTotalModalShow("신용카드가 맞지 않습니다. : " + data.RESPCODE);
-                            } else if (getRes.RESPCODE == "8009") {
-                                // adminTotalModalYesOrNoClose();
-                                // adminTotalModalShow("취소 금액이 입력되지 않았습니다. : " + data.RESPCODE);
-                            } else if (getRes.RESPCODE == "8324") {
-                                // adminTotalModalYesOrNoClose();
-                                // adminTotalModalShow("거래가 정지된 카드입니다. : " + data.RESPCODE);
-                            } else if (getRes.RESPCODE == "8326") {
-                                // adminTotalModalYesOrNoClose();
-                                // adminTotalModalShow("한도액 초과 : " + data.RESPCODE);
-                            } else if (getRes.RESPCODE == "8350") {
-                                // adminTotalModalYesOrNoClose();
-                                // adminTotalModalShow("도난 및 분실카드 입니다. : " + data.RESPCODE);
-                            } else if (getRes.RESPCODE == "8381") {
-                                // adminTotalModalYesOrNoClose();
-                                // adminTotalModalShow("전산장애 KSNET 전화요망 : " + data.RESPCODE);
+                            } else if (getRes.RESPCODE === "7001") {
+                                modalSend(menuModalContentChange, 'adminTotalModal', '취소 실패', "이미 취소된 거래입니다. (데이터 삭제 희망 시 관리자 호출) : " + getRes.RESPCODE, '', '');
+                            } else if (getRes.RESPCODE === "7003") {
+                                modalSend(menuModalContentChange, 'adminTotalModal', '취소 실패', "원거래 내역이 없습니다. : " + getRes.RESPCODE, '', '');
+                            } else if (getRes.RESPCODE === "8000") {
+                                modalSend(menuModalContentChange, 'adminTotalModal', '취소 실패', "신용카드가 맞지 않습니다. : " + getRes.RESPCODE, '', '');
+                            } else if (getRes.RESPCODE === "8009") {
+                                modalSend(menuModalContentChange, 'adminTotalModal', '취소 실패', "취소 금액이 입력되지 않았습니다. : " + getRes.RESPCODE, '', '');
+                            } else if (getRes.RESPCODE === "8324") {
+                                modalSend(menuModalContentChange, 'adminTotalModal', '취소 실패', "거래가 정지된 카드입니다. : " + getRes.RESPCODE, '', '');
+                            } else if (getRes.RESPCODE === "8326") {
+                                modalSend(menuModalContentChange, 'adminTotalModal', '취소 실패', "한도액 초과 : " + getRes.RESPCODE, '', '');
+                            } else if (getRes.RESPCODE === "8350") {
+                                modalSend(menuModalContentChange, 'adminTotalModal', '취소 실패', "도난 및 분실카드 입니다. : " + getRes.RESPCODE, '', '');
+                            } else if (getRes.RESPCODE === "8381") {
+                                modalSend(menuModalContentChange, 'adminTotalModal', '취소 실패', "전산장애 KSNET 전화요망 : " + getRes.RESPCODE, '', '');
                             } else {
-                                // adminTotalModalYesOrNoClose();
-                                // adminTotalModalShow("취소 불가능 : " + data.RESPCODE);
+                                modalSend(menuModalContentChange, 'adminTotalModal', '취소 실패', "취소 불가능 : " + getRes.RESPCODE, '', '');
                             }
 
                         },
