@@ -3,39 +3,17 @@ import serverUrl from "../../../pages/config/server.json";
 import {getSettingData, getTax} from "../../kiosk/receipt";
 import $ from "jquery";
 
-export const getAllOrderList = async () => {
-    const response = await axios.get('http://' + serverUrl.server + '/admin/order', {
-        params: {
-            'status': 'AllOrder'
-        },
-        maxRedirects: 0
-    });
-    return response.data;
-}
-
-export const getCardOrderList = async () => {
-    const response = await axios.get('http://' + serverUrl.server + '/admin/order', {
-        params: {
-            'status': 'cardOrder'
-        },
-        maxRedirects: 0
-    });
-    return response.data;
-}
-
-export const getMoneyOrderList = async () => {
-    const response = await axios.get('http://' + serverUrl.server + '/admin/order', {
-        params: {
-            'status': 'moneyOrder'
-        },
-        maxRedirects: 0
-    });
-    return response.data;
-}
-
-
-
 export const cancelPay = (data, menuModalContentChange, setDataFun, allData) => {
+
+    if (data.orderApprovalNo === null) {
+        menuModalContentChange({
+            status: true,
+            modalType: 'adminTotalModal',
+            modalTitle: '알림 메시지',
+            modalContent: '결제 정보가 없습니다.'
+        });
+        return false;
+    }
 
     if (data.orderPayStatus === 'money') {
 
