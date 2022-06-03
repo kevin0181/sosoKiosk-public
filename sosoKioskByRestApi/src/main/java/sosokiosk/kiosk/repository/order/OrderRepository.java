@@ -22,4 +22,6 @@ public interface OrderRepository extends JpaRepository<OrderEntity, Long> {
     List<OrderEntity> findAllByOrderDate(String date);
 
     List<OrderEntity> findAllByOrderDateBetween(String startDate, String endDate);
+
+    List<OrderEntity> findAllByOrderPayStatusAndOrderDateBetween(String pay, String startDate, String endDate);
 }

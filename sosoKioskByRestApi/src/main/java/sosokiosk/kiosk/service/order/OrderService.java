@@ -218,11 +218,33 @@ public class OrderService {
     }
 
     public List<OrderDTO> getCardDate(String startDate, String endDate) {
-        return null;
+        List<OrderEntity> orderEntityList;
+        List<OrderDTO> orderDTOList;
+        if (startDate.equals("") && endDate.equals("")) { //전부 가져오기
+            orderEntityList = orderRepository.findAllByOrderPayStatus("card");
+            orderEntityList.remove(new OrderDetailEntity());
+            orderDTOList = orderEntityList.stream().map(orderEntity -> modelMapper.map(orderEntity, OrderDTO.class)).collect(Collectors.toList());
+        } else {
+            orderEntityList = orderRepository.findAllByOrderPayStatusAndOrderDateBetween("card", startDate, endDate);
+            orderEntityList.remove(new OrderDetailEntity());
+            orderDTOList = orderEntityList.stream().map(orderEntity -> modelMapper.map(orderEntity, OrderDTO.class)).collect(Collectors.toList());
+        }
+        return orderDTOList;
     }
 
     public List<OrderDTO> getMoneyDate(String startDate, String endDate) {
-        return null;
+        List<OrderEntity> orderEntityList;
+        List<OrderDTO> orderDTOList;
+        if (startDate.equals("") && endDate.equals("")) { //전부 가져오기
+            orderEntityList = orderRepository.findAll();
+            orderEntityList.remove(new OrderDetailEntity());
+            orderDTOList = orderEntityList.stream().map(orderEntity -> modelMapper.map(orderEntity, OrderDTO.class)).collect(Collectors.toList());
+        } else {
+            orderEntityList = orderRepository.findAllByOrderPayStatusAndOrderDateBetween("money", startDate, endDate);
+            orderEntityList.remove(new OrderDetailEntity());
+            orderDTOList = orderEntityList.stream().map(orderEntity -> modelMapper.map(orderEntity, OrderDTO.class)).collect(Collectors.toList());
+        }
+        return orderDTOList;
     }
 
     public List<OrderDTO> getAllDate(String startDate, String endDate) {
