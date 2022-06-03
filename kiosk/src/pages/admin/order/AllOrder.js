@@ -156,7 +156,16 @@ const AllOrder = ({modalContentChange, data, setDataFun}) => {
                                                     display: 'inline-block',
                                                     marginRight: '5px'
                                                 }}>{it.orderTelegramNo}</p>
-                                                <small className="M-font menu-detail-btn">상세보기
+                                                <small onClick={() => {
+                                                    modalContentChange({
+                                                        status: true,
+                                                        param: '',
+                                                        modalType: 'orderDetailModal',
+                                                        modalTitle: '',
+                                                        modalContent: '',
+                                                        data: it
+                                                    })
+                                                }} className="M-font menu-detail-btn">상세보기
                                                 </small>
                                             </td>
                                             <td className="search">

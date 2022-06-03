@@ -13,6 +13,7 @@ import CategoryDetailModal from "./menu/modal/categoryModal/CategoryDetailModal"
 import SideDetailModal from "./menu/modal/categoryModal/SideDetailModal";
 import CancelPayModal from "./order/modal/CancelPayModal";
 import MainTotalModal from "../kiosk/modal/MainTotalModal";
+import OrderDetailModal from "./order/modal/OrderDetailModal";
 
 const Modal = ({modalStatus, modalContentChange, data, setDataFun}) => {
 
@@ -96,7 +97,9 @@ const Modal = ({modalStatus, modalContentChange, data, setDataFun}) => {
                     return <CancelPayModal modalStatus={modalStatus} setDataFun={setDataFun} data={data}
                                            modalContentChange={modalContentChange}/>
                     break;
-
+                case 'orderDetailModal':
+                    return <OrderDetailModal modalStatus={modalStatus}  modalContentChange={modalContentChange}/>
+                    break;
             }
         } else {
             return <></>
