@@ -18,12 +18,6 @@ const AllOrder = ({modalContentChange, data, setDataFun}) => {
         });
     }, []);
 
-    useEffect(() => {
-
-        console.log(data.order);
-
-    }, [data]);
-
     return (
         <div className="admin-main">
             {

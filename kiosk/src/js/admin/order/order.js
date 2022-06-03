@@ -13,6 +13,28 @@ export const getAllOrderList = async () => {
     return response.data;
 }
 
+export const getCardOrderList = async () => {
+    const response = await axios.get('http://' + serverUrl.server + '/admin/order', {
+        params: {
+            'status': 'cardOrder'
+        },
+        maxRedirects: 0
+    });
+    return response.data;
+}
+
+export const getMoneyOrderList = async () => {
+    const response = await axios.get('http://' + serverUrl.server + '/admin/order', {
+        params: {
+            'status': 'moneyOrder'
+        },
+        maxRedirects: 0
+    });
+    return response.data;
+}
+
+
+
 export const cancelPay = (data, menuModalContentChange, setDataFun, allData) => {
 
     if (data.orderPayStatus === 'money') {

@@ -6,6 +6,12 @@ const OrderTop = ({status, resetData}) => {
 
     const navigate = useNavigate();
 
+    const allRemoveClass = () => {
+        $('#allOrder').removeClass('BtnClickColor');
+        $('#cardOrder').removeClass('BtnClickColor');
+        $('#moneyOrder').removeClass('BtnClickColor');
+    }
+
     const statusCss = () => {
         switch (status) {
             case 'allOrder':
@@ -20,8 +26,9 @@ const OrderTop = ({status, resetData}) => {
     }
 
     useEffect(() => {
+        allRemoveClass();
         statusCss();
-    });
+    }, [status]);
 
     return (
         <div className="adminTop M-font">
