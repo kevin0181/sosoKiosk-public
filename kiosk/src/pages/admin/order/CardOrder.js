@@ -21,7 +21,7 @@ const CardOrder = ({modalContentChange, data, setDataFun}) => {
     const [spinner, setSpinner] = useState(true);
 
     useEffect(() => {
-        getCardOrderList().then((order) => {
+        dateSearch().then((order) => {
 
             setDataFun({
                 ...data,
@@ -32,9 +32,14 @@ const CardOrder = ({modalContentChange, data, setDataFun}) => {
         });
     }, []);
 
+    let today = new Date();
+    let year = today.getFullYear(); // 년도
+    let month = today.getMonth() + 1;  // 월
+    let date = today.getDate();  // 날짜
+
     const [searchDate, setSearchDate] = useState({
-        startDate: '',
-        endDate: '',
+        startDate: year + '-' + month + '-' + date,
+        endDate: year + '-' + month + '-' + date,
         payStatus: 'card'
     });
 

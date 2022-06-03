@@ -844,3 +844,17 @@
 0:0:0:0:0:0:0:1 - - [03/Jun/2022:19:28:48 +0900] "GET /admin/order?status=AllOrder HTTP/1.1" 200 23990
 0:0:0:0:0:0:0:1 - - [03/Jun/2022:19:29:04 +0900] "POST /admin/order/date?payStatus=card&startDate=&endDate= HTTP/1.1" 500 128
 0:0:0:0:0:0:0:1 - - [03/Jun/2022:19:29:28 +0900] "POST /admin/order/date?payStatus=card&startDate=&endDate= HTTP/1.1" 500 128
+0:0:0:0:0:0:0:1 - - [03/Jun/2022:19:30:00 +0900] "POST /kiosk/category/get/categorySq?categorySq=0 HTTP/1.1" 200 7007
+0:0:0:0:0:0:0:1 - - [03/Jun/2022:19:30:00 +0900] "POST /kiosk/category/get/categorySq?categorySq=0 HTTP/1.1" 200 7007
+0:0:0:0:0:0:0:1 - - [03/Jun/2022:19:30:02 +0900] "POST /kiosk/CategoryList HTTP/1.1" 200 138
+0:0:0:0:0:0:0:1 - - [03/Jun/2022:19:30:02 +0900] "POST /kiosk/CategoryList HTTP/1.1" 200 138
+0:0:0:0:0:0:0:1 - - [03/Jun/2022:19:30:04 +0900] "GET /admin/order?status=AllOrder HTTP/1.1" 200 23990
+0:0:0:0:0:0:0:1 - - [03/Jun/2022:19:30:13 +0900] "GET /admin/order?status=AllOrder HTTP/1.1" 200 23990
+0:0:0:0:0:0:0:1 - - [03/Jun/2022:19:30:22 +0900] "POST /admin/order/date?payStatus=card&startDate=&endDate= HTTP/1.1" 200 20752
+0:0:0:0:0:0:0:1 - - [03/Jun/2022:19:30:39 +0900] "GET /admin/order?status=cardOrder HTTP/1.1" 200 20752
+0:0:0:0:0:0:0:1 - - [03/Jun/2022:19:30:46 +0900] "GET /admin/order?status=cardOrder HTTP/1.1" 200 20752
+0:0:0:0:0:0:0:1 - - [03/Jun/2022:19:30:59 +0900] "POST /admin/order/date?payStatus=card&startDate=2022-06-02&endDate=2022-06-02 HTTP/1.1" 200 4037
+0:0:0:0:0:0:0:1 - - [03/Jun/2022:19:31:12 +0900] "POST /admin/order/date?payStatus=card&startDate=2022-06-01&endDate=2022-06-02 HTTP/1.1" 200 17836
+0:0:0:0:0:0:0:1 - - [03/Jun/2022:19:31:19 +0900] "GET /admin/order?status=moneyOrder HTTP/1.1" 200 3251
+0:0:0:0:0:0:0:1 - - [03/Jun/2022:19:31:20 +0900] "GET /admin/order?status=moneyOrder HTTP/1.1" 200 3251
+0:0:0:0:0:0:0:1 - - [03/Jun/2022:19:31:25 +0900] "POST /admin/order/date?payStatus=money&startDate=2022-06-02&endDate=2022-06-02 HTTP/1.1" 200 2192
