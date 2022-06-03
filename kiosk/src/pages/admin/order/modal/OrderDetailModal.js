@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import $ from 'jquery';
+import serverUrl from "../../../config/server.json";
 
 const OrderDetailModal = ({modalStatus, modalContentChange}) => {
 
@@ -39,6 +40,67 @@ const OrderDetailModal = ({modalStatus, modalContentChange}) => {
             ...orderDetail,
             ['status']: data,
         })
+    }
+
+    const MainMenu = ({menu}) => {
+        console.log(menu);
+        // let menu = menuEntity.menuEntity;
+        // console.log(menu);
+        return <div className="O-pay-order-part M-flex-row" style={{margin: '10px 0px'}} id="O-pay-first"
+                    key={menu.menuEntity.menuSq}>
+            <div className="O-pay-order-card O-pay-order-card-left">
+                <div className="O-pay-img">
+                    <img className="O-side-img" alt={'주문 이미지'}
+                         src={'http://' + serverUrl.server + menu.menuEntity.imgDTOList[0].imgPath + '/' + menu.menuEntity.imgDTOList[0].imgName}/>
+                </div>
+                <div className="O-pay-name M-font O-font-middle-size M-flex-column M-flex-center">
+                    <p className="">{menu.menuEntity.menuName}</p>
+                </div>
+                <div className="O-pay-number M-flex-column M-flex-center">
+                    <div className="M-font O-font-middle-size M-flex-column M-flex-center">
+                        <p>{menu.menuEntity.size + '개'}</p>
+                    </div>
+                </div>
+                <div className="O-pay-price M-flex-column M-flex-center">
+                    <div className="M-font O-font-middle-size M-flex-column M-flex-center">
+                        <p>{menu.menuEntity.menuPrice + '원'}</p>
+                    </div>
+                </div>
+            </div>
+            {
+                menu.orderDetailSideEntityList.length !== 0 ? (
+                    <div className="O-pay-order-card O-pay-order-card-right M-flex-column"
+                         id="O-pay-right">
+                        {
+                            menu.orderDetailSideEntityList.map((it) => (
+                                <SideMenu side={it} key={it.sideSq}/>
+                            ))
+                        }
+                    </div>
+                ) : (<></>)
+            }
+        </div>
+    }
+
+    const SideMenu = ({side}) => {
+        console.log(side);
+        return <div className="O-pay-order-card-div M-flex-row" key={side.sideSq}>
+            <div className="O-pay-name M-font M-flex-column M-flex-center"
+                 style={{fontSize: '30px', width: '30%'}}>
+                <p className="">{side.orderSideName}</p>
+            </div>
+            <div className="O-pay-name M-font M-flex-column M-flex-center"
+                 style={{fontSize: '30px', width: '10%'}}>
+                <p className="">{side.orderSideSize + '개'}</p>
+            </div>
+            <div className="O-pay-number M-flex-column M-flex-center"
+                 style={{width: '20%'}}>
+                <div className="M-font M-flex-column M-flex-center"
+                     style={{fontSize: '30px'}}>
+                    <p>{side.orderSidePrice + '원'}</p>
+                </div>
+            </div>
+        </div>
     }
 
     return (
@@ -133,7 +195,36 @@ const OrderDetailModal = ({modalStatus, modalContentChange}) => {
                                     </div>
                                 </div>
                             </div>) : (
-                                <></>
+                                <div className="O-pay-modal-side-order M-overlay" style={{height: 'auto'}}>
+                                    <div
+                                        style={{
+                                            width: '100%',
+                                            height: '10%',
+                                            borderBottom: '1px solid #e5e5e5',
+                                            marginBottom: '10px'
+                                        }}
+                                        className="M-flex-row">
+                                        <div className="M-flex-row M-flex-center M-font O-font-number-size"
+                                             style={{width: '50%'}}>
+                                            <p>메뉴</p>
+                                        </div>
+                                        <div className="M-flex-row M-flex-center M-font O-font-number-size"
+                                             style={{width: '50%'}}>
+                                            <p>사이드</p>
+                                        </div>
+                                    </div>
+                                    <div className="O-side-order-part O-pay-order-part-up">
+                                        {
+                                            orderDetail.data.orderDetailEntityList.map((it) => (
+                                                <MainMenu menu={it} key={it.menuSq}/>
+                                            ))
+                                        }
+                                    </div>
+                                    <div style={{width: '100%', height: '35%'}}
+                                         className="O-pay-totalPrice M-flex-center M-flex-row M-font O-font-middle-size">
+                                        <p>총 금액 : {orderDetail.data.orderTotalPrice}원</p>
+                                    </div>
+                                </div>
                             )
                         }
 

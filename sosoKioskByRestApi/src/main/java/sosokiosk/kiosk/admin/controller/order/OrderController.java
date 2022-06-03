@@ -82,6 +82,13 @@ public class OrderController {
             Collections.reverse(orderDTOList);
         }
 
+        for (int i = 0; i < orderDTOList.size(); i++) {
+            for (int j = 0; j < orderDTOList.get(i).getOrderDetailEntityList().size(); j++) {
+                orderDTOList.get(i).getOrderDetailEntityList().get(j).getMenuEntity().setCategoryDTO(null);
+                orderDTOList.get(i).getOrderDetailEntityList().get(j).getMenuEntity().setSide(null);
+            }
+        }
+
         return orderDTOList;
     }
 
