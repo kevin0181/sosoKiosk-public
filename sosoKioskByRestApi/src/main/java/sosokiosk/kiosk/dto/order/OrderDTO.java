@@ -9,7 +9,8 @@ import java.util.List;
 @Getter
 @Setter
 public class OrderDTO {
-//    private Long order_sq;
+
+    private Long order_sq;
 
     private String orderId;
 

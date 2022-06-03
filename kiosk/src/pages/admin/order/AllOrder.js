@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {getAllOrderList} from "../../../js/admin/order/order";
 import SpinnerAdmin from "../part/SpinnerAdmin";
 
-const AllOrder = () => {
+const AllOrder = ({modalContentChange}) => {
 
     const [getOrderList, setOrderList] = useState([]);
     const [spinner, setSpinner] = useState(true);
@@ -66,8 +66,8 @@ const AllOrder = () => {
                                 </thead>
                                 <tbody className="admin-tbody M-overlay">
                                 {
-                                    getOrderList.map((it) => (
-                                        <tr className="admin-tbody-tr">
+                                    getOrderList.map((it, index) => (
+                                        <tr className="admin-tbody-tr" key={index}>
                                             <td className="search dateSearch" style={{fontSize: '21px'}}>
                                                 {it.orderDate + ' ' + it.orderDateTime}
                                             </td>
@@ -99,7 +99,16 @@ const AllOrder = () => {
                                                 </p>
                                             </td>
                                             <td className="search">
-                                                <small className="menu-delete-btn">
+                                                <small className="menu-delete-btn" onClick={() => {
+                                                    modalContentChange({
+                                                        status: true,
+                                                        param: '',
+                                                        modalType: 'cancelPayModal',
+                                                        modalTitle: '',
+                                                        modalContent: '',
+                                                        data: it
+                                                    });
+                                                }}>
                                                     결제 취소
                                                 </small>
                                             </td>

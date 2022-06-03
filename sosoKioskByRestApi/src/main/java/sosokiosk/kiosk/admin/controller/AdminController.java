@@ -132,12 +132,6 @@ public class AdminController {
 
         List<OrderDTO> orderDTOList = orderEntityList.stream().map(orderEntity -> modelMapper.map(orderEntity, OrderDTO.class)).collect(Collectors.toList());
 
-//        for (int i = 0; i < orderDTOList.size(); i++) {
-//
-//            for (int j = 0; j < orderDTOList.get(i).get)
-//
-//        }
-
         return orderDTOList;
 
 
