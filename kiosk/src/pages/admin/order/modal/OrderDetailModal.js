@@ -1,11 +1,7 @@
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
+import $ from 'jquery';
 
 const OrderDetailModal = ({modalStatus, modalContentChange}) => {
-
-    useEffect(() => {
-        console.log(modalStatus.data);
-        console.log(modalStatus.data.orderTelegramNo);
-    });
 
     const close = () => {
         modalContentChange({
@@ -14,6 +10,34 @@ const OrderDetailModal = ({modalStatus, modalContentChange}) => {
             modalType: '',
             modalTitle: '',
             modalContent: '',
+        })
+    }
+
+    const removeCss = (id) => {
+        $('.O-category-box-side').removeClass('O-orderDetail-select-color');
+        $('.' + id).addClass('O-orderDetail-select-color');
+    }
+
+    const [orderDetail, setOrderDetail] = useState({
+        status: 'info',
+        data: []
+    });
+
+    useEffect(() => {
+        setOrderDetail({
+            ...orderDetail,
+            ['data']: modalStatus.data
+        })
+    }, []);
+
+    useEffect(() => {
+        console.log(orderDetail);
+    }, [orderDetail]);
+
+    const changeSelect = (data) => {
+        setOrderDetail({
+            ...orderDetail,
+            ['status']: data,
         })
     }
 
@@ -33,73 +57,85 @@ const OrderDetailModal = ({modalStatus, modalContentChange}) => {
                     </div>
                     <div className="O-modal-category-bar" id="orderInfoCategoryBar">
                         <div className="O-category-part" id="orderPart">
-                            <div className="M-font O-font-mini-size O-category-box O-category-box-side"
-                                 style={{backgroundColor: '#838383'}}>
+                            <div
+                                className="M-font O-font-mini-size O-category-box O-category-box-side orderDetailInfo O-orderDetail-select-color"
+                                onClick={() => {
+                                    removeCss('orderDetailInfo');
+                                    changeSelect('info');
+                                }}>
                                 <p>주문 정보</p>
                             </div>
                         </div>
                         <div className="O-category-part" id="menuPart">
-                            <div className="M-font O-font-mini-size O-category-box O-category-box-side">
+                            <div className="M-font O-font-mini-size O-category-box orderDetailMenu O-category-box-side"
+                                 onClick={() => {
+                                     removeCss('orderDetailMenu');
+                                     changeSelect('menu');
+                                 }}>
                                 <p>주문 메뉴</p>
                             </div>
                         </div>
                     </div>
                     <div className="O-modal-side-order M-overlay" id="orderInfoBody" style={{padding: '5px 20px'}}>
-                        <div className="M-container" style={{padding: '5px 50px'}}>
-                            <div className="M-font O-font-middle-size M-flex-column M-flex-center"
-                                 style={{width: '100%', height: '100%'}}>
-                                <div className="M-flex-row" style={{height: '15%', width: '100%'}}>
-                                    <div className="M-container" style={{flex: '1', textAlign: 'center'}}>
-                                        <p>주문 번호 : </p>
+                        {
+                            orderDetail.status === 'info' ? (<div className="M-container" style={{padding: '5px 50px'}}>
+                                <div className="M-font O-font-middle-size M-flex-column M-flex-center"
+                                     style={{width: '100%', height: '100%'}}>
+                                    <div className="M-flex-row" style={{height: '15%', width: '100%'}}>
+                                        <div className="M-container" style={{flex: '1', textAlign: 'center'}}>
+                                            <p>주문 번호 : </p>
+                                        </div>
+                                        <div className="M-container" style={{flex: '1'}}>
+                                            <p>{orderDetail.data.orderTelegramNo}</p>
+                                        </div>
                                     </div>
-                                    <div className="M-container" style={{flex: '1'}}>
-                                        <p>{modalStatus.data.orderTelegramNo}</p>
+                                    <div className="M-flex-row" style={{height: '15%', width: '100%'}}>
+                                        <div className="M-container" style={{flex: '1', textAlign: 'center'}}>
+                                            <p>주문 날짜 : </p>
+                                        </div>
+                                        <div className="M-container" style={{flex: '1'}}>
+                                            <p>{orderDetail.data.orderDate + '  ' + orderDetail.data.orderDateTime}</p>
+                                        </div>
+                                    </div>
+                                    <div className="M-flex-row" style={{height: '15%', width: '100%'}}>
+                                        <div className="M-container" style={{flex: '1', textAlign: 'center'}}>
+                                            <p>총 금액 : </p>
+                                        </div>
+                                        <div className="M-container" style={{flex: '1'}}>
+                                            <p>{orderDetail.data.orderTotalPrice + '원'}</p>
+                                        </div>
+                                    </div>
+                                    <div className="M-flex-row" style={{height: '15%', width: '100%'}}>
+                                        <div className="M-container" style={{flex: '1', textAlign: 'center'}}>
+                                            <p>장소 : </p>
+                                        </div>
+                                        <div className="M-container" style={{flex: '1'}}>
+                                            {
+                                                orderDetail.data.orderPlace === 'inner' ? (<p>매장</p>) : (<p>포장</p>)
+                                            }
+                                        </div>
+                                    </div>
+                                    <div className="M-flex-row" style={{height: '15%', width: '100%'}}>
+                                        <div className="M-container" style={{flex: '1', textAlign: 'center'}}>
+                                            <p>결제 방식 : </p>
+                                        </div>
+                                        <div className="M-container" style={{flex: '1'}}>
+                                            <p>{orderDetail.data.orderPayStatus}</p>
+                                        </div>
+                                    </div>
+                                    <div className="M-flex-row" style={{height: '15%', width: '100%'}}>
+                                        <div className="M-container" style={{flex: '1', textAlign: 'center'}}>
+                                            <p>승인번호(카드결제) : </p>
+                                        </div>
+                                        <div className="M-container" style={{flex: '1'}}>
+                                            <p>{orderDetail.data.orderApprovalNo}</p>
+                                        </div>
                                     </div>
                                 </div>
-                                <div className="M-flex-row" style={{height: '15%', width: '100%'}}>
-                                    <div className="M-container" style={{flex: '1', textAlign: 'center'}}>
-                                        <p>주문 날짜 : </p>
-                                    </div>
-                                    <div className="M-container" style={{flex: '1'}}>
-                                        <p>{modalStatus.data.orderDate + '  ' + modalStatus.data.orderDateTime}</p>
-                                    </div>
-                                </div>
-                                <div className="M-flex-row" style={{height: '15%', width: '100%'}}>
-                                    <div className="M-container" style={{flex: '1', textAlign: 'center'}}>
-                                        <p>총 금액 : </p>
-                                    </div>
-                                    <div className="M-container" style={{flex: '1'}}>
-                                        <p>{modalStatus.data.orderTotalPrice + '원'}</p>
-                                    </div>
-                                </div>
-                                <div className="M-flex-row" style={{height: '15%', width: '100%'}}>
-                                    <div className="M-container" style={{flex: '1', textAlign: 'center'}}>
-                                        <p>장소 : </p>
-                                    </div>
-                                    <div className="M-container" style={{flex: '1'}}>
-                                        {
-                                            modalStatus.data.orderPlace === 'inner' ? (<p>매장</p>) : (<p>포장</p>)
-                                        }
-                                    </div>
-                                </div>
-                                <div className="M-flex-row" style={{height: '15%', width: '100%'}}>
-                                    <div className="M-container" style={{flex: '1', textAlign: 'center'}}>
-                                        <p>결제 방식 : </p>
-                                    </div>
-                                    <div className="M-container" style={{flex: '1'}}>
-                                        <p>{modalStatus.data.orderPayStatus}</p>
-                                    </div>
-                                </div>
-                                <div className="M-flex-row" style={{height: '15%', width: '100%'}}>
-                                    <div className="M-container" style={{flex: '1', textAlign: 'center'}}>
-                                        <p>승인번호(카드결제) : </p>
-                                    </div>
-                                    <div className="M-container" style={{flex: '1'}}>
-                                        <p>{modalStatus.data.orderApprovalNo}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            </div>) : (
+                                <></>
+                            )
+                        }
 
                     </div>
                     <div className="O-modal-side-footer" style={{justifyContent: 'flex-end'}}>
