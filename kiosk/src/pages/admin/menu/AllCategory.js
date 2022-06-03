@@ -9,8 +9,8 @@ import {getSideList} from "../../../js/admin/menu/addMenu";
 const AllCategory = ({modalContentChange, data, setDataFun}) => {
 
     const [spinner, setSpinner] = useState(true);
-    const [searchCategory, setSearchCategory] = useState();
-    const [searchSide, setSearchSide] = useState();
+    const [searchCategory, setSearchCategory] = useState('');
+    const [searchSide, setSearchSide] = useState('');
 
     useEffect(() => {
         AllCategorySideSearch.searchCategory();

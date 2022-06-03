@@ -6,7 +6,7 @@ import {getMenuList} from "./../../../js/admin/menu/AllMenu";
 
 const AllMenu = ({modalContentChange, data, setDataFun}) => {
 
-    const [search, setSearch] = useState();
+    const [search, setSearch] = useState('');
 
     const setSearchChange = (e) => {
         setSearch(e.target.value);

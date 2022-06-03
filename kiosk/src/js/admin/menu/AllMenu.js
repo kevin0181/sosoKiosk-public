@@ -1,19 +1,9 @@
-// $(document).ready(function () {
-//
-//     $("#all-menu.js-search").on("change keyup paste", function () { //search
-//         var result = $(this).val();
-//         $(".admin-tbody-tr").hide();
-//         var temp = $(".admin-tbody-tr:contains('" + result + "')");
-//         $(temp).show();
-//     });
-// });
-
 import $ from 'jquery';
 import axios from "axios";
 import serverUrl from "../../../pages/config/server.json";
 
 export function search() {
-    $("#all-menu.js-search").on("change keyup paste", function () { //search menu.js
+    $("#all-menu-search").on("change keyup paste", function () { //search menu.js
         var result = $(this).val();
         $(".admin-tbody-tr").hide();
         var temp = $(".admin-tbody-tr:contains('" + result + "')");

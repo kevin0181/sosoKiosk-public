@@ -1,8 +1,20 @@
 import {useEffect, useState} from "react";
 import {getAllOrderList} from "../../../js/admin/order/order";
 import SpinnerAdmin from "../part/SpinnerAdmin";
+import * as AllMenuSearch from "../../../js/admin/menu/AllMenu";
 
 const AllOrder = ({modalContentChange, data, setDataFun}) => {
+
+    const [search, setSearch] = useState('');
+
+    const setSearchChange = (e) => {
+        setSearch(e.target.value);
+    };
+
+    useEffect(() => {
+        AllMenuSearch.search();
+    });
+
 
     const [spinner, setSpinner] = useState(true);
 
@@ -32,7 +44,22 @@ const AllOrder = ({modalContentChange, data, setDataFun}) => {
                     <div className="admin-all-menu-top">
                         <div className="admin-top-search">
                             <div className="M-flex-1 M-flex-row">
-                                <input type="text" className="M-input-search" id="all-menu-search"/>
+                                <input type="text" value={search} className="M-input-search" onChange={setSearchChange}
+                                       id="all-menu-search"/>
+                                <div className="admin-top-search" style={{width: '500px', marginLeft: '10%'}}>
+                                    <form className="M-flex-1 M-flex-row" id="dateForm" method="post">
+                                        <input type="date" className="M-input-search" name="startDate" id="startDate"/>
+                                        <span style={{fontSize: '18px', margin: '0px 20px'}}> ~ </span>
+                                        <input type="date" className="M-input-search" name="endDate"
+                                               id="endDate"/>
+                                        <input type="button" value="검색"
+                                               className="M-input-search"
+                                               style={{width: '70px', margin: '0px 20px'}}/>
+                                        <input type="button" value="전체"
+                                               className="M-input-search"
+                                               style={{width: '70px', margin: '0px 20px'}}/>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
