@@ -18,7 +18,7 @@ import Setting from "./setting/Setting";
 import AdminLoginSession from '../../js/admin/AdminLoginSession';
 import {useEffect} from "react";
 
-const AdminMain = ({adminCategory, modalContentChange, data, setDataFun, resetData}) => {
+const AdminMain = ({adminCategory, modalContentChange, data, setDataFun, resetData, startDate}) => {
 
     const navigate = useNavigate();
 
@@ -51,7 +51,8 @@ const AdminMain = ({adminCategory, modalContentChange, data, setDataFun, resetDa
                                setDataFun={setDataFun}/>,
         addCategory: <AddCategory modalContentChange={modalContentChange} data={data}
                                   setDataFun={setDataFun}/>,
-        kioskClose: <KioskClose/>,
+        kioskClose: <KioskClose modalContentChange={modalContentChange} data={data} setDataFun={setDataFun}
+                                startDate={startDate}/>,
         sales: <Sales modalContentChange={modalContentChange} data={data} setDataFun={setDataFun}/>,
         allOrder: <AllOrder modalContentChange={modalContentChange} data={data} setDataFun={setDataFun}/>,
         cardOrder: <CardOrder modalContentChange={modalContentChange} data={data} setDataFun={setDataFun}/>,

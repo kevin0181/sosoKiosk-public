@@ -91,6 +91,22 @@ function App() {
     }
 
 
+    const [startDate, setStartDate] = useState('');
+    useEffect(() => {
+        let today = new Date();
+        let year = today.getFullYear(); // 년도
+        let month = today.getMonth() + 1;  // 월
+        let date = today.getDate();  // 날짜
+        let hours = today.getHours(); // 시
+        let minutes = today.getMinutes();  // 분
+        let seconds = today.getSeconds();  // 초
+        setStartDate(year + '-' + month + '-' + date + ' ' + hours + ':' + minutes + ':' + seconds);
+    }, []);
+
+    useEffect(() => {
+        console.log(startDate);
+    }, [startDate]);
+
     const [menuModalStatus, setMenuModalStatus] = useState({
         status: false,
         param: '',
@@ -271,7 +287,8 @@ function App() {
                            element={<CardPayModal orderStatus={orderStatus} totalPrice={totalPrice}
                                                   menuModalContentChange={menuModalContentChange}></CardPayModal>}/>
                     <Route path={'/admin'} element={<AdminLogin></AdminLogin>}/>
-                    <Route path={'/admin/:adminCategory'} element={<AdminSide resetData={resetData}></AdminSide>}/>
+                    <Route path={'/admin/:adminCategory'}
+                           element={<AdminSide resetData={resetData} startDate={startDate}></AdminSide>}/>
                 </Routes>
             </div>
         </HashRouter>

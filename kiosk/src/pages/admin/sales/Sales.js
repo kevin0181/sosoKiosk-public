@@ -272,29 +272,6 @@ const Sales = ({modalContentChange, data, setDataFun}) => {
                                 </tr>
                                 </thead>
                                 <tbody className="admin-sales-tbody admin-tbody M-overlay">
-                                {/*<tr className="admin-tbody-sales-tr admin-tbody-tr">*/}
-                                {/*    <td className="search dateSearch" style={{fontSize: '21px'}}>*/}
-                                {/*        주문 날짜*/}
-                                {/*    </td>*/}
-                                {/*    <td className="search" style={{textAlign: 'center'}}>*/}
-                                {/*        <p style={{display: 'inline-block', marginRight: '5px'}}*/}
-                                {/*        >주문 번호?</p>*/}
-                                {/*    </td>*/}
-                                {/*    <td className="search">*/}
-                                {/*        10원*/}
-                                {/*    </td>*/}
-                                {/*    <td className="search paySearch">*/}
-                                {/*        <p>성공</p>*/}
-                                {/*        <p>실패</p>*/}
-                                {/*    </td>*/}
-                                {/*    <td className="search">*/}
-                                {/*        <p>주문 상태</p>*/}
-                                {/*    </td>*/}
-                                {/*    <td className="search">*/}
-                                {/*        <p>매장</p>*/}
-                                {/*        <p>포장</p>*/}
-                                {/*    </td>*/}
-                                {/*</tr>*/}
                                 {
                                     data.sales.map((it, index) => (
                                         <tr className="admin-tbody-tr" key={index}>

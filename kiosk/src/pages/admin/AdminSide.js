@@ -12,7 +12,7 @@ import {useNavigate} from "react-router-dom";
 import Modal from "./Modal";
 import AdminMenuDetailModal from "./menu/modal/AdminMenuDetailModal";
 
-const AdminSide = ({resetData}) => {
+const AdminSide = ({resetData, startDate}) => {
 
     const navigate = useNavigate();
 
@@ -128,7 +128,7 @@ const AdminSide = ({resetData}) => {
                 </div>
                 <div className="admin-right-side admin-right-side-Preferences">
                     <AdminMain adminCategory={adminCategory} resetData={resetData}
-                               modalContentChange={modalContentChange} data={data}
+                               modalContentChange={modalContentChange} data={data} startDate={startDate}
                                setDataFun={setDataFun}/>
                 </div>
             </div>
