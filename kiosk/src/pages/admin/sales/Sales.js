@@ -3,6 +3,10 @@ import * as AllMenuSearch from "../../../js/admin/menu/AllMenu";
 import axios from "axios";
 import serverUrl from "../../config/server.json";
 import SpinnerAdmin from "../part/SpinnerAdmin";
+import $ from 'jquery';
+import {checkPrinterStatus, cutPaper, getPosData, printText, setPosId} from "../../../js/all/printer/bxlpos";
+import {getTax} from "../../../js/kiosk/receipt";
+import {requestPrint} from "../../../js/all/printer/bxlcommon";
 
 const Sales = ({modalContentChange, data, setDataFun}) => {
 
@@ -77,9 +81,126 @@ const Sales = ({modalContentChange, data, setDataFun}) => {
         } else {
             return false;
         }
-
     }
 
+
+    let printerName = "Printer1";
+
+    const getSettingData = async () => {
+        const response = await axios.get('http://' + serverUrl.server + '/kiosk/get/setting', {
+            params: {
+                "setting": "all"
+            }
+        });
+        response.data.map((it) => {
+            switch (it.settingName) {
+                case 'printerName':
+                    printerName = it.settingValue
+                    break;
+            }
+        });
+
+        return response.data;
+    }
+
+
+    const searchSalesReceipt = () => {
+
+        getSettingData().then(() => {
+
+            let taxByTotal = getTax(parseInt(10), parseInt($("#totalPrice").text()));
+
+            let Tax = parseInt($("#totalPrice").text()) - taxByTotal;
+
+            let total = taxByTotal + Tax;
+
+            let cardTotal = 0;
+            let cardNum = 0;
+            let moneyTotal = 0;
+            let moneyNum = 0;
+
+            let innerTotal = 0;
+            let innerNum = 0;
+            let outerTotal = 0;
+            let outerNum = 0;
+
+            $(data.sales).each(function () {
+
+                console.log(this);
+
+                if (this.orderPayStatus === "money") {
+                    moneyTotal = moneyTotal + parseInt(this.orderTotalPrice);
+                    moneyNum++;
+                } else {
+                    cardTotal = cardTotal + parseInt(this.orderTotalPrice);
+                    cardNum++;
+                }
+
+                if (this.orderPlace === "inner") {
+                    innerTotal = innerTotal + parseInt(this.orderTotalPrice);
+                    innerNum++;
+                } else {
+                    outerTotal = outerTotal + parseInt(this.orderTotalPrice);
+                    outerNum++;
+                }
+
+                let issueID = 1;
+                let _inch = 2;
+
+                setPosId(issueID);
+                checkPrinterStatus();
+
+                printText("\n\n&pastel\n\n\n", 0, 1, false, false, false, 0, 1);
+                printText("\n\n경기도 안산시 \n단원구 예술대학로 171,\n15263, 한국\n\n\n", 0, 0, false, false, false, 0, 1);
+                // printText("--------------------------------", 0, 0, false, false, false, 0, 1);
+
+                if (_inch == 2) {
+                    // 2inch sample
+                    // printText("개점 일시 : " + data.date + "\n", 0, 0, false, false, false, 0, 0);
+                    // printText("정산 일시 : " + finishDate() + "\n", 0, 0, false, false, false, 0, 0);
+                    printText("--------------------------------\n", 0, 0, false, false, false, 0, 0);
+                    printText("매출 합계\n\n", 0, 0, false, false, false, 0, 1);
+                    printText("총 판매액 :              " + $("#totalPrice").text() + "\n", 0, 0, false, false, false, 0, 0);
+                    printText("과세매출액 :             " + Tax + "\n", 0, 0, false, false, false, 0, 0);
+                    printText("부과세액 :               " + taxByTotal + "\n\n", 0, 0, false, false, false, 0, 0);
+                    printText("매출 합계 :              " + total + "\n", 0, 0, false, false, false, 0, 0);
+                    printText("--------------------------------\n", 0, 0, false, false, false, 0, 0);
+                    printText("결제수단별 매출\n\n", 0, 0, false, false, false, 0, 1);
+                    printText("카드 매출 :       " + cardNum + "        " + cardTotal + "\n", 0, 0, false, false, false, 0, 0);
+                    printText("현금 매출 :       " + moneyNum + "        " + moneyTotal + "\n", 0, 0, false, false, false, 0, 0);
+                    printText("--------------------------------\n", 0, 0, false, false, false, 0, 0);
+                    printText("장소별 매출\n\n", 0, 0, false, false, false, 0, 1);
+                    printText("포장 매출 :        " + outerNum + "      " + outerTotal + "\n", 0, 0, false, false, false, 0, 0);
+                    printText("매장 매출 :        " + innerNum + "      " + innerTotal + "\n", 0, 0, false, false, false, 0, 0);
+                    printText("--------------------------------\n\n\n\n", 0, 0, false, false, false, 0, 0);
+
+
+                } else {
+                    // error
+                    return;
+                }
+
+                printText("Tel : 010 - 8650 - 9052\n", 0, 0, true, false, false, 0, 0);
+                printText("문의 주소 : https://kevin0181.github.io/\n\n\n\n\n\n\n\n", 0, 0, false, false, false, 0, 0);
+
+                // printQRCode("www.soso-kitchen.com", 0, 2, 7, 0);
+                // print1DBarcode("&pastel 인터넷으로 주문하기", 0, 4, 70, 2, 1);
+                // printText("\n\n\n\n\n", 0, 0, false, false, false, 0, 0);
+                cutPaper(1);
+
+                let strSubmit = getPosData();
+
+                issueID++;
+
+                requestPrint(printerName, strSubmit, viewResult);
+
+            });
+        })
+    }
+
+    function viewResult(result) {
+        console.log(result);
+    }
 
     return (
         <div className="admin-main">
@@ -225,7 +346,9 @@ const Sales = ({modalContentChange, data, setDataFun}) => {
                             </div>
                             <div className="M-flex-row" style={{marginTop: '10px'}}>
                                 <div className="M-flex-column M-flex-center" style={{marginTop: '10px'}}>
-                                    <small className="M-font menu-detail-btn">검색 매출표 출력
+                                    <small className="M-font menu-detail-btn" onClick={() => {
+                                        searchSalesReceipt();
+                                    }}>검색 매출표 출력
                                     </small>
                                 </div>
                             </div>
