@@ -10,7 +10,6 @@ import {requestPrint} from "../../../js/all/printer/bxlcommon";
 
 const Sales = ({modalContentChange, data, setDataFun}) => {
 
-
     const [totalPrice, setTotalPrice] = useState(0);
 
     useEffect(() => {

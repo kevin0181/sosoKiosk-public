@@ -7,6 +7,7 @@ const SalesTop = ({status, resetData}) => {
     const navigate = useNavigate();
 
     const statusCss = () => {
+        $('.admin-top-p-part').removeClass('BtnClickColor');
         switch (status) {
             case 'kioskClose':
                 return $('#kioskClose').addClass('BtnClickColor');
