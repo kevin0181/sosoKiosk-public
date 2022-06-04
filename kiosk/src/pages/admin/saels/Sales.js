@@ -6,13 +6,13 @@ const Sales = () => {
                     <div className="admin-all-menu-top">
                         <div className="admin-top-search">
                             <form className="M-flex-1 M-flex-row" id="dateForm" method="post">
-                                <input type="date" value="" className="M-input-search" name="startDate" id="startDate"/>
+                                <input type="date" className="M-input-search" name="startDate" id="startDate"/>
                                 <span style={{fontSize: '18px', margin: '0px 20px'}}> ~ </span>
-                                <input type="date" value="" className="M-input-search" name="endDate" id="endDate"/>
-                                <input type="button" value="검색" onClick="searchBetweenDate()"
+                                <input type="date" className="M-input-search" name="endDate" id="endDate"/>
+                                <input type="button" value="검색"
                                        className="M-input-search"
                                        style={{width: '70px', margin: '0px 20px'}}/>
-                                <input type="button" value="전체" onClick="allSearchBetweenDate()"
+                                <input type="button" value="전체"
                                        className="M-input-search"
                                        style={{width: '70px', margin: '0px 20px'}}/>
                             </form>
@@ -45,7 +45,7 @@ const Sales = () => {
                                 </thead>
                                 <tbody className="admin-sales-tbody admin-tbody M-overlay">
                                 <tr class="admin-tbody-sales-tr admin-tbody-tr">
-                                    <td class="search dateSearch" style="font-size: 21px; " style={{fontSize: '21px'}}>
+                                    <td class="search dateSearch" style={{fontSize: '21px'}}>
                                         주문 날짜
                                     </td>
                                     <td class="search" style={{textAlign: 'center'}}>
@@ -78,7 +78,7 @@ const Sales = () => {
                             </div>
                             <div className="M-flex-row" style={{marginTop: '10px'}}>
                                 <div className="M-flex-column M-flex-center" style={{marginTop: '10px'}}>
-                                    <small className="M-font menu-detail-btn" onClick="searchSalesPrint()">검색 매출표 출력
+                                    <small className="M-font menu-detail-btn">검색 매출표 출력
                                     </small>
                                 </div>
                             </div>
