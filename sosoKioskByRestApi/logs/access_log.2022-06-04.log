@@ -59,3 +59,11 @@
 0:0:0:0:0:0:0:1 - - [04/Jun/2022:12:56:40 +0900] "POST /admin/order/date?payStatus=all&startDate=2022-6-4&endDate=2022-6-4 HTTP/1.1" 200 12
 0:0:0:0:0:0:0:1 - - [04/Jun/2022:12:56:41 +0900] "POST /kiosk/CategoryList HTTP/1.1" 200 138
 0:0:0:0:0:0:0:1 - - [04/Jun/2022:12:56:41 +0900] "POST /kiosk/CategoryList HTTP/1.1" 200 138
+0:0:0:0:0:0:0:1 - - [04/Jun/2022:13:00:59 +0900] "POST /kiosk/category/get/categorySq?categorySq=0 HTTP/1.1" 200 7007
+0:0:0:0:0:0:0:1 - - [04/Jun/2022:13:00:59 +0900] "POST /kiosk/category/get/categorySq?categorySq=0 HTTP/1.1" 200 7007
+0:0:0:0:0:0:0:1 - - [04/Jun/2022:13:01:00 +0900] "POST /kiosk/CategoryList HTTP/1.1" 200 138
+0:0:0:0:0:0:0:1 - - [04/Jun/2022:13:01:00 +0900] "POST /kiosk/CategoryList HTTP/1.1" 200 138
+0:0:0:0:0:0:0:1 - - [04/Jun/2022:13:01:52 +0900] "POST /kiosk/category/get/categorySq?categorySq=0 HTTP/1.1" 200 7007
+0:0:0:0:0:0:0:1 - - [04/Jun/2022:13:01:52 +0900] "POST /kiosk/category/get/categorySq?categorySq=0 HTTP/1.1" 200 7007
+0:0:0:0:0:0:0:1 - - [04/Jun/2022:13:01:53 +0900] "POST /kiosk/CategoryList HTTP/1.1" 200 138
+0:0:0:0:0:0:0:1 - - [04/Jun/2022:13:01:53 +0900] "POST /kiosk/CategoryList HTTP/1.1" 200 138
