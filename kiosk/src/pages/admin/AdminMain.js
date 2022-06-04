@@ -1,5 +1,5 @@
 import MenuTop from "./menu/MenuTop";
-import SalesTop from "./saels/SalesTop";
+import SalesTop from "./sales/SalesTop";
 import OrderTop from "./order/OrderTop";
 import SettingTop from "./setting/SettingTop";
 import {useSearchParams, useNavigate} from "react-router-dom";
@@ -9,8 +9,8 @@ import SideAllMenu from "./menu/SideAllMenu";
 import AddSide from "./menu/AddSide";
 import AllCategory from "./menu/AllCategory";
 import AddCategory from "./menu/AddCategory";
-import KioskClose from "./saels/KioskClose";
-import Sales from "./saels/Sales";
+import KioskClose from "./sales/KioskClose";
+import Sales from "./sales/Sales";
 import AllOrder from "./order/AllOrder";
 import CardOrder from "./order/CardOrder";
 import MoneyOrder from "./order/MoneyOrder";

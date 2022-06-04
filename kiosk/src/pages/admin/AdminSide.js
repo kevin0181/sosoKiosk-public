@@ -65,7 +65,8 @@ const AdminSide = ({resetData}) => {
             side: [],
             sideCategory: []
         },
-        order: []
+        order: [],
+        sales: []
     });
 
     const setDataFun = (data) => {

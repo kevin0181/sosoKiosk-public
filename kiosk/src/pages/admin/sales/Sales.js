@@ -44,25 +44,25 @@ const Sales = () => {
                                 </tr>
                                 </thead>
                                 <tbody className="admin-sales-tbody admin-tbody M-overlay">
-                                <tr class="admin-tbody-sales-tr admin-tbody-tr">
-                                    <td class="search dateSearch" style={{fontSize: '21px'}}>
+                                <tr className="admin-tbody-sales-tr admin-tbody-tr">
+                                    <td className="search dateSearch" style={{fontSize: '21px'}}>
                                         주문 날짜
                                     </td>
-                                    <td class="search" style={{textAlign: 'center'}}>
+                                    <td className="search" style={{textAlign: 'center'}}>
                                         <p style={{display: 'inline-block', marginRight: '5px'}}
                                         >주문 번호?</p>
                                     </td>
-                                    <td class="search">
+                                    <td className="search">
                                         10원
                                     </td>
-                                    <td class="search paySearch">
+                                    <td className="search paySearch">
                                         <p>성공</p>
                                         <p>실패</p>
                                     </td>
-                                    <td class="search">
+                                    <td className="search">
                                         <p>주문 상태</p>
                                     </td>
-                                    <td class="search">
+                                    <td className="search">
                                         <p>매장</p>
                                         <p>포장</p>
                                     </td>
