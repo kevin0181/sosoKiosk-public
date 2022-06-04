@@ -7,12 +7,7 @@ import SpinnerAdmin from "../part/SpinnerAdmin";
 const Sales = ({modalContentChange, data, setDataFun}) => {
 
 
-    const [search, setSearch] = useState('');
     const [totalPrice, setTotalPrice] = useState(0);
-
-    const setSearchChange = (e) => {
-        setSearch(e.target.value);
-    };
 
     useEffect(() => {
         AllMenuSearch.search();
@@ -21,18 +16,20 @@ const Sales = ({modalContentChange, data, setDataFun}) => {
     const [spinner, setSpinner] = useState(true);
 
     useEffect(() => {
+        getSalesData().then(function () {
+        });
+    }, []);
 
+    const getSalesData = async () => {
         dateSearch().then((getSales) => {
             let sales = getSales.filter((it) => it.orderStatus === true);
-
             setDataFun({
                 ...data,
                 sales
             });
-
             setSpinner(false);
         });
-    }, []);
+    }
 
     useEffect(() => {
         totalPriceFun();
@@ -66,7 +63,6 @@ const Sales = ({modalContentChange, data, setDataFun}) => {
     }
 
     const dateSearch = async () => {
-
         if (searchDate.startDate === '' && searchDate.endDate === '' || searchDate.startDate !== '' && searchDate.endDate !== '') {
             setSpinner(true);
             const response = await axios.post('http://' + serverUrl.server + '/admin/order/date', null, {
@@ -99,13 +95,32 @@ const Sales = ({modalContentChange, data, setDataFun}) => {
                     <div className="admin-all-menu-top">
                         <div className="admin-top-search">
                             <form className="M-flex-1 M-flex-row" id="dateForm" method="post">
-                                <input type="date" className="M-input-search" name="startDate" id="startDate"/>
+                                <input type="date" className="M-input-search" name="startDate" id="startDate"
+                                       onChange={changeDateFun}/>
                                 <span style={{fontSize: '18px', margin: '0px 20px'}}> ~ </span>
-                                <input type="date" className="M-input-search" name="endDate" id="endDate"/>
-                                <input type="button" value="검색"
-                                       className="M-input-search"
-                                       style={{width: '70px', margin: '0px 20px'}}/>
-                                <input type="button" value="전체"
+                                <input type="date" className="M-input-search" name="endDate"
+                                       onChange={changeDateFun}
+                                       id="endDate"/>
+                                <input type="button" value="검색" onClick={() => {
+                                    dateSearch().then(function (getSales) {
+                                        if (getSales) {
+                                            let sales = getSales.filter((it) => it.orderStatus === true);
+                                            setDataFun({
+                                                ...data,
+                                                sales
+                                            });
+                                        } else {
+                                            modalContentChange({
+                                                status: true,
+                                                param: '',
+                                                modalType: 'adminTotalModal',
+                                                modalTitle: '오류 메시지',
+                                                modalContent: '정확한 날짜를 입력해주세요.',
+                                            });
+                                        }
+                                        setSpinner(false);
+                                    });
+                                }}
                                        className="M-input-search"
                                        style={{width: '70px', margin: '0px 20px'}}/>
                             </form>
