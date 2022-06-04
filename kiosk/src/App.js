@@ -41,6 +41,8 @@ function App() {
                 moneyStompClient.subscribe('/sendAdminMessage/kiosk/order', function (greeting) {
                     var data = JSON.parse(greeting.body).message;
 
+                    console.log(data);
+
                     if (data == "noStart") {
                         // voice("키오스크를 실행 시켜 주세요");
                         menuModalContentChange({

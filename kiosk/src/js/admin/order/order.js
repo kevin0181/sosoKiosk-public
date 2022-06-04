@@ -7,14 +7,16 @@ import {requestPrint} from "../../all/printer/bxlcommon";
 
 export const cancelPay = (data, menuModalContentChange, setDataFun, allData) => {
 
-    if (data.orderApprovalNo === null) {
-        menuModalContentChange({
-            status: true,
-            modalType: 'adminTotalModal',
-            modalTitle: '알림 메시지',
-            modalContent: '결제 정보가 없습니다.'
-        });
-        return false;
+    if (data.orderPayStatus === 'card') {
+        if (data.orderApprovalNo === null) {
+            menuModalContentChange({
+                status: true,
+                modalType: 'adminTotalModal',
+                modalTitle: '알림 메시지',
+                modalContent: '결제 정보가 없습니다.'
+            });
+            return false;
+        }
     }
 
     if (data.orderPayStatus === 'money') {

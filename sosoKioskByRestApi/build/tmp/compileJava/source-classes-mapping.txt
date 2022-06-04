@@ -141,7 +141,7 @@ sosokiosk/kiosk/service/order/OrderService.java
  sosokiosk.kiosk.service.order.OrderService
 sosokiosk/kiosk/admin/controller/sales/SalesController.java
  sosokiosk.kiosk.admin.controller.sales.SalesController
-sosokiosk/kiosk/admin/controller/order/OrderController.java
- sosokiosk.kiosk.admin.controller.order.OrderController
 sosokiosk/kiosk/dto/order/OrderDetailDTO.java
  sosokiosk.kiosk.dto.order.OrderDetailDTO
+sosokiosk/kiosk/admin/controller/order/OrderController.java
+ sosokiosk.kiosk.admin.controller.order.OrderController
