@@ -8,6 +8,7 @@ const Sales = ({modalContentChange, data, setDataFun}) => {
 
 
     const [search, setSearch] = useState('');
+    const [totalPrice, setTotalPrice] = useState(0);
 
     const setSearchChange = (e) => {
         setSearch(e.target.value);
@@ -17,21 +18,34 @@ const Sales = ({modalContentChange, data, setDataFun}) => {
         AllMenuSearch.search();
     });
 
-
     const [spinner, setSpinner] = useState(true);
 
     useEffect(() => {
 
-        dateSearch().then((order) => {
+        dateSearch().then((getSales) => {
+            let sales = getSales.filter((it) => it.orderStatus === true);
 
             setDataFun({
                 ...data,
-                order
+                sales
             });
-            setSpinner(false);
 
+            setSpinner(false);
         });
     }, []);
+
+    useEffect(() => {
+        totalPriceFun();
+    }, [data]);
+
+    const totalPriceFun = () => {
+        let plusData = 0;
+        data.sales.map((it) => {
+            plusData = plusData + Number(it.orderTotalPrice);
+        });
+        setTotalPrice(plusData);
+    }
+
 
     let today = new Date();
     let year = today.getFullYear(); // 년도
@@ -147,7 +161,7 @@ const Sales = ({modalContentChange, data, setDataFun}) => {
                                 {/*    </td>*/}
                                 {/*</tr>*/}
                                 {
-                                    data.order.map((it, index) => (
+                                    data.sales.map((it, index) => (
                                         <tr className="admin-tbody-tr" key={index}>
                                             <td className="search dateSearch" style={{fontSize: '21px'}}>
                                                 {it.orderDate + ' ' + it.orderDateTime}
@@ -191,7 +205,7 @@ const Sales = ({modalContentChange, data, setDataFun}) => {
                         <div className="M-container M-font O-font-middle-size" style={{height: '30%'}}>
                             <div style={{textAlign: 'right', padding: '10px 20px'}}>
                                 <span style={{display: 'inline-block'}}>총 금액 : </span>
-                                <p style={{display: 'inline-block'}} id="totalPrice">10000</p><span
+                                <p style={{display: 'inline-block'}} id="totalPrice">{totalPrice}</p><span
                                 style={{display: 'inline-block'}}>원</span>
                             </div>
                             <div className="M-flex-row" style={{marginTop: '10px'}}>

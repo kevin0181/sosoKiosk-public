@@ -69,7 +69,7 @@ const AdminSide = ({resetData}) => {
         sales: []
     });
 
-    const setDataFun = (data) => {
+    const setDataFun = async (data) => {
         console.log(data);
         setData(data);
     }
