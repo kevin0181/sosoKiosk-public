@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import $ from 'jquery';
 import serverUrl from "../../../config/server.json";
+import {afterLongReceipt} from "../../../../js/admin/order/order";
 
 const OrderDetailModal = ({modalStatus, modalContentChange}) => {
 
@@ -231,7 +232,9 @@ const OrderDetailModal = ({modalStatus, modalContentChange}) => {
                     </div>
                     <div className="O-modal-side-footer" style={{justifyContent: 'flex-end'}}>
                         <div className="O-side-select-ok-part" id="orderDetailModalButton">
-                            <div className="O-side-select-close" style={{backgroundColor: '#f79d9d'}}>
+                            <div className="O-side-select-close" style={{backgroundColor: '#f79d9d'}} onClick={() => {
+                                afterLongReceipt(orderDetail.data);
+                            }}>
                                 <p className="M-font O-font-middle-size">영수증 출력하기</p>
                             </div>
                             <div className="O-side-select-close">
