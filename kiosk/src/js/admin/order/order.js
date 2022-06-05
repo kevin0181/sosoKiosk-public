@@ -216,93 +216,119 @@ export const cancelPay = (data, menuModalContentChange, setDataFun, allData) => 
 
 const cancelReceipt = (cancelData) => { //취소 영수증
 
-    getTax(parseInt(getSettingTax), parseInt(cancelData.orderTotalPrice)).then(function (Tax) { //총금액의 10프로 세금
 
-        setPosId(issueID);
-        checkPrinterStatus();
-
-        printText("\n\n&pastel(취소)\n\n\n", 0, 1, false, false, false, 0, 1);
-        printText("\n\n경기도 안산시 \n단원구 예술대학로 171,\n15263, 한국\n\n\n", 0, 0, false, false, false, 0, 1);
-        printText("--------------------------------", 0, 0, false, false, false, 0, 1);
-
-        if (_inch == 2) {
-            // 2inch sample
-            printText("--------------------------------\n", 0, 0, false, false, false, 0, 0);
-            printText("메뉴        단가    수량    금액\n\n", 0, 0, false, false, false, 0, 0);
-
-
-            $(cancelData.orderDetailEntityList).each(function () {
-
-                // printText(" " + this.orderMenuName + "      " + this.orderDetailMenuSize + "        " + this.orderDetailMenuPrice + " \n", 0, 0, false, false, false, 0, 0);
-
-                printText(this.orderMenuName + "\n", 0, 0, false, false, false, 0, 0);
-
-                printText(this.orderDetailMenuPrice + "       " + this.orderDetailMenuSize + "       " + (parseInt(this.orderDetailMenuPrice) * parseInt(this.orderDetailMenuSize)) + "\n", 0, 0, false, false, false, 0, 2);
-
-                if (this.orderDetailSideEntityList.length != 0) {
-
-                    $(this.orderDetailSideEntityList).each(function () {
-                        // printText("(SIDE) " + this.orderSideName + "       " + this.orderSideSize + "     " + this.orderSidePrice + " \n", 0, 0, false, false, false, 0, 0);
-
-                        printText("(SIDE) " + this.orderSideName + "\n", 0, 0, false, false, false, 0, 0);
-
-                        printText(this.orderSidePrice + "       " + this.orderSideSize + "       " + (parseInt(this.orderSidePrice) * parseInt(this.orderSideSize)) + "\n", 0, 0, false, false, false, 0, 2);
-                    });
-                }
-            });
-
-            printText("--------------------------------\n", 0, 0, false, false, false, 0, 0);
-            printText("  부가세 과세 물품가액 : " + (parseInt(cancelData.orderTotalPrice) - parseInt(Tax)) + "\n", 0, 0, true, false, false, 0, 0);
-            printText("           부  과  세  : " + Tax + "\n", 0, 0, true, false, false, 0, 0);
-            printText("            --------------------\n", 0, 0, false, false, false, 0, 0);
-            printText("               총 금액 : " + cancelData.orderTotalPrice + "\n", 0, 0, true, false, false, 0, 0);
-            printText("--------------------------------\n", 0, 0, false, false, false, 0, 0);
-            printText("        주문 번호 : " + cancelData.orderTelegramNo + "\n\n", 0, 0, false, false, false, 0, 0);
-
-            if (cancelData.orderPlace == "inner") {
-                printText("                          매장\n\n", 0, 0, false, false, false, 0, 0);
-            } else if (cancelData.orderPlace == "outer") {
-                printText("                          포장\n\n", 0, 0, false, false, false, 0, 0);
+    getSettingData().then(function (getSetting) { //setting 가져옴
+        getSetting.map((it) => {
+            switch (it.settingName) {
+                case 'tax':
+                    getSettingTax = Number(it.settingValue);
+                    break;
+                case 'readerNo':
+                    readerNo = it.settingValue
+                    break;
+                case 'leaderName':
+                    leaderName = it.settingValue
+                    break;
+                case 'businessNumber':
+                    businessNumber = it.settingValue
+                    break;
+                case 'printerName':
+                    printerName = it.settingValue
+                    break;
             }
+        });
 
-
-            if (cancelData.orderPayStatus == "card") {
-                printText("결제 방식  : 카드\n", 0, 0, false, false, false, 0, 0);
-            } else if (cancelData.orderPayStatus == "money") {
-                printText("결제 방식  : 현금\n", 0, 0, false, false, false, 0, 0);
-            }
-
-            printText("대 표 자  : " + leaderName + "\n", 0, 0, false, false, false, 0, 0);
-            printText("사업자 번호: " + businessNumber + "\n", 0, 0, false, false, false, 0, 0);
-            printText("주문 시각 : " + cancelData.orderDate + "\n\n\n", 0, 0, false, false, false, 0, 0);
-
-            if (cancelData.orderPayStatus === 'card') {
-                printText("--------------------------------\n", 0, 0, false, false, false, 0, 0);
-                printText("신용 승인 정보\n\n", 0, 0, false, false, false, 0, 1);
-                printText("승인번호 : " + cancelData.orderApprovalNo + "\n\n\n", 0, 0, false, false, false, 0, 0);
-            }
-
-        } else {
-            // error
-            return;
+        if (parseInt(getSettingTax) === 0) {
+            alert("세금 오류! 키오스크를 재시작 해주세요.");
         }
 
-        printText("Tel : 070 - 8888 - 9956\n", 0, 0, true, false, false, 0, 0);
-        printText("Homepage : www.soso-kitchen.com\n\n\n\n", 0, 0, false, false, false, 0, 0);
+        getTax(parseInt(getSettingTax), parseInt(cancelData.orderTotalPrice)).then(function (Tax) { //총금액의 10프로 세금
 
-        printQRCode("www.soso-kitchen.com", 0, 2, 7, 0);
-        // print1DBarcode("&pastel 인터넷으로 주문하기", 0, 4, 70, 2, 1);
-        printText("\n\n\n\n\n", 0, 0, false, false, false, 0, 0);
-        cutPaper(1);
+            setPosId(issueID);
+            checkPrinterStatus();
 
-        let strSubmit = getPosData();
+            printText("\n\n&pastel(취소)\n\n\n", 0, 1, false, false, false, 0, 1);
+            printText("\n\n경기도 안산시 \n단원구 예술대학로 171,\n15263, 한국\n\n\n", 0, 0, false, false, false, 0, 1);
+            printText("--------------------------------", 0, 0, false, false, false, 0, 1);
 
-        console.log(strSubmit);
+            if (_inch == 2) {
+                // 2inch sample
+                printText("--------------------------------\n", 0, 0, false, false, false, 0, 0);
+                printText("메뉴        단가    수량    금액\n\n", 0, 0, false, false, false, 0, 0);
 
-        issueID++;
 
-        requestPrint(printerName, strSubmit, viewResult);
+                $(cancelData.orderDetailEntityList).each(function () {
 
+                    // printText(" " + this.orderMenuName + "      " + this.orderDetailMenuSize + "        " + this.orderDetailMenuPrice + " \n", 0, 0, false, false, false, 0, 0);
+
+                    printText(this.orderMenuName + "\n", 0, 0, false, false, false, 0, 0);
+
+                    printText(this.orderDetailMenuPrice + "       " + this.orderDetailMenuSize + "       " + (parseInt(this.orderDetailMenuPrice) * parseInt(this.orderDetailMenuSize)) + "\n", 0, 0, false, false, false, 0, 2);
+
+                    if (this.orderDetailSideEntityList.length != 0) {
+
+                        $(this.orderDetailSideEntityList).each(function () {
+                            // printText("(SIDE) " + this.orderSideName + "       " + this.orderSideSize + "     " + this.orderSidePrice + " \n", 0, 0, false, false, false, 0, 0);
+
+                            printText("(SIDE) " + this.orderSideName + "\n", 0, 0, false, false, false, 0, 0);
+
+                            printText(this.orderSidePrice + "       " + this.orderSideSize + "       " + (parseInt(this.orderSidePrice) * parseInt(this.orderSideSize)) + "\n", 0, 0, false, false, false, 0, 2);
+                        });
+                    }
+                });
+
+                printText("--------------------------------\n", 0, 0, false, false, false, 0, 0);
+                printText("  부가세 과세 물품가액 : " + (parseInt(cancelData.orderTotalPrice) - parseInt(Tax)) + "\n", 0, 0, true, false, false, 0, 0);
+                printText("           부  과  세  : " + Tax + "\n", 0, 0, true, false, false, 0, 0);
+                printText("            --------------------\n", 0, 0, false, false, false, 0, 0);
+                printText("               총 금액 : " + cancelData.orderTotalPrice + "\n", 0, 0, true, false, false, 0, 0);
+                printText("--------------------------------\n", 0, 0, false, false, false, 0, 0);
+                printText("        주문 번호 : " + cancelData.orderTelegramNo + "\n\n", 0, 0, false, false, false, 0, 0);
+
+                if (cancelData.orderPlace == "inner") {
+                    printText("                          매장\n\n", 0, 0, false, false, false, 0, 0);
+                } else if (cancelData.orderPlace == "outer") {
+                    printText("                          포장\n\n", 0, 0, false, false, false, 0, 0);
+                }
+
+
+                if (cancelData.orderPayStatus == "card") {
+                    printText("결제 방식  : 카드\n", 0, 0, false, false, false, 0, 0);
+                } else if (cancelData.orderPayStatus == "money") {
+                    printText("결제 방식  : 현금\n", 0, 0, false, false, false, 0, 0);
+                }
+
+                printText("대 표 자  : " + leaderName + "\n", 0, 0, false, false, false, 0, 0);
+                printText("사업자 번호: " + businessNumber + "\n", 0, 0, false, false, false, 0, 0);
+                printText("주문 시각 : " + cancelData.orderDate + "\n\n\n", 0, 0, false, false, false, 0, 0);
+
+                if (cancelData.orderPayStatus === 'card') {
+                    printText("--------------------------------\n", 0, 0, false, false, false, 0, 0);
+                    printText("신용 승인 정보\n\n", 0, 0, false, false, false, 0, 1);
+                    printText("승인번호 : " + cancelData.orderApprovalNo + "\n\n\n", 0, 0, false, false, false, 0, 0);
+                }
+
+            } else {
+                // error
+                return;
+            }
+
+            printText("Tel : 070 - 8888 - 9956\n", 0, 0, true, false, false, 0, 0);
+            printText("Homepage : www.soso-kitchen.com\n\n\n\n", 0, 0, false, false, false, 0, 0);
+
+            printQRCode("www.soso-kitchen.com", 0, 2, 7, 0);
+            printText("\n\n\n\n\n", 0, 0, false, false, false, 0, 0);
+            cutPaper(1);
+
+            let strSubmit = getPosData();
+
+            console.log(strSubmit);
+
+            issueID++;
+
+            requestPrint(printerName, strSubmit, viewResult);
+
+        });
     });
 
 }
