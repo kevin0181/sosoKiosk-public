@@ -6,6 +6,7 @@ import QuestReceipt from "./modal/QuestReceipt";
 import OrderSuccessAfterTimeOutModal from "./modal/OrderSuccessAfterTimeOutModal";
 import MainTotalModal from "./modal/MainTotalModal";
 import CardPayModal from "./modal/CardPayModal";
+import LoadingModal from "./modal/LoadingModal";
 
 const KioskMainModal = ({
                             menuModalStatus,
@@ -64,6 +65,9 @@ const KioskMainModal = ({
                 case 'showCardGif':
                     return <CardPayModal orderStatus={orderStatus} totalPrice={totalPrice}
                                          menuModalContentChange={menuModalContentChange}/>
+                    break;
+                case 'viewLoading':
+                    return <LoadingModal/>
                     break;
             }
 
