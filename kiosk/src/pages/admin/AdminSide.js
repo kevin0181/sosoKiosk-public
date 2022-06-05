@@ -10,9 +10,9 @@ import $ from "jquery";
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import Modal from "./Modal";
-import AdminMenuDetailModal from "./menu/modal/AdminMenuDetailModal";
 
 const AdminSide = ({resetData, startDate}) => {
+
 
     const navigate = useNavigate();
 
@@ -119,6 +119,14 @@ const AdminSide = ({resetData, startDate}) => {
                                                  navigate("/admin/setting?status=setting");
                                              }}>
                                             <p className="O-category-a">일반 설정</p>
+                                        </div>
+                                    </div>
+                                    <div className="text M-font O-category-font">
+                                        <div className="O-category-name" id={'closeKiosk'}
+                                             onClick={() => {
+                                                 window.close();
+                                             }}>
+                                            <p className="O-category-a">키오스크 종료</p>
                                         </div>
                                     </div>
                                 </div>
