@@ -10,6 +10,9 @@ import clickSound from './voice/clickSound.wav';
 import SockJS from 'sockjs-client';
 import {Stomp} from '@stomp/stompjs';
 import CheckServerMessageModal from "./pages/kiosk/modal/CheckServerMessageModal";
+import startKioskSound from "./voice/키오스크를 실행 시켜 주세요.wav";
+import adminVoice from "./voice/관리자에게 문의해주세요.wav";
+
 
 function App() {
 
@@ -54,7 +57,7 @@ function App() {
                             menu: ''
                         });
                     } else if (data == "orderAfterNoStart") {
-                        // voice("키오스크를 실행 시켜 주세요");
+                        startKioskVoice();
                         menuModalContentChange({
                             status: true,
                             param: '',
@@ -64,6 +67,8 @@ function App() {
                             menu: ''
                         });
                     } else if (data == "error") {
+                        let audio = new Audio(adminVoice);
+                        audio.play();
                         menuModalContentChange({
                             status: true,
                             param: '',
@@ -89,7 +94,10 @@ function App() {
 
         });
     }
-
+    const startKioskVoice = () => {
+        let audio = new Audio(startKioskSound);
+        audio.play();
+    }
 
     const [startDate, setStartDate] = useState('');
     useEffect(() => {
