@@ -54,7 +54,7 @@
         "zip",
         "nsis"
       ],
-      "icon": "./img/icon/kioskicon2.ico"
+      "icon": "./img/icon/sosoLogo.png"
     },
     "nsis": {
       "oneClick": false,
