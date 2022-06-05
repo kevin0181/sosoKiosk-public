@@ -118,7 +118,6 @@ const KioskClose = ({modalContentChange, data, setDataFun, startDate}) => {
         getSettingData().then(() => {
 
             getTax(parseInt(getSettingTax), Number(totalPrice)).then(function (taxByTotal) {
-                console.log(taxByTotal);
 
                 let Tax = Number(totalPrice) - taxByTotal;
 
@@ -152,52 +151,53 @@ const KioskClose = ({modalContentChange, data, setDataFun, startDate}) => {
                         outerNum++;
                     }
 
-                    let issueID = 1;
-                    let _inch = 2;
-
-                    setPosId(issueID);
-                    checkPrinterStatus();
-
-                    printText("\n\n&pastel\n\n\n", 0, 1, false, false, false, 0, 1);
-                    printText("\n\n경기도 안산시 \n단원구 예술대학로 171,\n15263, 한국\n\n\n", 0, 0, false, false, false, 0, 1);
-
-                    if (_inch == 2) {
-                        printText("개점 일시 : " + startDate + "\n", 0, 0, false, false, false, 0, 0);
-                        printText("정산 일시 : " + endDate + "\n", 0, 0, false, false, false, 0, 0);
-                        printText("--------------------------------\n", 0, 0, false, false, false, 0, 0);
-                        printText("매출 합계\n\n", 0, 0, false, false, false, 0, 1);
-                        printText("총 판매액 :              " + totalPrice + "\n", 0, 0, false, false, false, 0, 0);
-                        printText("과세매출액 :             " + Tax + "\n", 0, 0, false, false, false, 0, 0);
-                        printText("부과세액 :               " + taxByTotal + "\n\n", 0, 0, false, false, false, 0, 0);
-                        printText("매출 합계 :              " + total + "\n", 0, 0, false, false, false, 0, 0);
-                        printText("--------------------------------\n", 0, 0, false, false, false, 0, 0);
-                        printText("결제수단별 매출\n\n", 0, 0, false, false, false, 0, 1);
-                        printText("카드 매출 :       " + cardNum + "        " + cardTotal + "\n", 0, 0, false, false, false, 0, 0);
-                        printText("현금 매출 :       " + moneyNum + "        " + moneyTotal + "\n", 0, 0, false, false, false, 0, 0);
-                        printText("--------------------------------\n", 0, 0, false, false, false, 0, 0);
-                        printText("장소별 매출\n\n", 0, 0, false, false, false, 0, 1);
-                        printText("포장 매출 :        " + outerNum + "      " + outerTotal + "\n", 0, 0, false, false, false, 0, 0);
-                        printText("매장 매출 :        " + innerNum + "      " + innerTotal + "\n", 0, 0, false, false, false, 0, 0);
-                        printText("--------------------------------\n\n\n\n", 0, 0, false, false, false, 0, 0);
-
-
-                    } else {
-                        // error
-                        return;
-                    }
-
-                    printText("Tel : 010 - 8650 - 9052\n", 0, 0, true, false, false, 0, 0);
-                    printText("문의 주소 : https://kevin0181.github.io/\n\n\n\n\n\n\n\n", 0, 0, false, false, false, 0, 0);
-
-                    cutPaper(1);
-
-                    let strSubmit = getPosData();
-                    console.log(strSubmit);
-                    issueID++;
-
-                    requestPrint(printerName, strSubmit, viewResult);
-
                 });
+
+                let issueID = 1;
+                let _inch = 2;
+
+                setPosId(issueID);
+                checkPrinterStatus();
+
+                printText("\n\n&pastel\n\n\n", 0, 1, false, false, false, 0, 1);
+                printText("\n\n경기도 안산시 \n단원구 예술대학로 171,\n15263, 한국\n\n\n", 0, 0, false, false, false, 0, 1);
+
+                if (_inch == 2) {
+                    printText("개점 일시 : " + startDate + "\n", 0, 0, false, false, false, 0, 0);
+                    printText("정산 일시 : " + endDate + "\n", 0, 0, false, false, false, 0, 0);
+                    printText("--------------------------------\n", 0, 0, false, false, false, 0, 0);
+                    printText("매출 합계\n\n", 0, 0, false, false, false, 0, 1);
+                    printText("총 판매액 :              " + totalPrice + "\n", 0, 0, false, false, false, 0, 0);
+                    printText("과세매출액 :             " + Tax + "\n", 0, 0, false, false, false, 0, 0);
+                    printText("부과세액 :               " + taxByTotal + "\n\n", 0, 0, false, false, false, 0, 0);
+                    printText("매출 합계 :              " + total + "\n", 0, 0, false, false, false, 0, 0);
+                    printText("--------------------------------\n", 0, 0, false, false, false, 0, 0);
+                    printText("결제수단별 매출\n\n", 0, 0, false, false, false, 0, 1);
+                    printText("카드 매출 :       " + cardNum + "        " + cardTotal + "\n", 0, 0, false, false, false, 0, 0);
+                    printText("현금 매출 :       " + moneyNum + "        " + moneyTotal + "\n", 0, 0, false, false, false, 0, 0);
+                    printText("--------------------------------\n", 0, 0, false, false, false, 0, 0);
+                    printText("장소별 매출\n\n", 0, 0, false, false, false, 0, 1);
+                    printText("포장 매출 :        " + outerNum + "      " + outerTotal + "\n", 0, 0, false, false, false, 0, 0);
+                    printText("매장 매출 :        " + innerNum + "      " + innerTotal + "\n", 0, 0, false, false, false, 0, 0);
+                    printText("--------------------------------\n\n\n\n", 0, 0, false, false, false, 0, 0);
+
+
+                } else {
+                    // error
+                    return;
+                }
+
+                printText("Tel : 010 - 8650 - 9052\n", 0, 0, true, false, false, 0, 0);
+                printText("문의 주소 : https://kevin0181.github.io/\n\n\n\n\n\n\n\n", 0, 0, false, false, false, 0, 0);
+
+                cutPaper(1);
+
+                let strSubmit = getPosData();
+                console.log(strSubmit);
+                issueID++;
+
+                requestPrint(printerName, strSubmit, viewResult);
+
             });
 
         });
