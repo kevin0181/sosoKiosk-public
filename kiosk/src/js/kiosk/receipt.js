@@ -168,6 +168,10 @@ export const numberReceipt = (saveData, orderNumber) => { //번호표 출력
 
 const sendByServerOrder = async (saveData, orderNumber) => {
 
+    saveData.orderDetailEntityList.map((it) => {
+        delete it.menuEntity;
+    });
+
     let moneyStompClient;
     let sosoServerStatus;
 
