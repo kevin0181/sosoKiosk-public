@@ -293,6 +293,7 @@ const KioskClose = ({modalContentChange, data, setDataFun, startDate}) => {
                         <div className="M-container M-font O-font-middle-size"
                              style={{height: '2admin-menu-all-list-div M-overlay0%'}}>
                             <div style={{textAlign: 'right', padding: '10px 20px'}}>
+                                <span style={{marginRight: '15%'}}>총 주문 수 : {data.sales.length}</span>
                                 <span style={{display: 'inline-block'}}>총 금액 : </span>
                                 <p style={{display: 'inline-block'}} id="totalPrice">{totalPrice}</p><span
                                 style={{display: 'inline-block'}}>원</span>
