@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "./static/css/main.55d47ad4.css",
+    "main.js": "./static/js/main.5b0ea284.js",
+    "static/media/NanumPenScript-Regular.ttf": "./static/media/NanumPenScript-Regular.9dbef1100bff0af74f80.ttf",
+    "static/media/ICInsert.gif": "./static/media/ICInsert.406ce23ecdf36dae37ac.gif",
+    "static/media/주문이 완료되었습니다 영수증을 선택해주세요.wav": "./static/media/주문이 완료되었습니다 영수증을 선택해주세요.1811c8fd5b2d04ce8cc2.wav",
+    "static/media/키오스크를 실행 시켜 주세요.wav": "./static/media/키오스크를 실행 시켜 주세요.5d1515f58e5cb4735cdc.wav",
+    "static/media/관리자에게 문의해주세요.wav": "./static/media/관리자에게 문의해주세요.f67ff8b91b36b5a5ce78.wav",
+    "static/media/관리자님 환영합니다.wav": "./static/media/관리자님 환영합니다.067e64f563e6751f5444.wav",
+    "static/media/메뉴를 선택해주세요.wav": "./static/media/메뉴를 선택해주세요.bc9ffafbcd46026d15ed.wav",
+    "static/media/카드를 꽂아주세요.wav": "./static/media/카드를 꽂아주세요.b35f00208822410a9f54.wav",
+    "static/media/outerImg.png": "./static/media/outerImg.099201330958d534ca21.png",
+    "static/media/clickSound.wav": "./static/media/clickSound.0473d4ae1670e73c3d2b.wav",
+    "static/media/innerImg.png": "./static/media/innerImg.23dffe99dcfd5abb35b2.png",
+    "index.html": "./index.html",
+    "main.55d47ad4.css.map": "./static/css/main.55d47ad4.css.map",
+    "main.5b0ea284.js.map": "./static/js/main.5b0ea284.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.55d47ad4.css",
+    "static/js/main.5b0ea284.js"
+  ]
+}

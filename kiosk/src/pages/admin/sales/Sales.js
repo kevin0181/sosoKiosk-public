@@ -158,7 +158,7 @@ const Sales = ({modalContentChange, data, setDataFun}) => {
                     // printText("정산 일시 : " + finishDate() + "\n", 0, 0, false, false, false, 0, 0);
                     printText("--------------------------------\n", 0, 0, false, false, false, 0, 0);
                     printText("매출 합계\n\n", 0, 0, false, false, false, 0, 1);
-                    printText("총 판매액 :              " + $("#totalPrice").text() + "\n", 0, 0, false, false, false, 0, 0);
+                    printText("총 판매액 :              " + totalPrice + "\n", 0, 0, false, false, false, 0, 0);
                     printText("과세매출액 :             " + Tax + "\n", 0, 0, false, false, false, 0, 0);
                     printText("부과세액 :               " + taxByTotal + "\n\n", 0, 0, false, false, false, 0, 0);
                     printText("매출 합계 :              " + total + "\n", 0, 0, false, false, false, 0, 0);
@@ -318,6 +318,7 @@ const Sales = ({modalContentChange, data, setDataFun}) => {
                         </div>
                         <div className="M-container M-font O-font-middle-size" style={{height: '30%'}}>
                             <div style={{textAlign: 'right', padding: '10px 20px'}}>
+                                <span style={{marginRight: '15%'}}>총 주문 수 : {data.sales.length}</span>
                                 <span style={{display: 'inline-block'}}>총 금액 : </span>
                                 <p style={{display: 'inline-block'}} id="totalPrice">{totalPrice}</p><span
                                 style={{display: 'inline-block'}}>원</span>
