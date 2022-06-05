@@ -205,6 +205,10 @@ const OrderMenu = ({
                                 <div className="O-footer-buy-Btn-all">
                                     <div className="O-card-Btn M-width-80 M-flex-row M-flex-center"
                                          onClick={() => {
+                                             if (allOrderData.length === 0) {
+                                                 //메뉴 선택을 안함
+                                                 return false;
+                                             }
                                              orderStatus.payStatus = 'card'
                                              orderStatus.totalPrice = totalPrice
                                              orderStatus.orderMenu = allOrderData
@@ -224,6 +228,10 @@ const OrderMenu = ({
                                         <p>카드결제</p>
                                     </div>
                                     <div className="O-money-Btn M-width-80 M-flex-row M-flex-center" onClick={() => {
+                                        if (allOrderData.length === 0) {
+                                            //메뉴 선택을 안함
+                                            return false;
+                                        }
                                         orderStatus.payStatus = 'money'
                                         orderStatus.totalPrice = totalPrice
                                         orderStatus.orderMenu = allOrderData
