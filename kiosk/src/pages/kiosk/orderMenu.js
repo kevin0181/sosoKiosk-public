@@ -5,6 +5,7 @@ import MainMenu from "./menu/MainMenu";
 import {useEffect, useState} from "react";
 import KioskMainModal from "./KioskMainModal";
 import serverUrl from "../config/server.json";
+import selectMenuStartSound from "./../../voice/메뉴를 선택해주세요.wav";
 
 const OrderMenu = ({
                        menu,
@@ -22,6 +23,15 @@ const OrderMenu = ({
                    }) => {
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        selectMenuVoice();
+    }, []);
+
+    const selectMenuVoice = () => {
+        let audio = new Audio(selectMenuStartSound);
+        audio.play();
+    }
 
     // useEffect(() => {
     //     setTimeout(() => {
