@@ -1,6 +1,18 @@
 import {NoReceiptMoneyPayStart, YesReceiptMoneyPayStart} from "../../../js/kiosk/pay";
+import selectReceipt from "./../../../voice/주문이 완료되었습니다 영수증을 선택해주세요.wav";
+import {useEffect} from "react";
 
 const QuestReceipt = ({menuModalContentChange, orderStatus, orderNumber, PlusOrderNumber, menuModalStatus}) => {
+
+
+    useEffect(() => {
+        selectReceiptVoice();
+    }, []);
+
+    const selectReceiptVoice = () => {
+        let audio = new Audio(selectReceipt);
+        audio.play();
+    }
 
     return (
         <div className="O-modal-back" id="receiptModal">
