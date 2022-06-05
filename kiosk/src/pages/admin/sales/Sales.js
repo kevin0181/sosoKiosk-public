@@ -107,41 +107,40 @@ const Sales = ({modalContentChange, data, setDataFun}) => {
 
         getSettingData().then(() => {
 
-            let taxByTotal = getTax(parseInt(10), parseInt($("#totalPrice").text()));
+            getTax(Number(10), Number(totalPrice)).then(function (taxByTotal) {
 
-            let Tax = parseInt($("#totalPrice").text()) - taxByTotal;
+                let Tax = Number(totalPrice) - taxByTotal;
 
-            let total = taxByTotal + Tax;
+                let total = taxByTotal + Tax;
 
-            let cardTotal = 0;
-            let cardNum = 0;
-            let moneyTotal = 0;
-            let moneyNum = 0;
+                let cardTotal = 0;
+                let cardNum = 0;
+                let moneyTotal = 0;
+                let moneyNum = 0;
 
-            let innerTotal = 0;
-            let innerNum = 0;
-            let outerTotal = 0;
-            let outerNum = 0;
+                let innerTotal = 0;
+                let innerNum = 0;
+                let outerTotal = 0;
+                let outerNum = 0;
 
-            $(data.sales).each(function () {
+                $(data.sales).each(function () {
 
-                console.log(this);
+                    if (this.orderPayStatus === "money") {
+                        moneyTotal = moneyTotal + parseInt(this.orderTotalPrice);
+                        moneyNum++;
+                    } else {
+                        cardTotal = cardTotal + parseInt(this.orderTotalPrice);
+                        cardNum++;
+                    }
 
-                if (this.orderPayStatus === "money") {
-                    moneyTotal = moneyTotal + parseInt(this.orderTotalPrice);
-                    moneyNum++;
-                } else {
-                    cardTotal = cardTotal + parseInt(this.orderTotalPrice);
-                    cardNum++;
-                }
-
-                if (this.orderPlace === "inner") {
-                    innerTotal = innerTotal + parseInt(this.orderTotalPrice);
-                    innerNum++;
-                } else {
-                    outerTotal = outerTotal + parseInt(this.orderTotalPrice);
-                    outerNum++;
-                }
+                    if (this.orderPlace === "inner") {
+                        innerTotal = innerTotal + parseInt(this.orderTotalPrice);
+                        innerNum++;
+                    } else {
+                        outerTotal = outerTotal + parseInt(this.orderTotalPrice);
+                        outerNum++;
+                    }
+                });
 
                 let issueID = 1;
                 let _inch = 2;
@@ -188,13 +187,16 @@ const Sales = ({modalContentChange, data, setDataFun}) => {
                 cutPaper(1);
 
                 let strSubmit = getPosData();
+                console.log(strSubmit);
 
                 issueID++;
 
                 requestPrint(printerName, strSubmit, viewResult);
 
+
             });
-        })
+
+        });
     }
 
     function viewResult(result) {
