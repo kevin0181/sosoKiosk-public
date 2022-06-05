@@ -5,9 +5,19 @@ import './../../css/admin/adminLogin.css';
 import backButtunImg from './../../img/backImg.png';
 import {useNavigate} from "react-router-dom";
 import adminLogin from './../../js/admin/login';
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import welcomeAdmin from "../../voice/관리자님 환영합니다.wav";
 
 const AdminLogin = () => {
+
+    useEffect(() => {
+        welcomeAdminVoice();
+    }, []);
+
+    const welcomeAdminVoice = () => {
+        let audio = new Audio(welcomeAdmin);
+        audio.play();
+    }
 
     const navigate = useNavigate();
 
