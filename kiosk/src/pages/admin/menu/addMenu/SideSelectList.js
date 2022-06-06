@@ -1,4 +1,5 @@
 const SideSelectList = ({side, changeSide, changeSideData}) => {
+    console.log(changeSideData)
     return (
         <>
             <div className="M-input-select-div" id="sideSelectOption">

@@ -126,6 +126,8 @@ const AddMenu = ({modalContentChange}) => {
 
     const addMenuChange = (e) => {
 
+        setAddMenuSmallText('');
+
         setCategoryStatus(false);
         setSideStatus(false);
 

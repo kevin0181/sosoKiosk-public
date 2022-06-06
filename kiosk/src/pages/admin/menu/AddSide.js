@@ -51,6 +51,7 @@ const AddSide = ({modalContentChange}) => {
     });
 
     const changeAddSideMenu = (e) => {
+        setAddMenuSmallText('');
 
         setSideStatus(false);
         setSideCategoryStatus(false);
@@ -126,6 +127,7 @@ const AddSide = ({modalContentChange}) => {
         setSideCategoryStatus(!sideStatus);
         if (addSideMenu.sideSelect.sideSq === '' || addSideMenu.sideSelect.sideSq === null || addSideMenu.sideSelect.sideSq === undefined) {
             setAddMenuSmallText('사이드를 선택해주세요.');
+            setSpinner(false);
             return false;
         } else {
             getSideCategoryList(addSideMenu.sideSelect.sideSq).then(function (res) {
@@ -210,6 +212,7 @@ const AddSide = ({modalContentChange}) => {
         });
 
     }
+    let changeSideData = [];
 
     return (
         <div className="admin-main">
@@ -274,7 +277,8 @@ const AddSide = ({modalContentChange}) => {
                                     }}/>
                                     {
                                         sideStatus ? (
-                                            <SideSelectList side={side} changeSide={changeAddSideMenu}/>) : (<></>)
+                                            <SideSelectList side={side} changeSideData={changeSideData}
+                                                            changeSide={changeAddSideMenu}/>) : (<></>)
                                     }
                                 </div>
                             </div>
