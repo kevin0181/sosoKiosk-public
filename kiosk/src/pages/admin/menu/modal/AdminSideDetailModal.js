@@ -424,12 +424,10 @@ const AdminSideDetailModal = ({modalStatus, modalContentChange, changeSideData, 
                                 <div className="admin-progress-bar" style={{padding: '10px 60px'}}>
                                     <div className="admin-progress-bar-div" style={{textAlign: 'center'}}>
                                         <small className="M-font" style={{fontSize: '25px'}}
-                                               id="progress-small-side"></small>
+                                               id="progress-small-side">{addMenuSmallText}</small>
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                     <div className="O-modal-side-footer" style={{padding: '30px 0px'}}>
