@@ -84,10 +84,12 @@ public class OrderController {
 
         for (int i = 0; i < orderDTOList.size(); i++) {
             for (int j = 0; j < orderDTOList.get(i).getOrderDetailEntityList().size(); j++) {
-                if(orderDTOList.get(i).getOrderDetailEntityList().get(j).getMenuEntity() != null){
+                if (orderDTOList.get(i).getOrderDetailEntityList().get(j).getMenuEntity() != null) {
                     orderDTOList.get(i).getOrderDetailEntityList().get(j).getMenuEntity().setCategoryDTO(null);
                 }
-                orderDTOList.get(i).getOrderDetailEntityList().get(j).getMenuEntity().setSide(null);
+                if (orderDTOList.get(i).getOrderDetailEntityList().get(j).getMenuEntity() != null) {
+                    orderDTOList.get(i).getOrderDetailEntityList().get(j).getMenuEntity().setSide(null);
+                }
             }
         }
 
