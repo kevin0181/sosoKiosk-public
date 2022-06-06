@@ -111,7 +111,7 @@ const AddMenu = ({modalContentChange}) => {
                 imgUrl: ''
             });
 
-            $('#menu.js-fileUrl').text('');
+            $('#menu-fileUrl').text('');
 
             modalContentChange({
                 status: true,
