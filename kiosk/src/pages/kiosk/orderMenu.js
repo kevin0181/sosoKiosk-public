@@ -165,7 +165,7 @@ const OrderMenu = ({
                     <div className="O-center O-font-center M-font">
                         <div className="O-center-menu">
                             <div
-                                style={{width: '100%', height: '96%'}}
+                                style={{width: '100%', height: '100%'}}
                                 className="M-overlay">
                                 <MainMenu menu={menu}
                                           menuModalContentChange={menuModalContentChange}/>
