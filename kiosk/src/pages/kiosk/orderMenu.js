@@ -125,7 +125,7 @@ const OrderMenu = ({
                         <div className="O-category">
                             <div className="O-category-list">
                                 <div
-                                    style={{height: '68%'}}
+                                    style={{height: '65%'}}
                                     className="M-overlay">
                                     <div id="categoryPart"
                                          className="O-category-list2"
@@ -176,8 +176,7 @@ const OrderMenu = ({
                         <div className="O-footer-div">
                             <div className="O-footer-select-menu">
                                 <div className="O-footer-select-menu-all">
-                                    <div className="O-mini-select-bar w-M-overlay"
-                                         style={{paddingTop: '3%'}}>
+                                    <div className="O-mini-select-bar">
 
                                         {
                                             allOrderData.map((it) => (
@@ -200,7 +199,7 @@ const OrderMenu = ({
                                                                      + '/' + it.imgDTOList[0].imgName}/>
                                                         </div>
                                                     </div>
-                                                    <div className="O-mini-card-body">
+                                                    <div>
                                                         <div className="O-mini-card-body-content">
                                                             <p className="M-font O-font-mini-size">{it.menuName}</p>
                                                         </div>

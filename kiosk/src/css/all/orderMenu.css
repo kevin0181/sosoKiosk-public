@@ -331,6 +331,7 @@
 
 .O-select-mini-card {
     width: 25%;
+    top: -3px;
     position: relative;
     display: inline-block;
     text-align: center;
