@@ -307,14 +307,14 @@
 }
 
 .O-card-Btn {
-    padding: 10px 30px;
+    /*padding: 10px 30px;*/
     margin-bottom: 5px;
     border-radius: 20px;
     background-color: #c7c5c5;
 }
 
 .O-money-Btn {
-    padding: 10px 30px;
+    /*padding: 10px 30px;*/
     margin-top: 5px;
     border-radius: 20px;
     background-color: #ffdddd;

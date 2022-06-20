@@ -32,7 +32,7 @@ const QuestReceipt = ({menuModalContentChange, orderStatus, orderNumber, PlusOrd
                     </div>
                     <div className="O-modal-side-footer M-flex-j-center" id="">
                         <div className="O-receipt-modal-btn"
-                             style={{width: '35%', backgroundColor: '#e9e9e9'}}>
+                             style={{width: '35%', height: '55px', backgroundColor: '#e9e9e9'}}>
                             <p className="M-font O-font-middle-size" onClick={() => {
                                 PlusOrderNumber(); //주문 번호
                                 menuModalContentChange({
@@ -48,7 +48,7 @@ const QuestReceipt = ({menuModalContentChange, orderStatus, orderNumber, PlusOrd
                             }}>네</p>
                         </div>
                         <div className="O-receipt-modal-btn"
-                             style={{width: '35%', marginLeft: '30px', backgroundColor: '#e9e9e9'}}>
+                             style={{width: '35%', height: '55px', marginLeft: '30px', backgroundColor: '#e9e9e9'}}>
                             <p className="M-font O-font-middle-size" onClick={() => {
                                 PlusOrderNumber(); //주문 번호
                                 menuModalContentChange({
