@@ -40,7 +40,7 @@ export const cancelPay = (data, menuModalContentChange, setDataFun, allData) => 
                     ...allData,
                     ['order']: deleteAllData
                 });
-
+                cancelReceipt(data);
                 menuModalContentChange({
                     status: true,
                     modalType: 'adminTotalModal',
@@ -156,8 +156,8 @@ export const cancelPay = (data, menuModalContentChange, setDataFun, allData) => 
                             if (getRes.RES === "0000" && getRes.RESPCODE === "0000") {
 
                                 requestCancelCardPay(data.order_sq).then(function (res) {
-                                    console.log(res);
                                     if (res) {
+                                        cancelReceipt(data);
 
                                         let deleteAllData = allData.order.filter((it) => it.order_sq !== data.order_sq);
                                         setDataFun({
@@ -210,7 +210,6 @@ export const cancelPay = (data, menuModalContentChange, setDataFun, allData) => 
         );
 
     }
-    cancelReceipt(data);
 
 }
 
@@ -247,8 +246,8 @@ const cancelReceipt = (cancelData) => { //취소 영수증
             setPosId(issueID);
             checkPrinterStatus();
 
-            printText("\n\n&pastel(취소)\n\n\n", 0, 1, false, false, false, 0, 1);
-            printText("\n\n경기도 안산시 \n단원구 예술대학로 171,\n15263, 한국\n\n\n", 0, 0, false, false, false, 0, 1);
+            printText("&pastel(취소)\n", 0, 1, false, false, false, 0, 1);
+            printText("\n경기도 안산시 \n단원구 예술대학로 171,\n15263, 한국\n", 0, 0, false, false, false, 0, 1);
             printText("--------------------------------", 0, 0, false, false, false, 0, 1);
 
             if (_inch == 2) {
@@ -300,12 +299,12 @@ const cancelReceipt = (cancelData) => { //취소 영수증
 
                 printText("대 표 자  : " + leaderName + "\n", 0, 0, false, false, false, 0, 0);
                 printText("사업자 번호: " + businessNumber + "\n", 0, 0, false, false, false, 0, 0);
-                printText("주문 시각 : " + cancelData.orderDate + "\n\n\n", 0, 0, false, false, false, 0, 0);
+                printText("주문 시각 : " + cancelData.orderDate + "\n", 0, 0, false, false, false, 0, 0);
 
                 if (cancelData.orderPayStatus === 'card') {
                     printText("--------------------------------\n", 0, 0, false, false, false, 0, 0);
                     printText("신용 승인 정보\n\n", 0, 0, false, false, false, 0, 1);
-                    printText("승인번호 : " + cancelData.orderApprovalNo + "\n\n\n", 0, 0, false, false, false, 0, 0);
+                    printText("승인번호 : " + cancelData.orderApprovalNo + "\n\n", 0, 0, false, false, false, 0, 0);
                 }
 
             } else {
@@ -314,10 +313,10 @@ const cancelReceipt = (cancelData) => { //취소 영수증
             }
 
             printText("Tel : 070 - 8888 - 9956\n", 0, 0, true, false, false, 0, 0);
-            printText("Homepage : www.soso-kitchen.com\n\n\n\n", 0, 0, false, false, false, 0, 0);
+            printText("Homepage : www.soso-kitchen.com\n\n", 0, 0, false, false, false, 0, 0);
 
-            printQRCode("www.soso-kitchen.com", 0, 2, 7, 0);
-            printText("\n\n\n\n\n", 0, 0, false, false, false, 0, 0);
+            // printQRCode("www.soso-kitchen.com", 0, 2, 7, 0);
+            // printText("\n\n\n\n\n", 0, 0, false, false, false, 0, 0);
             cutPaper(1);
 
             let strSubmit = getPosData();

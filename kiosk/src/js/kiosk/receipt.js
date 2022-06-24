@@ -100,7 +100,7 @@ export const longReceipt = (payAfterData, orderNumber, cardInfo) => { //영수�
                 }
 
                 printText("Tel : 070 - 8888 - 9956\n", 0, 0, true, false, false, 0, 0);
-                printText("Homepage : www.soso-kitchen.com\n", 0, 0, false, false, false, 0, 0);
+                printText("Homepage : www.soso-kitchen.com\n\n", 0, 0, false, false, false, 0, 0);
 
                 // printQRCode("www.soso-kitchen.com", 0, 2, 7, 0);
                 // print1DBarcode("&pastel 인터넷으로 주문하기", 0, 4, 70, 2, 1);
