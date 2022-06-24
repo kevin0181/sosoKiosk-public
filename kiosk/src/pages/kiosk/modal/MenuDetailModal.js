@@ -56,7 +56,7 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
 
         setSideCategory(menuModalStatus.menu.side[0].sideCategoryDTOList); //사이드 카테고리 넣음
         if (menuModalStatus.menu.side[0].sideCategoryDTOList[0].menuSideDTOList.length !== 0) {
-            setSideMenu([menuModalStatus.menu.side[0].sideCategoryDTOList[0].menuSideDTOList[0]]); //사이드 넣음
+            setSideMenu(menuModalStatus.menu.side[0].sideCategoryDTOList[0].menuSideDTOList); //사이드 넣음
         }
 
 
@@ -219,6 +219,11 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
     const [sideCategory, setSideCategory] = useState([]);
     const [sideMenu, setSideMenu] = useState([]);
     const [sideCategorySq, setSideCategorySq] = useState('');
+
+    // useEffect(() => {
+    //     console.log(sideMenu);
+    // }, [sideMenu]);
+
 
     useEffect(() => {
 
