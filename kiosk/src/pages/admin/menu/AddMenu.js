@@ -112,6 +112,7 @@ const AddMenu = ({modalContentChange}) => {
             });
 
             $('#menu-fileUrl').text('');
+            $('#menu-file').val('');
 
             modalContentChange({
                 status: true,

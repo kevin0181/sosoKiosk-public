@@ -201,6 +201,7 @@ const AddSide = ({modalContentChange}) => {
             });
 
             $('#side-fileUrl').text('');
+            $('#side-file').val('');
 
             modalContentChange({
                 status: true,
