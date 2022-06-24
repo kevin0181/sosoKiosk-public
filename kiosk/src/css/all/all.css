@@ -185,6 +185,10 @@ input:focus {
     border-radius: 150px;
 }
 
+.M-allSelect-size {
+    height: 100px !important;
+}
+
 .M-input-select:last-child {
     border-bottom: none !important;
 }

@@ -3,7 +3,7 @@ const CategorySelectList = ({category, changeCategory}) => {
 
     return (
         <>
-            <div className="M-input-select-div" id="categorySelectOption">
+            <div className="M-allSelect-size M-input-select-div M-overlay" id="categorySelectOption">
                 {
                     category.map((it, index) => (
                         <input type="text" defaultValue={it.categoryName} key={it.categorySq} readOnly

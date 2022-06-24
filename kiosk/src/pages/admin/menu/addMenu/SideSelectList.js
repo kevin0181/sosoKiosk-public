@@ -2,7 +2,7 @@ const SideSelectList = ({side, changeSide, changeSideData}) => {
     console.log(changeSideData)
     return (
         <>
-            <div className="M-input-select-div" id="sideSelectOption">
+            <div className="M-allSelect-size M-input-select-div M-overlay" id="sideSelectOption">
                 {
                     changeSideData === undefined ? (<input type="text" data-id={0} defaultValue={'없음'}
                                                            name={'sideSelect'} onClick={changeSide}
