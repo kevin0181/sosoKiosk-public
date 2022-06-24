@@ -32,9 +32,9 @@ export const longReceipt = (payAfterData, orderNumber, cardInfo) => { //영수�
                 setPosId(issueID);
                 checkPrinterStatus();
 
-                printText("\n\n&pastel\n\n\n", 0, 1, false, false, false, 0, 1);
-                printText("\n\n경기도 안산시 \n단원구 예술대학로 171,\n15263, 한국\n\n\n", 0, 0, false, false, false, 0, 1);
-                printText("--------------------------------", 0, 0, false, false, false, 0, 1);
+                printText("&pastel\n", 0, 1, false, false, false, 0, 1);
+                printText("\n경기도 안산시 \n단원구 예술대학로 171,\n15263, 한국\n\n", 0, 0, false, false, false, 0, 1);
+                // printText("--------------------------------", 0, 0, false, false, false, 0, 1);
 
                 if (_inch == 2) {
                     // 2inch sample
@@ -68,12 +68,12 @@ export const longReceipt = (payAfterData, orderNumber, cardInfo) => { //영수�
                     printText("            --------------------\n", 0, 0, false, false, false, 0, 0);
                     printText("               총 금액 : " + payAfterData.orderTotalPrice + "\n", 0, 0, true, false, false, 0, 0);
                     printText("--------------------------------\n", 0, 0, false, false, false, 0, 0);
-                    printText("        주문 번호 : " + payAfterData.orderTelegramNo + "\n\n", 0, 0, false, false, false, 0, 0);
+                    printText("        주문 번호 : " + payAfterData.orderTelegramNo + "\n", 0, 0, false, false, false, 0, 0);
 
                     if (payAfterData.orderPlace == "inner") {
-                        printText("                          매장\n\n", 0, 0, false, false, false, 0, 0);
+                        printText("                          매장\n", 0, 0, false, false, false, 0, 0);
                     } else if (payAfterData.orderPlace == "outer") {
-                        printText("                          포장\n\n", 0, 0, false, false, false, 0, 0);
+                        printText("                          포장\n", 0, 0, false, false, false, 0, 0);
                     }
 
 
@@ -85,13 +85,13 @@ export const longReceipt = (payAfterData, orderNumber, cardInfo) => { //영수�
 
                     printText("대 표 자  : " + leaderName + "\n", 0, 0, false, false, false, 0, 0);
                     printText("사업자 번호: " + businessNumber + "\n", 0, 0, false, false, false, 0, 0);
-                    printText("주문 시각 : " + payAfterData.orderDate + "\n\n\n", 0, 0, false, false, false, 0, 0);
+                    printText("주문 시각 : " + payAfterData.orderDate + "\n", 0, 0, false, false, false, 0, 0);
 
                     if (payAfterData.orderPayStatus === 'card') {
                         printText("--------------------------------\n", 0, 0, false, false, false, 0, 0);
-                        printText("신용 승인 정보\n\n", 0, 0, false, false, false, 0, 1);
+                        printText("신용 승인 정보\n", 0, 0, false, false, false, 0, 1);
                         printText("카 드 명 : " + cardInfo.CARDNAME + "\n", 0, 0, false, false, false, 0, 0);
-                        printText("승인번호 : " + cardInfo.APPROVALNO + "\n\n\n", 0, 0, false, false, false, 0, 0);
+                        printText("승인번호 : " + cardInfo.APPROVALNO + "\n\n", 0, 0, false, false, false, 0, 0);
                     }
 
                 } else {
@@ -100,11 +100,11 @@ export const longReceipt = (payAfterData, orderNumber, cardInfo) => { //영수�
                 }
 
                 printText("Tel : 070 - 8888 - 9956\n", 0, 0, true, false, false, 0, 0);
-                printText("Homepage : www.soso-kitchen.com\n\n\n\n", 0, 0, false, false, false, 0, 0);
+                printText("Homepage : www.soso-kitchen.com\n", 0, 0, false, false, false, 0, 0);
 
-                printQRCode("www.soso-kitchen.com", 0, 2, 7, 0);
+                // printQRCode("www.soso-kitchen.com", 0, 2, 7, 0);
                 // print1DBarcode("&pastel 인터넷으로 주문하기", 0, 4, 70, 2, 1);
-                printText("\n\n\n\n\n", 0, 0, false, false, false, 0, 0);
+                // printText("\n\n\n\n\n", 0, 0, false, false, false, 0, 0);
                 cutPaper(1);
 
                 let strSubmit = getPosData();
@@ -153,9 +153,9 @@ export const numberReceipt = (saveData, orderNumber) => { //번호표 출력
         payStatus = "C";
     }
     printText("주문 번호\n", 0, 0, true, false, false, 0, 1);
-    printText("\n\n" + payStatus + "-" + orderNumber + "\n\n\n", 0, 3, true, false, false, 0, 1);
+    printText("\n" + payStatus + "-" + orderNumber + "\n", 0, 3, true, false, false, 0, 1);
     // printText("주문을 진행중입니다.\n", 0, 0, true, false, false, 0, 0);
-    printText("\n\n\n\n\n", 0, 0, false, false, false, 0, 0);
+    // printText("\n\n\n\n\n", 0, 0, false, false, false, 0, 0);
     cutPaper(1);
     let strSubmit = getPosData();
     console.log(strSubmit);
