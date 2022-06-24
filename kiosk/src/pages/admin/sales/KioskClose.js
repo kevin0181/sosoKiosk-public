@@ -159,8 +159,8 @@ const KioskClose = ({modalContentChange, data, setDataFun, startDate}) => {
                 setPosId(issueID);
                 checkPrinterStatus();
 
-                printText("\n\n&pastel\n\n\n", 0, 1, false, false, false, 0, 1);
-                printText("\n\n경기도 안산시 \n단원구 예술대학로 171,\n15263, 한국\n\n\n", 0, 0, false, false, false, 0, 1);
+                printText("&pastel\n", 0, 1, false, false, false, 0, 1);
+                printText("\n경기도 안산시 \n단원구 예술대학로 171,\n15263, 한국\n\n", 0, 0, false, false, false, 0, 1);
 
                 if (_inch == 2) {
                     printText("개점 일시 : " + startDate + "\n", 0, 0, false, false, false, 0, 0);
@@ -179,7 +179,7 @@ const KioskClose = ({modalContentChange, data, setDataFun, startDate}) => {
                     printText("장소별 매출\n\n", 0, 0, false, false, false, 0, 1);
                     printText("포장 매출 :        " + outerNum + "      " + outerTotal + "\n", 0, 0, false, false, false, 0, 0);
                     printText("매장 매출 :        " + innerNum + "      " + innerTotal + "\n", 0, 0, false, false, false, 0, 0);
-                    printText("--------------------------------\n\n\n\n", 0, 0, false, false, false, 0, 0);
+                    printText("--------------------------------\n\n", 0, 0, false, false, false, 0, 0);
 
 
                 } else {
@@ -188,7 +188,7 @@ const KioskClose = ({modalContentChange, data, setDataFun, startDate}) => {
                 }
 
                 printText("Tel : 010 - 8650 - 9052\n", 0, 0, true, false, false, 0, 0);
-                printText("문의 주소 : https://kevin0181.github.io/\n\n\n\n\n\n\n\n", 0, 0, false, false, false, 0, 0);
+                printText("문의 주소 : https://kevin0181.github.io/\n\n", 0, 0, false, false, false, 0, 0);
 
                 cutPaper(1);
 
@@ -292,14 +292,14 @@ const KioskClose = ({modalContentChange, data, setDataFun, startDate}) => {
                         </div>
                         <div className="M-container M-font O-font-middle-size"
                              style={{height: '2admin-menu-all-list-div M-overlay0%'}}>
-                            <div style={{textAlign: 'right', padding: '10px 20px'}}>
+                            <div style={{textAlign: 'right', padding: '5px 20px'}}>
                                 <span style={{marginRight: '15%'}}>총 주문 수 : {data.sales.length}</span>
                                 <span style={{display: 'inline-block'}}>총 금액 : </span>
                                 <p style={{display: 'inline-block'}} id="totalPrice">{totalPrice}</p><span
                                 style={{display: 'inline-block'}}>원</span>
                             </div>
                             <div className="M-flex-row" style={{marginTop: '10px'}}>
-                                <div className="M-flex-column M-flex-center" style={{marginTop: '10px'}}>
+                                <div className="M-flex-column M-flex-center">
                                     <small className="M-font menu-detail-btn" onClick={() => {
                                         searchSalesReceipt();
                                     }}>마감하기
