@@ -127,6 +127,7 @@ const AddSide = ({modalContentChange}) => {
         setSideCategoryStatus(!sideStatus);
         if (addSideMenu.sideSelect.sideSq === '' || addSideMenu.sideSelect.sideSq === null || addSideMenu.sideSelect.sideSq === undefined) {
             setAddMenuSmallText('사이드를 선택해주세요.');
+            setSideCategoryStatus(false);
             setSpinner(false);
             return false;
         } else {
