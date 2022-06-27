@@ -35,11 +35,11 @@ const CancelPayModal = ({modalContentChange, modalStatus, setDataFun, data}) => 
                             cancelPay(modalStatus.data, modalContentChange, setDataFun, data);
                         }}
                              style={{width: '35%', backgroundColor: '#eb8282'}}>
-                            <p className="M-font O-font-middle-size">네</p>
+                            <p className="M-font M-font-30-size">네</p>
                         </div>
                         <div className="O-receipt-modal-btn M-flex-row M-flex-center" onClick={close}
                              style={{width: '35%', marginLeft: '30px', backgroundColor: ' #e9e9e9'}}>
-                            <p className="M-font O-font-middle-size">아니요</p>
+                            <p className="M-font M-font-30-size">아니요</p>
                         </div>
                     </div>
                 </div>
