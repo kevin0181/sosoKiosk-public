@@ -71,7 +71,7 @@ const AdminSideDetailModal = ({modalStatus, modalContentChange, changeSideData, 
     const getSideCategorySelectData = () => {
         setSpinner(true);
         setSideStatus(false);
-        setSideCategoryStatus(!sideStatus);
+        setSideCategoryStatus(!sideCategoryStatus);
         if (addSideMenu.sideSelect.sideSq === '' || addSideMenu.sideSelect.sideSq === null || addSideMenu.sideSelect.sideSq === undefined) {
             setAddMenuSmallText('사이드를 선택해주세요.');
             return false;
@@ -313,13 +313,13 @@ const AdminSideDetailModal = ({modalStatus, modalContentChange, changeSideData, 
                         </div>
                         <div className="O-modal-top">
                             <div className="O-modal-top-title M-font">
-                                <p>{changeSideData.menuSideName}</p>
+                                <p className="M-font-30-size">{changeSideData.menuSideName}</p>
                             </div>
                         </div>
                     </div>
                     <div className="O-modal-category-bar">
                         <div className="O-category-part">
-                            <div className="M-font O-font-mini-size O-category-box"
+                            <div className="M-font M-font-20-size O-category-box"
                                  style={{backgroundColor: '#838383'}}>
                                 <p>사이드 메뉴</p>
                             </div>
@@ -330,49 +330,49 @@ const AdminSideDetailModal = ({modalStatus, modalContentChange, changeSideData, 
                             <div className="M-flex-column admin-main-left-flex" style={{marginTop: '25px'}}>
                                 <form id="changeSideMenuForm" method="post" encType="multipart/form-data">
                                     <input type="hidden" name="menuSideSq" id="menuSideSq"/>
-                                    <div className="M-flex-row M-font admin-font-size" style={{marginBottom: '25px'}}>
+                                    <div className="M-flex-row M-font M-font-25-size" style={{marginBottom: '25px'}}>
                                         <div className="M-flex-1 M-flex-row M-flex-center">
                                             사이드 메뉴 이름
                                         </div>
                                         <div className="M-flex-1 M-flex-row M-flex-center sideMenuInputDiv">
-                                            <input type="text" className="M-input-text M-font M-mini-size"
+                                            <input type="text" className="M-input-text M-font M-font-15-size"
                                                    id="menu-side-name" value={addSideMenu.menuSideName}
                                                    onChange={changeAddSideMenu}
                                                    name="menuSideName"/>
                                         </div>
                                     </div>
-                                    <div className="M-flex-row M-font admin-font-size" style={{marginBottom: '25px'}}>
+                                    <div className="M-flex-row M-font M-font-25-size" style={{marginBottom: '25px'}}>
                                         <div className="M-flex-1 M-flex-row M-flex-center">
                                             사진 업로드
                                         </div>
                                         <div className="M-flex-1 M-flex-row M-flex-center sideMenuInputDiv">
-                                            <input type="file" className="M-none-design" id="side-file"
+                                            <input type="file" className="M-none-design M-font-15-size" id="side-file"
                                                    name="menuSideImg" onChange={changeAddSideMenu}
                                                    accept="image/*"/>
-                                            <label className="M-input-text" id="side-fileUrl"
+                                            <label className="M-input-text M-font-15-size" id="side-fileUrl"
                                                    htmlFor="side-file"
-                                                   style={{fontSize: '20px', overflow: 'hidden'}}>이미지 변경을 원하시면 선택하세요.
+                                                   style={{overflow: 'hidden'}}>이미지 변경을 원하시면 선택하세요.
                                             </label>
                                         </div>
                                     </div>
-                                    <div className="M-flex-row M-font admin-font-size" style={{marginBottom: '25px'}}>
+                                    <div className="M-flex-row M-font M-font-25-size" style={{marginBottom: '25px'}}>
                                         <div className="M-flex-1 M-flex-row M-flex-center">
                                             가격
                                         </div>
                                         <div className="M-flex-1 M-flex-row M-flex-center sideMenuInputDiv">
-                                            <input type="text" className="M-input-text M-font M-mini-size"
+                                            <input type="text" className="M-input-text M-font M-font-15-size"
                                                    id="menuSidePrice" value={addSideMenu.menuSidePrice}
                                                    onChange={changeAddSideMenu}
                                                    name="menuSidePrice"/>
                                         </div>
                                     </div>
-                                    <div className="M-flex-row M-font admin-font-size" style={{marginBottom: '25px'}}>
+                                    <div className="M-flex-row M-font M-font-25-size" style={{marginBottom: '25px'}}>
                                         <div className="M-flex-1 M-flex-row M-flex-center">
                                             사이드
                                         </div>
                                         <div className="M-flex-1 M-flex-column M-flex-center sideMenuInputDiv"
                                              style={{position: 'relative'}}>
-                                            <input type="text" className="M-input-text M-font M-mini-size"
+                                            <input type="text" className="M-input-text M-font M-font-15-size"
                                                    id="sideSelectByAddSide" value={addSideMenu.sideSelect.sideName}
                                                    onClick={function () {
                                                        setSideCategoryStatus(false);
@@ -386,13 +386,13 @@ const AdminSideDetailModal = ({modalStatus, modalContentChange, changeSideData, 
                                             }
                                         </div>
                                     </div>
-                                    <div className="M-flex-row M-font admin-font-size" style={{marginBottom: '25px'}}>
+                                    <div className="M-flex-row M-font M-font-25-size" style={{marginBottom: '25px'}}>
                                         <div className="M-flex-1 M-flex-row M-flex-center">
                                             사이드 카테고리
                                         </div>
                                         <div className="M-flex-1 M-flex-column M-flex-center sideMenuInputDiv"
                                              style={{position: 'relative'}}>
-                                            <input type="text" className="M-input-text M-font M-mini-size"
+                                            <input type="text" className="M-input-text M-font M-font-15-size"
                                                    id="sideCategorySelect" onClick={getSideCategorySelectData}
                                                    value={addSideMenu.sideCategorySelect.sideCategoryName}
                                                    readOnly/>
@@ -415,7 +415,7 @@ const AdminSideDetailModal = ({modalStatus, modalContentChange, changeSideData, 
                             <div className="M-flex-column admin-main-right-flex">
                                 <div className="admin-main-img">
                                     <div className="img-part M-flex-column M-flex-center">
-                                        <p className="M-font M-mini-size">미리보기</p>
+                                        <p className="M-font M-font-20-size">미리보기</p>
                                         {
                                             imgCheck(changeSideData.menuSideImgDTOList)
                                         }
@@ -434,7 +434,7 @@ const AdminSideDetailModal = ({modalStatus, modalContentChange, changeSideData, 
                         <div className="O-side-select-part">
                             <div className="M-container M-flex-row M-flex-center">
                                 <div className="M-container M-flex-row M-flex-center" style={{width: '50%'}}>
-                                    <p className="M-font O-font-middle-size">품절</p>
+                                    <p className="M-font M-font-25-size">품절</p>
                                     <input type="checkbox" className="M-input-checkBox"
                                            checked={addSideMenu.menuSideSoldOut}
                                            onChange={() => {
@@ -447,7 +447,7 @@ const AdminSideDetailModal = ({modalStatus, modalContentChange, changeSideData, 
                                     <label htmlFor="menuSideSoldOut-checkBox"></label>
                                 </div>
                                 <div className="M-container M-flex-row M-flex-center" style={{width: '50%'}}>
-                                    <p className="M-font O-font-middle-size">메뉴 숨기기</p>
+                                    <p className="M-font M-font-25-size">메뉴 숨기기</p>
                                     <input type="checkbox" className="M-input-checkBox"
                                            checked={addSideMenu.menuSideEnable}
                                            onChange={() => {
@@ -468,13 +468,13 @@ const AdminSideDetailModal = ({modalStatus, modalContentChange, changeSideData, 
                                 <div className="O-side-select-ok M-flex-row M-flex-center" id="menuChangeBtn"
                                      onClick={saveSideMenu}
                                      style={{margin: '0px 5px 0px 0px'}}>
-                                    <p className="M-font O-font-middle-size">수정 완료</p>
+                                    <p className="M-font M-font-25-size">수정 완료</p>
                                 </div>
                             </div>
                             <div className="O-side-select-close M-flex-row M-flex-center"
                                  onClick={closeBtn}
                                  style={{margin: '0px 0px 0px 5px'}}>
-                                <p className="M-font O-font-middle-size">닫기</p>
+                                <p className="M-font M-font-25-size">닫기</p>
                             </div>
                         </div>
                     </div>
