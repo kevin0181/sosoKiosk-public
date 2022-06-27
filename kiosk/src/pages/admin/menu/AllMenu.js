@@ -55,25 +55,25 @@ const AllMenu = ({modalContentChange, data, setDataFun}) => {
                     </div>
                     <div className="admin-menu-all-list M-font M-mini-size">
                         <div className="admin-menu-all-list-div M-overlay">
-                            <table className="admin-menu-all-table">
+                            <table className="admin-menu-all-table" style={{textAlign: 'center'}}>
                                 <thead>
-                                <tr className="admin-menu-all-table-tr">
-                                    <th style={{width: '15%'}}>
+                                <tr className="admin-menu-all-table-tr" style={{textAlign: 'center'}}>
+                                    <th style={{width: '15%', fontSize: '20px'}}>
                                         카테고리
                                     </th>
-                                    <th style={{width: '30%'}}>
+                                    <th style={{width: '30%', fontSize: '20px'}}>
                                         메뉴이름
                                     </th>
-                                    <th style={{width: '15%'}}>
+                                    <th style={{width: '15%', fontSize: '20px'}}>
                                         가격
                                     </th>
-                                    <th style={{width: '15%'}}>
+                                    <th style={{width: '15%', fontSize: '20px'}}>
                                         사이드
                                     </th>
-                                    <th style={{width: '15%'}}>
+                                    <th style={{width: '15%', fontSize: '20px'}}>
                                         상태
                                     </th>
-                                    <th style={{width: '10%'}}>
+                                    <th style={{width: '10%', fontSize: '20px'}}>
                                         삭제
                                     </th>
                                 </tr>

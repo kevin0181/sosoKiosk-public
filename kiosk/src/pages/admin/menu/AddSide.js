@@ -308,7 +308,7 @@ const AddSide = ({modalContentChange}) => {
                                 <div className="M-flex-1 M-flex-row M-flex-center">
                                     <div className="O-side-select-close" onClick={saveSideMenu}
                                          style={{marginTop: '0px', marginRight: '10px'}}>
-                                        <p className="M-font O-font-middle-size" style={{fontSize: '40px'}}>사이드 메뉴
+                                        <p className="M-font O-font-middle-size" style={{fontSize: '20px'}}>사이드 메뉴
                                             업로드</p>
                                     </div>
                                 </div>

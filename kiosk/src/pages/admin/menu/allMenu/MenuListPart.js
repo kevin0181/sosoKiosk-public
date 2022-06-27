@@ -28,7 +28,7 @@ const MenuListPart = ({data, modalContentChange}) => {
         <>
             {
                 data.all.map((it) => (
-                    <tr className="admin-tbody-tr" key={it.menuSq}>
+                    <tr className="admin-tbody-tr" style={{fontSize:'20px'}} key={it.menuSq}>
                         <td className="search">
                             {it.categoryDTO.categoryName}
                         </td>

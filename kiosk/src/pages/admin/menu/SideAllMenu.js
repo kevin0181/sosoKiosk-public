@@ -57,22 +57,22 @@ const SideAllMenu = ({modalContentChange, data, setDataFun}) => {
                             <table className="admin-menu-all-table M-text-center">
                                 <thead className="">
                                 <tr className="admin-menu-all-table-tr" style={{textAlign: "center"}}>
-                                    <th style={{width: '15%'}}>
+                                    <th style={{width: '15%', fontSize: '20px'}}>
                                         사이드
                                     </th>
-                                    <th style={{width: '15%'}}>
+                                    <th style={{width: '15%', fontSize: '20px'}}>
                                         사이드 카테고리
                                     </th>
-                                    <th style={{width: '25%'}}>
+                                    <th style={{width: '25%', fontSize: '20px'}}>
                                         사이드 메뉴
                                     </th>
-                                    <th style={{width: '15%'}}>
+                                    <th style={{width: '15%', fontSize: '20px'}}>
                                         가격
                                     </th>
-                                    <th style={{width: '15%'}}>
+                                    <th style={{width: '15%', fontSize: '20px'}}>
                                         상태
                                     </th>
-                                    <th style={{width: '7%'}}>
+                                    <th style={{width: '7%', fontSize: '20px'}}>
                                         삭제
                                     </th>
                                 </tr>

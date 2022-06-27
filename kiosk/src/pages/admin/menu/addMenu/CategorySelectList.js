@@ -9,7 +9,7 @@ const CategorySelectList = ({category, changeCategory}) => {
                         <input type="text" defaultValue={it.categoryName} key={it.categorySq} readOnly
                                data-id={it.categorySq}
                                name={'categorySelect'} onClick={changeCategory}
-                               className="M-input-select M-menu-input-select M-font M-mini-size M-input-select-middle"/>
+                               className="M-input-select M-menu-input-select M-font M-input-select-middle" style={{fontSize:'20px'}}/>
                     ))
                 }
             </div>

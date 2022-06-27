@@ -7,8 +7,8 @@ const SideCategorySelectList = ({sideCategory, changeSideCategory}) => {
                     sideCategory.map((it) => (
                         <input type="text" value={it.sideCategoryName} key={it.sideCategorySq}
                                data-id={it.sideCategorySq}
-                               name={'sideCategorySelect'} onClick={changeSideCategory}
-                               className="M-input-select M-font M-mini-size M-input-select-middle"
+                               name={'sideCategorySelect'} onClick={changeSideCategory} style={{fontSize: '20px'}}
+                               className="M-input-select M-font M-input-select-middle"
                                readOnly/>
                     ))
                 }

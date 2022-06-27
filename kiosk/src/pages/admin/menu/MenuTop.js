@@ -50,28 +50,28 @@ const MenuTop = ({status, resetData}) => {
                             navigate('/');
                         });
                     }}>
-                        <p className="" style={{fontSize: '40px'}}>홈으로</p>
+                        <p className="" style={{fontSize: '25px'}}>홈으로</p>
                     </div>
                 </div>
                 <div className="admin-top-part admin-top-part-nomal">
                     <div className="admin-top-p-part" id="allMenu" onClick={() => {
                         navigate('/admin/menu?status=all');
                     }}>
-                        <p className="" style={{fontSize: '40px'}}>메뉴</p>
+                        <p className="" style={{fontSize: '25px'}}>메뉴</p>
                     </div>
                 </div>
                 <div className="admin-top-part admin-top-part-nomal">
                     <div className="admin-top-p-part" id="addMenu" onClick={() => {
                         navigate('/admin/menu?status=addMenu');
                     }}>
-                        <p className="" style={{fontSize: '40px'}}>메뉴 추가</p>
+                        <p className="" style={{fontSize: '25px'}}>메뉴 추가</p>
                     </div>
                 </div>
                 <div className="admin-top-part admin-bottom-part-left">
                     <div className="admin-top-p-part" id="sideAllMenu" onClick={() => {
                         navigate('/admin/menu?status=sideAll');
                     }}>
-                        <p className="" style={{fontSize: '40px'}}>사이드 메뉴</p>
+                        <p className="" style={{fontSize: '25px'}}>사이드 메뉴</p>
                     </div>
                 </div>
 
@@ -81,26 +81,26 @@ const MenuTop = ({status, resetData}) => {
                     <div className="admin-top-p-part" id="addSide" onClick={() => {
                         navigate('/admin/menu?status=sideAdd');
                     }}>
-                        <p className="" style={{fontSize: '40px'}}>사이드 메뉴 추가</p>
+                        <p className="" style={{fontSize: '25px'}}>사이드 메뉴 추가</p>
                     </div>
                 </div>
                 <div className="admin-top-part admin-bottom-part-nomal">
                     <div className="admin-top-p-part" id="allCategory" onClick={() => {
                         navigate('/admin/menu?status=category');
                     }}>
-                        <p className="" style={{fontSize: '40px'}}>카테고리</p>
+                        <p className="" style={{fontSize: '25px'}}>카테고리</p>
                     </div>
                 </div>
                 <div className="admin-top-part admin-bottom-part-right">
                     <div className="admin-top-p-part" id="addCategory" onClick={() => {
                         navigate('/admin/menu?status=addCategory');
                     }}>
-                        <p className="" style={{fontSize: '40px'}}>카테고리 추가</p>
+                        <p className="" style={{fontSize: '25px'}}>카테고리 추가</p>
                     </div>
                 </div>
                 <div className="admin-top-part admin-top-part-right">
                     <div className="admin-top-p-part">
-                        <p className="" style={{fontSize: '40px'}}></p>
+                        <p className="" style={{fontSize: '25px'}}></p>
                     </div>
                 </div>
             </div>

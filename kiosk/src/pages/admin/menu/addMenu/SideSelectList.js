@@ -6,7 +6,8 @@ const SideSelectList = ({side, changeSide, changeSideData}) => {
                 {
                     changeSideData === undefined ? (<input type="text" data-id={0} defaultValue={'없음'}
                                                            name={'sideSelect'} onClick={changeSide}
-                                                           className="M-input-select M-side-input-select M-font M-mini-size M-input-select-middle"
+                                                           className="M-input-select M-side-input-select M-font M-input-select-middle"
+                                                           style={{fontSize: '20px'}}
                                                            readOnly/>) : (<></>)
                 }
                 {
@@ -14,7 +15,8 @@ const SideSelectList = ({side, changeSide, changeSideData}) => {
                         <input type="text" defaultValue={it.sideName} key={it.sideSq}
                                data-id={it.sideSq}
                                name={'sideSelect'} onClick={changeSide}
-                               className="M-input-select M-side-input-select M-font M-mini-size M-input-select-middle"
+                               className="M-input-select M-side-input-select M-font M-input-select-middle"
+                               style={{fontSize: '20px'}}
                                readOnly/>
                     ))
                 }

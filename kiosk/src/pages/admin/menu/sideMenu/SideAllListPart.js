@@ -2,7 +2,7 @@ const SideAllListPart = ({data, modalContentChange}) => {
 
     return (
         data.sideAll.map((it) => (
-            <tr className="M-text-center admin-tbody-tr" key={it.menuSideSq}>
+            <tr className="M-text-center admin-tbody-tr" style={{fontSize:'20px'}} key={it.menuSideSq}>
                 <td className="search" style={{width: '15%'}}>
                     {it.sideCategoryDTO.sideDTO.sideName}
                 </td>
