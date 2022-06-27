@@ -31,9 +31,9 @@ const QuestReceipt = ({menuModalContentChange, orderStatus, orderNumber, PlusOrd
                         <small style={{fontSize: '20px'}}>영수증을 출력하시겠습니까?</small>
                     </div>
                     <div className="O-modal-side-footer M-flex-j-center" id="">
-                        <div className="O-receipt-modal-btn"
+                        <div className="O-receipt-modal-btn M-flex-row M-flex-center"
                              style={{width: '35%', height: '55px', backgroundColor: '#e9e9e9'}}>
-                            <p className="M-font O-font-middle-size" onClick={() => {
+                            <p className="D-font" style={{fontSize: '25px'}} onClick={() => {
                                 PlusOrderNumber(); //주문 번호
                                 menuModalContentChange({
                                     status: true,
@@ -47,9 +47,9 @@ const QuestReceipt = ({menuModalContentChange, orderStatus, orderNumber, PlusOrd
                                 })
                             }}>네</p>
                         </div>
-                        <div className="O-receipt-modal-btn"
+                        <div className="O-receipt-modal-btn M-flex-row M-flex-center"
                              style={{width: '35%', height: '55px', marginLeft: '30px', backgroundColor: '#e9e9e9'}}>
-                            <p className="M-font O-font-middle-size" onClick={() => {
+                            <p className="D-font" style={{fontSize: '25px'}} onClick={() => {
                                 PlusOrderNumber(); //주문 번호
                                 menuModalContentChange({
                                     status: true,
