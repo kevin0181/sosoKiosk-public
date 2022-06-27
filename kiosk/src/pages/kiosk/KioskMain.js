@@ -51,7 +51,7 @@ const KioskMain = ({setOrderStatusFun, orderStatus}) => {
                                 <img src={innerImg} alt={'매장 이미지'} className="M-width-80 M-height-80"/>
                             </div>
                             <div>
-                                <p className="text-inner-outer M-font">매장에서 먹기</p>
+                                <p className="text-inner-outer D-font">매장에서 먹기</p>
                             </div>
                         </div>
                     </div>
@@ -63,7 +63,7 @@ const KioskMain = ({setOrderStatusFun, orderStatus}) => {
                                 <img src={outerImg} alt={'포장 이미지'} className="M-width-80 M-height-80"/>
                             </div>
                             <div>
-                                <p className="text-inner-outer M-font">포장하기</p>
+                                <p className="text-inner-outer D-font">포장하기</p>
                             </div>
                         </div>
                     </div>
