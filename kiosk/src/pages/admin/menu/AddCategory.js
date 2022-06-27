@@ -189,7 +189,7 @@ const AddCategory = ({modalContentChange, data, setDataFun}) => {
                                     })
                                 }}
 
-                                       className="M-input-text M-font M-font-20-size"/>
+                                       className="M-input-text M-font M-font-15-size"/>
                             </div>
                             <div className="M-flex-row M-flex-center" style={{width: '30%', padding: '0px 10px'}}>
                                 <div className="O-side-select-close" onClick={categoryFun}
@@ -204,7 +204,7 @@ const AddCategory = ({modalContentChange, data, setDataFun}) => {
                             </div>
                             <div className="M-flex-row M-flex-center M-input" style={{width: '50%'}}>
                                 <input type="text" value={addDataForm.side}
-                                       className="M-input-text M-font M-font-20-size"
+                                       className="M-input-text M-font M-font-15-size"
                                        onChange={(e) => {
                                            setAddDataForm({
                                                ...addDataForm,
@@ -232,7 +232,7 @@ const AddCategory = ({modalContentChange, data, setDataFun}) => {
                             <div className="M-flex-row M-flex-center" style={{width: '50%'}}>
                                 <div className="M-flex-1 M-flex-column M-flex-center"
                                      style={{position: 'relative'}}>
-                                    <input type="text" className="M-input-text M-font M-font-20-size"
+                                    <input type="text" className="M-input-text M-font M-font-15-size" style={{width:"auto"}}
                                            value={addDataForm.sideSelect.sideName}
                                            id="sideSelectByCategory" onClick={() => {
                                         setSideStatus(!sideStatus);
@@ -252,7 +252,7 @@ const AddCategory = ({modalContentChange, data, setDataFun}) => {
                                 사이드<br/> 카테고리
                             </div>
                             <div className="M-flex-row M-flex-center M-input" style={{width: '50%'}}>
-                                <input type="text" className="M-input-text M-font M-font-20-size"
+                                <input type="text" className="M-input-text M-font M-font-15-size"
                                        value={addDataForm.sideCategory}
                                        onChange={(e) => {
                                            setAddDataForm({

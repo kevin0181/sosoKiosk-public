@@ -2,8 +2,8 @@ const AddCategorySideSelectList = ({side, addDataFormFun}) => {
 
     return (
         <>
-            <div className="M-input-select-div" id="sideSelectByCategoryOption"
-                 style={{width: '250px'}}>
+            <div className="M-input-select-div M-overlay" id="sideSelectByCategoryOption"
+                 style={{width: '239px'}}>
                 {
                     side.category.side.map((it) => (
                         <input type="text" value={it.sideName} key={it.sideSq}

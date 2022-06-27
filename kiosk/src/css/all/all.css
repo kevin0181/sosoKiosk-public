@@ -173,8 +173,8 @@ input:focus {
 .M-input-select-div {
     position: absolute;
     top: 60px;
-    height: auto !important;
-    /*height: 150px;*/
+    /*height: auto !important;*/
+    height: 105px;
     overflow: overlay;
     padding: 0px;
     display: flex;
