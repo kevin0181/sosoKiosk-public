@@ -94,44 +94,45 @@ const Setting = () => {
                 <div className="admin-main-backCard M-flex-row">
                     <div className="M-flex-column admin-main-left-flex" style={{padding: '20px 0px'}}>
                         <div className="M-flex-row M-font admin-font-size" style={{marginBottom: '25px'}}>
-                            <div className="M-flex-row M-flex-center" style={{fontSize: '25px', width: '20%'}}>
+                            <div className="M-flex-row M-flex-center M-font-20-size" style={{width: '20%'}}>
                                 세금
                             </div>
                             <div className="M-flex-row M-flex-center M-input" style={{width: '50%'}}>
                                 <input type="text" id="taxInput" value={settingContent.tax}
-                                       className="M-input-text M-font M-mini-size"
+                                       className="M-input-text M-font M-mini-size M-font-20-size"
                                        name={'tax'} onChange={changeSettingContent}
                                        style={{width: '100px'}}/><span style={{marginLeft: '3px'}}>%</span>
                             </div>
                             <div className="M-flex-row M-flex-center" style={{width: '30%', padding: '0px 10px'}}>
                                 <div className="O-side-select-close" style={{marginTop: '0px', marginRight: '10px'}}>
-                                    <p className="M-font O-font-middle-size" onClick={() => {
+                                    <p className="M-font M-font-20-size" onClick={() => {
                                         saveSetting('tax');
-                                    }} style={{fontSize: '25px'}}>세금 변경</p>
+                                    }}>세금 변경</p>
                                 </div>
                             </div>
                         </div>
                         <div className="M-flex-row M-font admin-font-size" style={{marginBottom: '25px'}}>
-                            <div className="M-flex-row M-flex-center" style={{fontSize: '25px', width: '20%'}}>
-                                카드 리더기 모델 번호
+                            <div className="M-flex-row M-flex-center M-font-20-size"
+                                 style={{width: '20%', textAlign: 'center'}}>
+                                카드<br/> 리더기 <br/>모델 번호
                             </div>
                             <div className="M-flex-row M-flex-center M-input" style={{width: '50%'}}>
                                 <input type="text" id="readerNoInput" style={{width: '200px'}}
                                        value={settingContent.readerNo}
                                        name={'readerNo'}
                                        onChange={changeSettingContent}
-                                       className="M-input-text M-font M-mini-size"/>
+                                       className="M-input-text M-font M-font-20-size"/>
                             </div>
                             <div className="M-flex-row M-flex-center" style={{width: '30%', padding: '0px 10px'}}>
                                 <div className="O-side-select-close" style={{marginTop: '0px', marginRight: '10px'}}>
-                                    <p className="M-font O-font-middle-size" onClick={() => {
+                                    <p className="M-font M-font-20-size" onClick={() => {
                                         saveSetting('readerNo');
-                                    }} style={{fontSize: '25px'}}>변경</p>
+                                    }}>변경</p>
                                 </div>
                             </div>
                         </div>
                         <div className="M-flex-row M-font admin-font-size" style={{marginBottom: '25px'}}>
-                            <div className="M-flex-row M-flex-center" style={{fontSize: '25px', width: '20%'}}>
+                            <div className="M-flex-row M-flex-center M-font-20-size" style={{width: '20%'}}>
                                 대표자
                             </div>
                             <div className="M-flex-row M-flex-center M-input" style={{width: '50%'}}>
@@ -139,54 +140,55 @@ const Setting = () => {
                                        value={settingContent.leaderName}
                                        name={'leaderName'}
                                        onChange={changeSettingContent}
-                                       className="M-input-text M-font M-mini-size"
+                                       className="M-input-text M-font M-font-20-size"
                                        style={{width: '200px'}}/>
                             </div>
                             <div className="M-flex-row M-flex-center" style={{width: '30%', padding: '0px 10px'}}>
                                 <div className="O-side-select-close" style={{marginTop: '0px', marginRight: '10px'}}>
-                                    <p className="M-font O-font-middle-size" onClick={() => {
+                                    <p className="M-font M-font-20-size" onClick={() => {
                                         saveSetting('leaderName');
-                                    }} style={{fontSize: '25px'}}>이름 변경</p>
+                                    }}>이름 변경</p>
                                 </div>
                             </div>
                         </div>
                         <div className="M-flex-row M-font admin-font-size" style={{marginBottom: '25px'}}>
-                            <div className="M-flex-row M-flex-center" style={{fontSize: '25px', width: '20%'}}>
-                                사업자 번호
+                            <div className="M-flex-row M-flex-center M-font-20-size" style={{textAlign: 'center'}}>
+                                사업자<br/> 번호
                             </div>
                             <div className="M-flex-row M-flex-center M-input" style={{width: '50%'}}>
                                 <input type="text" id="businessNumber"
                                        value={settingContent.businessNumber}
                                        name={'businessNumber'}
-                                       className="M-input-text M-font M-mini-size"
+                                       className="M-input-text M-font M-font-20-size"
                                        onChange={changeSettingContent}
                                        style={{width: '200px'}}/>
                             </div>
                             <div className="M-flex-row M-flex-center" style={{width: '30%', padding: '0px 10px'}}>
                                 <div className="O-side-select-close" style={{marginTop: '0px', marginRight: '10px'}}>
-                                    <p className="M-font O-font-middle-size" onClick={() => {
+                                    <p className="M-font M-font-20-size" onClick={() => {
                                         saveSetting('businessNumber');
-                                    }} style={{fontSize: '25px'}}>이름 변경</p>
+                                    }}>이름 변경</p>
                                 </div>
                             </div>
                         </div>
                         <div className="M-flex-row M-font admin-font-size" style={{marginBottom: '25px'}}>
-                            <div className="M-flex-row M-flex-center" style={{fontSize: '25px', width: '20%'}}>
-                                프린터 이름
+                            <div className="M-flex-row M-flex-center M-font-20-size"
+                                 style={{width: '20%', textAlign: 'center'}}>
+                                프린터<br/> 이름
                             </div>
                             <div className="M-flex-row M-flex-center M-input" style={{width: '50%'}}>
                                 <input type="text" id="printerName"
                                        value={settingContent.printerName}
                                        onChange={changeSettingContent}
                                        name={'printerName'}
-                                       className="M-input-text M-font M-mini-size"
+                                       className="M-input-text M-font M-font-20-size"
                                        style={{width: '200px'}}/>
                             </div>
                             <div className="M-flex-row M-flex-center" style={{width: '30%', padding: '0px 10px'}}>
                                 <div className="O-side-select-close" style={{marginTop: '0px', marginRight: '10px'}}>
-                                    <p className="M-font O-font-middle-size" onClick={() => {
+                                    <p className="M-font M-font-20-size" onClick={() => {
                                         saveSetting('printerName');
-                                    }} style={{fontSize: '25px'}}>프린터 변경</p>
+                                    }}>프린터 변경</p>
                                 </div>
                             </div>
                         </div>
