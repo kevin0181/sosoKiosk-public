@@ -117,8 +117,8 @@ const OrderMenu = ({
                     <div className="O-order-Side">
                         <div className="side-up-container">
                             <div className="storeName">
-                                <p className="M-font"
-                                   style={{fontSize: '70px'}}>
+                                <p className="D-font"
+                                   style={{fontSize: '50px'}}>
                                     category</p>
                             </div>
                         </div>
@@ -129,7 +129,7 @@ const OrderMenu = ({
                                     className="M-overlay">
                                     <div id="categoryPart"
                                          className="O-category-list2"
-                                         style={{height: '100%', display: 'block'}}>
+                                         style={{height: '100%', display: 'block', fontSize: '20px'}}>
                                         <CategoryList categoryList={categoryList}/>
                                     </div>
                                 </div>
@@ -154,7 +154,7 @@ const OrderMenu = ({
                             </div>
                             <div className="O-top-center">
                                 <div>
-                                    <p className="O-font-menu-size M-font">
+                                    <p className="D-font" style={{fontSize: '50px'}}>
                                         menu</p>
                                 </div>
                             </div>
@@ -210,9 +210,10 @@ const OrderMenu = ({
                                     </div>
                                 </div>
                             </div>
-                            <div className="O-footer-buy-Btn M-font O-select-font">
+                            <div className="O-footer-buy-Btn D-font O-select-font">
                                 <div className="O-footer-buy-Btn-all">
                                     <div className="O-card-Btn M-width-80 M-flex-row M-flex-center"
+                                         style={{fontSize: '35px'}}
                                          onClick={() => {
                                              if (allOrderData.length === 0) {
                                                  //메뉴 선택을 안함
@@ -236,27 +237,29 @@ const OrderMenu = ({
                                          }}>
                                         <p>카드결제</p>
                                     </div>
-                                    <div className="O-money-Btn M-width-80 M-flex-row M-flex-center" onClick={() => {
-                                        if (allOrderData.length === 0) {
-                                            //메뉴 선택을 안함
-                                            return false;
-                                        }
-                                        orderStatus.payStatus = 'money'
-                                        orderStatus.totalPrice = totalPrice
-                                        orderStatus.orderMenu = allOrderData
-                                        setOrderStatusFun({
-                                            ...orderStatus
-                                        }).then(function () {
-                                            menuModalContentChange({
-                                                status: true,
-                                                param: '',
-                                                modalType: 'orderReceipt',
-                                                modalTitle: '',
-                                                modalContent: '',
-                                                menu: '',
-                                            });
-                                        })
-                                    }}>
+                                    <div className="O-money-Btn M-width-80 M-flex-row M-flex-center"
+                                         style={{fontSize: '35px'}}
+                                         onClick={() => {
+                                             if (allOrderData.length === 0) {
+                                                 //메뉴 선택을 안함
+                                                 return false;
+                                             }
+                                             orderStatus.payStatus = 'money'
+                                             orderStatus.totalPrice = totalPrice
+                                             orderStatus.orderMenu = allOrderData
+                                             setOrderStatusFun({
+                                                 ...orderStatus
+                                             }).then(function () {
+                                                 menuModalContentChange({
+                                                     status: true,
+                                                     param: '',
+                                                     modalType: 'orderReceipt',
+                                                     modalTitle: '',
+                                                     modalContent: '',
+                                                     menu: '',
+                                                 });
+                                             })
+                                         }}>
                                         <p>현금결제</p>
                                     </div>
                                 </div>

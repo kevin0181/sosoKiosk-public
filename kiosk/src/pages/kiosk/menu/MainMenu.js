@@ -73,7 +73,7 @@ const MainMenu = ({menu, menuModalContentChange}) => {
                                     });
                                 }
                             }}>
-                                <div className="O-card-header">
+                                <div className="O-card-header D-font">
                                     <div className="O-card-header-img">
                                         {
                                             imgCheck(it.imgDTOList)
@@ -82,18 +82,20 @@ const MainMenu = ({menu, menuModalContentChange}) => {
                                 </div>
                                 <div className="O-card-body">
                                     <div className="O-card-body-top">
-                                        <p className="O-menu-name">{it.menuName}</p>
+                                        <p className="O-menu-name D-font" style={{fontSize: '27px'}}>{it.menuName}</p>
                                     </div>
                                     <div className="O-card-body-body">
                                         <div style={{textAlign: 'center'}}>
-                                            <p className="O-menu-name" style={{display: 'inline-block'}}>가격 : </p>
-                                            <p className="O-menu-name"
-                                               style={{display: 'inline-block'}}>{it.menuPrice}</p><br/>
+                                            <p className="O-menu-name D-font"
+                                               style={{display: 'inline-block', fontSize: '27px'}}>가격 :&nbsp;</p>
+                                            <p className="O-menu-name D-font"
+                                               style={{display: 'inline-block', fontSize: '27px'}}>{it.menuPrice}</p>
+                                            <br/>
                                             {
-                                                it.menuSoldOut ? (<small className="O-menu-name"
+                                                it.menuSoldOut ? (<small className="O-menu-name D-font"
                                                                          style={{
                                                                              display: 'inline-block',
-                                                                             fontSize: '30px',
+                                                                             fontSize: '15px',
                                                                              color: 'red'
                                                                          }}>(품절)</small>) : (<></>)
                                             }
