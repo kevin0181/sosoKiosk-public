@@ -120,7 +120,8 @@ const ReceiptModal = ({
                             }
                         </div>
                         <div style={{width: '100%', height: '35%'}}
-                             className="O-pay-totalPrice M-flex-center M-flex-row D-font" style={{fontSize: '35px'}}>
+                             className="O-pay-totalPrice M-flex-center M-flex-row D-font"
+                             style={{fontSize: '35px', marginTop: '20px'}}>
                             <p>총 금액 : {totalPrice}원</p>
                         </div>
                     </div>

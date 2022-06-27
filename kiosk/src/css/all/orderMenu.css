@@ -183,7 +183,7 @@
     flex-direction: row;
     justify-content: space-between;
     padding: 0px 10px;
-    height: 65%;
+    height: 62%;
 }
 
 .O-font-center {
@@ -267,7 +267,7 @@
 }
 
 .O-footer {
-    height: 25%;
+    height: 28%;
     /*position: fixed;*/
     /*width: 77%;*/
     /*top: 75%;*/
@@ -335,7 +335,7 @@
 
 .O-select-mini-card {
     width: 25%;
-    top: -3px;
+    top: 10px;
     position: relative;
     display: inline-block;
     text-align: center;
