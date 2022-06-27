@@ -32,36 +32,38 @@ const QuestReceipt = ({menuModalContentChange, orderStatus, orderNumber, PlusOrd
                     </div>
                     <div className="O-modal-side-footer M-flex-j-center" id="">
                         <div className="O-receipt-modal-btn M-flex-row M-flex-center"
+                             onClick={() => {
+                                 PlusOrderNumber(); //주문 번호
+                                 menuModalContentChange({
+                                     status: true,
+                                     param: '',
+                                     modalType: 'viewLoading',
+                                     modalTitle: '',
+                                     modalContent: '',
+                                     menu: '',
+                                 }).then(function () {
+                                     YesReceiptMoneyPayStart(orderStatus, orderNumber, menuModalStatus);
+                                 })
+                             }}
                              style={{width: '35%', height: '55px', backgroundColor: '#e9e9e9'}}>
-                            <p className="D-font" style={{fontSize: '25px'}} onClick={() => {
-                                PlusOrderNumber(); //주문 번호
-                                menuModalContentChange({
-                                    status: true,
-                                    param: '',
-                                    modalType: 'viewLoading',
-                                    modalTitle: '',
-                                    modalContent: '',
-                                    menu: '',
-                                }).then(function () {
-                                    YesReceiptMoneyPayStart(orderStatus, orderNumber, menuModalStatus);
-                                })
-                            }}>네</p>
+                            <p className="D-font" style={{fontSize: '25px'}} >네</p>
                         </div>
                         <div className="O-receipt-modal-btn M-flex-row M-flex-center"
+                             onClick={() => {
+                                 PlusOrderNumber(); //주문 번호
+                                 menuModalContentChange({
+                                     status: true,
+                                     param: '',
+                                     modalType: 'viewLoading',
+                                     modalTitle: '',
+                                     modalContent: '',
+                                     menu: '',
+                                 }).then(function () {
+                                     NoReceiptMoneyPayStart(orderStatus, orderNumber, menuModalStatus);
+                                 })
+                             }}
                              style={{width: '35%', height: '55px', marginLeft: '30px', backgroundColor: '#e9e9e9'}}>
-                            <p className="D-font" style={{fontSize: '25px'}} onClick={() => {
-                                PlusOrderNumber(); //주문 번호
-                                menuModalContentChange({
-                                    status: true,
-                                    param: '',
-                                    modalType: 'viewLoading',
-                                    modalTitle: '',
-                                    modalContent: '',
-                                    menu: '',
-                                }).then(function () {
-                                    NoReceiptMoneyPayStart(orderStatus, orderNumber, menuModalStatus);
-                                })
-                            }}>아니요</p>
+                            <p className="D-font" style={{fontSize: '25px'}} >아니요</p>
                         </div>
                     </div>
                 </div>
