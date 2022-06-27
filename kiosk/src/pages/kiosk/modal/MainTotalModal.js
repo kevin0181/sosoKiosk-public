@@ -46,10 +46,10 @@ const MainTotalModal = ({menuModalStatus, setAllOrderData, menuModalContentChang
                     </div>
                     <div className="O-modal-side-footer M-flex-j-center"
                          style={{marginTop: '30px', height: '15%'}}>
-                        <div className="O-receipt-modal-btn"
+                        <div className="O-receipt-modal-btn M-flex-row M-flex-center"
                              onClick={goStart}
                              style={{width: '35%', backgroundColor: '#d56161'}}>
-                            <p className="M-font O-font-middle-size">
+                            <p className="M-font M-font-25-size">
                                 닫기</p>
                         </div>
                     </div>
