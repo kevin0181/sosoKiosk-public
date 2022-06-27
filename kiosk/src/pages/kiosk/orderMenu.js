@@ -135,7 +135,7 @@ const OrderMenu = ({
                                 </div>
                                 <div className="totalPrice-div M-flex-column M-flex-center"
                                      style={{width: '100%'}}>
-                                    <p className={'M-font O-font-middle-size'}>총 금액 : {totalPrice}원</p>
+                                    <p className={'D-font O-font-30-size'}>총 금액 : {totalPrice}원</p>
                                 </div>
                             </div>
                         </div>

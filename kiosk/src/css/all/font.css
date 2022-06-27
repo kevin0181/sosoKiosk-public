@@ -2,3 +2,8 @@
     src: url("../font/Nanum_Pen_Script/NanumPenScript-Regular.ttf");
     font-family: 'Nanum Pen Script';
 }
+
+@font-face {
+    src: url("../font/Noto_Sans_KR/NotoSansKR-Medium.otf");
+    font-family: 'Noto Sans KR';
+}
