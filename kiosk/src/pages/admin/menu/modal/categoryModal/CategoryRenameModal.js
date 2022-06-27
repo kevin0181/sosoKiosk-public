@@ -16,12 +16,16 @@ const CategoryRenameModal = ({modalStatus, modalContentChange, data, setDataFun}
         });
     }
 
+    //스피너
+    const [spinner, setSpinner] = useState(false);
+
     const [renameCategoryState, setRenameCategoryState] = useState({
         categorySq: parseFloat(modalStatus.sendId),
         categoryName: modalStatus.sendName,
     });
 
     const changeCategoryName = () => {
+        setSpinner(true);
         renameCategory(renameCategoryState.categorySq, renameCategoryState.categoryName).then(function (res) {
             closeBtn();
             getCategoryList().then(function (category) {
@@ -32,12 +36,31 @@ const CategoryRenameModal = ({modalStatus, modalContentChange, data, setDataFun}
                         category
                     }
                 });
+                setSpinner(true);
             });
         });
     }
 
     return (
         <div className="O-modal-back" id="category-change-modal">
+            {
+                spinner ? (
+                    <div className='spinner' style={{zIndex: '21', top: '50%'}}>
+                        <div className='block'>
+                            <div className='item'></div>
+                            <div className='item'></div>
+                            <div className='item'></div>
+                            <div className='item'></div>
+                            <div className='item'></div>
+                            <div className='item'></div>
+                            <div className='item'></div>
+                            <div className='item'></div>
+                        </div>
+                    </div>
+                ) : (
+                    <></>
+                )
+            }
             <div className="O-modal" style={{width: '40%', height: '35%'}}>
                 <div className="O-modal-content">
                     <div className="O-modal-header">

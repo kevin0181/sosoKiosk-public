@@ -1,6 +1,6 @@
 import {renameSide} from "../../../../../js/admin/menu/category";
 import {useState} from "react";
-import {getCategoryList, getSideList} from "../../../../../js/admin/menu/addMenu";
+import {getSideList} from "../../../../../js/admin/menu/addMenu";
 
 const SideRenameModal = ({modalStatus, modalContentChange, data, setDataFun}) => {
 
@@ -16,12 +16,16 @@ const SideRenameModal = ({modalStatus, modalContentChange, data, setDataFun}) =>
         });
     }
 
+    //스피너
+    const [spinner, setSpinner] = useState(false);
+
     const [renameSideState, setRenameSideState] = useState({
         sideSq: parseFloat(modalStatus.sendId),
         sideName: modalStatus.sendName,
     });
 
     const changeSideName = () => {
+        setSpinner(true);
         renameSide(renameSideState.sideSq, renameSideState.sideName).then(function (res) {
             closeBtn();
             getSideList().then(function (side) {
@@ -32,12 +36,31 @@ const SideRenameModal = ({modalStatus, modalContentChange, data, setDataFun}) =>
                         category: data.category.category
                     }
                 });
+                setSpinner(false);
             });
         });
     }
 
     return (
         <div className="O-modal-back" id="category-change-modal">
+            {
+                spinner ? (
+                    <div className='spinner' style={{zIndex: '21', top: '50%'}}>
+                        <div className='block'>
+                            <div className='item'></div>
+                            <div className='item'></div>
+                            <div className='item'></div>
+                            <div className='item'></div>
+                            <div className='item'></div>
+                            <div className='item'></div>
+                            <div className='item'></div>
+                            <div className='item'></div>
+                        </div>
+                    </div>
+                ) : (
+                    <></>
+                )
+            }
             <div className="O-modal" style={{width: '40%', height: '35%'}}>
                 <div className="O-modal-content">
                     <div className="O-modal-header">
