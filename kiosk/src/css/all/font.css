@@ -7,3 +7,8 @@
     src: url("../font/Noto_Sans_KR/NotoSansKR-Medium.otf");
     font-family: 'Noto Sans KR';
 }
+
+@font-face {
+    src: url("../font/nanum-square-round/NanumSquareRoundB.ttf");
+    font-family: 'NanumSquareRoundB';
+}

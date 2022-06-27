@@ -46,7 +46,8 @@ input:focus {
 }
 
 .D-font {
-    font-family: 'Noto Sans KR', cursive;
+    /*font-family: 'Noto Sans KR', cursive;*/
+    font-family: 'NanumSquareRoundB', cursive;
 }
 
 .M-container {
