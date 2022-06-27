@@ -46,7 +46,7 @@ const CategoryRenameModal = ({modalStatus, modalContentChange, data, setDataFun}
                         </div>
                         <div className="O-modal-top">
                             <div className="O-modal-top-title M-font" id="changeTop">
-                                <p>{modalStatus.modalTitle}</p>
+                                <p className="M-font-30-size">{modalStatus.modalTitle}</p>
                             </div>
                         </div>
                     </div>
@@ -55,10 +55,10 @@ const CategoryRenameModal = ({modalStatus, modalContentChange, data, setDataFun}
                     <div className="O-modal-side-order" style={{height: '40%', marginTop: '15px', textAlign: 'center'}}
                          id="change-modal-Body">
                         <div className="M-flex-row M-flex-center M-font admin-font-size" style={{marginBottom: '25px'}}>
-                            <div className="M-flex-row M-flex-center" style={{fontSize: '25px', width: '20%'}}>
+                            <div className="M-flex-row M-flex-center M-font-20-size" style={{width: '20%'}}>
                                 카테고리
                             </div>
-                            <div className="M-flex-row M-flex-center M-input" style={{width: '50%'}}>
+                            <div className="M-flex-row M-flex-center M-input">
                                 <input type="text" value={renameCategoryState.categoryName} id="categoryName"
                                        onChange={(e) => {
                                            setRenameCategoryState({
@@ -66,14 +66,14 @@ const CategoryRenameModal = ({modalStatus, modalContentChange, data, setDataFun}
                                                ['categoryName']: e.target.value
                                            })
                                        }}
-                                       className="M-input-text M-font M-mini-size"/>
+                                       className="M-input-text M-font M-font-20-size"/>
                             </div>
                         </div>
                     </div>
                     <div className="O-modal-side-footer M-flex-j-center" id="change-modal-footer">
-                        <div className="O-side-select-close" onClick={changeCategoryName}
+                        <div className="O-side-select-close M-flex-row M-flex-center" onClick={changeCategoryName}
                              style={{width: '50%', backgroundColor: '#eb8282'}}>
-                            <p className="M-font O-font-middle-size">변경</p>
+                            <p className="M-font M-font-25-size">변경</p>
                         </div>
                     </div>
                 </div>
