@@ -83,7 +83,7 @@ const AdminSide = ({resetData, startDate}) => {
                     <div className="O-order-Side">
                         <div className="side-up-container">
                             <div className="storeName">
-                                <p className="M-font" style={{fontSize: '80px'}}>&pastel</p>
+                                <p className="s-font" style={{fontSize: '80px'}}>&pastel</p>
                             </div>
                         </div>
                         <div className="O-category">
