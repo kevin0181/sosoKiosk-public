@@ -123,34 +123,34 @@ const CardOrder = ({modalContentChange, data, setDataFun}) => {
                         <div className="admin-menu-all-list-div M-overlay">
                             <table className="admin-menu-all-table">
                                 <thead>
-                                <tr className="admin-menu-all-table-tr">
-                                    <th style={{width: '15%'}}>
+                                <tr className="admin-menu-all-table-tr" style={{textAlign: 'center'}}>
+                                    <th style={{width: '15%', fontSize: '20px'}}>
                                         주문 날짜
                                     </th>
-                                    <th style={{width: '30%', textAlign: "center"}}>
+                                    <th style={{width: '30%', textAlign: "center", fontSize: '20px'}}>
                                         주문 번호
                                     </th>
-                                    <th style={{width: '15%'}}>
+                                    <th style={{width: '15%', fontSize: '20px'}}>
                                         총 금액
                                     </th>
-                                    <th style={{width: '15%'}}>
+                                    <th style={{width: '15%', fontSize: '20px'}}>
                                         주문 상태
                                     </th>
-                                    <th style={{width: '15%'}}>
+                                    <th style={{width: '15%', fontSize: '20px'}}>
                                         결제 방식
                                     </th>
-                                    <th style={{width: '15%'}}>
+                                    <th style={{width: '15%', fontSize: '20px'}}>
                                     </th>
                                 </tr>
                                 </thead>
                                 <tbody className="admin-tbody M-overlay">
                                 {
                                     data.order.map((it, index) => (
-                                        <tr className="admin-tbody-tr" key={index}>
-                                            <td className="search dateSearch" style={{fontSize: '21px'}}>
+                                        <tr className="admin-tbody-tr" key={index} style={{textAlign: 'center'}}>
+                                            <td className="search dateSearch M-font-15-size">
                                                 {it.orderDate + ' ' + it.orderDateTime}
                                             </td>
-                                            <td className="search" style={{textAlign: "center"}}>
+                                            <td className="search M-font-15-size" style={{textAlign: "center"}}>
                                                 <p style={{
                                                     display: 'inline-block',
                                                     marginRight: '5px'
@@ -158,10 +158,10 @@ const CardOrder = ({modalContentChange, data, setDataFun}) => {
                                                 <small className="M-font menu-detail-btn">상세보기
                                                 </small>
                                             </td>
-                                            <td className="search">
+                                            <td className="search M-font-15-size">
                                                 {it.orderTotalPrice + '원'}
                                             </td>
-                                            <td className="search paySearch">
+                                            <td className="search paySearch M-font-15-size">
                                                 {
                                                     it.orderStatus ? (
                                                         <p>성공</p>
@@ -170,14 +170,14 @@ const CardOrder = ({modalContentChange, data, setDataFun}) => {
                                                     )
                                                 }
                                             </td>
-                                            <td className="search">
+                                            <td className="search M-font-15-size">
                                                 <p>
                                                     {
                                                         it.orderPayStatus
                                                     }
                                                 </p>
                                             </td>
-                                            <td className="search">
+                                            <td className="search M-font-15-size">
                                                 <small className="menu-delete-btn" onClick={() => {
                                                     modalContentChange({
                                                         status: true,
