@@ -300,10 +300,11 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
                                                 <div
                                                     className="O-menu-side-name D-font M-flex-column M-flex-center">
                                                     <p style={{
-                                                        fontSize: '25px',
+                                                        fontSize: '23px',
                                                         textAlign: 'center'
                                                     }}>{it.menuSideName}</p>
-                                                    <small style={{fontSize: '20px'}}>{'가격 : ' + it.menuSidePrice}</small>
+                                                    <small
+                                                        style={{fontSize: '18px'}}>{'가격 : ' + it.menuSidePrice}</small>
                                                     {
                                                         it.menuSideSoldOut ? (<p className="D-font"
                                                                                  style={{
@@ -403,12 +404,14 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
                             </div>
                         </div>
                         <div className="O-side-select-ok-part">
-                            <div className="O-side-select-ok">
-                                <p className="D-font " style={{fontSize: '35px'}} onClick={saveDetailMenuOrder}>선택
+                            <div className="O-side-select-ok M-flex-center M-flex-row" style={{height: '40%'}}
+                                 onClick={saveDetailMenuOrder}>
+                                <p className="D-font " style={{fontSize: '30px'}}>선택
                                     완료</p>
                             </div>
-                            <div className="O-side-select-close">
-                                <p className="D-font " style={{fontSize: '35px'}} onClick={close}>닫기</p>
+                            <div className="O-side-select-close M-flex-center M-flex-row" style={{height: '40%'}}
+                                 onClick={close}>
+                                <p className="D-font " style={{fontSize: '30px'}} onClick={close}>닫기</p>
                             </div>
                         </div>
                     </div>

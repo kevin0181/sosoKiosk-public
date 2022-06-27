@@ -546,6 +546,7 @@
     padding: 10px;
     display: flex;
     justify-content: space-between;
+    margin-bottom: 15px;
 }
 
 .a-side-order-card {
