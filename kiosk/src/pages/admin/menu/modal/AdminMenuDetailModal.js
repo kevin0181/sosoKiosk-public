@@ -303,13 +303,13 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeMenuData, 
                         </div>
                         <div className="O-modal-top">
                             <div className="O-modal-top-title M-font">
-                                <p>{modalStatus.modalTitle}</p>
+                                <p className="M-font-30-size">{modalStatus.modalTitle}</p>
                             </div>
                         </div>
                     </div>
                     <div className="O-modal-category-bar">
                         <div className="O-category-part" id="menuPart">
-                            <div className="M-font O-font-mini-size O-category-box O-category-box-menu">
+                            <div className="M-font M-font-20-size O-category-box O-category-box-menu">
                                 <p>메뉴</p>
                             </div>
                         </div>
@@ -320,51 +320,51 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeMenuData, 
                             <form id="addMenuForm" className="M-flex-column admin-main-left-flex" method="post"
                                   encType="multipart/form-data">
                                 <input type="hidden" id="menuSq" name="menuSq"/>
-                                <div className="M-flex-row M-font admin-font-size" style={{marginBottom: '25px'}}>
+                                <div className="M-flex-row M-font M-font-25-size" style={{marginBottom: '25px'}}>
                                     <div className="M-flex-1 M-flex-row M-flex-center">
                                         메뉴 이름
                                     </div>
                                     <div className="M-flex-1 M-flex-row M-flex-center menuInputDiv">
-                                        <input type="text" className="M-input-text M-font M-mini-size" id="menuName"
+                                        <input type="text" className="M-input-text M-font M-font-15-size" id="menuName"
                                                value={addMenu.menuName}
                                                onChange={changeMenuChange}
                                                name="menuName"/>
                                     </div>
                                 </div>
-                                <div className="M-flex-row M-font admin-font-size" style={{marginBottom: '25px'}}>
+                                <div className="M-flex-row M-font M-font-25-size" style={{marginBottom: '25px'}}>
                                     <div className="M-flex-1 M-flex-row M-flex-center">
                                         사진 업로드
                                     </div>
                                     <div className="M-flex-1 M-flex-row M-flex-center menuInputDiv">
-                                        <input type="file" className="M-none-design" id="menu-file"
+                                        <input type="file" className="M-none-design M-font-15-size" id="menu-file"
                                                onChange={changeMenuChange}
                                                name="menuImg"
                                                accept="image/*"/>
-                                        <label className="M-input-text" id="menu-fileUrl" htmlFor="menu-file"
-                                               style={{fontSize: '20px', overflow: 'hidden'}}>이미지 변경을 원하시면 선택하세요.
+                                        <label className="M-input-text M-font-15-size" id="menu-fileUrl" htmlFor="menu-file"
+                                               style={{overflow: 'hidden'}}>이미지 변경을 원하시면 선택하세요.
                                         </label>
                                     </div>
                                 </div>
-                                <div className="M-flex-row M-font admin-font-size" style={{marginBottom: '25px'}}>
+                                <div className="M-flex-row M-font M-font-25-size" style={{marginBottom: '25px'}}>
                                     <div className="M-flex-1 M-flex-row M-flex-center">
                                         가격
                                     </div>
                                     <div className="M-flex-1 M-flex-row M-flex-center menuInputDiv">
-                                        <input type="text" className="M-input-text M-font M-mini-size"
+                                        <input type="text" className="M-input-text M-font M-font-15-size"
                                                id="menuPrice"
                                                name="menuPrice"
                                                value={addMenu.menuPrice}
                                                onChange={changeMenuChange}/>
                                     </div>
                                 </div>
-                                <div className="M-flex-row M-font admin-font-size" style={{marginBottom: '25px'}}>
+                                <div className="M-flex-row M-font M-font-25-size" style={{marginBottom: '25px'}}>
                                     <div className="M-flex-1 M-flex-row M-flex-center">
                                         카테고리
                                     </div>
                                     <div className="M-flex-1 M-flex-column M-flex-center"
                                          style={{position: 'relative'}}>
                                         <input type="text"
-                                               className="M-input-text M-font M-mini-size menuInputDiv"
+                                               className="M-input-text M-font M-font-15-size menuInputDiv"
                                                value={addMenu.categorySelect.categoryName}
                                                onChange={changeMenuChange}
                                                onClick={function () {
@@ -380,7 +380,7 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeMenuData, 
                                         }
                                     </div>
                                 </div>
-                                <div className="M-flex-row M-font admin-font-size" style={{marginBottom: '25px'}}>
+                                <div className="M-flex-row M-font M-font-25-size" style={{marginBottom: '25px'}}>
                                     <div className="M-flex-1 M-flex-row M-flex-center">
                                         사이드
                                     </div>
@@ -388,13 +388,13 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeMenuData, 
                                          style={{position: 'relative'}}>
                                         {
                                             changeMenuData.side.length !== 0 ? (
-                                                <input type="text" className="M-input-text M-font M-mini-size"
+                                                <input type="text" className="M-input-text M-font M-font-15-size"
                                                        id="sideSelect" value={addMenu.sideSelect.sideName}
                                                        readOnly onClick={function () {
                                                     setCategoryStatus(false);
                                                     setSideStatus(!sideStatus);
                                                 }}/>) : (
-                                                <input type="text" className="M-input-text M-font M-mini-size"
+                                                <input type="text" className="M-input-text M-font M-font-15-size"
                                                        id="sideSelect" value={addMenu.sideSelect.sideName}
                                                        readOnly onClick={function () {
                                                     setCategoryStatus(false);
@@ -424,7 +424,7 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeMenuData, 
                             <div className="M-flex-column admin-main-right-flex" id="menuDetailImg">
                                 <div className="admin-main-img">
                                     <div className="img-part M-flex-column M-flex-center">
-                                        <p className="M-font M-mini-size" id="admin-main-menu-select-img-top-p">메뉴
+                                        <p className="M-font M-font-20-size" id="admin-main-menu-select-img-top-p">메뉴
                                             이미지</p>
                                         {
                                             imgCheck(changeMenuData.imgDTOList)
@@ -444,7 +444,7 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeMenuData, 
                         <div className="O-side-select-part" id="menuDetailFooter">
                             <div className="M-container M-flex-row M-flex-center">
                                 <div className="M-container M-flex-row M-flex-center" style={{width: '50%'}}>
-                                    <p className="M-font O-font-middle-size">품절</p>
+                                    <p className="M-font M-font-25-size">품절</p>
                                     <input type="checkbox" className="M-input-checkBox"
                                            checked={addMenu.menuSoldOut}
                                            onChange={() => {
@@ -457,7 +457,7 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeMenuData, 
                                     <label htmlFor="menuSoldOut-checkBox"></label>
                                 </div>
                                 <div className="M-container M-flex-row M-flex-center" style={{width: '50%'}}>
-                                    <p className="M-font O-font-middle-size">메뉴 숨기기</p>
+                                    <p className="M-font M-font-25-size">메뉴 숨기기</p>
                                     <input type="checkbox" className="M-input-checkBox"
                                            checked={addMenu.menuEnable}
                                            onChange={() => {
@@ -478,14 +478,14 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeMenuData, 
                                 <div className="O-side-select-ok M-flex-row M-flex-center" id="menuChangeBtn"
                                      onClick={changeMenuForm}
                                      style={{margin: '0px 5px 0px 0px'}}>
-                                    <p className="M-font O-font-middle-size">수정 완료</p>
+                                    <p className="M-font M-font-30-size">수정 완료</p>
                                 </div>
                             </div>
                             <input type="hidden" id="changeStatus"/>
                             <div className="O-side-select-close M-flex-row M-flex-center" id="menuDetailCloseBtn"
                                  onClick={closeBtn}
                                  style={{margin: '0px 0px 0px 5px'}}>
-                                <p className="M-font O-font-middle-size">닫기</p>
+                                <p className="M-font M-font-30-size">닫기</p>
                             </div>
                         </div>
                     </div>
