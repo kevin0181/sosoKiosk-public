@@ -133,7 +133,7 @@ const OrderMenu = ({
                         <div className="O-category">
                             <div className="O-category-list">
                                 <div
-                                    style={{height: '65%'}}
+                                    style={{height: '68%'}}
                                     className="M-overlay">
                                     <div id="categoryPart"
                                          className="O-category-list2"
@@ -143,7 +143,7 @@ const OrderMenu = ({
                                 </div>
                                 <div className="totalPrice-div M-flex-column M-flex-center"
                                      style={{width: '100%'}}>
-                                    <p className={'D-font O-font-30-size'}>총 금액 : {totalPrice}원</p>
+                                    <p className={'D-font'} style={{fontSize:'29px'}}>총 금액 : {totalPrice}원</p>
                                 </div>
                             </div>
                         </div>
@@ -209,7 +209,7 @@ const OrderMenu = ({
                                                     <div>
                                                         <div className="O-mini-card-body-content">
                                                             <p className="D-font"
-                                                               style={{fontSize: '20px'}}>{it.menuName}</p>
+                                                               style={{fontSize: '15px'}}>{it.menuName}</p>
                                                         </div>
                                                     </div>
                                                 </div>

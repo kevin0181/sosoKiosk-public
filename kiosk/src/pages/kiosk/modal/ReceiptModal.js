@@ -30,16 +30,17 @@ const ReceiptModal = ({
                     <img className="O-side-img" alt={'주문 이미지'}
                          src={'http://' + serverUrl.server + menu.imgDTOList[0].imgPath + '/' + menu.imgDTOList[0].imgName}/>
                 </div>
-                <div className="O-pay-name D-font M-flex-column M-flex-center" style={{fontSize: '23px'}}>
+                <div className="O-pay-name D-font M-flex-column M-flex-center"
+                     style={{fontSize: '23px', padding: '10px'}}>
                     <p className="">{menu.menuName}</p>
                 </div>
                 <div className="O-pay-number M-flex-column M-flex-center">
-                    <div className="D-font M-flex-column M-flex-center" style={{fontSize: '23px'}}>
+                    <div className="D-font M-flex-column M-flex-center" style={{fontSize: '23px', padding: '10px'}}>
                         <p>{menu.size + '개'}</p>
                     </div>
                 </div>
                 <div className="O-pay-price M-flex-column M-flex-center">
-                    <div className="D-font M-flex-column M-flex-center" style={{fontSize: '23px'}}>
+                    <div className="D-font M-flex-column M-flex-center" style={{fontSize: '23px', padding: '10px'}}>
                         <p>{menu.menuPrice + '원'}</p>
                     </div>
                 </div>
