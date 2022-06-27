@@ -59,7 +59,7 @@ const AdminSideDeleteModal = ({modalStatus, modalContentChange, data, setDataFun
                     </div>
                     <div className="O-modal-top">
                         <div className="O-modal-top-title M-font" id="deleteTop">
-                            <p>{modalStatus.modalTitle}</p>
+                            <p className="M-font-30-size">{modalStatus.modalTitle}</p>
                         </div>
                     </div>
                 </div>
@@ -69,9 +69,9 @@ const AdminSideDeleteModal = ({modalStatus, modalContentChange, data, setDataFun
                     <small style={{color: 'red', fontSize: '20px'}}>{modalStatus.modalContent}</small>
                 </div>
                 <div className="O-modal-side-footer M-flex-j-center" id="delete-modal-footer">
-                    <div className="O-side-select-close" onClick={menuDelete}
+                    <div className="O-side-select-close M-flex-row M-flex-center" onClick={menuDelete}
                          style={{width: '50%', backgroundColor: '#eb8282'}}>
-                        <p className="M-font O-font-middle-size">네</p>
+                        <p className="M-font M-font-25-size">네</p>
                     </div>
                 </div>
             </div>
