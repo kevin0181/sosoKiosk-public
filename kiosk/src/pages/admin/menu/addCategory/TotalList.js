@@ -7,7 +7,7 @@ export function CategoryTotalList({totalListData, modalContentChange}) {
                            style={{
                                width: '100%',
                                backgroundColor: '#628762',
-                               fontSize: '25px',
+                               fontSize: '15px',
                                marginBottom: '6px'
                            }}
                            onClick={() => {
@@ -38,7 +38,7 @@ export function SideTotalList({totalListData, modalContentChange}) {
                            style={{
                                width: '100%',
                                backgroundColor: '#628762',
-                               fontSize: '25px',
+                               fontSize: '15px',
                                marginBottom: '6px'
                            }}
                            onClick={() => {
@@ -71,7 +71,7 @@ export function SideCategoryTotalList({totalListData, modalContentChange}) {
                            style={{
                                width: '100%',
                                backgroundColor: '#628762',
-                               fontSize: '25px',
+                               fontSize: '15px',
                                marginBottom: '6px'
                            }}
                            onClick={() => {

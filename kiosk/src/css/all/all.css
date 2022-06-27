@@ -66,6 +66,10 @@ input:focus {
     font-size: 20px;
 }
 
+.M-font-15-size {
+    font-size: 15px;
+}
+
 .container {
     width: 100vw;
     height: 100vh;

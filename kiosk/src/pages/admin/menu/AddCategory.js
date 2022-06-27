@@ -178,7 +178,7 @@ const AddCategory = ({modalContentChange, data, setDataFun}) => {
                 <div className="admin-main-backCard M-flex-row">
                     <div className="M-flex-column admin-main-left-flex" style={{marginTop: '25px', width: '55%'}}>
                         <div className="M-flex-row M-font admin-font-size" style={{marginBottom: '25px'}}>
-                            <div className="M-flex-row M-flex-center" style={{fontSize: '25px', width: '20%'}}>
+                            <div className="M-flex-row M-flex-center M-font-20-size" style={{width: '20%'}}>
                                 카테고리
                             </div>
                             <div className="M-flex-row M-flex-center M-input" style={{width: '50%'}}>
@@ -189,22 +189,22 @@ const AddCategory = ({modalContentChange, data, setDataFun}) => {
                                     })
                                 }}
 
-                                       className="M-input-text M-font M-mini-size"/>
+                                       className="M-input-text M-font M-font-20-size"/>
                             </div>
                             <div className="M-flex-row M-flex-center" style={{width: '30%', padding: '0px 10px'}}>
                                 <div className="O-side-select-close" onClick={categoryFun}
                                      style={{marginTop: '0px', marginRight: '10px'}}>
-                                    <p className="M-font O-font-middle-size" style={{fontSize: '25px'}}>카테고리 추가</p>
+                                    <p className="M-font M-font-15-size">카테고리 추가</p>
                                 </div>
                             </div>
                         </div>
                         <div className="M-flex-row M-font admin-font-size" style={{marginBottom: '25px'}}>
-                            <div className="M-flex-row M-flex-center" style={{fontSize: '25px', width: '20%'}}>
+                            <div className="M-flex-row M-flex-center M-font-20-size" style={{width: '20%'}}>
                                 사이드
                             </div>
                             <div className="M-flex-row M-flex-center M-input" style={{width: '50%'}}>
                                 <input type="text" value={addDataForm.side}
-                                       className="M-input-text M-font M-mini-size"
+                                       className="M-input-text M-font M-font-20-size"
                                        onChange={(e) => {
                                            setAddDataForm({
                                                ...addDataForm,
@@ -216,7 +216,7 @@ const AddCategory = ({modalContentChange, data, setDataFun}) => {
                             <div className="M-flex-row M-flex-center" style={{width: '30%', padding: '0px 10px'}}>
                                 <div className="O-side-select-close" onClick={sideFun}
                                      style={{marginTop: '0px', marginRight: '10px'}}>
-                                    <p className="M-font O-font-middle-size" style={{fontSize: '25px'}}>사이드 추가</p>
+                                    <p className="M-font M-font-15-size">사이드 추가</p>
                                 </div>
                             </div>
                         </div>
@@ -226,13 +226,13 @@ const AddCategory = ({modalContentChange, data, setDataFun}) => {
                             paddingTop: '20px',
                             borderTop: '3px solid black'
                         }}>
-                            <div className="M-flex-row M-flex-center" style={{fontSize: '25px', width: '20%'}}>
+                            <div className="M-flex-row M-flex-center M-font-15-size" style={{width: '20%'}}>
                                 사이드 선택
                             </div>
                             <div className="M-flex-row M-flex-center" style={{width: '50%'}}>
                                 <div className="M-flex-1 M-flex-column M-flex-center"
                                      style={{position: 'relative'}}>
-                                    <input type="text" className="M-input-text M-font M-mini-size"
+                                    <input type="text" className="M-input-text M-font M-font-20-size"
                                            value={addDataForm.sideSelect.sideName}
                                            id="sideSelectByCategory" onClick={() => {
                                         setSideStatus(!sideStatus);
@@ -247,11 +247,12 @@ const AddCategory = ({modalContentChange, data, setDataFun}) => {
                             </div>
                         </div>
                         <div className="M-flex-row M-font admin-font-size" style={{marginBottom: '25px'}}>
-                            <div className="M-flex-row M-flex-center" style={{fontSize: '23px', width: '20%'}}>
-                                사이드 카테고리
+                            <div className="M-flex-row M-flex-center M-font-15-size"
+                                 style={{width: '20%', textAlign: 'center'}}>
+                                사이드<br/> 카테고리
                             </div>
                             <div className="M-flex-row M-flex-center M-input" style={{width: '50%'}}>
-                                <input type="text" className="M-input-text M-font M-mini-size"
+                                <input type="text" className="M-input-text M-font M-font-20-size"
                                        value={addDataForm.sideCategory}
                                        onChange={(e) => {
                                            setAddDataForm({
@@ -264,7 +265,7 @@ const AddCategory = ({modalContentChange, data, setDataFun}) => {
                             <div className="M-flex-row M-flex-center" style={{width: '30%', padding: '0px 10px'}}>
                                 <div className="O-side-select-close" onClick={sideCategoryFun}
                                      style={{marginTop: '0px', marginRight: '10px'}}>
-                                    <p className="M-font O-font-middle-size" style={{fontSize: '21px'}}>사이드 카테고리
+                                    <p className="M-font M-font-15-size">사이드 카테고리
                                         추가</p>
                                 </div>
                             </div>
@@ -282,7 +283,7 @@ const AddCategory = ({modalContentChange, data, setDataFun}) => {
                         <div className="M-flex-row M-font admin-font-size M-flex-center">
                             <div className="M-flex-1 M-flex-column M-flex-center" style={{position: 'relative'}}>
                                 <input type="text" value={"리스트를 보려면 클릭하세요."}
-                                       className="M-input-text M-font M-mini-size"
+                                       className="M-input-text M-font M-font-20-size"
                                        onClick={() => {
                                            setTotalListStatus(!totalListStatus)
                                        }}
@@ -297,10 +298,10 @@ const AddCategory = ({modalContentChange, data, setDataFun}) => {
                                                 setTotalSelectKind('category')
                                                 setTotalListStatus(false)
                                             }}
-                                                   className="M-input-select M-font M-mini-size M-input-select-middle"
+                                                   className="M-input-select M-font M-font-15-size M-input-select-middle"
                                                    readOnly/>
                                             <input type="text" value={"사이드"} name="side" style={{width: '100%'}}
-                                                   className="M-input-select M-font M-mini-size M-input-select-middle"
+                                                   className="M-input-select M-font M-font-15-size M-input-select-middle"
                                                    onClick={() => {
                                                        setTotalSelectKind('side')
                                                        setTotalListStatus(false)
@@ -312,7 +313,7 @@ const AddCategory = ({modalContentChange, data, setDataFun}) => {
                                                        setTotalSelectKind('sideCategory')
                                                        setTotalListStatus(false)
                                                    }}
-                                                   className="M-input-select M-font M-mini-size M-input-select-middle"
+                                                   className="M-input-select M-font M-font-15-size M-input-select-middle"
                                                    readOnly/>
                                         </div>
                                     ) : (<></>)

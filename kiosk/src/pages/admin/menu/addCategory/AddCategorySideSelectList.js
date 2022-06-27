@@ -10,7 +10,7 @@ const AddCategorySideSelectList = ({side, addDataFormFun}) => {
                                data-id={it.sideSq} onClick={addDataFormFun}
                                name={'addCategorySideSelect'}
                                style={{width: '100%'}}
-                               className="M-input-select M-font M-mini-size M-input-select-middle"
+                               className="M-input-select M-font M-font-20-size M-input-select-middle"
                                readOnly/>
                     ))
                 }

@@ -69,13 +69,13 @@ const AllCategory = ({modalContentChange, data, setDataFun}) => {
                                 <table className="admin-menu-all-table M-text-center">
                                     <thead className="">
                                     <tr className="admin-menu-all-table-tr" style={{textAlign: 'center'}}>
-                                        <th style={{width: '40%'}}>
+                                        <th style={{width: '40%', fontSize: '20px'}}>
                                             카테고리
                                         </th>
-                                        <th style={{width: '30%'}}>
+                                        <th style={{width: '30%', fontSize: '20px'}}>
                                             수정
                                         </th>
-                                        <th style={{width: '30%'}}>
+                                        <th style={{width: '30%', fontSize: '20px'}}>
                                             삭제
                                         </th>
                                     </tr>
@@ -102,13 +102,13 @@ const AllCategory = ({modalContentChange, data, setDataFun}) => {
                                 <table className="admin-menu-all-table M-text-center">
                                     <thead className="">
                                     <tr className="admin-menu-all-table-tr" style={{textAlign: 'center'}}>
-                                        <th style={{width: '40%'}}>
+                                        <th style={{width: '40%', fontSize: '20px'}}>
                                             사이드
                                         </th>
-                                        <th style={{width: '30%'}}>
+                                        <th style={{width: '30%', fontSize: '20px'}}>
                                             수정
                                         </th>
-                                        <th style={{width: '30%'}}>
+                                        <th style={{width: '30%', fontSize: '20px'}}>
                                             삭제
                                         </th>
                                     </tr>

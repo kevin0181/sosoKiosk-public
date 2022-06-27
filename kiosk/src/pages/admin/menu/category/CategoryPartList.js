@@ -19,8 +19,12 @@ const CategoryPartList = ({data, modalContentChange}) => {
                     <tr id={'admin-tbody-tr-category'} key={it.categorySq}
                         className="admin-tbody-tr-category M-text-center admin-tbody-tr admin-tbody-tr-category">
                         <td className="search">
-                            <p style={{display: 'inline-block', marginRight: '5px'}}>{it.categoryName}</p>
-                            <small className="M-font menu-detail-btn" onClick={() => {
+                            <p style={{
+                                display: 'inline-block',
+                                marginRight: '5px',
+                                fontSize: '15px'
+                            }}>{it.categoryName}</p>
+                            <small className="M-font menu-detail-btn" style={{fontSize: '10px'}} onClick={() => {
                                 modalContentChange({
                                     status: true,
                                     param: 'category',
@@ -46,12 +50,12 @@ const CategoryPartList = ({data, modalContentChange}) => {
                                     sendName: it.categoryName
                                 })
                             }}
-                                   style={{backgroundColor: '#f5ffbf'}}>
+                                   style={{backgroundColor: '#f5ffbf', fontSize: '15px'}}>
                                 수정
                             </small>
                         </td>
                         <td className="search">
-                            <small className="menu-delete-btn" onClick={() => {
+                            <small className="menu-delete-btn" style={{fontSize: '15px'}} onClick={() => {
                                 deleteCategory(it);
                             }}>
                                 삭제

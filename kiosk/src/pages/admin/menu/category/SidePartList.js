@@ -19,8 +19,8 @@ const SidePartList = ({data, modalContentChange}) => {
                     <tr id={'admin-tbody-tr-side'} key={it.sideSq}
                         className="admin-tbody-tr-side M-text-center admin-tbody-tr admin-tbody-tr-side">
                         <td className="search">
-                            <p style={{display: 'inline-block', marginRight: '5px'}}>{it.sideName}</p>
-                            <small className="M-font menu-detail-btn"
+                            <p style={{display: 'inline-block', marginRight: '5px', fontSize: '15px'}}>{it.sideName}</p>
+                            <small className="M-font menu-detail-btn" style={{fontSize: '10px'}}
                                    onClick={() => {
                                        modalContentChange({
                                            status: true,
@@ -48,12 +48,12 @@ const SidePartList = ({data, modalContentChange}) => {
                                            sendName: it.sideName
                                        })
                                    }}
-                                   style={{backgroundColor: '#f5ffbf'}}>
+                                   style={{backgroundColor: '#f5ffbf', fontSize: '15px'}}>
                                 수정
                             </small>
                         </td>
                         <td className="search">
-                            <small className="menu-delete-btn" onClick={() => {
+                            <small className="menu-delete-btn" style={{fontSize: '15px'}} onClick={() => {
                                 deleteSide(it);
                             }}>
                                 삭제
