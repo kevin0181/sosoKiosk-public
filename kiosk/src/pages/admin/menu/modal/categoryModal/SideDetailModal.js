@@ -93,21 +93,22 @@ const SideDetailModal = ({modalStatus, modalContentChange, data, setDataFun}) =>
                         </div>
                         <div className="O-modal-top">
                             <div className="O-modal-top-title M-font" id="category-top">
-                                <p>{modalStatus.modalTitle}</p>
+                                <p className="M-font-30-size">{modalStatus.modalTitle}</p>
                             </div>
                         </div>
                     </div>
                     <div className="O-modal-category-bar">
                         {
-                            sideCategory.sideCategory.map((it) => (
+                            sideCategory.sideCategory.map((it, index) => (
                                 <div className="O-category-part" key={it.sideCategorySq}>
-                                    <div className="M-font O-font-mini-size O-category-box sideCategoryNone"
-                                         id={'sideTopCategory' + it.sideCategorySq}
-                                         data-id={it.sideCategorySq}
-                                         onClick={(e) => {
-                                             DetailMenu(it);
-                                             changeButtonCss(it.sideCategorySq);
-                                         }}>
+                                    <div
+                                        className={"M-font M-font-20-size O-category-box sideCategoryNone" + (index === 0 ? ' O-category-click-color' : '')}
+                                        id={'sideTopCategory' + it.sideCategorySq}
+                                        data-id={it.sideCategorySq}
+                                        onClick={(e) => {
+                                            DetailMenu(it);
+                                            changeButtonCss(it.sideCategorySq);
+                                        }}>
                                         <p>{it.sideCategoryName}</p>
                                     </div>
                                 </div>
@@ -117,7 +118,7 @@ const SideDetailModal = ({modalStatus, modalContentChange, data, setDataFun}) =>
                     <div className="O-modal-side-order M-flex-row"
                          style={{padding: '5px 20px', justifyContent: 'space-between'}}>
                         <div className="O-side-order-part"
-                             style={{padding: '10px 40px', width: '100%', height: '100%'}}>
+                             style={{width: '100%', height: '100%'}}>
                             <div className="O-side-order-part M-overlay" id="category-card-body"
                                  style={{width: '100%', height: '100%', flexWrap: 'wrap', justifyContent: 'center'}}>
                                 {
@@ -162,7 +163,7 @@ const SideDetailModal = ({modalStatus, modalContentChange, data, setDataFun}) =>
                                                     <img className="O-side-img" alt={'side 메뉴 이미지'}
                                                          src={'http://' + serverUrl.server + it.menuSideImgDTOList[0].menuSideImgPath + '/' + it.menuSideImgDTOList[0].menuSideImgName}/>
                                                 </div>
-                                                <div className="O-menu-side-name M-font O-font-mini-size M-text-center">
+                                                <div className="O-menu-side-name M-font M-font-20-size M-text-center">
                                                     <p className="O-menu-side-name-p">{it.menuSideName}</p>
                                                 </div>
                                             </div>
@@ -179,7 +180,7 @@ const SideDetailModal = ({modalStatus, modalContentChange, data, setDataFun}) =>
                         </div>
                         <div className="O-side-select-ok-part">
                             <div className="O-side-select-close">
-                                <p className="M-font O-font-middle-size" onClick={closeBtn}>닫기</p>
+                                <p className="M-font M-font-30-size" onClick={closeBtn}>닫기</p>
                             </div>
                         </div>
                     </div>

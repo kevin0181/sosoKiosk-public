@@ -79,13 +79,13 @@ const CategoryDetailModal = ({modalStatus, modalContentChange, data, setDataFun}
                         </div>
                         <div className="O-modal-top">
                             <div className="O-modal-top-title M-font" id="category-top">
-                                <p>카테고리 상세</p>
+                                <p className="M-font-30-size">카테고리 상세</p>
                             </div>
                         </div>
                     </div>
                     <div className="O-modal-category-bar">
                         <div className="O-category-part">
-                            <div className="M-font O-font-mini-size O-category-box"
+                            <div className="M-font M-font-20-size O-category-box"
                                  style={{backgroundColor: '#838383'}}>
                                 <p>{modalStatus.sendName}</p>
                             </div>
@@ -94,7 +94,7 @@ const CategoryDetailModal = ({modalStatus, modalContentChange, data, setDataFun}
                     <div className="O-modal-side-order M-flex-row"
                          style={{padding: '5px 20px', justifyContent: 'space-between'}}>
                         <div className="O-side-order-part"
-                             style={{padding: '10px 40px', width: '100%', height: '100%'}}>
+                             style={{width: '100%', height: '100%'}}>
                             <div className="O-side-order-part M-overlay" id="category-card-body"
                                  style={{width: '100%', height: '100%', flexWrap: 'wrap', justifyContent: 'center'}}>
                                 {
@@ -139,7 +139,7 @@ const CategoryDetailModal = ({modalStatus, modalContentChange, data, setDataFun}
                                                              src={'http://' + serverUrl.server + it.imgDTOList[0].imgPath + '/' + it.imgDTOList[0].imgName}/>
                                                     </div>
                                                     <div
-                                                        className="O-menu-side-name M-font O-font-mini-size M-text-center">
+                                                        className="O-menu-side-name M-font M-font-20-size M-text-center">
                                                         <p className="O-menu-side-name-p">{it.menuName}</p>
                                                     </div>
                                                 </div>
@@ -154,7 +154,7 @@ const CategoryDetailModal = ({modalStatus, modalContentChange, data, setDataFun}
                         </div>
                         <div className="O-side-select-ok-part">
                             <div className="O-side-select-close">
-                                <p className="M-font O-font-middle-size" onClick={closeBtn}>닫기</p>
+                                <p className="M-font M-font-30-size" onClick={closeBtn}>닫기</p>
                             </div>
                         </div>
                     </div>
