@@ -82,14 +82,14 @@ const MainMenu = ({menu, menuModalContentChange}) => {
                                 </div>
                                 <div className="O-card-body">
                                     <div className="O-card-body-top">
-                                        <p className="O-menu-name D-font" style={{fontSize: '27px'}}>{it.menuName}</p>
+                                        <p className="O-menu-name D-font" style={{fontSize: '25px'}}>{it.menuName}</p>
                                     </div>
                                     <div className="O-card-body-body">
                                         <div style={{textAlign: 'center'}}>
                                             <p className="O-menu-name D-font"
-                                               style={{display: 'inline-block', fontSize: '27px'}}>가격 :&nbsp;</p>
+                                               style={{display: 'inline-block', fontSize: '22px'}}>가격 :&nbsp;</p>
                                             <p className="O-menu-name D-font"
-                                               style={{display: 'inline-block', fontSize: '27px'}}>{it.menuPrice}</p>
+                                               style={{display: 'inline-block', fontSize: '22px'}}>{it.menuPrice}</p>
                                             <br/>
                                             {
                                                 it.menuSoldOut ? (<small className="O-menu-name D-font"

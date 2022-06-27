@@ -189,7 +189,7 @@ const MenuDetailNoSideModal = ({menuModalStatus, menuModalContentChange, changeA
                                 <div className="O-side-select-close M-flex-column M-flex-center"
                                      onClick={saveDetailMenuOrder}
                                      style={{width: '100%', height: '80%', backgroundColor: '#eb8282'}}>
-                                    <p className="M-font O-font-middle-size">메뉴 추가</p>
+                                    <p className="M-font M-font-30-size">메뉴 추가</p>
                                 </div>
                             </div>
                         </div>
