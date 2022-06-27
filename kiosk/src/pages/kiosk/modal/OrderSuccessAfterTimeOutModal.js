@@ -42,7 +42,7 @@ const OrderSuccessAfterTimeOutModal = ({setAllOrderData, menuModalContentChange}
         <div className="O-modal-back"
              id="successPay">
             <div className="O-modal"
-                 style={{width: '40%', height: '50%'}}>
+                 style={{width: '40%', height: '60%'}}>
                 <div className="O-modal-content">
                     <div className="O-modal-header">
                         <div className="O-modal-close-Btn">
@@ -67,9 +67,9 @@ const OrderSuccessAfterTimeOutModal = ({setAllOrderData, menuModalContentChange}
                     </div>
                     <div className="O-modal-side-footer M-flex-j-center"
                          style={{marginTop: '30px', height: '15%'}}>
-                        <div className="O-receipt-modal-btn" onClick={goStart}
+                        <div className="O-receipt-modal-btn M-flex-row M-flex-center" onClick={goStart}
                              style={{width: '35%', height: '57px', backgroundColor: '#d56161'}}>
-                            <p className="M-font O-font-middle-size">
+                            <p className="D-font" style={{fontSize:'30px'}}>
                                 닫기</p>
                         </div>
                     </div>
