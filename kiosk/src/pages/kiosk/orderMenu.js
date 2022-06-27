@@ -6,6 +6,9 @@ import {useEffect, useState} from "react";
 import KioskMainModal from "./KioskMainModal";
 import serverUrl from "../config/server.json";
 import selectMenuStartSound from "./../../voice/메뉴를 선택해주세요.wav";
+import {Stomp} from "@stomp/stompjs";
+import SockJS from "sockjs-client";
+import serverSocket from "../config/serverSocket.json";
 
 const OrderMenu = ({
                        menu,
@@ -24,6 +27,21 @@ const OrderMenu = ({
 
     const navigate = useNavigate();
 
+    useEffect(()=>{
+
+        let moneyStompClient;
+
+        moneyStompClient = Stomp.over(new SockJS(serverSocket.serverSocket));
+
+        moneyStompClient.connect({}, function (frame) {
+                moneyStompClient.send("/order/kiosk", {}, JSON.stringify({
+                    "orderMenu": null,
+                    "orderData":  null,
+                    "orderNumber": null
+                }));
+        });
+    },[]);
+
     useEffect(() => {
         selectMenuVoice();
     }, []);
@@ -32,14 +50,6 @@ const OrderMenu = ({
         let audio = new Audio(selectMenuStartSound);
         audio.play();
     }
-
-    // useEffect(() => {
-    //     setTimeout(() => {
-    //         setAllOrderData([]).then(function () {
-    //             navigate("/");
-    //         });
-    //     }, 300000); //5분동안 있으면 자동으로 메인으로 리다이렉트
-    // }, []);
 
     const setAllOrderData = async (data) => {
         setOrderData(data);
