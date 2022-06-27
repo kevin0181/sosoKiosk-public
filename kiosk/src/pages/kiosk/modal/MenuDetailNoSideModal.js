@@ -132,7 +132,7 @@ const MenuDetailNoSideModal = ({menuModalStatus, menuModalContentChange, changeA
                             <div className="O-close O-close3" id="modalCloseBtn" onClick={close}></div>
                         </div>
                         <div className="O-modal-top">
-                            <div className="O-modal-top-title M-font">
+                            <div className="O-modal-top-title D-font" style={{fontSize: '30px'}}>
                                 <p>메뉴 수량 선택</p>
                             </div>
                         </div>
@@ -159,19 +159,22 @@ const MenuDetailNoSideModal = ({menuModalStatus, menuModalContentChange, changeA
                                     </div>
                                     <div className="O-mini-card-body">
                                         <div className="O-mini-card-body-content">
-                                            <p className="M-font O-font-mini-size">{detailMenu.menuName}</p>
+                                            <p className="D-font O-font-mini-size"
+                                               style={{fontSize: '20px'}}>{detailMenu.menuName}</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="O-menu-side-number M-flex-column M-flex-center">
-                                    <div className="side-number-top M-font O-font-middle-size" onClick={changeOrderMenu}
+                                    <div className="side-number-top D-font O-font-middle-size"
+                                         style={{fontSize: '60px'}} onClick={changeOrderMenu}
                                          id={'mainMenuSizePlus'}>+
                                     </div>
-                                    <div className="M-font O-font-middle-size">
+                                    <div className="D-font O-font-middle-size">
                                         <p>{orderMenuASideDetail.size}</p>
                                     </div>
-                                    <div className="side-number-bottom M-font O-font-middle-size"
+                                    <div className="side-number-bottom D-font O-font-middle-size"
                                          onClick={changeOrderMenu}
+                                         style={{fontSize: '60px'}}
                                          id={'mainMenuSizeMinus'}>-
                                     </div>
                                 </div>
