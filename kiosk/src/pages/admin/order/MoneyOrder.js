@@ -155,7 +155,17 @@ const MoneyOrder = ({modalContentChange, data, setDataFun}) => {
                                                     display: 'inline-block',
                                                     marginRight: '5px'
                                                 }}>{it.orderTelegramNo}</p>
-                                                <small className="M-font menu-detail-btn">상세보기
+                                                <small
+                                                    onClick={() => {
+                                                        modalContentChange({
+                                                            status: true,
+                                                            param: '',
+                                                            modalType: 'orderDetailModal',
+                                                            modalTitle: '',
+                                                            modalContent: '',
+                                                            data: it
+                                                        })
+                                                    }} className="M-font menu-detail-btn M-font-15-size">상세보기
                                                 </small>
                                             </td>
                                             <td className="search M-font-15-size">
