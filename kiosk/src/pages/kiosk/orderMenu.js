@@ -176,13 +176,12 @@ const OrderMenu = ({
                         <div className="O-footer-div">
                             <div className="O-footer-select-menu">
                                 <div className="O-footer-select-menu-all">
-                                    <div className="O-mini-select-bar">
-
+                                    <div className="O-mini-select-bar w-M-overlay">
                                         {
                                             allOrderData.map((it) => (
                                                 <div className="O-select-mini-card" key={it.menuSq}>
                                                     <div className="O-select-mini-number">
-                                                        <p className="M-font O-font-number-size">{it.size}</p>
+                                                        <p className="D-font" style={{fontSize:'25px'}}>{it.size}</p>
                                                     </div>
                                                     <div className="O-select-mini-close-Btn">
                                                         <div className="O-close O-close2"
@@ -201,7 +200,7 @@ const OrderMenu = ({
                                                     </div>
                                                     <div>
                                                         <div className="O-mini-card-body-content">
-                                                            <p className="M-font O-font-mini-size">{it.menuName}</p>
+                                                            <p className="D-font" style={{fontSize:'20px'}}>{it.menuName}</p>
                                                         </div>
                                                     </div>
                                                 </div>
