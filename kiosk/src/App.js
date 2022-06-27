@@ -12,7 +12,7 @@ import {Stomp} from '@stomp/stompjs';
 import CheckServerMessageModal from "./pages/kiosk/modal/CheckServerMessageModal";
 import startKioskSound from "./voice/키오스크를 실행 시켜 주세요.wav";
 import adminVoice from "./voice/관리자에게 문의해주세요.wav";
-
+import serverSocket from "./pages/config/serverSocket.json";
 
 function App() {
 
@@ -32,7 +32,7 @@ function App() {
 
     const connectWebSocket = async () => {//웹 소켓.
 
-        moneyStompClient = Stomp.over(new SockJS('https://soso-kitchen.com/user/websocket'));
+        moneyStompClient = Stomp.over(new SockJS(serverSocket.serverSocket));
         sosoServerStatus = moneyStompClient.connected;
 
         moneyStompClient.connect({}, function (frame) {

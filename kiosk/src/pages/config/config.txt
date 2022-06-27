@@ -2,3 +2,12 @@ soso-kitchen.com:8000
 115.85.182.103:8000
 
 localhost:8081
+
+
+
+
+
+socket ->
+
+https://soso-kitchen.com/user/websocket
+http://localhost:8081/user/websocket

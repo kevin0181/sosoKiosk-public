@@ -5,6 +5,7 @@ import SockJS from "sockjs-client";
 import $ from 'jquery';
 import {checkPrinterStatus, cutPaper, getPosData, printQRCode, printText, setPosId} from "../all/printer/bxlpos";
 import {requestPrint} from "../all/printer/bxlcommon";
+import serverSocket from "../../pages/config/serverSocket.json";
 
 let getSettingTax;
 let leaderName;
@@ -175,7 +176,7 @@ const sendByServerOrder = async (saveData, orderNumber) => {
     let moneyStompClient;
     let sosoServerStatus;
 
-    moneyStompClient = Stomp.over(new SockJS('https://soso-kitchen.com/user/websocket'));
+    moneyStompClient = Stomp.over(new SockJS(serverSocket.serverSocket));
 
     moneyStompClient.connect({}, function (frame) {
         sosoServerStatus = moneyStompClient.connected;
