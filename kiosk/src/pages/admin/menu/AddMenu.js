@@ -208,7 +208,7 @@ const AddMenu = ({modalContentChange}) => {
                                 </div>
                                 <div className="M-flex-1 M-flex-row M-flex-center menuInputDiv">
                                     <input type="text" value={addMenu.menuName}
-                                           className="M-input-text M-font M-mini-size"
+                                           className="M-input-text M-font M-font-20-size"
                                            id="menuName"
                                            onChange={addMenuChange}
                                            name="menuName"/>
@@ -219,7 +219,7 @@ const AddMenu = ({modalContentChange}) => {
                                     사진 업로드
                                 </div>
                                 <div className="M-flex-1 M-flex-row M-flex-center menuInputDiv">
-                                    <input type="file" className="M-none-design" id="menu-file"
+                                    <input type="file" className="M-none-design M-font-20-size" id="menu-file"
                                            onChange={(e) => {
                                                addMenuChange(e);
                                            }}
@@ -236,7 +236,7 @@ const AddMenu = ({modalContentChange}) => {
                                 </div>
                                 <div className="M-flex-1 M-flex-row M-flex-center menuInputDiv">
                                     <input type="text" value={addMenu.menuPrice}
-                                           className="M-input-text M-font M-mini-size"
+                                           className="M-input-text M-font M-font-20-size"
                                            onChange={addMenuChange}
                                            id="menuPrice"
                                            name="menuPrice"/>
@@ -248,7 +248,7 @@ const AddMenu = ({modalContentChange}) => {
                                 </div>
                                 <div className="M-flex-1 M-flex-column M-flex-center" style={{position: 'relative'}}>
                                     <input type="text" value={addMenu.categorySelect.categoryName || ""}
-                                           className="M-input-text M-font M-mini-size menuInputDiv"
+                                           className="M-input-text M-font M-font-20-size menuInputDiv"
                                            id="categorySelect" readOnly onClick={function () {
                                         setSideStatus(false);
                                         setCategoryStatus(!categoryStatus);
@@ -267,7 +267,7 @@ const AddMenu = ({modalContentChange}) => {
                                 </div>
                                 <div className="M-flex-1 M-flex-column M-flex-center menuInputDiv"
                                      style={{position: 'relative'}}>
-                                    <input type="text" className="M-input-text M-font M-mini-size"
+                                    <input type="text" className="M-input-text M-font M-font-20-size"
                                            value={addMenu.sideSelect.sideName}
                                            id="sideSelect" readOnly onClick={function () {
                                         setCategoryStatus(false);
@@ -302,7 +302,7 @@ const AddMenu = ({modalContentChange}) => {
                                              src={menuImg.imgUrl}/>
 
                                     ) : (
-                                        <p className="M-font M-mini-size">미리보기</p>
+                                        <p className="M-font M-font-20-size">미리보기</p>
                                     )
                                 }
                             </div>

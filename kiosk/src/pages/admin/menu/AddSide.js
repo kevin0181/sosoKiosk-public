@@ -122,9 +122,9 @@ const AddSide = ({modalContentChange}) => {
     }
 
     const getSideCategorySelectData = () => {
+        setSideCategoryStatus(!sideCategoryStatus)
         setSpinner(true);
         setSideStatus(false);
-        setSideCategoryStatus(!sideStatus);
         if (addSideMenu.sideSelect.sideSq === '' || addSideMenu.sideSelect.sideSq === null || addSideMenu.sideSelect.sideSq === undefined) {
             setAddMenuSmallText('사이드를 선택해주세요.');
             setSideCategoryStatus(false);
@@ -235,7 +235,7 @@ const AddSide = ({modalContentChange}) => {
                                 </div>
                                 <div className="M-flex-1 M-flex-row M-flex-center sideMenuInputDiv">
                                     <input type="text" value={addSideMenu.menuSideName}
-                                           className="M-input-text M-font M-mini-size"
+                                           className="M-input-text M-font M-font-20-size"
                                            id="menu-side-name"
                                            onChange={changeAddSideMenu}
                                            name="menuSideName"/>
@@ -246,10 +246,10 @@ const AddSide = ({modalContentChange}) => {
                                     사진 업로드
                                 </div>
                                 <div className="M-flex-1 M-flex-row M-flex-center sideMenuInputDiv">
-                                    <input type="file" className="M-none-design" id="side-file"
+                                    <input type="file" className="M-none-design M-font-20-size" id="side-file"
                                            name="menuSideImg" onChange={changeAddSideMenu}
                                            accept="image/*"/>
-                                    <label className="M-input-text" id="side-fileUrl" htmlFor="side-file"
+                                    <label className="M-input-text M-font-20-size" id="side-fileUrl" htmlFor="side-file"
                                            style={{fontSize: '20px', overflow: 'hidden'}}>
                                     </label>
                                 </div>
@@ -259,7 +259,7 @@ const AddSide = ({modalContentChange}) => {
                                     가격
                                 </div>
                                 <div className="M-flex-1 M-flex-row M-flex-center sideMenuInputDiv">
-                                    <input type="text" className="M-input-text M-font M-mini-size"
+                                    <input type="text" className="M-input-text M-font M-font-20-size"
                                            value={addSideMenu.menuSidePrice}
                                            id="menuSidePrice" onChange={changeAddSideMenu}
                                            name="menuSidePrice"/>
@@ -271,7 +271,7 @@ const AddSide = ({modalContentChange}) => {
                                 </div>
                                 <div className="M-flex-1 M-flex-column M-flex-center sideMenuInputDiv"
                                      style={{position: 'relative'}}>
-                                    <input type="text" className="M-input-text M-font M-mini-size"
+                                    <input type="text" className="M-input-text M-font M-font-20-size"
                                            value={addSideMenu.sideSelect.sideName}
                                            id="sideSelectByAddSide" readOnly onClick={function () {
                                         setSideCategoryStatus(false);
@@ -290,7 +290,7 @@ const AddSide = ({modalContentChange}) => {
                                 </div>
                                 <div className="M-flex-1 M-flex-column M-flex-center sideMenuInputDiv"
                                      style={{position: 'relative'}}>
-                                    <input type="text" className="M-input-text M-font M-mini-size"
+                                    <input type="text" className="M-input-text M-font M-font-20-size"
                                            id="sideCategorySelect" readOnly
                                            value={addSideMenu.sideCategorySelect.sideCategoryName}
                                            onClick={getSideCategorySelectData}/>
@@ -325,7 +325,7 @@ const AddSide = ({modalContentChange}) => {
                                              src={menuImg.imgUrl}/>
 
                                     ) : (
-                                        <p className="M-font M-mini-size">미리보기</p>
+                                        <p className="M-font M-font-20-size">미리보기</p>
                                     )
                                 }
                             </div>
