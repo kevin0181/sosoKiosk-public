@@ -252,23 +252,23 @@ const Sales = ({modalContentChange, data, setDataFun}) => {
                         <div className="admin-menu-all-list-div M-overlay" style={{height: '70%'}}>
                             <table className="admin-menu-all-table">
                                 <thead>
-                                <tr className="admin-menu-all-table-tr">
-                                    <th style={{width: '15%'}}>
+                                <tr className="admin-menu-all-table-tr" style={{textAlign: 'center'}}>
+                                    <th style={{width: '15%', fontSize: '20px'}}>
                                         주문 시각
                                     </th>
-                                    <th style={{width: '30%', textAlign: 'center'}}>
+                                    <th style={{width: '30%', textAlign: 'center', fontSize: '20px'}}>
                                         주문 번호
                                     </th>
-                                    <th style={{width: '15%'}}>
+                                    <th style={{width: '15%', fontSize: '20px'}}>
                                         총 금액
                                     </th>
-                                    <th style={{width: '15%'}}>
+                                    <th style={{width: '15%', fontSize: '20px'}}>
                                         주문 상태
                                     </th>
-                                    <th style={{width: '15%'}}>
+                                    <th style={{width: '15%', fontSize: '20px'}}>
                                         결제 방식
                                     </th>
-                                    <th style={{width: '15%'}}>
+                                    <th style={{width: '15%', fontSize: '20px'}}>
                                         장소
                                     </th>
                                 </tr>
@@ -276,20 +276,20 @@ const Sales = ({modalContentChange, data, setDataFun}) => {
                                 <tbody className="admin-sales-tbody admin-tbody M-overlay">
                                 {
                                     data.sales.map((it, index) => (
-                                        <tr className="admin-tbody-tr" key={index}>
-                                            <td className="search dateSearch" style={{fontSize: '21px'}}>
+                                        <tr className="admin-tbody-tr" key={index} style={{textAlign: 'center'}}>
+                                            <td className="search dateSearch M-font-15-size">
                                                 {it.orderDate + ' ' + it.orderDateTime}
                                             </td>
-                                            <td className="search" style={{textAlign: "center"}}>
+                                            <td className="search M-font-15-size" style={{textAlign: "center"}}>
                                                 <p style={{
                                                     display: 'inline-block',
                                                     marginRight: '5px'
                                                 }}>{it.orderTelegramNo}</p>
                                             </td>
-                                            <td className="search">
+                                            <td className="search M-font-15-size">
                                                 {it.orderTotalPrice + '원'}
                                             </td>
-                                            <td className="search paySearch">
+                                            <td className="search paySearch M-font-15-size">
                                                 {
                                                     it.orderStatus ? (
                                                         <p>성공</p>
@@ -298,14 +298,14 @@ const Sales = ({modalContentChange, data, setDataFun}) => {
                                                     )
                                                 }
                                             </td>
-                                            <td className="search">
+                                            <td className="search M-font-15-size">
                                                 <p>
                                                     {
                                                         it.orderPayStatus
                                                     }
                                                 </p>
                                             </td>
-                                            <td className="search">
+                                            <td className="search M-font-15-size">
                                                 {
                                                     it.orderPlace === 'inner' ? (<p>매장</p>) : (<p>포장</p>)
                                                 }
@@ -316,7 +316,7 @@ const Sales = ({modalContentChange, data, setDataFun}) => {
                                 </tbody>
                             </table>
                         </div>
-                        <div className="M-container M-font O-font-middle-size" style={{height: '30%'}}>
+                        <div className="M-container M-font M-font-20-size" style={{height: '30%'}}>
                             <div style={{textAlign: 'right', padding: '10px 20px'}}>
                                 <span style={{marginRight: '15%'}}>총 주문 수 : {data.sales.length}</span>
                                 <span style={{display: 'inline-block'}}>총 금액 : </span>
@@ -325,7 +325,7 @@ const Sales = ({modalContentChange, data, setDataFun}) => {
                             </div>
                             <div className="M-flex-row" style={{marginTop: '10px'}}>
                                 <div className="M-flex-column M-flex-center" style={{marginTop: '10px'}}>
-                                    <small className="M-font menu-detail-btn" onClick={() => {
+                                    <small className="M-font menu-detail-btn" style={{fontSize:'25px'}} onClick={() => {
                                         searchSalesReceipt();
                                     }}>검색 매출표 출력
                                     </small>

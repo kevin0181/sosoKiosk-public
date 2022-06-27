@@ -32,48 +32,48 @@ const SalesTop = ({status, resetData}) => {
                             navigate('/');
                         });
                     }}>
-                        <p className="" style={{fontSize: '40px'}}>홈으로</p>
+                        <p className="" style={{fontSize: '25px'}}>홈으로</p>
                     </div>
                 </div>
                 <div className="admin-top-part admin-top-part-nomal">
                     <div className="admin-top-p-part" id='kioskClose' onClick={() => {
                         navigate('/admin/sales?status=kioskClose')
                     }}>
-                        <p className="" style={{fontSize: '40px'}}>마감 하기</p>
+                        <p className="" style={{fontSize: '25px'}}>마감 하기</p>
                     </div>
                 </div>
                 <div className="admin-top-part admin-top-part-nomal">
                     <div className="admin-top-p-part" id="salesTotal" onClick={() => {
                         navigate('/admin/sales?status=sales');
                     }}>
-                        <p className="" style={{fontSize: '40px'}}>매출 계산</p>
+                        <p className="" style={{fontSize: '25px'}}>매출 계산</p>
                     </div>
                 </div>
                 <div className="admin-top-part admin-top-part-right">
                     <div className="admin-top-p-part">
-                        <p className="" style={{fontSize: '40px'}}></p>
+                        <p className="" style={{fontSize: '25px'}}></p>
                     </div>
                 </div>
             </div>
             <div className="admin-top-bottom btnSound">
                 <div className="admin-top-part admin-bottom-part-left">
                     <div className="admin-top-p-part">
-                        <p className="" style={{fontSize: '40px'}}></p>
+                        <p className="" style={{fontSize: '25px'}}></p>
                     </div>
                 </div>
                 <div className="admin-top-part admin-bottom-part-nomal">
                     <div className="admin-top-p-part">
-                        <p className="" style={{fontSize: '40px'}}></p>
+                        <p className="" style={{fontSize: '25px'}}></p>
                     </div>
                 </div>
                 <div className="admin-top-part admin-bottom-part-nomal">
                     <div className="admin-top-p-part">
-                        <p className="" style={{fontSize: '40px'}}></p>
+                        <p className="" style={{fontSize: '25px'}}></p>
                     </div>
                 </div>
                 <div className="admin-top-part admin-bottom-part-right">
                     <div className="admin-top-p-part">
-                        <p className="" style={{fontSize: '40px'}}></p>
+                        <p className="" style={{fontSize: '25px'}}></p>
                     </div>
                 </div>
             </div>
