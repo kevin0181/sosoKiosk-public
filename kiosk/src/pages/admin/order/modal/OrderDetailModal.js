@@ -44,9 +44,6 @@ const OrderDetailModal = ({modalStatus, modalContentChange}) => {
     }
 
     const MainMenu = ({menu}) => {
-        console.log(menu);
-        // let menu = menuEntity.menuEntity;
-        // console.log(menu);
         return <div className="O-pay-order-part M-flex-row" style={{margin: '10px 0px'}} id="O-pay-first"
                     key={menu.menuEntity.menuSq}>
             <div className="O-pay-order-card O-pay-order-card-left">
@@ -54,17 +51,17 @@ const OrderDetailModal = ({modalStatus, modalContentChange}) => {
                     <img className="O-side-img" alt={'주문 이미지'}
                          src={'http://' + serverUrl.server + menu.menuEntity.imgDTOList[0].imgPath + '/' + menu.menuEntity.imgDTOList[0].imgName}/>
                 </div>
-                <div className="O-pay-name M-font O-font-middle-size M-flex-column M-flex-center">
-                    <p className="">{menu.menuEntity.menuName}</p>
+                <div className="O-pay-name M-font M-flex-column M-flex-center">
+                    <p className="M-font-20-size">{menu.menuEntity.menuName}</p>
                 </div>
                 <div className="O-pay-number M-flex-column M-flex-center">
-                    <div className="M-font O-font-middle-size M-flex-column M-flex-center">
-                        <p>{menu.menuEntity.size + '개'}</p>
+                    <div className="M-font M-flex-column M-flex-center">
+                        <p className="M-font-20-size">{menu.menuEntity.size + '개'}</p>
                     </div>
                 </div>
                 <div className="O-pay-price M-flex-column M-flex-center">
-                    <div className="M-font O-font-middle-size M-flex-column M-flex-center">
-                        <p>{menu.menuEntity.menuPrice + '원'}</p>
+                    <div className="M-font M-flex-column M-flex-center">
+                        <p className="M-font-20-size">{menu.menuEntity.menuPrice + '원'}</p>
                     </div>
                 </div>
             </div>
@@ -88,17 +85,16 @@ const OrderDetailModal = ({modalStatus, modalContentChange}) => {
         return <div className="O-pay-order-card-div M-flex-row" key={side.sideSq}>
             <div className="O-pay-name M-font M-flex-column M-flex-center"
                  style={{fontSize: '30px', width: '30%'}}>
-                <p className="">{side.orderSideName}</p>
+                <p className="M-font-20-size">{side.orderSideName}</p>
             </div>
             <div className="O-pay-name M-font M-flex-column M-flex-center"
                  style={{fontSize: '30px', width: '10%'}}>
-                <p className="">{side.orderSideSize + '개'}</p>
+                <p className="M-font-20-size">{side.orderSideSize + '개'}</p>
             </div>
             <div className="O-pay-number M-flex-column M-flex-center"
                  style={{width: '20%'}}>
-                <div className="M-font M-flex-column M-flex-center"
-                     style={{fontSize: '30px'}}>
-                    <p>{side.orderSidePrice + '원'}</p>
+                <div className="M-font M-flex-column M-flex-center M-font-20-size">
+                    <p className="M-font-20-size">{side.orderSidePrice + '원'}</p>
                 </div>
             </div>
         </div>
@@ -114,7 +110,7 @@ const OrderDetailModal = ({modalStatus, modalContentChange}) => {
                         </div>
                         <div className="O-modal-top">
                             <div className="O-modal-top-title M-font">
-                                <p>주문 상세</p>
+                                <p className="M-font-30-size">주문 상세</p>
                             </div>
                         </div>
                     </div>
@@ -126,7 +122,7 @@ const OrderDetailModal = ({modalStatus, modalContentChange}) => {
                                     removeCss('orderDetailInfo');
                                     changeSelect('info');
                                 }}>
-                                <p>주문 정보</p>
+                                <p className={"M-font-20-size"}>주문 정보</p>
                             </div>
                         </div>
                         <div className="O-category-part" id="menuPart">
@@ -135,14 +131,14 @@ const OrderDetailModal = ({modalStatus, modalContentChange}) => {
                                      removeCss('orderDetailMenu');
                                      changeSelect('menu');
                                  }}>
-                                <p>주문 메뉴</p>
+                                <p className={"M-font-20-size"}>주문 메뉴</p>
                             </div>
                         </div>
                     </div>
                     <div className="O-modal-side-order M-overlay" id="orderInfoBody" style={{padding: '5px 20px'}}>
                         {
                             orderDetail.status === 'info' ? (<div className="M-container" style={{padding: '5px 50px'}}>
-                                <div className="M-font O-font-middle-size M-flex-column M-flex-center"
+                                <div className="M-font M-font-30-size M-flex-column M-flex-center"
                                      style={{width: '100%', height: '100%'}}>
                                     <div className="M-flex-row" style={{height: '15%', width: '100%'}}>
                                         <div className="M-container" style={{flex: '1', textAlign: 'center'}}>
@@ -205,11 +201,11 @@ const OrderDetailModal = ({modalStatus, modalContentChange}) => {
                                             marginBottom: '10px'
                                         }}
                                         className="M-flex-row">
-                                        <div className="M-flex-row M-flex-center M-font O-font-number-size"
+                                        <div className="M-flex-row M-flex-center M-font M-font-25-size"
                                              style={{width: '50%'}}>
                                             <p>메뉴</p>
                                         </div>
-                                        <div className="M-flex-row M-flex-center M-font O-font-number-size"
+                                        <div className="M-flex-row M-flex-center M-font M-font-25-size"
                                              style={{width: '50%'}}>
                                             <p>사이드</p>
                                         </div>
@@ -222,7 +218,7 @@ const OrderDetailModal = ({modalStatus, modalContentChange}) => {
                                         }
                                     </div>
                                     <div style={{width: '100%', height: '35%'}}
-                                         className="O-pay-totalPrice M-flex-center M-flex-row M-font O-font-middle-size">
+                                         className="O-pay-totalPrice M-flex-center M-flex-row M-font M-font-30-size">
                                         <p>총 금액 : {orderDetail.data.orderTotalPrice}원</p>
                                     </div>
                                 </div>
@@ -235,10 +231,10 @@ const OrderDetailModal = ({modalStatus, modalContentChange}) => {
                             <div className="O-side-select-close" style={{backgroundColor: '#f79d9d'}} onClick={() => {
                                 afterLongReceipt(orderDetail.data);
                             }}>
-                                <p className="M-font O-font-middle-size">영수증 출력하기</p>
+                                <p className="M-font M-font-30-size">영수증 출력하기</p>
                             </div>
                             <div className="O-side-select-close">
-                                <p className="M-font O-font-middle-size" onClick={close}>닫기</p>
+                                <p className="M-font M-font-30-size" onClick={close}>닫기</p>
                             </div>
                         </div>
                     </div>
