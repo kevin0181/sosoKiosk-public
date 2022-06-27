@@ -38,7 +38,7 @@ const AdminLogin = () => {
                     <div className="O-order-Side">
                         <div className="side-up-container">
                             <div className="storeName">
-                                <p className="M-font"
+                                <p className="s-font"
                                    style={{fontSize: '80px'}}>&pastel</p>
                             </div>
                         </div>

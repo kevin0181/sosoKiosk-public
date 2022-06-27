@@ -37,6 +37,11 @@ input:focus {
 }
 
 .M-font {
+    /*font-family: 'Nanum Pen Script', cursive;*/
+    font-family: 'Noto Sans KR', cursive;
+}
+
+.s-font {
     font-family: 'Nanum Pen Script', cursive;
 }
 
