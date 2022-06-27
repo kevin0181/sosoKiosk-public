@@ -35,7 +35,7 @@ const MainTotalModal = ({menuModalStatus, setAllOrderData, menuModalContentChang
                         </div>
                         <div className="O-modal-top">
                             <div className="O-modal-top-title M-font" id="deleteTop">
-                                <p>{menuModalStatus.modalTitle}</p>
+                                <p className={"M-font-30-size"}>{menuModalStatus.modalTitle}</p>
                             </div>
                         </div>
                     </div>

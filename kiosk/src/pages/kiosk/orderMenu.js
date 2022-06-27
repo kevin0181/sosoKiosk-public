@@ -35,9 +35,7 @@ const OrderMenu = ({
 
         moneyStompClient.connect({}, function (frame) {
                 moneyStompClient.send("/order/kiosk", {}, JSON.stringify({
-                    "orderMenu": null,
-                    "orderData":  null,
-                    "orderNumber": null
+                    "beforeCheck": "kiosk"
                 }));
         });
     },[]);

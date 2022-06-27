@@ -77,6 +77,8 @@ function App() {
                             modalContent: '데이터 저장 에러 (관리자에게 문의해주세요)',
                             menu: ''
                         });
+                    } else if (data === "") {
+                        return false;
                     } else {
                         menuModalContentChange({
                             status: true,
