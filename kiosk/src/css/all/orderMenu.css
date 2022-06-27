@@ -343,8 +343,15 @@
 
 .O-mini-card-header {
     width: 70%;
+    height: 90px;
+    padding: 5px;
+    display: inline-block;
+}
+
+.O-mini-card-selector {
+    width: 70%;
     height: 120px;
-    padding: 10px;
+    padding: 5px;
     display: inline-block;
 }
 

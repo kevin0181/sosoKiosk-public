@@ -190,7 +190,7 @@ const OrderMenu = ({
                                                                  deleteSelectMainMenu(it.menuSq)
                                                              }}></div>
                                                     </div>
-                                                    <div className="O-mini-card-header">
+                                                    <div className="O-mini-card-selector">
                                                         <div className="O-mini-card-header-img" onClick={() => {
                                                             reOrderDetailMenuClick(it.menuSq);
                                                         }}>
