@@ -703,7 +703,7 @@
 
 .O-select-mini-number {
     position: absolute;
-    left: 14%;
+    left: 10%;
     width: 30px;
     border-radius: 30px;
     background: #e7e7e7;
@@ -714,7 +714,7 @@
     z-index: 1;
     position: absolute;
     left: 65%;
-    top: -8px;
+    top: -14px;
 }
 
 .O-side-select-number {

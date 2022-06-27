@@ -189,7 +189,7 @@ const OrderMenu = ({
                                             allOrderData.map((it) => (
                                                 <div className="O-select-mini-card" key={it.menuSq}>
                                                     <div className="O-select-mini-number">
-                                                        <p className="D-font" style={{fontSize: '25px'}}>{it.size}</p>
+                                                        <p className="D-font" style={{fontSize: '20px'}}>{it.size}</p>
                                                     </div>
                                                     <div className="O-select-mini-close-Btn">
                                                         <div className="O-close O-close2"
