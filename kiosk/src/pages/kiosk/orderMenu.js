@@ -181,7 +181,7 @@ const OrderMenu = ({
                                             allOrderData.map((it) => (
                                                 <div className="O-select-mini-card" key={it.menuSq}>
                                                     <div className="O-select-mini-number">
-                                                        <p className="D-font" style={{fontSize:'25px'}}>{it.size}</p>
+                                                        <p className="D-font" style={{fontSize: '25px'}}>{it.size}</p>
                                                     </div>
                                                     <div className="O-select-mini-close-Btn">
                                                         <div className="O-close O-close2"
@@ -200,7 +200,8 @@ const OrderMenu = ({
                                                     </div>
                                                     <div>
                                                         <div className="O-mini-card-body-content">
-                                                            <p className="D-font" style={{fontSize:'20px'}}>{it.menuName}</p>
+                                                            <p className="D-font"
+                                                               style={{fontSize: '20px'}}>{it.menuName}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -212,7 +213,7 @@ const OrderMenu = ({
                             <div className="O-footer-buy-Btn D-font O-select-font">
                                 <div className="O-footer-buy-Btn-all">
                                     <div className="O-card-Btn M-width-80 M-flex-row M-flex-center"
-                                         style={{fontSize: '35px'}}
+                                         style={{fontSize: '30px', height: '40%'}}
                                          onClick={() => {
                                              if (allOrderData.length === 0) {
                                                  //메뉴 선택을 안함
@@ -237,7 +238,7 @@ const OrderMenu = ({
                                         <p>카드결제</p>
                                     </div>
                                     <div className="O-money-Btn M-width-80 M-flex-row M-flex-center"
-                                         style={{fontSize: '35px'}}
+                                         style={{fontSize: '30px', height: '40%'}}
                                          onClick={() => {
                                              if (allOrderData.length === 0) {
                                                  //메뉴 선택을 안함
