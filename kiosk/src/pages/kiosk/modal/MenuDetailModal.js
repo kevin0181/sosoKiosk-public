@@ -18,7 +18,7 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
     useEffect(() => {
         console.log(menuModalStatus);
         setOrderMenuASideDetail(menuModalStatus.orderMenu);
-    });
+    }, [menuModalStatus]);
 
     const saveDetailMenuOrder = () => {
 
@@ -54,9 +54,9 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
         size: 0
     });
 
-    useEffect(() => {
-        console.log(orderMenuASideDetail);
-    }, [orderMenuASideDetail]);
+    // useEffect(() => {
+    //     console.log(orderMenuASideDetail);
+    // }, [orderMenuASideDetail]);
 
     useEffect(() => {
 
@@ -97,9 +97,17 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
             }
 
         } else { //선택된 메뉴가 이미 있을때.
-
             setOrderMenuASideDetail(
-                getThisSelectData
+                {
+                    ...orderMenuASideDetail,
+                    menuSq: menuModalStatus.menu.menuSq,
+                    categorySq: menuModalStatus.menu.categorySq,
+                    menuName: menuModalStatus.menu.menuName,
+                    menuPrice: Number(menuModalStatus.menu.menuPrice),
+                    categoryDTO: menuModalStatus.menu.categoryDTO,
+                    imgDTOList: menuModalStatus.menu.imgDTOList,
+                    size: menuModalStatus.orderMenu.size
+                }
             );
 
         }
@@ -272,155 +280,161 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
                             </div>
                         </div>
                     </div>
-                    <div className="O-modal-category-bar">
-                        {
-                            sideCategory.map((it) => (
-                                <div className="O-category-part O-category-part-top" key={it.sideCategorySq}>
-                                    <div onClick={() => {
-                                        categoryChangeCss(it.sideCategorySq)
-                                    }} id={'sideCategoryId' + it.sideCategorySq}
-                                         className="D-font menuDetailCategory O-category-box"
-                                         style={{fontSize: '20px'}}>
-                                        <p>{it.sideCategoryName}</p>
-                                    </div>
-                                </div>
-                            ))
-                        }
-                    </div>
-                    <div className="O-modal-side-order M-overlay">
-                        <div className="O-side-order-part">
-                            {
-                                sideMenu.length === 0 ? (
-                                    <p className={'O-font-middle-size D-font'}
-                                       style={{textAlign: 'center', width: '100%', marginTop: '10%'}}>사이드 메뉴
-                                        없음</p>
-                                ) : (
-                                    sideMenu.map((it) => (
-                                        it.menuSideEnable ? (
-                                            <>
-                                            </>
-                                        ) : (
-                                            <div className="O-side-order-card" key={it.menuSideSq}>
-                                                <div className="O-menu-side-img">
-                                                    <img className="O-side-img" alt={'사이드 이미지'}
-                                                         src={'http://' + serverUrl.server + it.menuSideImgDTOList[0].menuSideImgPath +
-                                                             '/' + it.menuSideImgDTOList[0].menuSideImgName}/>
-                                                </div>
-                                                <div
-                                                    className="O-menu-side-name D-font M-flex-column M-flex-center">
-                                                    <p style={{
-                                                        fontSize: '23px',
-                                                        textAlign: 'center'
-                                                    }}>{it.menuSideName}</p>
-                                                    <small
-                                                        style={{fontSize: '18px'}}>{'가격 : ' + it.menuSidePrice}</small>
-                                                    {
-                                                        it.menuSideSoldOut ? (<p className="D-font"
-                                                                                 style={{
-                                                                                     fontSize: '20px',
-                                                                                     color: 'red'
-                                                                                 }}>품절</p>) : (<></>)
-                                                    }
-                                                </div>
-                                                <div className="O-menu-side-number M-flex-column M-flex-center"
-                                                     style={{width: '10%', fontSize: '35px'}}>
-                                                    {
-                                                        it.menuSideSoldOut ? (
-                                                                <></>
-                                                            ) :
-                                                            (<>
-                                                                <div
-                                                                    className="side-number-top D-font"
-                                                                    id={'menuSideUp' + it.menuSideSq}
-                                                                    data-sq={it.menuSideSq}
-                                                                    data-name={it.menuSideName}
-                                                                    data-price={it.menuSidePrice}
-                                                                    onClick={changeOrderMenu}>+
-                                                                </div>
-                                                                <div className="D-font">
-                                                                    <SideMenuSize menuSideSq={it.menuSideSq}/>
-                                                                </div>
-                                                                <div
-                                                                    className="side-number-bottom D-font"
-                                                                    id={'menuSideDown' + it.menuSideSq}
-                                                                    data-sq={it.menuSideSq}
-                                                                    data-name={it.menuSideName}
-                                                                    data-price={it.menuSidePrice}
-                                                                    onClick={changeOrderMenu}>-
-                                                                </div>
-                                                            </>)
-                                                    }
-
-                                                </div>
-                                            </div>
-                                        )
-                                    ))
-                                )
-
-                            }
-
-                        </div>
-                    </div>
-                    <div className="O-modal-side-footer">
-                        <div
-                            className="O-side-select-menu-part-left M-flex-row M-flex-center O-side-select-menu-part-left2">
-                            <div className="O-select-mini-card" style={{width: '85%'}}>
-                                <div className="O-mini-card-header">
-                                    <div className="O-mini-card-header-img">
-                                        <img className="O-mini-img" alt={'선택된 메뉴 이미지'}
-                                             src={'http://' + serverUrl.server + orderMenuASideDetail.imgDTOList[0].imgPath
-                                                 + '/' + orderMenuASideDetail.imgDTOList[0].imgName}/>
-                                    </div>
-                                </div>
-                                <div className="O-mini-card-body">
-                                    <div className="O-mini-card-body-content">
-                                        <p className="D-font"
-                                           style={{fontSize: '15px'}}>{menuModalStatus.menu.menuName}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="O-menu-side-number M-flex-column M-flex-center" style={{fontSize: '30px'}}>
-                                <div className="side-number-top D-font " id={'mainMenuSizePlus'}
-                                     onClick={changeOrderMenu}>+
-                                </div>
-                                <div className="D-font "><p>{orderMenuASideDetail.size}</p></div>
-                                <div className="side-number-bottom D-font " onClick={changeOrderMenu}
-                                     id={'mainMenuSizeMinus'}>-
-                                </div>
-                            </div>
-                        </div>
-                        <div className="O-side-select-part w-M-overlay">
-                            <div className="O-side-select-menu-part">
+                    <div className={"M-flex-row"}>
+                        <div>
+                            <div className="O-modal-category-bar">
                                 {
-                                    orderMenuASideDetail.addSide.map((it) => (
-                                        <div className="O-side-select-card O-side-select-card13" key={it.sideSq}
-                                             name="selectSideCardName">
-                                            <div className="O-side-select-number">
-                                                <p className="D-font" style={{fontSize: '20px'}}
-                                                   name="sideSelectSize13">{it.sideSize}</p>
-                                            </div>
-                                            <div className="O-side-mini-close-Btn">
-                                                <div className="O-close O-close2" onClick={() => {
-                                                    deleteSelectSide(it.sideSq)
-                                                }}></div>
-                                            </div>
-                                            <div className="O-side-select-name M-flex-column M-flex-center M-overlay">
-                                                <p className="D-font" style={{fontSize: '25px'}}>{it.sideName}</p>
+                                    sideCategory.map((it) => (
+                                        <div className="O-category-part O-category-part-top" key={it.sideCategorySq}>
+                                            <div onClick={() => {
+                                                categoryChangeCss(it.sideCategorySq)
+                                            }} id={'sideCategoryId' + it.sideCategorySq}
+                                                 className="D-font menuDetailCategory O-category-box"
+                                                 style={{fontSize: '20px'}}>
+                                                <p>{it.sideCategoryName}</p>
                                             </div>
                                         </div>
                                     ))
                                 }
                             </div>
-                        </div>
-                        <div className="O-side-select-ok-part">
-                            <div className="O-side-select-ok M-flex-center M-flex-row" style={{height: '40%'}}
-                                 onClick={saveDetailMenuOrder}>
-                                <p className="D-font " style={{fontSize: '30px'}}>선택
-                                    완료</p>
+                            <div className="O-modal-side-order M-overlay">
+                                <div className="O-side-order-part">
+                                    {
+                                        sideMenu.length === 0 ? (
+                                            <p className={'O-font-middle-size D-font'}
+                                               style={{textAlign: 'center', width: '100%', marginTop: '10%'}}>사이드 메뉴
+                                                없음</p>
+                                        ) : (
+                                            sideMenu.map((it) => (
+                                                it.menuSideEnable ? (
+                                                    <>
+                                                    </>
+                                                ) : (
+                                                    <div className="O-side-order-card" key={it.menuSideSq}>
+                                                        <div className="O-menu-side-img">
+                                                            <img className="O-side-img" alt={'사이드 이미지'}
+                                                                 src={'http://' + serverUrl.server + it.menuSideImgDTOList[0].menuSideImgPath +
+                                                                     '/' + it.menuSideImgDTOList[0].menuSideImgName}/>
+                                                        </div>
+                                                        <div
+                                                            className="O-menu-side-name D-font M-flex-column M-flex-center">
+                                                            <p style={{
+                                                                fontSize: '23px',
+                                                                textAlign: 'center'
+                                                            }}>{it.menuSideName}</p>
+                                                            <small
+                                                                style={{fontSize: '18px'}}>{'가격 : ' + it.menuSidePrice}</small>
+                                                            {
+                                                                it.menuSideSoldOut ? (<p className="D-font"
+                                                                                         style={{
+                                                                                             fontSize: '20px',
+                                                                                             color: 'red'
+                                                                                         }}>품절</p>) : (<></>)
+                                                            }
+                                                        </div>
+                                                        <div className="O-menu-side-number M-flex-column M-flex-center"
+                                                             style={{width: '10%', fontSize: '35px'}}>
+                                                            {
+                                                                it.menuSideSoldOut ? (
+                                                                        <></>
+                                                                    ) :
+                                                                    (<>
+                                                                        <div
+                                                                            className="side-number-top D-font"
+                                                                            id={'menuSideUp' + it.menuSideSq}
+                                                                            data-sq={it.menuSideSq}
+                                                                            data-name={it.menuSideName}
+                                                                            data-price={it.menuSidePrice}
+                                                                            onClick={changeOrderMenu}>+
+                                                                        </div>
+                                                                        <div className="D-font">
+                                                                            <SideMenuSize menuSideSq={it.menuSideSq}/>
+                                                                        </div>
+                                                                        <div
+                                                                            className="side-number-bottom D-font"
+                                                                            id={'menuSideDown' + it.menuSideSq}
+                                                                            data-sq={it.menuSideSq}
+                                                                            data-name={it.menuSideName}
+                                                                            data-price={it.menuSidePrice}
+                                                                            onClick={changeOrderMenu}>-
+                                                                        </div>
+                                                                    </>)
+                                                            }
+
+                                                        </div>
+                                                    </div>
+                                                )
+                                            ))
+                                        )
+
+                                    }
+
+                                </div>
                             </div>
-                            <div className="O-side-select-close M-flex-center M-flex-row" style={{height: '40%'}}
-                                 onClick={close}>
-                                <p className="D-font " style={{fontSize: '30px'}} onClick={close}>닫기</p>
+                        </div>
+                        <div className="O-modal-side-footer">
+                            <div
+                                className="O-side-select-menu-part-left M-flex-row M-flex-center O-side-select-menu-part-left2">
+                                <div className="O-select-mini-card" style={{width: '85%'}}>
+                                    <div className="O-mini-card-header">
+                                        <div className="O-mini-card-header-img">
+                                            <img className="O-mini-img" alt={'선택된 메뉴 이미지'}
+                                                 src={'http://' + serverUrl.server + orderMenuASideDetail.imgDTOList[0].imgPath
+                                                     + '/' + orderMenuASideDetail.imgDTOList[0].imgName}/>
+                                        </div>
+                                    </div>
+                                    <div className="O-mini-card-body">
+                                        <div className="O-mini-card-body-content">
+                                            <p className="D-font"
+                                               style={{fontSize: '15px'}}>{menuModalStatus.menu.menuName}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="O-menu-side-number M-flex-column M-flex-center"
+                                     style={{fontSize: '30px'}}>
+                                    <div className="side-number-top D-font " id={'mainMenuSizePlus'}
+                                         onClick={changeOrderMenu}>+
+                                    </div>
+                                    <div className="D-font "><p>{orderMenuASideDetail.size}</p></div>
+                                    <div className="side-number-bottom D-font " onClick={changeOrderMenu}
+                                         id={'mainMenuSizeMinus'}>-
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="O-side-select-part w-M-overlay">
+                                <div className="O-side-select-menu-part">
+                                    {
+                                        orderMenuASideDetail.addSide.map((it) => (
+                                            <div className="O-side-select-card O-side-select-card13" key={it.sideSq}
+                                                 name="selectSideCardName">
+                                                <div className="O-side-select-number">
+                                                    <p className="D-font" style={{fontSize: '20px'}}
+                                                       name="sideSelectSize13">{it.sideSize}</p>
+                                                </div>
+                                                <div className="O-side-mini-close-Btn">
+                                                    <div className="O-close O-close2" onClick={() => {
+                                                        deleteSelectSide(it.sideSq)
+                                                    }}></div>
+                                                </div>
+                                                <div
+                                                    className="O-side-select-name M-flex-column M-flex-center M-overlay">
+                                                    <p className="D-font" style={{fontSize: '25px'}}>{it.sideName}</p>
+                                                </div>
+                                            </div>
+                                        ))
+                                    }
+                                </div>
+                            </div>
+                            <div className="O-side-select-ok-part">
+                                <div className="O-side-select-ok M-flex-center M-flex-row" style={{height: '40%'}}
+                                     onClick={saveDetailMenuOrder}>
+                                    <p className="D-font " style={{fontSize: '30px'}}>선택
+                                        완료</p>
+                                </div>
+                                <div className="O-side-select-close M-flex-center M-flex-row" style={{height: '40%'}}
+                                     onClick={close}>
+                                    <p className="D-font " style={{fontSize: '30px'}} onClick={close}>닫기</p>
+                                </div>
                             </div>
                         </div>
                     </div>
