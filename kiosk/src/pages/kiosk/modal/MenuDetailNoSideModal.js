@@ -36,18 +36,6 @@ const MenuDetailNoSideModal = ({menuModalStatus, menuModalContentChange, changeA
 
     }
 
-    const selectDetailSideMenu = (detailMenu) => {
-        menuModalContentChange({
-            status: true,
-            param: "",
-            modalType: 'orderMenuDetailSide',
-            modalTitle: detailMenu.menuName + ' 상세 보기',
-            modalContent: '',
-            menu: detailMenu
-        });
-    }
-
-
     const [orderMenuASideDetail, setOrderMenuASideDetail] = useState({
         menuSq: '',
         categorySq: '',
@@ -73,6 +61,34 @@ const MenuDetailNoSideModal = ({menuModalStatus, menuModalContentChange, changeA
         ],
         size: 0
     });
+
+    const selectDetailSideMenu = (detailMenu) => {
+
+        if(orderMenuASideDetail.size === 0){
+            menuModalContentChange({
+                status: false,
+                param: '',
+                modalType: '',
+                modalTitle: '',
+                modalContent: '',
+                menu: ''
+            })
+        }else{
+
+            menuModalContentChange({
+                status: true,
+                param: "",
+                modalType: 'orderMenuDetailSide',
+                modalTitle: detailMenu.menuName + ' 상세 보기',
+                modalContent: '',
+                menu: detailMenu,
+                orderMenu: orderMenuASideDetail
+            });
+
+        }
+
+    }
+
 
     useEffect(() => {
 
@@ -204,7 +220,7 @@ const MenuDetailNoSideModal = ({menuModalStatus, menuModalContentChange, changeA
                             <div className="O-side-select-part w-M-overlay">
                                 <div className="O-side-select-menu-part">
                                     <div className="O-side-select-close M-flex-column M-flex-center"
-                                         onClick={()=>{
+                                         onClick={() => {
                                              selectDetailSideMenu(detailMenu)
                                          }}
                                          style={{width: '100%', height: '80%', backgroundColor: '#eb8282'}}>
@@ -216,7 +232,7 @@ const MenuDetailNoSideModal = ({menuModalStatus, menuModalContentChange, changeA
                             <div className="O-side-select-part w-M-overlay" style={{width: '90%'}}>
                                 <div className="O-side-select-menu-part">
                                     <div className="O-side-select-close M-flex-column M-flex-center"
-                                         onClick={()=>{
+                                         onClick={() => {
                                              selectDetailSideMenu(detailMenu)
                                          }}
                                          style={{

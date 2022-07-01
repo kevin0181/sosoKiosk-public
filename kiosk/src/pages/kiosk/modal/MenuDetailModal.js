@@ -15,6 +15,10 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
         })
     }
 
+    useEffect(()=>{
+        console.log(menuModalStatus);
+    },[]);
+
     const saveDetailMenuOrder = () => {
 
         close();
@@ -71,7 +75,7 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
                     menuPrice: Number(menuModalStatus.menu.menuPrice),
                     categoryDTO: menuModalStatus.menu.categoryDTO,
                     imgDTOList: menuModalStatus.menu.imgDTOList,
-                    size: 1
+                    size: menuModalStatus.orderMenu.size
                 });
             } else {
                 setOrderMenuASideDetail({
