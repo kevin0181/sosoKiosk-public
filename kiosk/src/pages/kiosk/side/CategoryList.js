@@ -15,16 +15,16 @@ const CategoryList = ({categoryList}) => {
 
     return (
         <>
-            <div className="text D-font O-category-font O-category-Side"
-                 style={{fontSize: '25px'}}
-                 onClick={() => {
-                     changeSelectCss(0);
-                     navigate('/menuOrder?categorySq=0')
-                 }} id={'categorySelectCss0'}>
-                <div className="O-category-name O-category-select O-click-color">
-                    <a>전체</a>
-                </div>
-            </div>
+            {/*<div className="text D-font O-category-font O-category-Side"*/}
+            {/*     style={{fontSize: '25px'}}*/}
+            {/*     onClick={() => {*/}
+            {/*         changeSelectCss(0);*/}
+            {/*         navigate('/menuOrder?categorySq=0')*/}
+            {/*     }} id={'categorySelectCss0'}>*/}
+            {/*    <div className="O-category-name O-category-select O-click-color">*/}
+            {/*        <a>전체</a>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
             {categoryList && categoryList.map((it) => (
                 <div className="text O-category-font O-category-Side" key={it.categorySq}
                      id={'categorySelectCss' + it.categorySq}
