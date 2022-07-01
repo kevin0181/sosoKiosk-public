@@ -121,7 +121,8 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeMenuData, 
             sideName: ''
         },
         menuSoldOut: false,
-        menuEnable: false
+        menuEnable: false,
+        setStatus: false
     });
 
     const changeMenuForm = () => {
@@ -468,6 +469,19 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeMenuData, 
                                            }}
                                            id="menuEnable-checkBox"/>
                                     <label htmlFor="menuEnable-checkBox"></label>
+                                </div>
+                                <div className="M-container M-flex-row M-flex-center" style={{width: '50%'}}>
+                                    <p className="M-font M-font-25-size">세트</p>
+                                    <input type="checkbox" className="M-input-checkBox"
+                                           checked={addMenu.setStatus}
+                                           onChange={() => {
+                                               setAddMenu({
+                                                   ...addMenu,
+                                                   setStatus: !addMenu.setStatus
+                                               })
+                                           }}
+                                           id="setStatus-checkBox"/>
+                                    <label htmlFor="setStatus-checkBox"></label>
                                 </div>
                             </div>
                         </div>
