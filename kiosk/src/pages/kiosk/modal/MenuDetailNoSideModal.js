@@ -36,6 +36,18 @@ const MenuDetailNoSideModal = ({menuModalStatus, menuModalContentChange, changeA
 
     }
 
+    const selectDetailSideMenu = (detailMenu) => {
+        menuModalContentChange({
+            status: true,
+            param: "",
+            modalType: 'orderMenuDetailSide',
+            modalTitle: detailMenu.menuName + ' 상세 보기',
+            modalContent: '',
+            menu: detailMenu
+        });
+    }
+
+
     const [orderMenuASideDetail, setOrderMenuASideDetail] = useState({
         menuSq: '',
         categorySq: '',
@@ -192,7 +204,9 @@ const MenuDetailNoSideModal = ({menuModalStatus, menuModalContentChange, changeA
                             <div className="O-side-select-part w-M-overlay">
                                 <div className="O-side-select-menu-part">
                                     <div className="O-side-select-close M-flex-column M-flex-center"
-                                         onClick={saveDetailMenuOrder}
+                                         onClick={()=>{
+                                             selectDetailSideMenu(detailMenu)
+                                         }}
                                          style={{width: '100%', height: '80%', backgroundColor: '#eb8282'}}>
                                         <p className="M-font M-font-30-size">사이드 추가 하러가기</p>
                                     </div>
@@ -202,7 +216,9 @@ const MenuDetailNoSideModal = ({menuModalStatus, menuModalContentChange, changeA
                             <div className="O-side-select-part w-M-overlay" style={{width: '90%'}}>
                                 <div className="O-side-select-menu-part">
                                     <div className="O-side-select-close M-flex-column M-flex-center"
-                                         onClick={saveDetailMenuOrder}
+                                         onClick={()=>{
+                                             selectDetailSideMenu(detailMenu)
+                                         }}
                                          style={{
                                              width: '100%',
                                              height: '80%',
