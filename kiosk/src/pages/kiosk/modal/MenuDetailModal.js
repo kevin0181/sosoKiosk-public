@@ -282,7 +282,7 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
                     </div>
                     <div className={"M-flex-row"}>
                         <div style={{width: '60%', height: '100%'}} className={"M-flex-column"}>
-                            <div className="O-modal-category-bar" style={{height: 'auto'}}>
+                            <div className="O-modal-category-bar w-M-overlay" style={{height: 'auto'}}>
                                 {
                                     sideCategory.map((it) => (
                                         <div className="O-category-part O-category-part-top" key={it.sideCategorySq}>
@@ -393,13 +393,13 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
                                 </div>
                                 <div className="O-menu-side-number M-flex-column M-flex-center"
                                      style={{fontSize: '30px'}}>
-                                    <div className="side-number-top D-font " id={'mainMenuSizePlus'}
-                                         onClick={changeOrderMenu}>+
-                                    </div>
-                                    <div className="D-font "><p>{orderMenuASideDetail.size}</p></div>
-                                    <div className="side-number-bottom D-font " onClick={changeOrderMenu}
-                                         id={'mainMenuSizeMinus'}>-
-                                    </div>
+                                    {/*<div className="side-number-top D-font " id={'mainMenuSizePlus'}*/}
+                                    {/*     onClick={changeOrderMenu}>+*/}
+                                    {/*</div>*/}
+                                    <div className="D-font "><p>{orderMenuASideDetail.size}개</p></div>
+                                    {/*<div className="side-number-bottom D-font " onClick={changeOrderMenu}*/}
+                                    {/*     id={'mainMenuSizeMinus'}>-*/}
+                                    {/*</div>*/}
                                 </div>
                             </div>
                             <div className="O-side-select-part M-overlay" style={{height: '377px', width: '100%'}}>
