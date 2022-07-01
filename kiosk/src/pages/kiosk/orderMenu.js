@@ -27,18 +27,18 @@ const OrderMenu = ({
 
     const navigate = useNavigate();
 
-    useEffect(()=>{
+    useEffect(() => {
 
         let moneyStompClient;
 
         moneyStompClient = Stomp.over(new SockJS(serverSocket.serverSocket));
 
         moneyStompClient.connect({}, function (frame) {
-                moneyStompClient.send("/order/kiosk", {}, JSON.stringify({
-                    "beforeCheck": "kiosk"
-                }));
+            moneyStompClient.send("/order/kiosk", {}, JSON.stringify({
+                "beforeCheck": "kiosk"
+            }));
         });
-    },[]);
+    }, []);
 
     useEffect(() => {
         selectMenuVoice();
@@ -142,8 +142,8 @@ const OrderMenu = ({
                                     </div>
                                 </div>
                                 <div className="totalPrice-div M-flex-column M-flex-center"
-                                     style={{width: '100%'}}>
-                                    <p className={'D-font'} style={{fontSize:'29px'}}>총 금액 : {totalPrice}원</p>
+                                     style={{width: '100%', height: '13%'}}>
+                                    <p className={'D-font'} style={{fontSize: '29px'}}>총 금액 : {totalPrice}원</p>
                                 </div>
                             </div>
                         </div>
