@@ -15,9 +15,10 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
         })
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log(menuModalStatus);
-    },[]);
+        setOrderMenuASideDetail(menuModalStatus.orderMenu);
+    });
 
     const saveDetailMenuOrder = () => {
 
@@ -52,6 +53,10 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
         ],
         size: 0
     });
+
+    useEffect(() => {
+        console.log(orderMenuASideDetail);
+    }, [orderMenuASideDetail]);
 
     useEffect(() => {
 
@@ -358,7 +363,7 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
                     </div>
                     <div className="O-modal-side-footer">
                         <div
-                            className="O-side-select-menu-part-left M-flex-row M-flex-center">
+                            className="O-side-select-menu-part-left M-flex-row M-flex-center O-side-select-menu-part-left2">
                             <div className="O-select-mini-card" style={{width: '85%'}}>
                                 <div className="O-mini-card-header">
                                     <div className="O-mini-card-header-img">
