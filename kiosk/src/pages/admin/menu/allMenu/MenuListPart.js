@@ -24,11 +24,18 @@ const MenuListPart = ({data, modalContentChange}) => {
             return <p></p>
     }
 
+    const setStatusCheck = (setStatus) => {
+        if (setStatus)
+            return <p className={"setStatus-font"}>(세트)</p>
+        else
+            return <p></p>
+    }
+
     return (
         <>
             {
                 data.all.map((it) => (
-                    <tr className="admin-tbody-tr" style={{fontSize:'20px'}} key={it.menuSq}>
+                    <tr className="admin-tbody-tr" style={{fontSize: '20px'}} key={it.menuSq}>
                         <td className="search">
                             {it.categoryDTO.categoryName}
                         </td>
@@ -63,6 +70,9 @@ const MenuListPart = ({data, modalContentChange}) => {
                             }
                             {
                                 menuEnableCheck(it.menuEnable)
+                            }
+                            {
+                                setStatusCheck(it.setStatus)
                             }
                         </td>
                         <td className="search">

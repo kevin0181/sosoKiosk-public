@@ -281,12 +281,19 @@ input[id="menuSideEnable-checkBox"]:checked + label::after {
 
 .soldOut-font {
     color: red;
-    font-size: 20px;
+    font-size: 10px;
     display: inline-block;
 }
 
 .enableMenu-font {
     color: #33dcff;
-    font-size: 20px;
+    font-size: 10px;
+    display: inline-block;
+}
+
+
+.setStatus-font {
+    color: #eae089;
+    font-size: 10px;
     display: inline-block;
 }
