@@ -19,6 +19,9 @@ public class CategoryEntity {
     @Column(name = "category_name") //200
     private String categoryName;
 
+    @Column(name = "category_index") //200
+    private int categoryIndex;
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "category_sq")
     @JsonIgnore
