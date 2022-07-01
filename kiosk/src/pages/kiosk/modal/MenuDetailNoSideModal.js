@@ -206,7 +206,7 @@ const MenuDetailNoSideModal = ({menuModalStatus, menuModalContentChange, changeA
                                          style={{
                                              width: '100%',
                                              height: '80%',
-                                             backgroundColor: '#eb8282',
+                                             backgroundColor: '#f3c3c3',
                                              padding: '15px'
                                          }}>
                                         <p className="M-font M-font-30-size">사이드 추가 하러가기</p>
