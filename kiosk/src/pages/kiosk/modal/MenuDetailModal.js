@@ -15,6 +15,12 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
         })
     }
 
+    useEffect(() => {
+        console.log(menuModalStatus);
+    }, []);
+
+    const [message, setMessage] = useState(false);
+
     const saveDetailMenuOrder = () => {
 
         close();
@@ -405,7 +411,7 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
                                     {/*</div>*/}
                                 </div>
                             </div>
-                            <div className="O-side-select-part M-overlay" style={{height: '377px', width: '100%'}}>
+                            <div className="O-side-select-part M-overlay" style={{height: '355px', width: '100%'}}>
                                 <div className="O-side-select-menu-part">
                                     {
                                         orderMenuASideDetail.addSide.map((it) => (
@@ -430,11 +436,30 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
                                     }
                                 </div>
                             </div>
+                            <div className={"M-flex-column M-flex-center"} style={{height: '5%'}}>
+                                {
+                                    message ? (
+                                        <p className={"D-font"} style={{fontSize: '10px', color: 'red'}}>세트 메뉴는 사이드를
+                                            선택해야 합니다.</p>) : (<></>)
+                                }
+                            </div>
                             <div className="O-side-select-ok-part"
                                  style={{flexDirection: 'row', width: '100%', height: '14%'}}>
                                 <div className="O-side-select-ok M-flex-center M-flex-row"
                                      style={{margin: '0 5px'}}
-                                     onClick={saveDetailMenuOrder}>
+                                     onClick={() => {
+                                         if (menuModalStatus.menu.setStatus) {
+                                             if (orderMenuASideDetail.addSide.length === 0) {
+                                                 setMessage(true);
+                                                 return false;
+                                             } else {
+                                                 setMessage(false);
+                                                 saveDetailMenuOrder();
+                                             }
+                                         } else {
+                                             saveDetailMenuOrder();
+                                         }
+                                     }}>
                                     <p className="D-font " style={{fontSize: '30px'}}>선택
                                         완료</p>
                                 </div>
