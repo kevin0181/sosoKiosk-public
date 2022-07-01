@@ -358,7 +358,7 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
                     </div>
                     <div className="O-modal-side-footer">
                         <div
-                            className="O-side-select-menu-part-left M-flex-row M-flex-center O-side-select-menu-part-left2">
+                            className="O-side-select-menu-part-left M-flex-row M-flex-center">
                             <div className="O-select-mini-card" style={{width: '85%'}}>
                                 <div className="O-mini-card-header">
                                     <div className="O-mini-card-header-img">
