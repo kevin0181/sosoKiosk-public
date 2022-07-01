@@ -58,7 +58,7 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
 
         let getThisSelectData = allOrderData.filter((it) => it.menuSq === menuModalStatus.menu.menuSq)[0];
 
-        if(menuModalStatus.menu.side.length !== 0){
+        if (menuModalStatus.menu.side.length !== 0) {
             setSideCategory(menuModalStatus.menu.side[0].sideCategoryDTOList); //사이드 카테고리 넣음
             if (menuModalStatus.menu.side[0].sideCategoryDTOList[0].menuSideDTOList.length !== 0) {
                 setSideMenu(menuModalStatus.menu.side[0].sideCategoryDTOList[0].menuSideDTOList); //사이드 넣음
@@ -315,7 +315,7 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
                                                 ) : (
                                                     <div className="O-side-order-card" style={{width: '50%'}}
                                                          key={it.menuSideSq}>
-                                                        <div className="O-menu-side-img">
+                                                        <div className="O-menu-side-img" style={{height: '90%'}}>
                                                             <img className="O-side-img" alt={'사이드 이미지'}
                                                                  src={'http://' + serverUrl.server + it.menuSideImgDTOList[0].menuSideImgPath +
                                                                      '/' + it.menuSideImgDTOList[0].menuSideImgName}/>
@@ -380,7 +380,7 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
                             <div
                                 className="M-flex-row M-flex-center">
                                 <div className="O-select-mini-card" style={{width: '85%'}}>
-                                    <div className="O-mini-card-header">
+                                    <div className="O-mini-card-header" style={{width: '35%'}}>
                                         <div className="O-mini-card-header-img">
                                             <img className="O-mini-img" alt={'선택된 메뉴 이미지'}
                                                  src={'http://' + serverUrl.server + orderMenuASideDetail.imgDTOList[0].imgPath
