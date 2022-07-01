@@ -15,11 +15,6 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
         })
     }
 
-    useEffect(() => {
-        console.log(menuModalStatus);
-        setOrderMenuASideDetail(menuModalStatus.orderMenu);
-    }, [menuModalStatus]);
-
     const saveDetailMenuOrder = () => {
 
         close();
@@ -63,11 +58,12 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
 
         let getThisSelectData = allOrderData.filter((it) => it.menuSq === menuModalStatus.menu.menuSq)[0];
 
-        setSideCategory(menuModalStatus.menu.side[0].sideCategoryDTOList); //사이드 카테고리 넣음
-        if (menuModalStatus.menu.side[0].sideCategoryDTOList[0].menuSideDTOList.length !== 0) {
-            setSideMenu(menuModalStatus.menu.side[0].sideCategoryDTOList[0].menuSideDTOList); //사이드 넣음
+        if(menuModalStatus.menu.side.length !== 0){
+            setSideCategory(menuModalStatus.menu.side[0].sideCategoryDTOList); //사이드 카테고리 넣음
+            if (menuModalStatus.menu.side[0].sideCategoryDTOList[0].menuSideDTOList.length !== 0) {
+                setSideMenu(menuModalStatus.menu.side[0].sideCategoryDTOList[0].menuSideDTOList); //사이드 넣음
+            }
         }
-
 
         if (getThisSelectData === undefined || getThisSelectData === null) { //만약 선택된 메뉴가 없으면?
 
@@ -80,7 +76,8 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
                     menuPrice: Number(menuModalStatus.menu.menuPrice),
                     categoryDTO: menuModalStatus.menu.categoryDTO,
                     imgDTOList: menuModalStatus.menu.imgDTOList,
-                    size: menuModalStatus.orderMenu.size
+                    size: menuModalStatus.orderMenu.size,
+                    addSide: menuModalStatus.orderMenu.addSide
                 });
             } else {
                 setOrderMenuASideDetail({
@@ -92,7 +89,7 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
                     categoryDTO: menuModalStatus.menu.categoryDTO,
                     imgDTOList: menuModalStatus.menu.imgDTOList,
                     size: 1,
-                    addSide: menuModalStatus.menu.addSide
+                    addSide: menuModalStatus.orderMenu.addSide
                 });
             }
 
@@ -106,13 +103,20 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
                     menuPrice: Number(menuModalStatus.menu.menuPrice),
                     categoryDTO: menuModalStatus.menu.categoryDTO,
                     imgDTOList: menuModalStatus.menu.imgDTOList,
-                    size: menuModalStatus.orderMenu.size
+                    size: menuModalStatus.orderMenu.size,
+                    addSide: menuModalStatus.orderMenu.addSide
                 }
             );
 
         }
 
     }, [menuModalStatus]);
+
+
+    useEffect(() => {
+        console.log(orderMenuASideDetail);
+    }, [orderMenuASideDetail]);
+
 
     const changeOrderMenu = (e) => {
 
@@ -243,7 +247,6 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
 
 
     useEffect(() => {
-
         menuModalStatus.menu.side[0].sideCategoryDTOList.map((it) => {
             if (sideCategorySq === it.sideCategorySq) {
                 setSideMenu(it.menuSideDTOList);

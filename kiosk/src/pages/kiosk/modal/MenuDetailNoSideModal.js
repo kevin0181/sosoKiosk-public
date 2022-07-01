@@ -6,16 +6,14 @@ const MenuDetailNoSideModal = ({menuModalStatus, menuModalContentChange, changeA
     const [detailMenu, setDetailMenu] = useState([]);
     const [detailMenuImg, setDetailMenuImg] = useState([]);
 
+    const [sideLengthStatus, setSideLengthStatus] = useState(0);
+
     useEffect(() => {
 
         setDetailMenu(menuModalStatus.menu);
         setDetailMenuImg(menuModalStatus.menu.imgDTOList);
 
     }, []);
-
-    useEffect(() => {
-        console.log(detailMenu);
-    }, [detailMenu]);
 
     const close = () => {
         menuModalContentChange({
@@ -64,7 +62,7 @@ const MenuDetailNoSideModal = ({menuModalStatus, menuModalContentChange, changeA
 
     const selectDetailSideMenu = (detailMenu) => {
 
-        if(orderMenuASideDetail.size === 0){
+        if (orderMenuASideDetail.size === 0) {
             menuModalContentChange({
                 status: false,
                 param: '',
@@ -73,7 +71,7 @@ const MenuDetailNoSideModal = ({menuModalStatus, menuModalContentChange, changeA
                 modalContent: '',
                 menu: ''
             })
-        }else{
+        } else {
 
             menuModalContentChange({
                 status: true,
@@ -230,20 +228,22 @@ const MenuDetailNoSideModal = ({menuModalStatus, menuModalContentChange, changeA
                             </div>
                         </div>) : (<div className="O-modal-side-footer M-flex-row M-flex-center">
                             <div className="O-side-select-part w-M-overlay" style={{width: '90%'}}>
-                                <div className="O-side-select-menu-part">
-                                    <div className="O-side-select-close M-flex-column M-flex-center"
-                                         onClick={() => {
-                                             selectDetailSideMenu(detailMenu)
-                                         }}
-                                         style={{
-                                             width: '100%',
-                                             height: '80%',
-                                             backgroundColor: '#f3c3c3',
-                                             padding: '15px'
-                                         }}>
-                                        <p className="M-font M-font-30-size">사이드 추가 하러가기</p>
-                                    </div>
-                                </div>
+                                {
+                                    menuModalStatus.menu.side.length === 0 ? (<></>) : (<div className="O-side-select-menu-part">
+                                        <div className="O-side-select-close M-flex-column M-flex-center"
+                                             onClick={() => {
+                                                 selectDetailSideMenu(detailMenu)
+                                             }}
+                                             style={{
+                                                 width: '100%',
+                                                 height: '80%',
+                                                 backgroundColor: '#f3c3c3',
+                                                 padding: '15px'
+                                             }}>
+                                            <p className="M-font M-font-30-size">사이드 추가 하러가기</p>
+                                        </div>
+                                    </div>)
+                                }
                                 <div className="O-side-select-menu-part">
                                     <div className="O-side-select-close M-flex-column M-flex-center"
                                          onClick={saveDetailMenuOrder}
