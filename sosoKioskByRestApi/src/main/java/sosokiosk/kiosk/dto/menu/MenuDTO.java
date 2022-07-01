@@ -5,6 +5,7 @@ import lombok.Setter;
 import sosokiosk.kiosk.dto.side.SideDTO;
 import sosokiosk.kiosk.subDto.OrderSide;
 
+import javax.persistence.Column;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -25,6 +26,8 @@ public class MenuDTO {
     private boolean menuSoldOut;
 
     private boolean menuEnable;
+
+    private boolean setStatus;
 
     private CategoryDTO categoryDTO;
 

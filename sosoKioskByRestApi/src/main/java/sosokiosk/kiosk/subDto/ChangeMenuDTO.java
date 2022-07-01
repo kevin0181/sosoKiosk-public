@@ -23,5 +23,7 @@ public class ChangeMenuDTO {
 
     private boolean menuEnable = false;
 
+    private boolean setStatus = false;
+
     private MultipartFile menuImg;
 }

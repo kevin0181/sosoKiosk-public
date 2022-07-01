@@ -25,7 +25,8 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeMenuData, 
                     sideName: changeMenuData.side[0].sideName
                 },
                 menuSoldOut: changeMenuData.menuSoldOut,
-                menuEnable: changeMenuData.menuEnable
+                menuEnable: changeMenuData.menuEnable,
+                setStatus: changeMenuData.setStatus
             });
         } else {
             setAddMenu({
@@ -41,7 +42,8 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeMenuData, 
                     sideName: ''
                 },
                 menuSoldOut: changeMenuData.menuSoldOut,
-                menuEnable: changeMenuData.menuEnable
+                menuEnable: changeMenuData.menuEnable,
+                setStatus: changeMenuData.setStatus
             });
         }
     }, []);
@@ -152,6 +154,7 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeMenuData, 
         formData.append('sideSq', addMenu.sideSelect.sideSq);
         formData.append('menuSoldOut', addMenu.menuSoldOut);
         formData.append('menuEnable', addMenu.menuEnable);
+        formData.append('setStatus', addMenu.setStatus);
 
         if (imgStatus) {
             if (menuImg.img === '') {
@@ -184,7 +187,8 @@ const AdminMenuDetailModal = ({modalStatus, modalContentChange, changeMenuData, 
                     sideName: ''
                 },
                 menuSoldOut: false,
-                menuEnable: false
+                menuEnable: false,
+                setStatus: false
             });
 
             setMenuImg({

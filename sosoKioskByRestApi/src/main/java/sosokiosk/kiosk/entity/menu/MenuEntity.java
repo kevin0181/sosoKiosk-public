@@ -34,6 +34,9 @@ public class MenuEntity {
     @Column(name = "menu_enable")
     private boolean menuEnable;
 
+    @Column(name = "set_status")
+    private boolean setStatus;
+
     @ManyToOne
     @JoinColumn(name = "category_sq", insertable = false, updatable = false)
     private CategoryEntity categoryDTO;
