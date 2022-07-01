@@ -72,10 +72,13 @@ const AllCategory = ({modalContentChange, data, setDataFun}) => {
                                         <th style={{width: '40%', fontSize: '20px'}}>
                                             카테고리
                                         </th>
-                                        <th style={{width: '30%', fontSize: '20px'}}>
+                                        <th style={{width: '20%', fontSize: '20px'}}>
+                                            순서
+                                        </th>
+                                        <th style={{width: '20%', fontSize: '20px'}}>
                                             수정
                                         </th>
-                                        <th style={{width: '30%', fontSize: '20px'}}>
+                                        <th style={{width: '20%', fontSize: '20px'}}>
                                             삭제
                                         </th>
                                     </tr>

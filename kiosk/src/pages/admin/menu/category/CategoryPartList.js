@@ -39,6 +39,12 @@ const CategoryPartList = ({data, modalContentChange}) => {
                             </small>
                         </td>
                         <td className="search">
+                            <small className="M-font"
+                                   style={{fontSize: '15px'}}>
+                                {it.categoryIndex} 번
+                            </small>
+                        </td>
+                        <td className="search">
                             <small className="M-font menu-detail-btn" onClick={() => {
                                 modalContentChange({
                                     status: true,
