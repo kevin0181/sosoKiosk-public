@@ -281,8 +281,8 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
                         </div>
                     </div>
                     <div className={"M-flex-row"}>
-                        <div>
-                            <div className="O-modal-category-bar">
+                        <div style={{width: '60%', height: '100%'}} className={"M-flex-column"}>
+                            <div className="O-modal-category-bar" style={{height: 'auto'}}>
                                 {
                                     sideCategory.map((it) => (
                                         <div className="O-category-part O-category-part-top" key={it.sideCategorySq}>
@@ -290,15 +290,15 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
                                                 categoryChangeCss(it.sideCategorySq)
                                             }} id={'sideCategoryId' + it.sideCategorySq}
                                                  className="D-font menuDetailCategory O-category-box"
-                                                 style={{fontSize: '20px'}}>
+                                                 style={{fontSize: '17px'}}>
                                                 <p>{it.sideCategoryName}</p>
                                             </div>
                                         </div>
                                     ))
                                 }
                             </div>
-                            <div className="O-modal-side-order M-overlay">
-                                <div className="O-side-order-part">
+                            <div className="O-modal-side-order M-overlay" style={{height: '479px'}}>
+                                <div className="O-side-order-part" style={{width: '100%', height: '100%'}}>
                                     {
                                         sideMenu.length === 0 ? (
                                             <p className={'O-font-middle-size D-font'}
@@ -310,7 +310,8 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
                                                     <>
                                                     </>
                                                 ) : (
-                                                    <div className="O-side-order-card" key={it.menuSideSq}>
+                                                    <div className="O-side-order-card" style={{width: '50%'}}
+                                                         key={it.menuSideSq}>
                                                         <div className="O-menu-side-img">
                                                             <img className="O-side-img" alt={'사이드 이미지'}
                                                                  src={'http://' + serverUrl.server + it.menuSideImgDTOList[0].menuSideImgPath +
@@ -372,9 +373,9 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
                                 </div>
                             </div>
                         </div>
-                        <div className="O-modal-side-footer">
+                        <div className="M-flex-column" style={{width: '40%'}}>
                             <div
-                                className="O-side-select-menu-part-left M-flex-row M-flex-center O-side-select-menu-part-left2">
+                                className="M-flex-row M-flex-center">
                                 <div className="O-select-mini-card" style={{width: '85%'}}>
                                     <div className="O-mini-card-header">
                                         <div className="O-mini-card-header-img">
@@ -401,11 +402,12 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
                                     </div>
                                 </div>
                             </div>
-                            <div className="O-side-select-part w-M-overlay">
+                            <div className="O-side-select-part M-overlay" style={{height: '377px', width: '100%'}}>
                                 <div className="O-side-select-menu-part">
                                     {
                                         orderMenuASideDetail.addSide.map((it) => (
-                                            <div className="O-side-select-card O-side-select-card13" key={it.sideSq}
+                                            <div className="O-side-select-card" key={it.sideSq}
+                                                 style={{width: '33.333333333%', height: '40%'}}
                                                  name="selectSideCardName">
                                                 <div className="O-side-select-number">
                                                     <p className="D-font" style={{fontSize: '20px'}}
@@ -418,20 +420,23 @@ const MenuDetailModal = ({menuModalStatus, menuModalContentChange, changeAllOrde
                                                 </div>
                                                 <div
                                                     className="O-side-select-name M-flex-column M-flex-center M-overlay">
-                                                    <p className="D-font" style={{fontSize: '25px'}}>{it.sideName}</p>
+                                                    <p className="D-font" style={{fontSize: '16px'}}>{it.sideName}</p>
                                                 </div>
                                             </div>
                                         ))
                                     }
                                 </div>
                             </div>
-                            <div className="O-side-select-ok-part">
-                                <div className="O-side-select-ok M-flex-center M-flex-row" style={{height: '40%'}}
+                            <div className="O-side-select-ok-part"
+                                 style={{flexDirection: 'row', width: '100%', height: '14%'}}>
+                                <div className="O-side-select-ok M-flex-center M-flex-row"
+                                     style={{margin: '0 5px'}}
                                      onClick={saveDetailMenuOrder}>
                                     <p className="D-font " style={{fontSize: '30px'}}>선택
                                         완료</p>
                                 </div>
-                                <div className="O-side-select-close M-flex-center M-flex-row" style={{height: '40%'}}
+                                <div className="O-side-select-close M-flex-center M-flex-row"
+                                     style={{margin: '0 5px'}}
                                      onClick={close}>
                                     <p className="D-font " style={{fontSize: '30px'}} onClick={close}>닫기</p>
                                 </div>
