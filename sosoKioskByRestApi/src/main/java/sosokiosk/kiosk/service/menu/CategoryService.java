@@ -217,7 +217,7 @@ public class CategoryService {
     @Transactional
     public List<CategoryDTO> findAllCategory() {
 
-        List<CategoryEntity> categoryEntityList = categoryRepository.findAll();
+        List<CategoryEntity> categoryEntityList = categoryRepository.findAllByOrderByCategoryIndex();
         List<CategoryDTO> categoryDTOList = categoryEntityList.stream().map(categoryEntity -> modelMapper.map(categoryEntity, CategoryDTO.class)).collect(Collectors.toList());
 
         for (int i = 0; i < categoryDTOList.size(); i++) {

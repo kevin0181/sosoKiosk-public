@@ -49,10 +49,10 @@ public class KioskController {
         return categoryDTO;
     }
 
-    @GetMapping("/kiosk/card/pay")
-    public String cardPage() {
-        return "/kiosk/cardPay";
-    }
+//    @GetMapping("/kiosk/card/pay")
+//    public String cardPage() {
+//        return "/kiosk/cardPay";
+//    }
 
     @Transactional
     @PostMapping("/kiosk/category/get/categorySq")
