@@ -42,6 +42,14 @@ const AdminLogin = () => {
                                    style={{fontSize: '80px'}}>&pastel</p>
                             </div>
                         </div>
+                        <div className="text M-font O-category-font" style={{position: 'relative', top: '60%'}}>
+                            <div className="O-category-name" id={'closeKiosk'}
+                                 onClick={() => {
+                                     window.close();
+                                 }}>
+                                <p className="O-category-a M-font-25-size">키오스크 종료</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className="admin-right-side"
