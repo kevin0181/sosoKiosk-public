@@ -92,7 +92,13 @@ const MainMenu = ({menu, menuModalContentChange}) => {
                                         <div style={{textAlign: 'center'}}>
 
                                             {
-                                                it.setStatus ? (<></>) : (<>
+                                                it.setStatus ? (
+                                                    <p className="O-menu-name D-font"
+                                                       style={{
+                                                           display: 'inline-block',
+                                                           fontSize: '15px',
+                                                       }}>사이드 선택<span style={{color: 'red'}}> 필수!</span></p>
+                                                ) : (<>
                                                     <p className="O-menu-name D-font"
                                                        style={{display: 'inline-block', fontSize: '22px'}}>가격
                                                         :&nbsp;</p>
