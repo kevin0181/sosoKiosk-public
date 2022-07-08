@@ -18,6 +18,22 @@ const CardOrder = ({modalContentChange, data, setDataFun}) => {
     });
 
 
+    const [subData, setSubData] = useState({
+        successTotalPrice: 0,
+        failTotalPrice: 0,
+        successOrderCount: 0,
+        failOrderCount: 0,
+        orderCardStatus: "" //나중에 카드사 추가할 것.
+    });
+
+
+    useEffect(() => {
+
+        console.log(subData);
+
+    }, [subData]);
+
+
     const [spinner, setSpinner] = useState(true);
 
     useEffect(() => {
@@ -30,6 +46,20 @@ const CardOrder = ({modalContentChange, data, setDataFun}) => {
             setSpinner(false);
 
         });
+
+        console.log(data);
+
+        data.order.filter((data) => data.orderStatus === true && data.orderPayStatus === "card").map((it) => {
+            //총 금액 계산.
+
+            console.log(it);
+
+            setSubData({
+                successTotalPrice: subData.successTotalPrice += Number(it.orderTotalPrice)
+            });
+
+        });
+
     }, []);
 
     let today = new Date();
@@ -49,6 +79,7 @@ const CardOrder = ({modalContentChange, data, setDataFun}) => {
             [e.target.name]: e.target.value
         });
     }
+
 
     const dateSearch = async () => {
 
@@ -119,7 +150,7 @@ const CardOrder = ({modalContentChange, data, setDataFun}) => {
                             </div>
                         </div>
                     </div>
-                    <div className="admin-menu-all-list M-font M-mini-size">
+                    <div className="admin-menu-all-list M-font M-mini-size" style={{height: '80%'}}>
                         <div className="admin-menu-all-list-div M-overlay">
                             <table className="admin-menu-all-table">
                                 <thead>
@@ -207,6 +238,9 @@ const CardOrder = ({modalContentChange, data, setDataFun}) => {
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+                    <div className={"M-flex-column"}>
+                        <p className={"M-font-20-size"}>ㅎㅇ</p>
                     </div>
                 </div>
             </div>
