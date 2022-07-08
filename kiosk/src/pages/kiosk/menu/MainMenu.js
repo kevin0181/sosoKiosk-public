@@ -18,6 +18,10 @@ const MainMenu = ({menu, menuModalContentChange}) => {
     }, []);
 
     useEffect(() => {
+        console.log(viewMenu);
+    }, [viewMenu]);
+
+    useEffect(() => {
         if (Number(status) !== 0) {
             changeMenu();
         } else {
@@ -86,10 +90,20 @@ const MainMenu = ({menu, menuModalContentChange}) => {
                                     </div>
                                     <div className="O-card-body-body">
                                         <div style={{textAlign: 'center'}}>
-                                            <p className="O-menu-name D-font"
-                                               style={{display: 'inline-block', fontSize: '22px'}}>가격 :&nbsp;</p>
-                                            <p className="O-menu-name D-font"
-                                               style={{display: 'inline-block', fontSize: '22px'}}>{it.menuPrice}</p>
+
+                                            {
+                                                it.setStatus ? (<></>) : (<>
+                                                    <p className="O-menu-name D-font"
+                                                       style={{display: 'inline-block', fontSize: '22px'}}>가격
+                                                        :&nbsp;</p>
+                                                    <p className="O-menu-name D-font"
+                                                       style={{
+                                                           display: 'inline-block',
+                                                           fontSize: '22px'
+                                                       }}>{it.menuPrice}</p>
+                                                </>)
+                                            }
+
                                             <br/>
                                             {
                                                 it.menuSoldOut ? (<small className="O-menu-name D-font"
