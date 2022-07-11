@@ -1,5 +1,4 @@
 import {useEffect, useState} from "react";
-import {getCardOrderList} from "../../../js/admin/order/order";
 import SpinnerAdmin from "../part/SpinnerAdmin";
 import * as AllMenuSearch from "../../../js/admin/menu/AllMenu";
 import axios from "axios";
