@@ -150,9 +150,12 @@ export const showCardPay = (res, getTotalPrice, menuModalContentChange) => {
                             let tradeTime = FindJSONtoString("TRADETIME", data).substrKor(0, 6);	// 승인일시
                             let tradeUniqueNo = FindJSONtoString("TRADEUNIQUENO", data);				// VANTR
                             let oriApprovalNo = FindJSONtoString("ORIAPPROVALNO", data);			// 원거래승인번호
+                            let cardKind = FindJSONtoString("CARDNAME", data);
+
                             res.orderApprovalNo = approvalNo;
                             res.orderTradeTime = tradeTime;
                             res.orderTradeUniqueNo = tradeUniqueNo;
+                            res.cardKind = cardKind;
 
                             cardPayAfterSaveOrder(res).then(function () {
                                 modalSend(menuModalContentChange, 'checkReceipt', '', '', res, data);
