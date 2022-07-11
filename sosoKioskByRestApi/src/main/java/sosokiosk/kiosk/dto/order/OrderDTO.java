@@ -3,6 +3,7 @@ package sosokiosk.kiosk.dto.order;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +34,10 @@ public class OrderDTO {
     private String orderApprovalNo;
 
     private String orderTradeUniqueNo;
+
+    private String cardKind;
+
+    private String cardNumber;
 
     private int orderNumber;
 

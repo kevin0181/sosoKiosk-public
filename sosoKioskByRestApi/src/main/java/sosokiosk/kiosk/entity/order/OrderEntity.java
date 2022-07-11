@@ -49,6 +49,12 @@ public class OrderEntity {
     @Column(name = "order_tradeuniqueno") //20 //거래고유번호
     private String orderTradeUniqueNo;
 
+    @Column(name = "card_kind") //카드사 종류
+    private String cardKind;
+
+    @Column(name = "card_number") //카드 번호
+    private String cardNumber;
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "order_sq")
     private List<OrderDetailEntity> orderDetailEntityList = new ArrayList<>();
