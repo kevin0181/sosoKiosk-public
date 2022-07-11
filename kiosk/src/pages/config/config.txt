@@ -1,4 +1,4 @@
-soso-kitchen.com:8000
+soso-kitchen.com:8000  -> 이거 사용 X 아래꺼 사용 o
 115.85.182.103:8000
 
 localhost:8081
