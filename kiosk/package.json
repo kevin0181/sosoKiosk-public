@@ -1,6 +1,6 @@
 {
   "name": "sosoKioskProject",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "description": "",
   "main": "public/electron.js",
   "homepage": "./",
@@ -11,7 +11,7 @@
     "eject": "react-scripts eject",
     "electron:start": "set ELECTRON_START_URL=http://localhost:3000 && electron .",
     "deploy": "electron-builder --windows nsis:ia32",
-    "electron-build2" : "npx electron-builder -wl",
+    "electron-build2": "npx electron-builder -wl",
     "deploy:win64": "electron-builder --win --x64"
   },
   "eslintConfig": {
@@ -79,6 +79,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
     "electron-log": "^4.4.8",
+    "electron-progressbar": "^2.0.1",
     "electron-updater": "^5.0.5",
     "firebase": "^9.8.0",
     "jquery": "^3.6.0",
