@@ -200,7 +200,7 @@ export const showCardPay = (res, getTotalPrice, menuModalContentChange) => {
 
 async function cardPayAfterSaveOrder(data) {
 
-    const response = await axios.post('http://' + serverUrl.server + '/kiosk/menu/order/saveMenu', data, {
+    const response = await axios.post('http://' + serverUrl.server + ' ', data, {
         headers: {
             "Content-Type": `application/json`,
         },
