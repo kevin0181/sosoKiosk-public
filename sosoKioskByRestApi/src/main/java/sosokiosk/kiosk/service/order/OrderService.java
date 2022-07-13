@@ -147,6 +147,8 @@ public class OrderService {
         getOrderEntity.setOrderTradeTime(orderEntity.getOrderTradeTime());
         getOrderEntity.setOrderApprovalNo(orderEntity.getOrderApprovalNo());
         getOrderEntity.setOrderTradeUniqueNo(orderEntity.getOrderTradeUniqueNo());
+        getOrderEntity.setCardKind(orderEntity.getCardKind()); //카드사 종류
+        getOrderEntity.setCardNumber(orderEntity.getCardNumber()); //카드 번호
         getOrderEntity.setOrderStatus(true);
 
         orderRepository.save(getOrderEntity);
