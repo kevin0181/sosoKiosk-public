@@ -1,6 +1,6 @@
 {
   "name": "sosoKioskProject",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "",
   "main": "public/electron.js",
   "homepage": "./",
@@ -10,7 +10,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "electron:start": "set ELECTRON_START_URL=http://localhost:3000 && electron .",
-    "deploy": "electron-builder --windows nsis:ia32"
+    "deploy": "electron-builder --windows nsis:ia32",
+    "electron-build2" : "npx electron-builder -wl",
+    "deploy:win64": "electron-builder --win --x64"
   },
   "eslintConfig": {
     "extends": [
@@ -34,10 +36,14 @@
   "license": "ISC",
   "devDependencies": {
     "electron": "^18.2.0",
-    "electron-builder": "^23.0.3",
+    "electron-builder": "^23.1.0",
     "electron-reload": "^2.0.0-alpha.1",
     "electron-reloader": "^1.2.3",
     "nodemon": "^2.0.15"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kevin0181/kioskRelease.git"
   },
   "build": {
     "productName": "sosokisok",
@@ -72,6 +78,8 @@
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
+    "electron-log": "^4.4.8",
+    "electron-updater": "^5.0.5",
     "firebase": "^9.8.0",
     "jquery": "^3.6.0",
     "react": "^18.1.0",
