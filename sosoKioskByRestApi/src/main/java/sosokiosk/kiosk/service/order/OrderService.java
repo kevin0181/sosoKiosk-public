@@ -140,7 +140,7 @@ public class OrderService {
         return buf.toString();
     }
 
-    public OrderDTO reSaveOrder(OrderEntity orderEntity) {
+    public OrderEntity reSaveOrder(OrderEntity orderEntity) {
 
         OrderEntity getOrderEntity = orderRepository.findByOrderTelegramNo(orderEntity.getOrderTelegramNo());
 
@@ -150,14 +150,15 @@ public class OrderService {
         getOrderEntity.setCardKind(orderEntity.getCardKind()); //카드사 종류
         getOrderEntity.setCardNumber(orderEntity.getCardNumber()); //카드 번호
         getOrderEntity.setOrderStatus(true);
+        orderEntity.setOrderStatus(true);
 
         orderRepository.save(getOrderEntity);
+//
+//        OrderDTO orderDTO = modelMapper.map(getOrderEntity, OrderDTO.class);
+//        orderN++;
+//        orderDTO.setOrderNumber(orderN);
 
-        OrderDTO orderDTO = modelMapper.map(getOrderEntity, OrderDTO.class);
-        orderN++;
-        orderDTO.setOrderNumber(orderN);
-
-        return orderDTO;
+        return orderEntity;
 
     }
 

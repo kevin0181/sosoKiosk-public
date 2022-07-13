@@ -127,12 +127,11 @@ public class KioskController {
 
     }
 
-    @Transactional
     @PostMapping("/kiosk/menu/order/saveMenu")
     @ResponseBody
-    public OrderDTO cardPayAfterSaveOrder(@RequestBody OrderEntity orderEntity) { //주문 저장
+    public OrderEntity cardPayAfterSaveOrder(@RequestBody OrderEntity orderEntity) { //주문 저장
 
-        OrderDTO orderDTO = orderService.reSaveOrder(orderEntity);
+        OrderEntity orderDTO = orderService.reSaveOrder(orderEntity);
 
         return orderDTO;
     }
