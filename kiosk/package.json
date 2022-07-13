@@ -1,6 +1,6 @@
 {
   "name": "sosoKioskProject",
-  "version": "1.0.5",
+  "version": "1.0.21",
   "description": "",
   "main": "public/electron.js",
   "homepage": "./",
