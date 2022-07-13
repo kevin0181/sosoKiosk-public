@@ -27,6 +27,8 @@ export const YesReceiptMoneyPayStart = async (data, orderNumber, menuModalStatus
 
 export const saveData = async (data) => { //주문 DB 전송 저장
 
+    console.log(data);
+
     let sendData = {
         "orderMenu": data.orderMenu,
         "totalPrice": (data.totalPrice).toString(),
@@ -151,13 +153,16 @@ export const showCardPay = (res, getTotalPrice, menuModalContentChange) => {
                             let tradeUniqueNo = FindJSONtoString("TRADEUNIQUENO", data);				// VANTR
                             let oriApprovalNo = FindJSONtoString("ORIAPPROVALNO", data);			// 원거래승인번호
                             let cardKind = FindJSONtoString("CARDNAME", data);
+                            let cardNumber = FindJSONtoString("FILLER", data);
 
                             res.orderApprovalNo = approvalNo;
                             res.orderTradeTime = tradeTime;
                             res.orderTradeUniqueNo = tradeUniqueNo;
                             res.cardKind = cardKind;
+                            // res.cardNumber = cardNumber;
 
                             cardPayAfterSaveOrder(res).then(function () {
+                                console.log(res);
                                 modalSend(menuModalContentChange, 'checkReceipt', '', '', res, data);
                             });
 
@@ -200,7 +205,7 @@ export const showCardPay = (res, getTotalPrice, menuModalContentChange) => {
 
 async function cardPayAfterSaveOrder(data) {
 
-    const response = await axios.post('http://' + serverUrl.server + ' ', data, {
+    const response = await axios.post('http://' + serverUrl.server + '/kiosk/menu/order/saveMenu', data, {
         headers: {
             "Content-Type": `application/json`,
         },
