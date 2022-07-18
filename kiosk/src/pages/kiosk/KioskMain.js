@@ -37,7 +37,7 @@ const KioskMain = ({setOrderStatusFun, orderStatus}) => {
                     <div className="O-order-Side">
                         <div className="side-up-container">
                             <div className="storeName">
-                                <p className="s-font" style={{fontSize: '80px'}}>&s</p>
+                                <p className="s-font" style={{fontSize: '80px'}}>&pastel</p>
                             </div>
                         </div>
                     </div>

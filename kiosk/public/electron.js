@@ -5,7 +5,6 @@ const {autoUpdater} = require("electron-updater");
 const log = require('electron-log');
 const ProgressBar = require('electron-progressbar');
 
-
 function createWindow() {
 
     // 자동 업데이트 등록
