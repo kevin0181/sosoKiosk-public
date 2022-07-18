@@ -158,7 +158,7 @@ export const showCardPay = (res, getTotalPrice, menuModalContentChange) => {
                             res.orderApprovalNo = approvalNo;
                             res.orderTradeTime = tradeTime;
                             res.orderTradeUniqueNo = tradeUniqueNo;
-                            res.cardKind = cardKind;
+                            // res.cardKind = cardKind;
                             // res.cardNumber = cardNumber;
 
                             cardPayAfterSaveOrder(res).then(function () {

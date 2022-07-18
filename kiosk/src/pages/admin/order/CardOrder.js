@@ -239,7 +239,7 @@ const CardOrder = ({modalContentChange, data, setDataFun}) => {
                         </div>
                     </div>
                     <div className={"M-flex-column"}>
-                        <p className={"M-font-20-size"}>ㅎㅇ</p>
+                        <p className={"M-font-20-size"}></p>
                     </div>
                 </div>
             </div>
