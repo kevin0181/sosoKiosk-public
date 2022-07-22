@@ -22,8 +22,8 @@ const AdminLogin = () => {
     const navigate = useNavigate();
 
     const [LoginFormState, setLoginFormState] = useState({
-        id: "",
-        password: ""
+        id: "soso",
+        password: "1234"
     });
 
     const login = () => {
@@ -60,7 +60,7 @@ const AdminLogin = () => {
                         }}>
                             <img src={backButtunImg}
                                  id="indexBackBtn"
-                                 alt={'123'}
+                                 alt={'뒤로가기 버튼'}
                                  style={{width: '100%'}}/>
                         </div>
                     </div>
@@ -75,7 +75,7 @@ const AdminLogin = () => {
                         <div className="adminFormBody">
                             <form id="adminForm" className="adminForm">
                                 <input type="text"
-                                       id="admin-id"
+                                       id="admin-id" value={LoginFormState.id}
                                        onChange={(e) => {
                                            setLoginFormState({...LoginFormState, id: e.target.value})
                                        }}
@@ -83,7 +83,7 @@ const AdminLogin = () => {
                                        className="adminId"
                                        placeholder="아이디"/><br/>
                                 <input type="password"
-                                       name="password"
+                                       name="password" value={LoginFormState.password}
                                        id="admin-password"
                                        onChange={(e) => {
                                            setLoginFormState({...LoginFormState, password: e.target.value})
