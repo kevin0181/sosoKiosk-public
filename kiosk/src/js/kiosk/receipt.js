@@ -33,10 +33,19 @@ export const longReceipt = (payAfterData, orderNumber, cardInfo) => { //영수�
                 setPosId(issueID);
                 checkPrinterStatus();
 
+                let payStatus = "";
+
+                if (payAfterData.orderPayStatus === "money") {
+                    payStatus = "M";
+                } else if (payAfterData.orderPayStatus === "card") {
+                    payStatus = "C";
+                }
+
                 printText("&pastel\n", 0, 1, false, false, false, 0, 1);
                 printText("\n경기도 안산시 \n단원구 예술대학로 171,\n15263, 한국\n\n", 0, 0, false, false, false, 0, 1);
-                // printText("--------------------------------", 0, 0, false, false, false, 0, 1);
-
+                printText("--------------------------------", 0, 0, false, false, false, 0, 1);
+                printText("주문 번호\n", 0, 0, true, false, false, 0, 1);
+                printText("\n" + payStatus + "-" + orderNumber + "\n", 0, 3, true, false, false, 0, 1);
                 if (_inch == 2) {
                     // 2inch sample
                     printText("--------------------------------\n", 0, 0, false, false, false, 0, 0);
@@ -47,18 +56,18 @@ export const longReceipt = (payAfterData, orderNumber, cardInfo) => { //영수�
 
                         // printText(" " + this.orderMenuName + "      " + this.orderDetailMenuSize + "        " + this.orderDetailMenuPrice + " \n", 0, 0, false, false, false, 0, 0);
 
-                        printText(this.orderMenuName + "\n", 0, 0, false, false, false, 0, 0);
+                        printText(this.orderMenuName + "\n", 0, 0, true, false, false, 0, 0);
 
-                        printText(this.orderDetailMenuPrice + "       " + this.orderDetailMenuSize + "       " + (parseInt(this.orderDetailMenuPrice) * parseInt(this.orderDetailMenuSize)) + "\n", 0, 0, false, false, false, 0, 2);
+                        printText(this.orderDetailMenuPrice + "       " + this.orderDetailMenuSize + "       " + (parseInt(this.orderDetailMenuPrice) * parseInt(this.orderDetailMenuSize)) + "\n", 0, 0, true, false, false, 0, 2);
 
                         if (this.orderDetailSideEntityList.length != 0) {
 
                             $(this.orderDetailSideEntityList).each(function () {
                                 // printText("(SIDE) " + this.orderSideName + "       " + this.orderSideSize + "     " + this.orderSidePrice + " \n", 0, 0, false, false, false, 0, 0);
 
-                                printText("(SIDE) " + this.orderSideName + "\n", 0, 0, false, false, false, 0, 0);
-
-                                printText(this.orderSidePrice + "       " + this.orderSideSize + "       " + (parseInt(this.orderSidePrice) * parseInt(this.orderSideSize)) + "\n", 0, 0, false, false, false, 0, 2);
+                                // printText("(SIDE) " + this.orderSideName + "\n", 0, 0, false, false, false, 0, 0);
+                                printText("- " + this.orderSideName + "\n", 0, 0, false, false, false, 0, 0);
+                                printText(this.orderSidePrice + "       " + this.orderSideSize + "       " + (parseInt(this.orderSidePrice) * parseInt(this.orderSideSize)) + "\n", 0, 0, true, false, false, 0, 2);
                             });
                         }
                     });
