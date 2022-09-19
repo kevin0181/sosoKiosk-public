@@ -45,6 +45,13 @@
     flex-wrap: nowrap;
 }
 
+.O-category-list3 {
+    height: 60%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
 .O-category-font {
     /*color: white;*/
     font-size: 35px;
@@ -54,9 +61,24 @@
     padding: 10px;
 }
 
+.O-category-font2 {
+    /*color: white;*/
+    font-size: 35px;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+
 .O-category-Side {
     padding: 20px;
     height: 20%;
+}
+
+.O-category-Side2 {
+    padding: 20px;
+    height: 20%;
+    width: 50%;
 }
 
 .O-category {

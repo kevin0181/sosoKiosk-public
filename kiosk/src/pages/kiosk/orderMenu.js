@@ -136,8 +136,8 @@ const OrderMenu = ({
                                     style={{height: '68%'}}
                                     className="M-overlay">
                                     <div id="categoryPart"
-                                         className="O-category-list2"
-                                         style={{height: '100%', display: 'block', fontSize: '20px'}}>
+                                         className="O-category-list3"
+                                         style={{height: '100%', fontSize: '20px'}}>
                                         <CategoryList categoryList={categoryList}/>
                                     </div>
                                 </div>

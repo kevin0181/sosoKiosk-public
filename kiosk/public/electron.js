@@ -15,13 +15,17 @@ function createWindow() {
             webSecurity: false,
         }
     });
-    win.kiosk = true;
-    win.setMenu(null);
-    const startUrl = process.env.ELECTRON_START_URL || url.format({
-        pathname: path.join(__dirname, '/../build/index.html'),
-        protocol: 'file:',
-        slashes: true
-    });
+    // win.kiosk = true;
+    // win.setMenu(null);
+    console.log(process.env.ELECTRON_START_URL);
+    // const startUrl = process.env.ELECTRON_START_URL || url.format({
+    //     pathname: path.join(__dirname, '/../build/index.html'),
+    //     protocol: 'file:',
+    //     slashes: true
+    // });
+
+    const startUrl = 'http://localhost:3000'
+
 
     win.loadURL(startUrl);
 

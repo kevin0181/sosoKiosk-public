@@ -26,7 +26,7 @@ const CategoryList = ({categoryList}) => {
             {/*    </div>*/}
             {/*</div>*/}
             {categoryList && categoryList.map((it) => (
-                <div className="text O-category-font O-category-Side" key={it.categorySq}
+                <div className="text O-category-font2 O-category-Side2" key={it.categorySq}
                      id={'categorySelectCss' + it.categorySq}
                      onClick={() => {
                          changeSelectCss(it.categorySq);
