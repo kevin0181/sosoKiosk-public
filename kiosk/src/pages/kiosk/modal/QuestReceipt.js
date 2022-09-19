@@ -99,6 +99,15 @@ const QuestReceipt = ({menuModalContentChange, orderStatus, orderNumber, PlusOrd
                                      menu: '',
                                  }).then(function () {
                                      YesReceiptMoneyPayStart(orderStatus, orderNumber, menuModalStatus);
+                                 }).finally(() => {
+                                     menuModalContentChange({
+                                         status: true,
+                                         param: '',
+                                         modalType: '',
+                                         modalTitle: '',
+                                         modalContent: '',
+                                         menu: '',
+                                     })
                                  })
                              }}
                              style={{width: '35%', height: '55px', backgroundColor: '#e9e9e9'}}>
