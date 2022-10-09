@@ -125,7 +125,9 @@ export const longReceipt = (payAfterData, orderNumber, cardInfo) => { //영수�
 
                 requestPrint(printerName, strSubmit, viewResult);
 
-                numberReceipt(payAfterData, orderNumber);
+                // requestPrint("kitchen-printer", strSubmit, viewResult); //만약에 주방쪽에 프린터기 하나 더 놓으면 이거 함수 실행
+
+                numberReceipt(payAfterData, orderNumber); // 영수증에 번호 있으니깐 굳이 이거 하나 더 뽑을 필요가 있나 이제?
 
 
             });

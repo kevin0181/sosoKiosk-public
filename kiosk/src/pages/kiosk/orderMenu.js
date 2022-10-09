@@ -220,8 +220,8 @@ const OrderMenu = ({
                             </div>
                             <div className="O-footer-buy-Btn D-font O-select-font">
                                 <div className="O-footer-buy-Btn-all">
-                                    <div className="O-card-Btn M-width-80 M-flex-row M-flex-center"
-                                         style={{fontSize: '30px', height: '40%'}}
+                                    <div className="O-money-Btn M-width-80 M-flex-row M-flex-center"
+                                         style={{fontSize: '30px', height: '65%'}}
                                          onClick={() => {
                                              if (allOrderData.length === 0) {
                                                  //메뉴 선택을 안함
@@ -245,31 +245,31 @@ const OrderMenu = ({
                                          }}>
                                         <p>카드결제</p>
                                     </div>
-                                    <div className="O-money-Btn M-width-80 M-flex-row M-flex-center"
-                                         style={{fontSize: '30px', height: '40%'}}
-                                         onClick={() => {
-                                             if (allOrderData.length === 0) {
-                                                 //메뉴 선택을 안함
-                                                 return false;
-                                             }
-                                             orderStatus.payStatus = 'money'
-                                             orderStatus.totalPrice = totalPrice
-                                             orderStatus.orderMenu = allOrderData
-                                             setOrderStatusFun({
-                                                 ...orderStatus
-                                             }).then(function () {
-                                                 menuModalContentChange({
-                                                     status: true,
-                                                     param: '',
-                                                     modalType: 'orderReceipt',
-                                                     modalTitle: '',
-                                                     modalContent: '',
-                                                     menu: '',
-                                                 });
-                                             })
-                                         }}>
-                                        <p>현금결제</p>
-                                    </div>
+                                    {/*<div className="O-money-Btn M-width-80 M-flex-row M-flex-center"*/}
+                                    {/*     style={{fontSize: '30px', height: '40%'}}*/}
+                                    {/*     onClick={() => {*/}
+                                    {/*         if (allOrderData.length === 0) {*/}
+                                    {/*             //메뉴 선택을 안함*/}
+                                    {/*             return false;*/}
+                                    {/*         }*/}
+                                    {/*         orderStatus.payStatus = 'money'*/}
+                                    {/*         orderStatus.totalPrice = totalPrice*/}
+                                    {/*         orderStatus.orderMenu = allOrderData*/}
+                                    {/*         setOrderStatusFun({*/}
+                                    {/*             ...orderStatus*/}
+                                    {/*         }).then(function () {*/}
+                                    {/*             menuModalContentChange({*/}
+                                    {/*                 status: true,*/}
+                                    {/*                 param: '',*/}
+                                    {/*                 modalType: 'orderReceipt',*/}
+                                    {/*                 modalTitle: '',*/}
+                                    {/*                 modalContent: '',*/}
+                                    {/*                 menu: '',*/}
+                                    {/*             });*/}
+                                    {/*         })*/}
+                                    {/*     }}>*/}
+                                    {/*    <p>현금결제</p>*/}
+                                    {/*</div>*/}
                                 </div>
                             </div>
                         </div>
