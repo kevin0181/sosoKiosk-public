@@ -127,14 +127,122 @@ export const longReceipt = (payAfterData, orderNumber, cardInfo) => { //영수�
 
                 // requestPrint("kitchen-printer", strSubmit, viewResult); //만약에 주방쪽에 프린터기 하나 더 놓으면 이거 함수 실행
 
-                numberReceipt(payAfterData, orderNumber); // 영수증에 번호 있으니깐 굳이 이거 하나 더 뽑을 필요가 있나 이제?
+                // numberReceipt(payAfterData, orderNumber); // 영수증에 번호 있으니깐 굳이 이거 하나 더 뽑을 필요가 있나 이제?
 
 
             });
 
+            //매장 제출용ㅋ
+            getTax(parseInt(getSettingTax), parseInt(payAfterData.orderTotalPrice)).then(function (Tax) { //총금액의 10프로 세금
+
+                setPosId(issueID);
+                checkPrinterStatus();
+
+                let payStatus = "";
+
+                if (payAfterData.orderPayStatus === "money") {
+                    payStatus = "M";
+                } else if (payAfterData.orderPayStatus === "card") {
+                    payStatus = "C";
+                }
+
+                printText("&pastel\n", 0, 1, false, false, false, 0, 1);
+                printText("\n경기도 안산시 \n단원구 예술대학로 171,\n15263, 한국\n\n", 0, 0, false, false, false, 0, 1);
+                printText("--------------------------------", 0, 0, false, false, false, 0, 1);
+                printText("주문 번호\n", 0, 0, true, false, false, 0, 1);
+                printText("\n" + payStatus + "-" + orderNumber + "\n", 0, 3, true, false, false, 0, 1);
+                printText("매장 제출용", 0, 3, true, false, false, 0, 1);
+                if (_inch == 2) {
+                    // 2inch sample
+                    printText("--------------------------------\n", 0, 0, false, false, false, 0, 0);
+                    printText("메뉴        단가    수량    금액\n\n", 0, 0, false, false, false, 0, 0);
+
+
+                    $(payAfterData.orderDetailEntityList).each(function () {
+
+                        // printText(" " + this.orderMenuName + "      " + this.orderDetailMenuSize + "        " + this.orderDetailMenuPrice + " \n", 0, 0, false, false, false, 0, 0);
+
+                        printText(this.orderMenuName + "\n", 0, 0, true, false, false, 0, 0);
+
+                        printText(this.orderDetailMenuPrice + "       " + this.orderDetailMenuSize + "       " + (parseInt(this.orderDetailMenuPrice) * parseInt(this.orderDetailMenuSize)) + "\n", 0, 0, true, false, false, 0, 2);
+
+                        if (this.orderDetailSideEntityList.length != 0) {
+
+                            $(this.orderDetailSideEntityList).each(function () {
+                                // printText("(SIDE) " + this.orderSideName + "       " + this.orderSideSize + "     " + this.orderSidePrice + " \n", 0, 0, false, false, false, 0, 0);
+
+                                // printText("(SIDE) " + this.orderSideName + "\n", 0, 0, false, false, false, 0, 0);
+                                printText("- " + this.orderSideName + "\n", 0, 0, false, false, false, 0, 0);
+                                printText(this.orderSidePrice + "       " + this.orderSideSize + "       " + (parseInt(this.orderSidePrice) * parseInt(this.orderSideSize)) + "\n", 0, 0, true, false, false, 0, 2);
+                            });
+                        }
+                    });
+
+                    printText("--------------------------------\n", 0, 0, false, false, false, 0, 0);
+                    printText("  부가세 과세 물품가액 : " + (parseInt(payAfterData.orderTotalPrice) - parseInt(Tax)) + "\n", 0, 0, true, false, false, 0, 0);
+                    printText("           부  과  세  : " + Tax + "\n", 0, 0, true, false, false, 0, 0);
+                    printText("            --------------------\n", 0, 0, false, false, false, 0, 0);
+                    printText("               총 금액 : " + payAfterData.orderTotalPrice + "\n", 0, 0, true, false, false, 0, 0);
+                    printText("--------------------------------\n", 0, 0, false, false, false, 0, 0);
+                    printText("        주문 번호 : " + payAfterData.orderTelegramNo + "\n", 0, 0, false, false, false, 0, 0);
+
+                    if (payAfterData.orderPlace == "inner") {
+                        printText("                          매장\n", 0, 0, false, false, false, 0, 0);
+                    } else if (payAfterData.orderPlace == "outer") {
+                        printText("                          포장\n", 0, 0, false, false, false, 0, 0);
+                    }
+
+
+                    if (payAfterData.orderPayStatus == "card") {
+                        printText("결제 방식  : 카드\n", 0, 0, false, false, false, 0, 0);
+                    } else if (payAfterData.orderPayStatus == "money") {
+                        printText("결제 방식  : 현금\n", 0, 0, false, false, false, 0, 0);
+                    }
+
+                    printText("대 표 자  : " + leaderName + "\n", 0, 0, false, false, false, 0, 0);
+                    printText("사업자 번호: " + businessNumber + "\n", 0, 0, false, false, false, 0, 0);
+                    printText("주문 시각 : " + payAfterData.orderDate + "\n", 0, 0, false, false, false, 0, 0);
+
+                    if (payAfterData.orderPayStatus === 'card') {
+                        printText("--------------------------------\n", 0, 0, false, false, false, 0, 0);
+                        printText("신용 승인 정보\n", 0, 0, false, false, false, 0, 1);
+                        printText("카 드 명 : " + cardInfo.CARDNAME + "\n", 0, 0, false, false, false, 0, 0);
+                        printText("승인번호 : " + cardInfo.APPROVALNO + "\n\n", 0, 0, false, false, false, 0, 0);
+                    }
+
+                } else {
+                    // error
+                    return;
+                }
+
+                printText("Tel : 070 - 8888 - 9956\n", 0, 0, true, false, false, 0, 0);
+                printText("Homepage : www.soso-kitchen.com\n\n", 0, 0, false, false, false, 0, 0);
+
+                // printQRCode("www.soso-kitchen.com", 0, 2, 7, 0);
+                // print1DBarcode("&pastel 인터넷으로 주문하기", 0, 4, 70, 2, 1);
+                // printText("\n\n\n\n\n", 0, 0, false, false, false, 0, 0);
+                cutPaper(1);
+
+                let strSubmit = getPosData();
+
+                console.log(strSubmit);
+
+                issueID++;
+
+                requestPrint(printerName, strSubmit, viewResult);
+
+                // requestPrint("kitchen-printer", strSubmit, viewResult); //만약에 주방쪽에 프린터기 하나 더 놓으면 이거 함수 실행
+
+                // numberReceipt(payAfterData, orderNumber); // 영수증에 번호 있으니깐 굳이 이거 하나 더 뽑을 필요가 있나 이제?
+
+
+            });
+
+
         });
     });
 }
+
 
 function viewResult(result) {
     console.log(result);
