@@ -79,16 +79,17 @@ function App() {
                         });
                     } else if (data === "") {
                         return false;
-                    } else {
-                        menuModalContentChange({
-                            status: true,
-                            param: '',
-                            modalType: 'orderSuccessAndGoMainPage',
-                            modalTitle: '',
-                            modalContent: '',
-                            menu: ''
-                        });
                     }
+                    // else {
+                    //     menuModalContentChange({
+                    //         status: true,
+                    //         param: '',
+                    //         modalType: 'orderSuccessAndGoMainPage',
+                    //         modalTitle: '',
+                    //         modalContent: '',
+                    //         menu: ''
+                    //     });
+                    // }
 
                 });
 

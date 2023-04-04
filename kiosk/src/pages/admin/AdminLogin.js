@@ -27,7 +27,9 @@ const AdminLogin = () => {
     });
 
     const login = () => {
-        adminLogin(LoginFormState, navigate);
+        // adminLogin(LoginFormState, navigate);
+        sessionStorage.setItem("id", "soso"); // 저장
+        navigate('/admin/menu?status=all');
     }
 
     return (

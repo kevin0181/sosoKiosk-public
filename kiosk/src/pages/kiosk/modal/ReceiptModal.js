@@ -134,18 +134,27 @@ const ReceiptModal = ({
                                     orderStatus.payStatus === 'card' ? (
                                         <div className="O-pay-select-close M-flex-column M-flex-center"
                                              onClick={() => {
-                                                 saveData(orderStatus).then(function (res) { //일단 저장해둠.
-                                                     menuModalContentChange({
-                                                         status: true,
-                                                         param: '',
-                                                         modalType: 'showCardGif',
-                                                         modalTitle: '',
-                                                         modalContent: '',
-                                                         menu: ''
-                                                     }).then(function () {
-                                                         showCardPay(res, totalPrice, menuModalContentChange);
+                                                 menuModalContentChange({
+                                                     status: true,
+                                                     param: '',
+                                                     modalType: 'viewLoading',
+                                                     modalTitle: '',
+                                                     modalContent: '',
+                                                     menu: ''
+                                                 }).then(() => {
+                                                     saveData(orderStatus).then(function (res) { //일단 저장해둠.
+                                                         menuModalContentChange({
+                                                             status: true,
+                                                             param: '',
+                                                             modalType: 'showCardGif',
+                                                             modalTitle: '',
+                                                             modalContent: '',
+                                                             menu: ''
+                                                         }).then(function () {
+                                                             showCardPay(res, totalPrice, menuModalContentChange);
+                                                         });
                                                      });
-                                                 });
+                                                 })
                                              }}
                                              style={{
                                                  width: '50%',

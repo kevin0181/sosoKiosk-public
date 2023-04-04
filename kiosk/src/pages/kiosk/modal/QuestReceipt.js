@@ -103,11 +103,11 @@ const QuestReceipt = ({menuModalContentChange, orderStatus, orderNumber, PlusOrd
                                      menuModalContentChange({
                                          status: true,
                                          param: '',
-                                         modalType: '',
+                                         modalType: 'orderSuccessAndGoMainPage',
                                          modalTitle: '',
                                          modalContent: '',
-                                         menu: '',
-                                     })
+                                         menu: ''
+                                     });
                                  })
                              }}
                              style={{width: '35%', height: '55px', backgroundColor: '#e9e9e9'}}>
